@@ -12,7 +12,7 @@ So that I can trust the business is real and established before exploring furthe
 
 1. Dark background band (neutral-900) displays 4 key stats as large animated numbers with descriptor labels
 2. Stat numbers animate with count-up effect triggered by scroll into view via IntersectionObserver (StatCounter React island, `client:visible`)
-3. Key stat numbers render in gold accent colour (gold-600) using Poppins 700 at 44px
+3. Key stat numbers render in gold accent colour (gold-600) using Poppins 700 at `text-5xl` (48px — closest standard Tailwind to design ref 44px)
 4. Each stat has a gold divider bar (32px wide, 2px height) below the label
 5. Optional certification/partner logos row displays as horizontal row below stats
 6. Mobile: stats render as 2x2 grid; Desktop: horizontal row (auto-fit grid)
@@ -27,7 +27,7 @@ So that I can trust the business is real and established before exploring furthe
   - [ ] 1.4 Count-up animation: 0 → target value over ~2 seconds, easing out
   - [ ] 1.5 `prefers-reduced-motion`: skip animation, display final value immediately
   - [ ] 1.6 Only animate once (not on every scroll)
-  - [ ] 1.7 Gold number: `font-heading text-[44px] font-bold text-gold-600`
+  - [ ] 1.7 Gold number: `font-heading text-5xl font-bold text-gold-600` (48px — closest standard Tailwind to design ref 44px, avoids arbitrary value per CLAUDE.md)
   - [ ] 1.8 Label below: `text-sm text-neutral-400 mt-1`
   - [ ] 1.9 Gold divider: `w-8 h-0.5 bg-gold-600 mx-auto mt-3`
 
@@ -40,7 +40,7 @@ So that I can trust the business is real and established before exploring furthe
   - [ ] 2.6 Optional logos row below stats (placeholder for future use)
 
 - [ ] Task 3: Define homepage stats data (AC: #1)
-  - [ ] 3.1 4 stats: Divisions (7), Years of Operations (15+), Nigerian States (6), People Employed (1200+)
+  - [ ] 3.1 4 stats per epics AC: Divisions Active (7), Years in Business (15+), Nigerian States (6), Business Partners (40+). Note: epics specify "business partners" not "people employed." All figures are plausible placeholders — exact metrics to be confirmed by client.
   - [ ] 3.2 Pass as props array to CredibilityBar
 
 - [ ] Task 4: Integrate into homepage (AC: #1)
@@ -58,10 +58,10 @@ StatCounter.tsx uses `client:visible` — hydrates only when scrolled into view.
 
 ```astro
 <!-- In CredibilityBar.astro -->
-<StatCounter client:visible value={7} label="Business Divisions" />
-<StatCounter client:visible value={15} label="Years of Operations" suffix="+" />
+<StatCounter client:visible value={7} label="Divisions Active" />
+<StatCounter client:visible value={15} label="Years in Business" suffix="+" />
 <StatCounter client:visible value={6} label="Nigerian States" />
-<StatCounter client:visible value={1200} label="People Employed" suffix="+" />
+<StatCounter client:visible value={40} label="Business Partners" suffix="+" />
 ```
 
 ### StatCounter Implementation Pattern
@@ -119,7 +119,7 @@ export default function StatCounter({ value, label, prefix = '', suffix = '' }: 
 
   return (
     <div ref={ref} className="text-center">
-      <div className="font-heading text-[44px] font-bold text-gold-600">
+      <div className="font-heading text-5xl font-bold text-gold-600">
         {prefix}{count.toLocaleString()}{suffix}
       </div>
       <div className="mt-1 text-sm text-neutral-400">{label}</div>
@@ -147,12 +147,12 @@ export default function StatCounter({ value, label, prefix = '', suffix = '' }: 
 
 | Metric | Value | Suffix | Label |
 |--------|-------|--------|-------|
-| 7 | 7 | — | Business Divisions |
-| 15 | 15 | + | Years of Operations |
+| 7 | 7 | — | Divisions Active |
+| 15 | 15 | + | Years in Business |
 | 6 | 6 | — | Nigerian States |
-| 1,200 | 1200 | + | People Employed |
+| 40 | 40 | + | Business Partners |
 
-These are plausible placeholder values. Exact figures will be provided by the client.
+These match the epics AC metrics ("divisions active, years in business, states/regions, business partners"). All values are plausible placeholders — exact figures will be provided by the client.
 
 ### Homepage Section Context
 

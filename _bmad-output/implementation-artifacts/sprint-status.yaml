@@ -37,7 +37,7 @@
 generated: 2026-03-28
 last_updated: 2026-03-29
 project: UK_Web_Design
-last_story_created: 5-2-about-the-group-page-leadership-structure-credentials
+last_story_created: 5-3-investors-partners-page
 project_key: NOKEY
 tracking_system: file-system
 story_location: _bmad-output/implementation-artifacts
@@ -83,7 +83,7 @@ development_status:
   epic-5: in-progress
   5-1-about-the-group-page-overview-mission-vision: ready-for-dev
   5-2-about-the-group-page-leadership-structure-credentials: ready-for-dev
-  5-3-investors-partners-page: backlog
+  5-3-investors-partners-page: ready-for-dev
   epic-5-retrospective: optional
 
   # --- Epic 6: Publishing & Thought Leadership ---

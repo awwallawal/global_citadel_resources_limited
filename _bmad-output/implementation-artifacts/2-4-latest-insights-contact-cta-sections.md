@@ -10,12 +10,12 @@ So that I know the business is alive and I can take action when ready.
 
 ## Acceptance Criteria
 
-1. 3 InsightCard components display the latest published articles with category badge, headline, date, brief excerpt (max 2 lines), and "Read More" arrow link
+1. 3 InsightCard components display the latest published articles with category badge, headline, date, brief excerpt (max 2 lines), "Read More" arrow link, and focus-visible rings on each card link. Note: epics and IA also specify "thumbnail image" — for MVP, text-only cards are used; images are a post-MVP enhancement when editorial assets are available.
 2. "View All Insights" link below cards navigates to `/insights/`
 3. If no articles exist yet, section displays gracefully with a "Stay tuned" message (never "Coming Soon")
-4. Below insights, a CTABanner section renders on dark background with heading, supporting text, and dual CTAs: "Contact Us" (→ /contact/) and "Partner With Us" (→ /contact/strategic/)
-5. Insights cards use responsive grid: 1-column mobile, 2-column tablet, 3-column desktop
-6. Insight cards hover: shadow elevation and title colour shifts to primary-600
+4. Below insights, a CTABanner section renders on a **warm accent background** (gold gradient per epics line 518 and IA line 500) with heading, supporting text, and dual CTAs: "Contact Us" (→ /contact/) and "Partner With Us" (→ /contact/strategic/). This requires adding a gold/accent variant to CTABanner (Story 1.4 scoped to dark-only but noted future variants would be added when needed).
+5. Insights cards use asymmetric grid: 1-column mobile, asymmetric 2-column desktop with featured card spanning 2 rows. Note: epics say "3-column" but UX spec (line 1037) explicitly specifies "asymmetric layout with a featured article spanning 2 rows" and the design reference confirms this Editorial Premium treatment. The UX spec's detailed specification is followed as more precise guidance.
+6. Insight cards hover: shadow-md elevation and title colour shifts to primary-600
 
 ## Tasks / Subtasks
 
@@ -23,35 +23,36 @@ So that I know the business is alive and I can take action when ready.
   - [ ] 1.1 Create `src/components/insights/InsightCard.astro`
   - [ ] 1.2 Props: title, excerpt, category (stream label), publishedAt, href, variant (standard/featured)
   - [ ] 1.3 Standard variant: neutral-50 bg, neutral-300 border, rounded-2xl, p-7
-  - [ ] 1.4 Category badge: gold-dark text, uppercase, text-[11px], tracking-wide, font-semibold
+  - [ ] 1.4 Category badge: gold-dark text, uppercase, `text-xs` (12px — avoids arbitrary `text-[11px]`), tracking-wide, font-semibold
   - [ ] 1.5 Title: H3, font-bold, text-base, leading-tight
   - [ ] 1.6 Excerpt: text-sm, text-neutral-600, 2 lines max (line-clamp-2)
   - [ ] 1.7 Date: text-xs, text-neutral-500, formatted via `formatDate()`
-  - [ ] 1.8 Hover: border-color shifts to gold-600, title shifts to primary-600
-  - [ ] 1.9 Entire card is a link wrapper
+  - [ ] 1.8 "Read More →" text link at card bottom: `text-xs font-semibold text-gold-600`, with arrow + `group-hover:gap-2.5` animation (visible affordance that card is interactive, per epics AC)
+  - [ ] 1.9 Hover: `motion-safe:hover:shadow-md` + border-color shifts to gold-600 + title shifts to primary-600
+  - [ ] 1.10 Entire card is a link wrapper (`<a>`) with `focus-visible:rounded-2xl focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2`
 
 - [ ] Task 2: Create Featured InsightCard variant (AC: #1)
   - [ ] 2.1 Featured variant: larger padding (p-10), spans 2 rows on desktop
   - [ ] 2.2 Title: text-2xl font-bold
   - [ ] 2.3 Category badge: text-xs (slightly larger than standard)
-  - [ ] 2.4 Excerpt: text-[15px], 4 lines max
+  - [ ] 2.4 Excerpt: `text-sm` (14px — avoids arbitrary `text-[15px]`), line-clamp-4
 
 - [ ] Task 3: Build insights section on homepage (AC: #1, #2, #3, #5)
   - [ ] 3.1 SectionWrapper variant="default" (white background)
   - [ ] 3.2 SectionHeading with eyebrow "Insights", heading "Latest Thinking"
   - [ ] 3.3 Fetch latest 3 articles from content collections, sorted by publishedAt descending
-  - [ ] 3.4 Asymmetric grid: `grid-cols-1 md:grid-cols-[1.4fr_1fr] gap-6`
+  - [ ] 3.4 Asymmetric grid: `grid-cols-1 gap-6` on mobile. On md+ use a scoped `<style>` for the asymmetric template: `grid-template-columns: 1.4fr 1fr` (cannot be expressed as a standard Tailwind utility — use scoped CSS to avoid arbitrary value per CLAUDE.md)
   - [ ] 3.5 First article as featured (spans 2 rows on md+), remaining as standard
   - [ ] 3.6 ViewAllLink below grid: "View All Insights" → `/insights/`
   - [ ] 3.7 Graceful fallback if no articles: "Stay tuned for insights from across our divisions" message
 
 - [ ] Task 4: Build contact CTA section (AC: #4)
-  - [ ] 4.1 Use CTABanner component from Story 1.4 with dark variant
-  - [ ] 4.2 Gold divider bar above heading
-  - [ ] 4.3 Heading: "Ready to Work With Us?"
-  - [ ] 4.4 Body: "Whether you're an investor, partner, or potential collaborator, we'd welcome the opportunity to explore how we can create mutual value."
-  - [ ] 4.5 Primary CTA: "Contact Us" → `/contact/` (gold button)
-  - [ ] 4.6 Secondary CTA: "Partner With Us" → `/contact/strategic/` (outline-white button)
+  - [ ] 4.1 Add a gold/accent variant to CTABanner.astro (Story 1.4 scoped to dark-only but noted "additional variants can be added in future stories"). Gold variant: `bg-gradient-to-r from-gold-600 to-gold-500` background, dark text (`text-primary-900`). This creates visual contrast with the dark credibility section above.
+  - [ ] 4.2 Use CTABanner with gold/accent variant
+  - [ ] 4.3 Heading: "Ready to Work With Us?" (`text-primary-900`)
+  - [ ] 4.4 Body: "Whether you're an investor, partner, or potential collaborator, we'd welcome the opportunity to explore how we can create mutual value." (`text-primary-900/80`)
+  - [ ] 4.5 Primary CTA: "Contact Us" → `/contact/` (`bg-primary-900 text-white hover:bg-primary-800`, with `focus-visible:ring-2 focus-visible:ring-primary-900 focus-visible:ring-offset-2 focus-visible:ring-offset-gold-600`)
+  - [ ] 4.6 Secondary CTA: "Partner With Us" → `/contact/strategic/` (`border-primary-900 text-primary-900 hover:bg-primary-900/10`, with matching focus-visible)
 
 - [ ] Task 5: Integrate both sections into homepage (AC: #1, #4)
   - [ ] 5.1 Add insights section to `src/pages/index.astro` after credibility signals
@@ -159,9 +160,16 @@ If `latestArticles.length === 0`, render a placeholder instead of the grid:
 
 **CRITICAL:** Never display "Coming Soon" — per CLAUDE.md rules.
 
-### CTABanner Reuse
+### CTABanner Gold/Accent Variant
 
-Story 1.4 created `CTABanner.astro`. Reuse it with props:
+Story 1.4 created `CTABanner.astro` with dark variant only. This story adds a **gold/accent variant** per the epics AC ("warm accent background") and IA ("gold gradient or subtle green-to-gold").
+
+Gold variant styling:
+- Background: `bg-gradient-to-r from-gold-600 to-gold-500`
+- Heading: `text-primary-900`
+- Body: `text-primary-900/80`
+- Primary CTA: `bg-primary-900 text-white hover:bg-primary-800`
+- Secondary CTA: `border border-primary-900 text-primary-900 hover:bg-primary-900/10`
 
 ```astro
 <CTABanner
@@ -169,11 +177,11 @@ Story 1.4 created `CTABanner.astro`. Reuse it with props:
   body="Whether you're an investor, partner, or potential collaborator, we'd welcome the opportunity to explore how we can create mutual value."
   primaryCta={{ label: "Contact Us", href: "/contact/" }}
   secondaryCta={{ label: "Partner With Us", href: "/contact/strategic/" }}
-  variant="dark"
+  variant="gold"
 />
 ```
 
-If CTABanner doesn't support dual CTAs yet, extend it or render the CTA section inline.
+If CTABanner doesn't support dual CTAs yet, extend it. The gold variant + dual CTA support are both needed in this story.
 
 ### Complete Homepage Section Flow
 
@@ -202,7 +210,7 @@ This completes the homepage narrative scroll.
 
 - No insights hub page or category pages (Epic 6)
 - No article detail pages (Epic 6)
-- No real article images — text-only cards for MVP
+- No thumbnail images on InsightCards — epics and IA specify "thumbnail image" but for MVP text-only cards are used, matching the design reference. Thumbnail images are a post-MVP enhancement when editorial photo assets are available. The card structure supports adding images without structural changes.
 - No pagination or "Load More"
 - No contact form (Epic 4)
 
@@ -219,6 +227,7 @@ All will 404 until target epics are complete. Expected behavior.
 
 Files this story creates or modifies:
 - **Creates:** `src/components/insights/InsightCard.astro`
+- **Modifies:** `src/components/shared/CTABanner.astro` — adds gold/accent variant with dual CTA support
 - **Modifies:** `src/pages/index.astro` — adds insights section + CTA section (completes homepage)
 
 ### References
