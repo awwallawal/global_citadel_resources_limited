@@ -1,6 +1,6 @@
 # Story 1.1: Project Initialization & Toolchain Setup
 
-Status: review
+Status: done
 
 ## Story
 
@@ -314,9 +314,26 @@ Claude Opus 4.6 (1M context)
 - shadcn CSS variables (neutral oklch) present as placeholder — will be replaced with GRCL brand colours in Story 1.2
 - No tests authored: test framework (vitest/playwright) is Story 8.1 scope
 
+### Review Findings
+
+- [x] [Review][Decision] shadcn init CSS pollution in globals.css — RESOLVED: stripped to spec template, shadcn scaffolding removed
+- [x] [Review][Decision] Brand SVGs + favicon use Google Fonts @import — RESOLVED: converted all text to paths via opentype.js
+- [x] [Review][Patch] @apply in globals.css violates CLAUDE.md — FIXED: globals.css stripped to spec template
+- [x] [Review][Patch] @fontsource-variable/geist unused dependency — FIXED: removed from package.json
+- [x] [Review][Patch] Missing Poppins 300 weight import — FIXED: added to globals.css
+- [x] [Review][Patch] src/components/ui/ missing .gitkeep — FIXED: .gitkeep added
+- [x] [Review][Patch] components.json hooks alias @/lib/hooks — FIXED: directory created with .gitkeep
+- [x] [Review][Patch] shadcn listed as runtime dependency — FIXED: moved to devDependencies
+- [x] [Review][Defer] Missing SEO metadata on index.astro — deferred, Story 1.4+ scope
+- [x] [Review][Defer] robots.txt missing Sitemap directive — deferred, sitemap doesn't exist yet
+- [x] [Review][Defer] index.astro doesn't use PageLayout — deferred, PageLayout is Story 1.4
+- [x] [Review][Defer] Architecture doc references old src/content/config.ts path — deferred, doc inconsistency not code bug
+- [x] [Review][Defer] Color tokens are neutral/achromatic — deferred, explicitly Story 1.2 per dev notes
+
 ### Change Log
 
 - 2026-03-28: Story 1.1 implementation complete — project initialized with full toolchain and directory structure
+- 2026-03-28: Code review completed — 8 findings patched, 5 deferred, 12 dismissed. globals.css stripped to spec template, brand SVGs converted to paths, Geist font removed, Poppins 300 added, shadcn moved to devDeps, missing dirs created
 
 ### File List
 
