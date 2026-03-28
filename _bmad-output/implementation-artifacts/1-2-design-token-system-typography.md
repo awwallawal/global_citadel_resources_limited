@@ -1,6 +1,6 @@
 # Story 1.2: Design Token System & Typography
 
-Status: ready-for-dev
+Status: done
 
 ## Story
 
@@ -21,45 +21,45 @@ So that I perceive GRCL as a credible, well-organized business.
 
 ## Tasks / Subtasks
 
-- [ ] Task 1: Complete the Tailwind v4 `@theme {}` colour system in `src/styles/globals.css` (AC: #1)
-  - [ ] 1.1 Define primary green scale (7 stops per UX spec): 50, 100, 300, 500, 600, 700, 900 — NOT a full 10-step scale; only these stops are specified in the authoritative UX spec
-  - [ ] 1.2 Define gold accent scale: 100, 400, 600
-  - [ ] 1.3 Define full neutral scale: 50, 100, 200, 300, 500, 600, 700, 900
-  - [ ] 1.4 Define semantic colours: success-100/600, warning-100/600, error-100/600, info-100/600
-  - [ ] 1.5 Define division cluster accents: amber-100/600, copper-100/600, slate-100/600
+- [x] Task 1: Complete the Tailwind v4 `@theme {}` colour system in `src/styles/globals.css` (AC: #1)
+  - [x] 1.1 Define primary green scale (7 stops per UX spec): 50, 100, 300, 500, 600, 700, 900 — NOT a full 10-step scale; only these stops are specified in the authoritative UX spec
+  - [x] 1.2 Define gold accent scale: 100, 400, 600
+  - [x] 1.3 Define full neutral scale: 50, 100, 200, 300, 500, 600, 700, 900
+  - [x] 1.4 Define semantic colours: success-100/600, warning-100/600, error-100/600, info-100/600
+  - [x] 1.5 Define division cluster accents: amber-100/600, copper-100/600, slate-100/600
 
-- [ ] Task 2: Configure font loading in `src/styles/globals.css` (AC: #2)
-  - [ ] 2.1 Import Poppins static weights: 400, 500, 600, 700 via `@fontsource/poppins`
-  - [ ] 2.2 Import Inter variable font via `@fontsource-variable/inter`
-  - [ ] 2.3 Import JetBrains Mono variable font via `@fontsource-variable/jetbrains-mono`
-  - [ ] 2.4 Define font family tokens in `@theme`: `--font-heading`, `--font-body`, `--font-mono`
-  - [ ] 2.5 Verify `font-display: swap` is applied (@fontsource handles this by default)
+- [x] Task 2: Configure font loading in `src/styles/globals.css` (AC: #2)
+  - [x] 2.1 Import Poppins static weights: 400, 500, 600, 700 via `@fontsource/poppins`
+  - [x] 2.2 Import Inter variable font via `@fontsource-variable/inter`
+  - [x] 2.3 Import JetBrains Mono variable font via `@fontsource-variable/jetbrains-mono`
+  - [x] 2.4 Define font family tokens in `@theme`: `--font-heading`, `--font-body`, `--font-mono`
+  - [x] 2.5 Verify `font-display: swap` is applied (@fontsource handles this by default)
 
-- [ ] Task 3: Define typography scale tokens (AC: #3)
-  - [ ] 3.1 Define font-size tokens for all 10 type levels (mobile sizes as default)
-  - [ ] 3.2 Define line-height tokens matching the type scale
-  - [ ] 3.3 Define letter-spacing tokens for heading and UI levels
-  - [ ] 3.4 Create responsive typography utility classes or document the Tailwind class combinations for each level
+- [x] Task 3: Define typography scale tokens (AC: #3)
+  - [x] 3.1 Define font-size tokens for all 10 type levels (mobile sizes as default)
+  - [x] 3.2 Define line-height tokens matching the type scale
+  - [x] 3.3 Define letter-spacing tokens for heading and UI levels
+  - [x] 3.4 Create responsive typography utility classes or document the Tailwind class combinations for each level
 
-- [ ] Task 4: Define spacing, radius, and shadow tokens (AC: #4)
-  - [ ] 4.1 Verify Tailwind v4 default spacing scale covers project needs (p-4=16px, py-16=64px, py-24=96px, gap-6=24px, gap-8=32px). Only define custom `--spacing-*` tokens in `@theme` if defaults are insufficient.
-  - [ ] 4.2 Define border-radius tokens: rounded-md (6px), rounded-lg (8px), rounded-xl (12px)
-  - [ ] 4.3 Define shadow tokens: shadow-sm, shadow-md, shadow-lg with exact rgba values
-  - [ ] 4.4 Define transition token: 150-200ms ease-out for hover states
+- [x] Task 4: Define spacing, radius, and shadow tokens (AC: #4)
+  - [x] 4.1 Verify Tailwind v4 default spacing scale covers project needs (p-4=16px, py-16=64px, py-24=96px, gap-6=24px, gap-8=32px). Only define custom `--spacing-*` tokens in `@theme` if defaults are insufficient.
+  - [x] 4.2 Define border-radius tokens: rounded-md (6px), rounded-lg (8px), rounded-xl (12px)
+  - [x] 4.3 Define shadow tokens: shadow-sm, shadow-md, shadow-lg with exact rgba values
+  - [x] 4.4 Define transition token: 150-200ms ease-out for hover states
 
-- [ ] Task 5: Implement utility functions in `src/lib/utils.ts` (AC: #5, #6)
-  - [ ] 5.1 Implement `cn()` using clsx + tailwind-merge (may already exist from shadcn init)
-  - [ ] 5.2 Implement `formatDate()` using `Intl.DateTimeFormat('en-GB', { dateStyle: 'long' })`
-  - [ ] 5.3 Export both functions
+- [x] Task 5: Implement utility functions in `src/lib/utils.ts` (AC: #5, #6)
+  - [x] 5.1 Implement `cn()` using clsx + tailwind-merge (may already exist from shadcn init)
+  - [x] 5.2 Implement `formatDate()` using `Intl.DateTimeFormat('en-GB', { dateStyle: 'long' })`
+  - [x] 5.3 Export both functions
 
-- [ ] Task 6: Create token test page (AC: #8)
-  - [ ] 6.1 Create `src/pages/token-test.astro` showing colour swatches, type scale, spacing, shadows
-  - [ ] 6.2 Verify all tokens render correctly in browser
-  - [ ] 6.3 Verify responsive type scale at mobile and desktop breakpoints
+- [x] Task 6: Create token test page (AC: #8)
+  - [x] 6.1 Create `src/pages/token-test.astro` showing colour swatches, type scale, spacing, shadows
+  - [x] 6.2 Verify all tokens render correctly in browser
+  - [x] 6.3 Verify responsive type scale at mobile and desktop breakpoints
 
-- [ ] Task 7: Verify no arbitrary values (AC: #7)
-  - [ ] 7.1 Search codebase for `[#` pattern (arbitrary Tailwind colours)
-  - [ ] 7.2 Confirm all values use token references
+- [x] Task 7: Verify no arbitrary values (AC: #7)
+  - [x] 7.1 Search codebase for `[#` pattern (arbitrary Tailwind colours)
+  - [x] 7.2 Confirm all values use token references
 
 ## Dev Notes
 
@@ -278,8 +278,45 @@ Files this story creates or modifies:
 
 ### Agent Model Used
 
+Claude Opus 4.6 (1M context)
+
 ### Debug Log References
+
+- Build verified: `astro build` completes successfully, both pages generated
+- TypeScript check: `tsc --noEmit` passes with zero errors
+- Arbitrary value scan: `grep` for `[#` pattern across `src/` returns no matches
+- All arbitrary `leading-[*]` values caught and replaced with token utilities (`leading-h1`, `leading-h2`, `leading-h3`)
 
 ### Completion Notes List
 
+- **Task 1:** Extended existing `@theme {}` block with complete colour system: 7-stop primary green, 3-stop gold accent, 8-stop neutral, 4 semantic pairs (success/warning/error/info at 100/600), 3 division cluster accent pairs (amber/copper/slate at 100/600). All hex values match UX spec exactly including primary-900 = #14532D (not #052E16 from epics).
+- **Task 2:** Font loading was already complete from Story 1.1 — Poppins 300/400/500/600/700, Inter Variable, JetBrains Mono Variable all imported. Font family tokens `--font-heading`, `--font-body`, `--font-mono` already defined. Verified @fontsource applies `font-display: swap` by default.
+- **Task 3:** Added 10 mobile-first font-size tokens (`--text-h1` through `--text-overline`), 10 line-height tokens (`--leading-h1` through `--leading-overline`), and 6 letter-spacing tokens (`--tracking-h1`, `--tracking-h2`, `--tracking-button`, `--tracking-nav`, `--tracking-caption`, `--tracking-overline`). Responsive desktop sizes use `lg:` breakpoint with standard Tailwind scale (e.g., `lg:text-6xl` for H1 desktop).
+- **Task 4:** Verified Tailwind v4 default spacing scale covers all project needs (p-4=16px, py-16=64px, py-24=96px, gap-6/8). No custom `--spacing-*` tokens needed. Added 3 border-radius tokens (`--radius-md` 6px, `--radius-lg` 8px, `--radius-xl` 12px), 3 shadow tokens (`--shadow-sm/md/lg`), and 2 transition tokens (`--transition-fast` 150ms, `--transition-base` 200ms).
+- **Task 5:** `cn()` already existed from Story 1.1. Added `formatDate()` using `Intl.DateTimeFormat('en-GB', { dateStyle: 'long' })` — produces "27 March 2026" format. Both functions exported.
+- **Task 6:** Created comprehensive `/token-test` page covering all colour swatches (primary, gold, neutral, semantic, cluster), full 10-level type scale with sample text, font weight verification (Poppins 400-700, Inter Variable, JetBrains Mono), shadow comparison, border radius showcase, spacing scale visualization, button interaction demos with hover transitions and focus rings, contrast compliance examples, and formatDate() output verification.
+- **Task 7:** Scanned entire `src/` for arbitrary `[#` colour patterns and arbitrary bracket values. Found and fixed `leading-[1.1]`/`leading-[1.2]`/`leading-[1.3]` in token-test page, replacing with token utilities `leading-h1`/`leading-h2`/`leading-h3`. Zero arbitrary values remain.
+
 ### File List
+
+- `src/styles/globals.css` — Modified: extended @theme block with full colour, typography, radius, shadow, and transition tokens
+- `src/lib/utils.ts` — Modified: added formatDate() function
+- `src/pages/token-test.astro` — Created: visual verification page for all design tokens
+
+### Review Findings
+
+- [x] [Review][Decision] Amber/Slate tokens partially override Tailwind v4 built-in palettes — FIXED: renamed to `cluster-amber`/`cluster-copper`/`cluster-slate` namespace
+- [x] [Review][Decision] Neutral scale gaps create mixed color-space — FIXED: added neutral-400, 800, 950 to own full palette in hex sRGB
+- [x] [Review][Decision] Transition tokens have no Tailwind utility mapping — FIXED: removed custom tokens, using Tailwind built-in `transition-colors duration-200 ease-out`
+- [x] [Review][Decision] Typography tokens lack line-height companions — FIXED: added `--text-h1--line-height` + `--letter-spacing` companions, removed standalone `--leading-*`/`--tracking-*` tokens
+- [x] [Review][Patch] formatDate() lacks input validation for invalid dates — FIXED: added `isNaN(d.getTime())` guard
+- [x] [Review][Patch] Missing `<meta name="robots" content="noindex">` on temporary test page — FIXED
+- [x] [Review][Patch] No prefers-reduced-motion guard for transition tokens — FIXED: added `@media (prefers-reduced-motion: reduce)` rule
+- [x] [Review][Patch] Missing space-10 (40px) in spacing visualization — FIXED: added 40px bar
+- [x] [Review][Patch] Buttons missing focus-visible:outline-none — FIXED: added to all 3 buttons
+- [x] [Review][Defer] Border radius uses px instead of rem — won't scale with user-enlarged browser font-size — deferred, pre-existing design decision
+- [x] [Review][Defer] Brand-identity.md vs UX spec colour numbering conflict (primary-600/700 mapping) — deferred, documentation issue
+
+## Change Log
+
+- 2026-03-28: Implemented complete design token system (Story 1.2) — colour scales, typography tokens, spacing/radius/shadow tokens, formatDate() utility, visual test page

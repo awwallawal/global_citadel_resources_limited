@@ -1,0 +1,418 @@
+---
+import '@/styles/globals.css';
+import { formatDate } from '@/lib/utils';
+
+const today = formatDate(new Date());
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>Design Token Test — GRCL</title>
+  </head>
+  <body class="bg-white text-neutral-900 font-body">
+    <main class="max-w-7xl mx-auto px-4 py-8">
+      <h1 class="font-heading text-h1 font-semibold mb-8">
+        Design Token Test
+      </h1>
+      <p class="text-body-sm text-neutral-500 mb-12">
+        Generated: {today} — Temporary page, remove before production.
+      </p>
+
+      {/* ── Colour Swatches ── */}
+      <section class="mb-16">
+        <h2 class="font-heading text-h2 font-semibold mb-6">
+          Colour System
+        </h2>
+
+        {/* Primary Green */}
+        <h3 class="font-heading text-h3 font-semibold mb-4">Primary Green</h3>
+        <div class="grid grid-cols-4 lg:grid-cols-7 gap-3 mb-8">
+          <div>
+            <div class="h-16 rounded-lg bg-primary-50 border border-neutral-200"></div>
+            <p class="text-caption mt-1">50</p>
+          </div>
+          <div>
+            <div class="h-16 rounded-lg bg-primary-100"></div>
+            <p class="text-caption mt-1">100</p>
+          </div>
+          <div>
+            <div class="h-16 rounded-lg bg-primary-300"></div>
+            <p class="text-caption mt-1">300</p>
+          </div>
+          <div>
+            <div class="h-16 rounded-lg bg-primary-500"></div>
+            <p class="text-caption mt-1">500</p>
+          </div>
+          <div>
+            <div class="h-16 rounded-lg bg-primary-600"></div>
+            <p class="text-caption mt-1">600</p>
+          </div>
+          <div>
+            <div class="h-16 rounded-lg bg-primary-700"></div>
+            <p class="text-caption mt-1">700</p>
+          </div>
+          <div>
+            <div class="h-16 rounded-lg bg-primary-900"></div>
+            <p class="text-caption mt-1">900</p>
+          </div>
+        </div>
+
+        {/* Gold Accent */}
+        <h3 class="font-heading text-h3 font-semibold mb-4">Gold Accent</h3>
+        <div class="grid grid-cols-3 gap-3 mb-8 max-w-md">
+          <div>
+            <div class="h-16 rounded-lg bg-gold-100 border border-neutral-200"></div>
+            <p class="text-caption mt-1">100</p>
+          </div>
+          <div>
+            <div class="h-16 rounded-lg bg-gold-400"></div>
+            <p class="text-caption mt-1">400</p>
+          </div>
+          <div>
+            <div class="h-16 rounded-lg bg-gold-600"></div>
+            <p class="text-caption mt-1">600</p>
+          </div>
+        </div>
+
+        {/* Neutral */}
+        <h3 class="font-heading text-h3 font-semibold mb-4">Neutral Scale</h3>
+        <div class="grid grid-cols-4 lg:grid-cols-11 gap-3 mb-8">
+          <div>
+            <div class="h-16 rounded-lg bg-neutral-50 border border-neutral-200"></div>
+            <p class="text-caption mt-1">50</p>
+          </div>
+          <div>
+            <div class="h-16 rounded-lg bg-neutral-100"></div>
+            <p class="text-caption mt-1">100</p>
+          </div>
+          <div>
+            <div class="h-16 rounded-lg bg-neutral-200"></div>
+            <p class="text-caption mt-1">200</p>
+          </div>
+          <div>
+            <div class="h-16 rounded-lg bg-neutral-300"></div>
+            <p class="text-caption mt-1">300</p>
+          </div>
+          <div>
+            <div class="h-16 rounded-lg bg-neutral-400"></div>
+            <p class="text-caption mt-1">400</p>
+          </div>
+          <div>
+            <div class="h-16 rounded-lg bg-neutral-500"></div>
+            <p class="text-caption mt-1">500</p>
+          </div>
+          <div>
+            <div class="h-16 rounded-lg bg-neutral-600"></div>
+            <p class="text-caption mt-1">600</p>
+          </div>
+          <div>
+            <div class="h-16 rounded-lg bg-neutral-700"></div>
+            <p class="text-caption mt-1">700</p>
+          </div>
+          <div>
+            <div class="h-16 rounded-lg bg-neutral-800"></div>
+            <p class="text-caption mt-1">800</p>
+          </div>
+          <div>
+            <div class="h-16 rounded-lg bg-neutral-900"></div>
+            <p class="text-caption mt-1">900</p>
+          </div>
+          <div>
+            <div class="h-16 rounded-lg bg-neutral-950"></div>
+            <p class="text-caption mt-1">950</p>
+          </div>
+        </div>
+
+        {/* Semantic */}
+        <h3 class="font-heading text-h3 font-semibold mb-4">Semantic Colours</h3>
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
+          <div>
+            <div class="h-12 rounded-lg bg-success-100 mb-1"></div>
+            <div class="h-12 rounded-lg bg-success-600"></div>
+            <p class="text-caption mt-1">Success</p>
+          </div>
+          <div>
+            <div class="h-12 rounded-lg bg-warning-100 mb-1"></div>
+            <div class="h-12 rounded-lg bg-warning-600"></div>
+            <p class="text-caption mt-1">Warning</p>
+          </div>
+          <div>
+            <div class="h-12 rounded-lg bg-error-100 mb-1"></div>
+            <div class="h-12 rounded-lg bg-error-600"></div>
+            <p class="text-caption mt-1">Error</p>
+          </div>
+          <div>
+            <div class="h-12 rounded-lg bg-info-100 mb-1"></div>
+            <div class="h-12 rounded-lg bg-info-600"></div>
+            <p class="text-caption mt-1">Info</p>
+          </div>
+        </div>
+
+        {/* Division Cluster Accents */}
+        <h3 class="font-heading text-h3 font-semibold mb-4">Division Cluster Accents</h3>
+        <div class="grid grid-cols-3 gap-3 mb-8 max-w-lg">
+          <div>
+            <div class="h-12 rounded-lg bg-cluster-amber-100 mb-1"></div>
+            <div class="h-12 rounded-lg bg-cluster-amber-600"></div>
+            <p class="text-caption mt-1">Agriculture</p>
+          </div>
+          <div>
+            <div class="h-12 rounded-lg bg-cluster-copper-100 mb-1"></div>
+            <div class="h-12 rounded-lg bg-cluster-copper-600"></div>
+            <p class="text-caption mt-1">Trade</p>
+          </div>
+          <div>
+            <div class="h-12 rounded-lg bg-cluster-slate-100 mb-1"></div>
+            <div class="h-12 rounded-lg bg-cluster-slate-600"></div>
+            <p class="text-caption mt-1">Built Env.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Typography Scale ── */}
+      <section class="mb-16">
+        <h2 class="font-heading text-h2 font-semibold mb-6">
+          Typography Scale
+        </h2>
+        <div class="space-y-6">
+          <div class="border-b border-neutral-200 pb-4">
+            <p class="text-caption text-neutral-500 mb-1">H1 — Poppins 600 — 36px</p>
+            <p class="font-heading text-h1 font-semibold">
+              Building Africa's Future
+            </p>
+          </div>
+          <div class="border-b border-neutral-200 pb-4">
+            <p class="text-caption text-neutral-500 mb-1">H2 — Poppins 600 — 30px</p>
+            <p class="font-heading text-h2 font-semibold">
+              Seven Divisions. One Vision.
+            </p>
+          </div>
+          <div class="border-b border-neutral-200 pb-4">
+            <p class="text-caption text-neutral-500 mb-1">H3 — Poppins 600 — 20px</p>
+            <p class="font-heading text-h3 font-semibold">
+              Crop Farming Division
+            </p>
+          </div>
+          <div class="border-b border-neutral-200 pb-4">
+            <p class="text-caption text-neutral-500 mb-1">H4 — Poppins 600 — 18px</p>
+            <p class="font-heading text-h4 font-semibold">
+              Sustainable Agriculture
+            </p>
+          </div>
+          <div class="border-b border-neutral-200 pb-4">
+            <p class="text-caption text-neutral-500 mb-1">Body — Inter 400 — 18px</p>
+            <p class="font-body text-body">
+              Global Resources Citadel Limited operates across seven strategic divisions, delivering integrated solutions across agriculture, trade, real estate, and energy.
+            </p>
+          </div>
+          <div class="border-b border-neutral-200 pb-4">
+            <p class="text-caption text-neutral-500 mb-1">Body Small — Inter 400 — 14px</p>
+            <p class="font-body text-body-sm">
+              Last updated on {today}. All rights reserved.
+            </p>
+          </div>
+          <div class="border-b border-neutral-200 pb-4">
+            <p class="text-caption text-neutral-500 mb-1">Caption — Inter 500 — 12px</p>
+            <p class="font-body text-caption font-medium">
+              Photo: Lagos, Nigeria — Corporate headquarters
+            </p>
+          </div>
+          <div class="border-b border-neutral-200 pb-4">
+            <p class="text-caption text-neutral-500 mb-1">Button — Inter 600 — 16px</p>
+            <p class="font-body text-button font-semibold">
+              Explore Our Divisions
+            </p>
+          </div>
+          <div class="border-b border-neutral-200 pb-4">
+            <p class="text-caption text-neutral-500 mb-1">Nav — Inter 500 — 14px</p>
+            <p class="font-body text-nav font-medium">
+              About &nbsp; Divisions &nbsp; Insights &nbsp; Contact
+            </p>
+          </div>
+          <div class="border-b border-neutral-200 pb-4">
+            <p class="text-caption text-neutral-500 mb-1">Overline — Inter 700 — 11px</p>
+            <p class="font-body text-overline font-bold uppercase">
+              Our Divisions
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Font Weight Test ── */}
+      <section class="mb-16">
+        <h2 class="font-heading text-h2 font-semibold mb-6">
+          Font Weights
+        </h2>
+        <div class="space-y-3">
+          <p class="font-heading text-xl font-normal">Poppins 400 — Regular</p>
+          <p class="font-heading text-xl font-medium">Poppins 500 — Medium</p>
+          <p class="font-heading text-xl font-semibold">Poppins 600 — Semibold</p>
+          <p class="font-heading text-xl font-bold">Poppins 700 — Bold</p>
+        </div>
+        <div class="space-y-3 mt-6">
+          <p class="font-body text-lg font-normal">Inter Variable 400 — Regular</p>
+          <p class="font-body text-lg font-medium">Inter Variable 500 — Medium</p>
+          <p class="font-body text-lg font-semibold">Inter Variable 600 — Semibold</p>
+          <p class="font-body text-lg font-bold">Inter Variable 700 — Bold</p>
+        </div>
+        <div class="mt-6">
+          <p class="font-mono text-base">JetBrains Mono Variable — const token = 'design-system';</p>
+        </div>
+      </section>
+
+      {/* ── Shadows ── */}
+      <section class="mb-16">
+        <h2 class="font-heading text-h2 font-semibold mb-6">
+          Shadows
+        </h2>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div class="p-6 rounded-lg shadow-sm bg-white border border-neutral-100">
+            <p class="text-caption text-neutral-500">shadow-sm</p>
+          </div>
+          <div class="p-6 rounded-lg shadow-md bg-white">
+            <p class="text-caption text-neutral-500">shadow-md</p>
+          </div>
+          <div class="p-6 rounded-lg shadow-lg bg-white">
+            <p class="text-caption text-neutral-500">shadow-lg</p>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Border Radius ── */}
+      <section class="mb-16">
+        <h2 class="font-heading text-h2 font-semibold mb-6">
+          Border Radius
+        </h2>
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="h-24 bg-primary-100 rounded-md flex items-center justify-center">
+            <p class="text-caption">rounded-md (6px)</p>
+          </div>
+          <div class="h-24 bg-primary-100 rounded-lg flex items-center justify-center">
+            <p class="text-caption">rounded-lg (8px)</p>
+          </div>
+          <div class="h-24 bg-primary-100 rounded-xl flex items-center justify-center">
+            <p class="text-caption">rounded-xl (12px)</p>
+          </div>
+          <div class="h-24 bg-primary-100 rounded-full flex items-center justify-center">
+            <p class="text-caption">rounded-full</p>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Spacing ── */}
+      <section class="mb-16">
+        <h2 class="font-heading text-h2 font-semibold mb-6">
+          Spacing Scale
+        </h2>
+        <div class="space-y-2">
+          <div class="flex items-center gap-4">
+            <span class="text-caption text-neutral-500 w-16">4px</span>
+            <div class="h-4 bg-primary-500 rounded-sm" style="width: 4px;"></div>
+          </div>
+          <div class="flex items-center gap-4">
+            <span class="text-caption text-neutral-500 w-16">8px</span>
+            <div class="h-4 bg-primary-500 rounded-sm" style="width: 8px;"></div>
+          </div>
+          <div class="flex items-center gap-4">
+            <span class="text-caption text-neutral-500 w-16">12px</span>
+            <div class="h-4 bg-primary-500 rounded-sm" style="width: 12px;"></div>
+          </div>
+          <div class="flex items-center gap-4">
+            <span class="text-caption text-neutral-500 w-16">16px</span>
+            <div class="h-4 bg-primary-500 rounded-sm" style="width: 16px;"></div>
+          </div>
+          <div class="flex items-center gap-4">
+            <span class="text-caption text-neutral-500 w-16">24px</span>
+            <div class="h-4 bg-primary-500 rounded-sm" style="width: 24px;"></div>
+          </div>
+          <div class="flex items-center gap-4">
+            <span class="text-caption text-neutral-500 w-16">32px</span>
+            <div class="h-4 bg-primary-500 rounded-sm" style="width: 32px;"></div>
+          </div>
+          <div class="flex items-center gap-4">
+            <span class="text-caption text-neutral-500 w-16">40px</span>
+            <div class="h-4 bg-primary-500 rounded-sm" style="width: 40px;"></div>
+          </div>
+          <div class="flex items-center gap-4">
+            <span class="text-caption text-neutral-500 w-16">48px</span>
+            <div class="h-4 bg-primary-500 rounded-sm" style="width: 48px;"></div>
+          </div>
+          <div class="flex items-center gap-4">
+            <span class="text-caption text-neutral-500 w-16">64px</span>
+            <div class="h-4 bg-primary-500 rounded-sm" style="width: 64px;"></div>
+          </div>
+          <div class="flex items-center gap-4">
+            <span class="text-caption text-neutral-500 w-16">96px</span>
+            <div class="h-4 bg-primary-500 rounded-sm" style="width: 96px;"></div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Transition Test ── */}
+      <section class="mb-16">
+        <h2 class="font-heading text-h2 font-semibold mb-6">
+          Transitions & Interactions
+        </h2>
+        <div class="flex flex-wrap gap-4">
+          <button
+            type="button"
+            class="px-8 py-4 bg-primary-600 text-white font-semibold rounded-lg shadow-md hover:bg-primary-700 transition-colors duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+          >
+            Primary Button
+          </button>
+          <button
+            type="button"
+            class="px-8 py-4 border-2 border-primary-600 text-primary-600 font-semibold rounded-lg hover:bg-primary-50 transition-colors duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+          >
+            Secondary Button
+          </button>
+          <button
+            type="button"
+            class="px-8 py-4 bg-gold-600 text-white font-semibold rounded-lg shadow-md hover:bg-gold-400 transition-colors duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+          >
+            Gold Accent
+          </button>
+        </div>
+      </section>
+
+      {/* ── Utility Test ── */}
+      <section class="mb-16">
+        <h2 class="font-heading text-h2 font-semibold mb-6">
+          Utility Functions
+        </h2>
+        <div class="space-y-2">
+          <p class="text-body-sm"><strong>formatDate(new Date()):</strong> {today}</p>
+          <p class="text-body-sm"><strong>formatDate('2026-01-15'):</strong> {formatDate('2026-01-15')}</p>
+        </div>
+      </section>
+
+      {/* ── Contrast Check ── */}
+      <section class="mb-16">
+        <h2 class="font-heading text-h2 font-semibold mb-6">
+          Contrast Compliance
+        </h2>
+        <div class="space-y-3">
+          <div class="p-4 rounded-lg">
+            <p class="text-primary-600 font-semibold">primary-600 on white — 7.2:1 AAA</p>
+          </div>
+          <div class="p-4 rounded-lg">
+            <p class="text-neutral-600">neutral-600 on white — 7.0:1 AAA (body text)</p>
+          </div>
+          <div class="p-4 rounded-lg bg-primary-900">
+            <p class="text-white">white on primary-900 — 12.6:1 AAA</p>
+          </div>
+          <div class="p-4 rounded-lg bg-neutral-900">
+            <p class="text-neutral-50">neutral-50 on neutral-900</p>
+          </div>
+          <div class="p-4 rounded-lg">
+            <p class="text-gold-600 font-semibold">gold-600 — decorative only, not sole indicator</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
