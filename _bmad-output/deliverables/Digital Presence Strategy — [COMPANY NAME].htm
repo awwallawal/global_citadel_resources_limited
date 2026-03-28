@@ -1,0 +1,1871 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Presence Strategy — [COMPANY NAME]</title>
+  <!--
+    ============================================================
+    AWWAL — REMAINING STEPS (Invisible to client)
+    ============================================================
+    1. Find & Replace [COMPANY NAME] with the client's company name
+    2. Find & Replace [CLIENT NAME] and [CLIENT TITLE]
+    3. Fill in [DATE] values (document date, call date, response deadline)
+    4. Personalise Section 15 (About Our Approach) with your past work
+    5. Open in Chrome > Print > Save as PDF
+       Settings: A4, Minimum margins, Background graphics ON
+    ============================================================
+  -->
+  <style>
+    :root {
+      --color-primary: #0f1b2d;
+      --color-primary-light: #1a2b45;
+      --color-accent: #b8924a;
+      --color-accent-light: #d4af6e;
+      --color-accent-subtle: #f8f3eb;
+      --color-text: #2c3e50;
+      --color-text-light: #5a6a7a;
+      --color-text-muted: #8a95a3;
+      --color-bg: #ffffff;
+      --color-bg-alt: #f7f8fa;
+      --color-bg-section: #fafbfc;
+      --color-border: #e2e6ea;
+      --color-border-light: #eef0f3;
+      --color-white: #ffffff;
+      --color-success: #27ae60;
+      --color-warning: #e67e22;
+      --color-danger: #c0392b;
+
+      --font-heading: 'Georgia', 'Times New Roman', serif;
+      --font-body: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      --font-mono: 'Consolas', 'Courier New', monospace;
+
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2rem;
+      --space-2xl: 3rem;
+      --space-3xl: 4rem;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 11pt;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--color-text);
+      line-height: 1.65;
+      background: var(--color-bg);
+    }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-heading);
+      color: var(--color-primary);
+      line-height: 1.25;
+    }
+
+    h1 { font-size: 2.2rem; font-weight: 400; letter-spacing: -0.02em; }
+    h2 { font-size: 1.5rem; font-weight: 400; letter-spacing: -0.01em; margin-bottom: var(--space-lg); }
+    h3 { font-size: 1.15rem; font-weight: 600; margin-bottom: var(--space-md); color: var(--color-primary-light); }
+    h4 { font-size: 1rem; font-weight: 600; margin-bottom: var(--space-sm); }
+
+    p { margin-bottom: var(--space-md); }
+    strong { font-weight: 600; color: var(--color-primary); }
+    em { color: var(--color-text-light); }
+
+    .page {
+      max-width: 210mm;
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    .section {
+      padding: 2.5rem 3rem;
+      page-break-inside: avoid;
+    }
+
+    .section + .section {
+      border-top: 1px solid var(--color-border-light);
+    }
+
+    .section-number {
+      display: inline-block;
+      font-family: var(--font-heading);
+      font-size: 0.8rem;
+      color: var(--color-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: var(--space-sm);
+    }
+
+    /* COVER */
+    .cover {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: var(--color-primary);
+      color: var(--color-white);
+      padding: 3rem;
+      page-break-after: always;
+    }
+
+    .cover-rule {
+      width: 60px;
+      height: 2px;
+      background: var(--color-accent);
+      margin: 2rem auto;
+    }
+
+    .cover-label {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 1.5rem;
+    }
+
+    .cover h1 {
+      color: var(--color-white);
+      font-size: 2.8rem;
+      font-weight: 400;
+      margin-bottom: 0.5rem;
+    }
+
+    .cover-subtitle {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      color: var(--color-accent-light);
+      font-weight: 400;
+      font-style: italic;
+    }
+
+    .cover-meta {
+      margin-top: 3rem;
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+      line-height: 1.8;
+    }
+
+    .cover-meta strong {
+      color: rgba(255,255,255,0.7);
+    }
+
+    /* EXEC SUMMARY */
+    .exec-summary {
+      background: var(--color-bg-alt);
+      padding: 2.5rem 3rem;
+      page-break-after: always;
+    }
+
+    .exec-quote {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-style: italic;
+      color: var(--color-primary);
+      line-height: 1.7;
+      border-left: 3px solid var(--color-accent);
+      padding-left: var(--space-xl);
+      margin: var(--space-xl) 0;
+    }
+
+    /* TOC */
+    .toc { page-break-after: always; }
+
+    .toc-list {
+      list-style: none;
+      padding: 0;
+      margin-top: var(--space-xl);
+    }
+
+    .toc-list li {
+      display: flex;
+      align-items: baseline;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--color-border-light);
+      font-size: 0.95rem;
+    }
+
+    .toc-number {
+      font-family: var(--font-heading);
+      color: var(--color-accent);
+      min-width: 2.5rem;
+      font-size: 0.85rem;
+    }
+
+    .toc-title { flex: 1; color: var(--color-primary); }
+    .toc-page { color: var(--color-text-muted); font-size: 0.8rem; }
+
+    /* TABLES */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: var(--space-lg) 0;
+      font-size: 0.9rem;
+    }
+
+    thead th {
+      background: var(--color-primary);
+      color: var(--color-white);
+      padding: 0.7rem 1rem;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.8rem;
+      letter-spacing: 0.03em;
+    }
+
+    thead th:first-child { border-radius: 4px 0 0 0; }
+    thead th:last-child { border-radius: 0 4px 0 0; }
+
+    tbody td {
+      padding: 0.65rem 1rem;
+      border-bottom: 1px solid var(--color-border-light);
+      vertical-align: top;
+    }
+
+    tbody tr:nth-child(even) { background: var(--color-bg-alt); }
+    tbody tr:last-child td:first-child { border-radius: 0 0 0 4px; }
+    tbody tr:last-child td:last-child { border-radius: 0 0 4px 0; }
+
+    /* CALLOUTS */
+    .callout {
+      border-radius: 6px;
+      padding: var(--space-lg) var(--space-xl);
+      margin: var(--space-lg) 0;
+      font-size: 0.92rem;
+    }
+
+    .callout-insight { background: var(--color-accent-subtle); border-left: 3px solid var(--color-accent); }
+    .callout-important { background: #fef9f0; border-left: 3px solid var(--color-warning); }
+    .callout-key { background: #f0f7f4; border-left: 3px solid var(--color-success); }
+
+    .callout-title {
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: var(--space-sm);
+    }
+
+    .callout-insight .callout-title { color: var(--color-accent); }
+    .callout-important .callout-title { color: var(--color-warning); }
+    .callout-key .callout-title { color: var(--color-success); }
+
+    /* STAGE CARDS */
+    .stage-card {
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin: var(--space-xl) 0;
+      page-break-inside: avoid;
+    }
+
+    .stage-header {
+      background: var(--color-primary);
+      color: var(--color-white);
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .stage-header h3 {
+      color: var(--color-white);
+      margin: 0;
+      font-family: var(--font-heading);
+      font-weight: 400;
+      font-size: 1.1rem;
+    }
+
+    .stage-header .stage-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-accent-light);
+    }
+
+    .stage-body { padding: 1.5rem; }
+    .stage-body table { margin: 0; }
+
+    .stage-outcome {
+      background: var(--color-bg-alt);
+      padding: 1rem 1.5rem;
+      border-top: 1px solid var(--color-border-light);
+      font-size: 0.88rem;
+    }
+
+    .stage-outcome strong { color: var(--color-accent); }
+
+    .stage-duration {
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+      padding: 0.6rem 1.5rem;
+      border-top: 1px solid var(--color-border-light);
+    }
+
+    /* PATH COMPARISON */
+    .paths-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+      margin: var(--space-xl) 0;
+    }
+
+    .path-card {
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      overflow: hidden;
+      page-break-inside: avoid;
+    }
+
+    .path-card.recommended {
+      border-color: var(--color-accent);
+      box-shadow: 0 0 0 1px var(--color-accent);
+    }
+
+    .path-header {
+      padding: 1.2rem 1.5rem;
+      background: var(--color-bg-alt);
+      border-bottom: 1px solid var(--color-border-light);
+    }
+
+    .path-card.recommended .path-header {
+      background: var(--color-primary);
+      border-bottom: none;
+    }
+
+    .path-card.recommended .path-header h3,
+    .path-card.recommended .path-header p { color: var(--color-white); }
+    .path-card.recommended .path-header .path-tag { color: var(--color-accent-light); }
+
+    .path-tag {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-xs);
+    }
+
+    .path-body { padding: 1.2rem 1.5rem; }
+    .path-body ul { list-style: none; padding: 0; }
+
+    .path-body li {
+      padding: 0.35rem 0 0.35rem 1.2rem;
+      position: relative;
+      font-size: 0.88rem;
+    }
+
+    .path-body li::before {
+      content: "\2013";
+      position: absolute;
+      left: 0;
+      color: var(--color-accent);
+    }
+
+    .path-footer {
+      padding: 1rem 1.5rem;
+      background: var(--color-bg-alt);
+      border-top: 1px solid var(--color-border-light);
+      font-size: 0.85rem;
+      color: var(--color-text-light);
+    }
+
+    .path-card.recommended .path-footer { background: var(--color-accent-subtle); }
+
+    /* BRAND MODELS */
+    .model-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-lg);
+      margin: var(--space-xl) 0;
+    }
+
+    .model-card {
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 1.2rem;
+      page-break-inside: avoid;
+    }
+
+    .model-card h4 {
+      color: var(--color-primary);
+      font-family: var(--font-heading);
+      margin-bottom: var(--space-sm);
+    }
+
+    .model-example {
+      font-size: 0.8rem;
+      color: var(--color-accent);
+      font-style: italic;
+      margin-bottom: var(--space-sm);
+    }
+
+    .model-card p { font-size: 0.88rem; margin-bottom: var(--space-sm); }
+
+    .model-tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      padding: 0.15rem 0.6rem;
+      border-radius: 3px;
+      margin-top: var(--space-xs);
+    }
+
+    .tag-pro { background: #f0f7f4; color: var(--color-success); }
+    .tag-con { background: #fef5f0; color: var(--color-warning); }
+
+    /* CONCEPT CARDS */
+    .concept-card {
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin: var(--space-xl) 0;
+      page-break-inside: avoid;
+    }
+
+    .concept-header {
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+      padding: 1.5rem 2rem;
+      color: var(--color-white);
+    }
+
+    .concept-header h4 {
+      color: var(--color-white);
+      font-family: var(--font-heading);
+      font-weight: 400;
+      font-size: 1.1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .concept-header .concept-tagline {
+      color: var(--color-accent-light);
+      font-style: italic;
+      font-size: 0.9rem;
+    }
+
+    .concept-body { padding: 1.5rem 2rem; }
+    .concept-body p { font-size: 0.92rem; }
+
+    .concept-why {
+      background: var(--color-accent-subtle);
+      padding: 1rem 2rem;
+      font-size: 0.88rem;
+      border-top: 1px solid var(--color-border-light);
+    }
+
+    /* ORG CHART */
+    .org-chart { text-align: center; padding: var(--space-xl) 0; }
+
+    .org-parent {
+      display: inline-block;
+      background: var(--color-primary);
+      color: var(--color-white);
+      padding: 0.6rem 2rem;
+      border-radius: 6px;
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      margin-bottom: var(--space-md);
+    }
+
+    .org-connector {
+      width: 2px;
+      height: 24px;
+      background: var(--color-border);
+      margin: 0 auto;
+    }
+
+    .org-branches {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: var(--space-md);
+    }
+
+    .org-cluster { text-align: center; }
+
+    .org-cluster-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-accent);
+      margin-bottom: var(--space-xs);
+    }
+
+    .org-branch {
+      background: var(--color-bg-alt);
+      border: 1px solid var(--color-border);
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      font-size: 0.72rem;
+      color: var(--color-text);
+      margin: 0.2rem;
+      display: inline-block;
+    }
+
+    /* RISK TABLE */
+    .risk-table tbody td:first-child {
+      color: var(--color-danger);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    /* CTA */
+    .cta-section {
+      background: var(--color-primary);
+      color: var(--color-white);
+      padding: 3rem;
+      text-align: center;
+      border-radius: 8px;
+      margin: var(--space-xl) 0;
+    }
+
+    .cta-section h3 {
+      color: var(--color-white);
+      font-family: var(--font-heading);
+      font-weight: 400;
+      font-size: 1.4rem;
+      margin-bottom: var(--space-lg);
+    }
+
+    .cta-section p {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.92rem;
+      max-width: 500px;
+      margin: 0 auto var(--space-md);
+    }
+
+    .cta-contact {
+      margin-top: var(--space-xl);
+      padding-top: var(--space-xl);
+      border-top: 1px solid rgba(255,255,255,0.15);
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .cta-contact strong { color: var(--color-accent-light); }
+
+    .cta-deadline {
+      display: inline-block;
+      margin-top: var(--space-md);
+      padding: 0.5rem 1.5rem;
+      border: 1px solid var(--color-accent);
+      border-radius: 4px;
+      color: var(--color-accent-light);
+      font-size: 0.85rem;
+    }
+
+    /* SIGNATURE */
+    .signature {
+      padding: 2rem 3rem;
+      border-top: 2px solid var(--color-accent);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .signature-left { font-size: 0.88rem; line-height: 1.8; }
+
+    .signature-name {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      color: var(--color-primary);
+    }
+
+    .signature-right {
+      text-align: right;
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+    }
+
+    /* UTILITY */
+    .text-accent { color: var(--color-accent); }
+    .text-muted { color: var(--color-text-muted); }
+    .text-small { font-size: 0.85rem; }
+    .text-center { text-align: center; }
+    .mt-sm { margin-top: var(--space-sm); }
+    .mt-md { margin-top: var(--space-md); }
+    .mt-lg { margin-top: var(--space-lg); }
+    .mt-xl { margin-top: var(--space-xl); }
+    .mb-md { margin-bottom: var(--space-md); }
+    .mb-lg { margin-bottom: var(--space-lg); }
+    .spacer { height: var(--space-xl); }
+
+    .divider {
+      width: 40px;
+      height: 2px;
+      background: var(--color-accent);
+      margin: var(--space-lg) 0;
+    }
+
+    .list-clean { list-style: none; padding: 0; }
+
+    .list-clean li {
+      padding: 0.3rem 0 0.3rem 1.2rem;
+      position: relative;
+      font-size: 0.92rem;
+    }
+
+    .list-clean li::before {
+      content: "\2013";
+      position: absolute;
+      left: 0;
+      color: var(--color-accent);
+    }
+
+    /* PRINT */
+    @media print {
+      html { font-size: 10pt; }
+
+      body {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      .page { max-width: none; }
+      .cover {
+        min-height: 0;
+        height: 297mm; /* Full A4 height, first page has 0 margins */
+        width: 210mm;  /* Full A4 width, first page has 0 margins */
+        margin: 0;
+        padding: 2rem;
+        page-break-after: always;
+        box-sizing: border-box;
+      }
+
+      .section { page-break-inside: avoid; }
+
+      /* Prevent blank pages caused by double page breaks.
+         Sections flow naturally; page-break-inside: avoid handles overflow. */
+      .page-break { page-break-before: auto; }
+      .exec-summary { page-break-after: auto; }
+      .toc { page-break-after: auto; }
+
+      .stage-card, .concept-card, .model-card, .path-card {
+        page-break-inside: avoid;
+      }
+
+      table { page-break-inside: avoid; }
+      .paths-grid { grid-template-columns: 1fr 1fr; }
+      .model-grid { grid-template-columns: 1fr 1fr; }
+
+      @page { size: A4; margin: 12mm 10mm; }
+      @page:first { margin: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ==========================================
+     COVER PAGE (outside .page for full bleed)
+     ========================================== -->
+<div class="cover">
+    <div class="cover-label" style="display:none">Prepared for [COMPANY NAME]</div>
+
+    <h1>Digital Presence<br>Strategy</h1>
+
+    <div class="cover-rule"></div>
+
+    <div class="cover-subtitle">
+      Transforming a Multi-Sector Business Portfolio<br>
+      into a Coherent Digital Presence
+    </div>
+
+    <div class="cover-meta">
+      <strong>Prepared by:</strong> Lawal Awwal<br>
+      <strong>Date:</strong>     March, 2026<br>
+      <strong></strong></div>
+  </div>
+
+<div class="page">
+
+  <!-- ==========================================
+       EXECUTIVE SUMMARY
+       ========================================== -->
+  <div class="exec-summary">
+    <div class="section-number">Executive Summary</div>
+    <div class="exec-quote">
+      "Your business operates across seven distinct industries serving 
+multiple audiences. Building a digital presence that does justice to 
+that complexity requires a structured approach. This document maps that 
+path."
+    </div>
+
+    <p>Following our conversation on 20th March, 2026, this document 
+presents a comprehensive strategy for establishing your company's 
+digital presence. It is not a proposal or a quotation. It is an 
+alignment document, designed to make sure we share a clear, common 
+understanding of the project's scope, approach, and path to success 
+before any design or development work begins.</p>
+
+    <p>Inside, you will find:</p>
+    <ul class="list-clean">
+      <li>A reflection of what you shared and what we identified together</li>
+      <li>Critical strategic questions that need to be resolved before design</li>
+      <li>An explanation of why brand identity is the essential first step</li>
+      <li>A clear three-stage engagement framework with defined deliverables</li>
+      <li>Two paths forward, tailored to different levels of ambition</li>
+      <li>A preview of the creative direction we would explore</li>
+      <li>A transparent breakdown of investment, responsibilities, and terms</li>
+    </ul>
+  </div>
+
+  <!-- ==========================================
+       TABLE OF CONTENTS
+       ========================================== -->
+  <div class="section toc">
+    <div class="section-number">Contents</div>
+    <h2>Table of Contents</h2>
+    <ol class="toc-list">
+      <li><span class="toc-number">01</span><span class="toc-title">What I Heard</span></li>
+      <li><span class="toc-number">02</span><span class="toc-title">Your Business at a Glance</span></li>
+      <li><span class="toc-number">03</span><span class="toc-title">What We Identified</span></li>
+      <li><span class="toc-number">04</span><span class="toc-title">Why Brand Identity Comes First</span></li>
+      <li><span class="toc-number">05</span><span class="toc-title">Understanding Brand Architecture</span></li>
+      <li><span class="toc-number">06</span><span class="toc-title">The Digital Opportunity</span></li>
+      <li><span class="toc-number">07</span><span class="toc-title">Our Approach: Three Stages</span></li>
+      <li><span class="toc-number">08</span><span class="toc-title">Two Paths Forward</span></li>
+      <li><span class="toc-number">09</span><span class="toc-title">A Preview of What's Possible</span></li>
+      <li><span class="toc-number">10</span><span class="toc-title">Your Role in This Partnership</span></li>
+      <li><span class="toc-number">11</span><span class="toc-title">Investment</span></li>
+      <li><span class="toc-number">12</span><span class="toc-title">Terms of Engagement</span></li>
+      <li><span class="toc-number">13</span><span class="toc-title">What This Engagement Does Not Include</span></li>
+      <li><span class="toc-number">14</span><span class="toc-title">Why a Structured Approach Matters</span></li>
+      <li><span class="toc-number">15</span><span class="toc-title">About Our Approach</span></li>
+      <li><span class="toc-number">16</span><span class="toc-title">Next Step</span></li>
+    </ol>
+  </div>
+
+  <!-- ==========================================
+       SECTION 1: WHAT I HEARD
+       ========================================== -->
+  <div class="section page-break">
+    <div class="section-number">Section 01</div>
+    <h2>What I Heard</h2>
+
+    <p>Following our conversation on 20th March, 2026, I want to make 
+sure I have captured your vision accurately before we take a single step
+ forward.</p>
+
+    <h3>Your Business</h3>
+    <p>Your company is a diversified conglomerate operating across seven business verticals:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 30px">#</th>
+          <th>Division</th>
+          <th>Core Activities</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td><strong>Crop Farming</strong></td><td>Cash crops and tree crops</td></tr>
+        <tr><td>2</td><td><strong>Animal Husbandry</strong></td><td>Ruminants and non-ruminants</td></tr>
+        <tr><td>3</td><td><strong>Agro-Processing</strong></td><td>Animal feed, cash crop processing, animal products</td></tr>
+        <tr><td>4</td><td><strong>Commodity Marketing</strong></td><td>Medicinal crops including turmeric, ginger, shea butter, cashew, and related products</td></tr>
+        <tr><td>5</td><td><strong>Real Estate</strong></td><td>Building contractors (commercial &amp; residential), lease agents, shortlet apartments</td></tr>
+        <tr><td>6</td><td><strong>Import &amp; Export</strong></td><td>Agricultural equipment, general merchants</td></tr>
+        <tr><td>7</td><td><strong>Oil &amp; Gas</strong></td><td>Haulage, petrol stations (servicing, build, operate, lease), contract servicing</td></tr>
+      </tbody>
+    </table>
+
+    <h3>What You Expressed</h3>
+    <ul class="list-clean">
+      <li>You want a website that represents the full scope of your business and serves as a digital home for all seven divisions</li>
+      <li>You want it to serve a broad audience, including potential 
+investors, customers across all verticals, partners, and the general 
+public</li>
+      <li>You want something built to last. A website that stands the test of time and does not require constant overhaul</li>
+      <li>You want to move quickly and see results</li>
+    </ul>
+
+    <h3>What I Observed</h3>
+    <p>During our call, what struck me was the sheer breadth of your 
+operations. This is not a single-industry business with a 
+straightforward story to tell. This is an integrated conglomerate where 
+agriculture feeds processing, processing feeds commodity marketing, and 
+commodity marketing feeds export.</p>
+
+    <p>The verticals are not independent silos. They are chapters in a 
+larger narrative of a business that operates across the full value 
+chain. That interconnection is a real strength, and the website should 
+reflect it.</p>
+  </div>
+
+  <!-- ==========================================
+       SECTION 2: YOUR BUSINESS AT A GLANCE
+       ========================================== -->
+  <div class="section page-break">
+    <div class="section-number">Section 02</div>
+    <h2>Your Business at a Glance</h2>
+
+    <p>Before we talk about the website, it is worth seeing your business the way a first-time visitor would need to understand it:</p>
+
+    <div class="org-chart">
+      <div class="org-parent">[COMPANY NAME]</div>
+      <div class="org-connector"></div>
+      <div class="org-branches">
+        <div class="org-cluster">
+          <div class="org-cluster-label">Agriculture &amp; Processing</div>
+          <div class="org-branch">Crop Farming</div>
+          <div class="org-branch">Animal Husbandry</div>
+          <div class="org-branch">Agro-Processing</div>
+        </div>
+        <div class="org-cluster">
+          <div class="org-cluster-label">Trade &amp; Commerce</div>
+          <div class="org-branch">Commodity Marketing</div>
+          <div class="org-branch">Import &amp; Export</div>
+        </div>
+        <div class="org-cluster">
+          <div class="org-cluster-label">Infrastructure &amp; Energy</div>
+          <div class="org-branch">Real Estate</div>
+          <div class="org-branch">Oil &amp; Gas</div>
+        </div>
+      </div>
+    </div>
+
+    <p>Seven divisions. Three natural clusters: you <strong>produce</strong>, you <strong>trade</strong>, and you <strong>build</strong>. Multiple audiences. Multiple industries, each with their own regulatory environments, competitors, and customer expectations.</p>
+
+    <div class="callout callout-insight">
+      <div class="callout-title">Key Insight</div>
+      A website that treats all seven divisions identically, or reduces 
+them to a list of bullet points, fails to communicate the sophistication
+ of what your business actually is. This is why we need a strategy 
+before we need a design.
+    </div>
+  </div>
+
+  <!-- ==========================================
+       SECTION 3: WHAT WE IDENTIFIED
+       ========================================== -->
+  <div class="section page-break">
+    <div class="section-number">Section 03</div>
+    <h2>What We Identified</h2>
+
+    <p>During and after our conversation, I identified several critical 
+areas that will shape how this project succeeds. These are the questions
+ and considerations that, if left unaddressed, would compromise the 
+quality of anything we build.</p>
+
+    <div class="divider"></div>
+
+    <h3>3.1 &nbsp; Audience: Who Is This Website For?</h3>
+
+    <p>A website that tries to speak to everyone ends up speaking to no 
+one. Your website will be visited by fundamentally different people with
+ fundamentally different goals:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Audience</th>
+          <th>What They Want</th>
+          <th>What They Need to See</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Investors and Partners</strong></td>
+          <td>Scale, credibility, leadership, financial stability</td>
+          <td>Corporate overview, leadership team, track record, portfolio breadth</td>
+        </tr>
+        <tr>
+          <td><strong>Customers (Agriculture)</strong></td>
+          <td>Products, pricing, reliability, delivery</td>
+          <td>Product catalogues, farm operations, supply chain information</td>
+        </tr>
+        <tr>
+          <td><strong>Customers (Real Estate)</strong></td>
+          <td>Properties, availability, trustworthiness</td>
+          <td>Listings, project photos, location details, contact</td>
+        </tr>
+        <tr>
+          <td><strong>Customers (Oil &amp; Gas)</strong></td>
+          <td>Capabilities, contract history, certifications</td>
+          <td>Service offerings, equipment, project portfolio</td>
+        </tr>
+        <tr>
+          <td><strong>Government and Regulatory Bodies</strong></td>
+          <td>Compliance, certifications, legitimacy</td>
+          <td>Licences, regulatory certifications (NAFDAC, NUPRC), governance</td>
+        </tr>
+        <tr>
+          <td><strong>Job Seekers</strong></td>
+          <td>Culture, openings, growth opportunities</td>
+          <td>Career page, team culture, open positions</td>
+        </tr>
+        <tr>
+          <td><strong>General Public</strong></td>
+          <td>Understanding what the company does</td>
+          <td>Clear, simple overview with compelling visuals</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-important">
+      <div class="callout-title">The Implication</div>
+      The homepage cannot be optimised for all of these audiences at the
+ same time. We will need to decide together who the primary audience is,
+ and design the entry experience around that priority. This is a 
+strategic business decision, not a design decision.
+    </div>
+
+    <div class="divider mt-xl"></div>
+
+    <h3>3.2 &nbsp; Scope: One Website or Seven?</h3>
+
+    <p>This may be the single most important question of the entire 
+project. Does your business operate under one unified brand, or do the 
+individual divisions carry separate identities in the market?</p>
+
+    <p>The answer determines whether we are building:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Option</th>
+          <th>Description</th>
+          <th>Comparable Example</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>A</strong></td>
+          <td>One corporate group website with divisional sections</td>
+          <td>Dangote Group (<a href="https://dangote.com/" target="_blank" style="color:var(--color-accent)">dangote.com</a>)</td>
+        </tr>
+        <tr>
+          <td><strong>B</strong></td>
+          <td>A family of related websites with a shared identity system</td>
+          <td>Tata Group (<a href="https://www.tata.com/" target="_blank" style="color:var(--color-accent)">tata.com</a>)</td>
+        </tr>
+        <tr>
+          <td><strong>C</strong></td>
+          <td>A corporate parent site plus standalone sites for select divisions</td>
+          <td>Oando PLC (<a href="https://www.oandoplc.com/" target="_blank" style="color:var(--color-accent)">oandoplc.com</a>)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Each option carries different implications for design complexity,
+ development time, content requirements, and investment. We will resolve
+ this together during the Discovery phase.</p>
+
+    <div class="divider mt-xl"></div>
+
+    <h3>3.3 &nbsp; Content: The Silent Project Risk</h3>
+
+    <p>In my experience with projects of this scale, the most common 
+reason websites stall is not design disagreements or technical 
+challenges. It is <strong>content</strong>.</p>
+
+    <p>Seven divisions could require:</p>
+
+    <ul class="list-clean">
+      <li>50 to 100 pages of written content, including descriptions, service pages, team profiles, and case studies</li>
+      <li>Professional photography across all operations, from farms and processing facilities to properties, petrol stations, and offices</li>
+      <li>Team biographies and leadership profiles</li>
+      <li>Certifications, licences, and compliance documentation</li>
+      <li>Success stories and project portfolios for each division</li>
+    </ul>
+
+    <div class="callout callout-important">
+      <div class="callout-title">Critical Question</div>
+      How much of this content exists today? Who will create what does 
+not yet exist? The answers directly impact the timeline and investment, 
+and they need to be addressed before design begins.
+    </div>
+
+    <div class="divider mt-xl"></div>
+
+    <h3>3.4 &nbsp; The "Test of Time" Question</h3>
+
+    <p>You mentioned wanting a website that stands the test of time. I 
+genuinely respect that aspiration, and I want to be transparent about 
+what it actually requires.</p>
+
+    <p>A website is a living asset. Markets change, team members move 
+on, new projects are completed, and new verticals may be added in the 
+future. A website that never changes eventually looks abandoned, and an 
+abandoned website signals an inactive business to anyone who visits.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>What Stays Constant</th>
+          <th>What Must Evolve</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Brand identity and visual system</td><td>News, updates, and announcements</td></tr>
+        <tr><td>Core site architecture and navigation</td><td>Team members and leadership</td></tr>
+        <tr><td>Design system and component library</td><td>Project portfolios and case studies</td></tr>
+        <tr><td>Technology foundation</td><td>Product and service offerings</td></tr>
+        <tr><td>Security and performance infrastructure</td><td>Regulatory and compliance information</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-key">
+      <div class="callout-title">Our Solution</div>
+      The answer is not a website that never needs updating. The answer 
+is a website built on a foundation so solid that updates are easy, fast,
+ and do not require a developer. That is exactly what we will build 
+together.
+    </div>
+  </div>
+
+  <!-- ==========================================
+       SECTION 4: WHY BRAND COMES FIRST
+       ========================================== -->
+  <div class="section page-break">
+    <div class="section-number">Section 04</div>
+    <h2>Why Brand Identity Comes First</h2>
+
+    <p>Before a single page is designed, we need to answer a fundamental question: <strong>What does your business look and feel like?</strong></p>
+
+    <p>Brand identity is the visual and verbal foundation that everything else is built on:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Brand Element</th>
+          <th>What It Determines</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Logo and Logo System</strong></td><td>How the company is recognised across all touchpoints</td></tr>
+        <tr><td><strong>Colour Palette</strong></td><td>The emotional tone of every page, document, and presentation</td></tr>
+        <tr><td><strong>Typography</strong></td><td>The voice and personality of all written communication</td></tr>
+        <tr><td><strong>Visual Language</strong></td><td>Photography style, iconography, illustration approach</td></tr>
+        <tr><td><strong>Tone of Voice</strong></td><td>How the company sounds, whether formal, warm, authoritative, or approachable</td></tr>
+        <tr><td><strong>Brand Guidelines</strong></td><td>The rulebook that ensures consistency across all materials</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-insight">
+      <div class="callout-title">Why This Matters Beyond the Website</div>
+      <p style="margin-bottom: 0.5rem;">A brand identity system is not just a website asset. It applies across your entire business:</p>
+      <p style="margin-bottom: 0;">Business cards and corporate 
+stationery • Investor presentations and pitch decks • Vehicle wraps and 
+signage • Staff uniforms and ID cards • Social media profiles • 
+Marketing materials and brochures • Trade show and exhibition materials</p>
+    </div>
+
+    <p>When we develop your brand identity, you receive a system that works across <em>every</em> touchpoint, not just the website. This is a standalone business asset with value that extends far beyond this project.</p>
+  </div>
+
+  <!-- ==========================================
+       SECTION 5: BRAND ARCHITECTURE
+       ========================================== -->
+  <div class="section page-break">
+    <div class="section-number">Section 05</div>
+    <h2>Understanding Brand Architecture</h2>
+
+    <p>A conglomerate with seven divisions faces a strategic question that most single-industry businesses never encounter: <strong>How should the divisions relate to each other visually?</strong></p>
+
+    <p>There are four established models, and each one produces a very different result:</p>
+
+    <div class="model-grid">
+
+      <div class="model-card">
+        <h4>Model A: Branded House</h4>
+        <div class="model-example">Think Google: Maps, Drive, Cloud, all carry the Google name (<a href="https://about.google/" target="_blank" style="color:var(--color-accent)">about.google</a>)</div>
+        <p>Every division carries your company name and visual identity.
+ Maximum brand cohesion, where every division reinforces the parent.</p>
+        <span class="model-tag tag-pro">Strongest group identity</span>
+        <span class="model-tag tag-con">Divisions feel less independent</span>
+      </div>
+
+      <div class="model-card">
+        <h4>Model B: House of Brands</h4>
+        <div class="model-example">Think Unilever: Dove, Axe, Lipton, no visible connection (<a href="https://www.unilever.com/" target="_blank" style="color:var(--color-accent)">unilever.com</a>)</div>
+        <p>Each division has its own independent name, logo, and identity. The parent company exists only at the corporate level.</p>
+        <span class="model-tag tag-pro">Maximum market flexibility</span>
+        <span class="model-tag tag-con">Most expensive to develop</span>
+      </div>
+
+      <div class="model-card">
+        <h4>Model C: Endorsed Brands</h4>
+        <div class="model-example">Think Marriott: Courtyard by Marriott, Ritz-Carlton (<a href="https://www.marriott.com/" target="_blank" style="color:var(--color-accent)">marriott.com</a>)</div>
+        <p>Each division has its own personality but carries your company's endorsement. "Powered by" or "A [COMPANY NAME] Company."</p>
+        <span class="model-tag tag-pro">Best of both worlds</span>
+        <span class="model-tag tag-con">Requires careful visual balance</span>
+      </div>
+
+      <div class="model-card">
+        <h4>Model D: Hybrid</h4>
+        <div class="model-example">Custom approach, different strategies for different divisions</div>
+        <p>Some divisions operate under the parent brand while others 
+carry more independent identities, based on the specific market they 
+serve.</p>
+        <span class="model-tag tag-pro">Maximum flexibility</span>
+        <span class="model-tag tag-con">Requires the most strategic thought</span>
+      </div>
+
+    </div>
+
+    <div class="callout callout-insight">
+      <div class="callout-title">What Happens Next</div>
+      We will determine the right model for your business together 
+during the Discovery phase. This is not a design decision. It is a 
+business strategy decision that affects how your company is perceived in
+ every market you operate in.
+    </div>
+  </div>
+
+  <!-- ==========================================
+       SECTION 6: COMPETITIVE LANDSCAPE
+       ========================================== -->
+  <div class="section page-break">
+    <div class="section-number">Section 06</div>
+    <h2>The Digital Opportunity</h2>
+
+    <p>We reviewed the digital presence of major Nigerian conglomerates 
+as well as one leading international group to understand the current 
+standard and identify where your business can stand apart.</p>
+
+    <h3>Nigerian Conglomerates</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Organisation</th>
+          <th>What They Do Well</th>
+          <th>Where They Fall Short</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Dangote Group</strong><br><a href="https://dangote.com/" target="_blank" style="color:var(--color-accent); font-size:0.8rem">dangote.com</a></td>
+          <td>Clean, professional design with quality corporate 
+photography. Well-organised navigation hierarchy. Clear brand 
+proposition ("For An Empowered Africa"). Strong social responsibility 
+messaging. Live stock ticker for investors.</td>
+          <td>Limited visual hierarchy between divisions: cement, sugar,
+ and refinery all get equal weight despite very different market 
+profiles. Dense information architecture that could overwhelm first-time
+ visitors. Minimal interactivity or modern motion design. No audience 
+segmentation on the homepage.</td>
+        </tr>
+        <tr>
+          <td><strong>Oando PLC</strong><br><a href="https://www.oandoplc.com/" target="_blank" style="color:var(--color-accent); font-size:0.8rem">oandoplc.com</a></td>
+          <td>Modern design with smooth scroll animations and clean 
+typography. Strong investor relations section with real-time stock data 
+via NGX. Good accessibility features including keyboard navigation. 
+Contemporary visual feel overall.</td>
+          <td>Sparse visual storytelling that relies heavily on text 
+animation rather than compelling imagery. Subsidiaries link to separate 
+external websites, creating a fragmented user experience. Heavy 
+JavaScript dependency that may impact loading speed. Limited 
+professional photography across the site.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 class="mt-xl">International Benchmark</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Organisation</th>
+          <th>What They Do Well</th>
+          <th>Where They Fall Short</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Tata Group</strong><br><a href="https://www.tata.com/" target="_blank" style="color:var(--color-accent); font-size:0.8rem">tata.com</a></td>
+          <td>Polished editorial storytelling that leads with narrative 
+rather than corporate announcements. Interactive brand showcase for 
+exploring subsidiaries without overwhelming the homepage. Dark mode 
+toggle for accessibility. Prominent careers section. Clear brand promise
+ ("Leadership with Trust") woven throughout. High production value 
+across all visuals.</td>
+          <td>Even at this scale, the homepage attempts to serve too 
+many audiences at once and lacks clearly defined user pathways. Heavy 
+reliance on carousels that can reduce content discoverability. 
+Significant JavaScript dependency that may slow initial page loading.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-key mt-lg">
+      <div class="callout-title">The Opportunity</div>
+      <p style="margin-bottom:0.5rem">The pattern is clear. Even among 
+the largest Nigerian conglomerates, digital presence tends to prioritise
+ information density over storytelling, and corporate formality over 
+audience-centred design. None of the Nigerian sites we reviewed offer 
+audience-segmented entry points or a narrative homepage experience.</p>
+      <p style="margin-bottom:0">This is a genuine opening. Your company
+ has the chance to set a new standard for how diversified Nigerian 
+businesses present themselves online, combining the editorial polish of 
+international leaders like Tata with a deep understanding of the local 
+market and audience.</p>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       SECTION 7: THREE STAGES
+       ========================================== -->
+  <div class="section page-break">
+    <div class="section-number">Section 07</div>
+    <h2>Our Approach: Three Stages</h2>
+
+    <p>We deliver this project in three defined stages. Each stage 
+produces tangible deliverables with standalone value. Each one builds on
+ the stage before it. Nothing is designed without strategy, and nothing 
+is built without your design approval.</p>
+
+    <!-- STAGE 1 -->
+    <div class="stage-card">
+      <div class="stage-header">
+        <h3>Foundation</h3>
+        <span class="stage-label">Stage 1</span>
+      </div>
+      <div class="stage-body">
+        <p class="text-muted text-small mb-md">Discovery, Brand Identity, and Strategic Planning</p>
+        <table>
+          <thead>
+            <tr><th>Deliverable</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Discovery Workshop</strong></td><td>A deep-dive into your business objectives, audience priorities, competitive landscape, content inventory, and success criteria</td></tr>
+            <tr><td><strong>Brand Identity System</strong></td><td>Logo refinement or development, colour palette, typography, visual language, and a complete brand guidelines document</td></tr>
+            <tr><td><strong>Brand Architecture Decision</strong></td><td>Strategic selection of the right model for how your divisions relate visually, resolved with your input</td></tr>
+            <tr><td><strong>Information Architecture</strong></td><td>A complete site map defining every page, its purpose, and its position in the navigation</td></tr>
+            <tr><td><strong>Content Strategy</strong></td><td>What content is needed, who provides it, and the timeline for delivery</td></tr>
+            <tr><td><strong>Project Roadmap</strong></td><td>A detailed plan for Stages 2 and 3 with milestones, timelines, and responsibilities</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="stage-outcome">
+        <strong>What you receive:</strong> A comprehensive brand 
+identity system you can use across all your business materials (not just
+ the website), a complete strategic blueprint, and a clear roadmap 
+forward. These deliverables have standalone value regardless of when you
+ proceed to Stage 2.
+      </div>
+      <div class="stage-duration">Estimated Duration: 3 to 4 weeks (subject to refinement after Discovery Workshop)</div>
+    </div>
+
+    <!-- STAGE 2 -->
+    <div class="stage-card">
+      <div class="stage-header">
+        <h3>Design &amp; Build</h3>
+        <span class="stage-label">Stage 2</span>
+      </div>
+      <div class="stage-body">
+        <p class="text-muted text-small mb-md">UX Design, Visual Design, and Development</p>
+        <table>
+          <thead>
+            <tr><th>Deliverable</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>UX Wireframes</strong></td><td>Layout blueprints for every page type, tested for usability across devices before any visual design begins</td></tr>
+            <tr><td><strong>Visual Design Concepts</strong></td><td>High-fidelity design mockups that bring the brand identity to life on the website, presented for your review and approval</td></tr>
+            <tr><td><strong>Responsive Development</strong></td><td>Mobile-first development optimised for real-world network conditions</td></tr>
+            <tr><td><strong>Content Management System</strong></td><td>A CMS with per-division editing dashboards so your team can manage content independently without needing a developer</td></tr>
+            <tr><td><strong>Design System</strong></td><td>A reusable component library so that future pages and new divisions can be assembled from existing building blocks</td></tr>
+            <tr><td><strong>Content Integration</strong></td><td>Your approved content, photography, and media placed into the live site</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="stage-outcome">
+        <strong>What you receive:</strong> A fully designed, developed, 
+and content-populated website built on a scalable design system, with a 
+CMS your team can manage without developer assistance.
+      </div>
+      <div class="stage-duration">Estimated Duration: 8 to 10 weeks (subject to refinement based on scope confirmed in Stage 1)</div>
+    </div>
+
+    <!-- STAGE 3 -->
+    <div class="stage-card">
+      <div class="stage-header">
+        <h3>Launch &amp; Growth</h3>
+        <span class="stage-label">Stage 3</span>
+      </div>
+      <div class="stage-body">
+        <p class="text-muted text-small mb-md">Testing, Launch, Training, and Post-Launch Support</p>
+        <table>
+          <thead>
+            <tr><th>Deliverable</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Quality Assurance</strong></td><td>Cross-browser, cross-device, performance, and security testing</td></tr>
+            <tr><td><strong>SEO Foundation</strong></td><td>Technical SEO, meta tags, structured data, and sitemap submission to ensure discoverability from day one</td></tr>
+            <tr><td><strong>Analytics Setup</strong></td><td>Per-division traffic dashboards so you can measure what is working without touching a line of code</td></tr>
+            <tr><td><strong>CMS Training</strong></td><td>A hands-on session for your team covering content updates, image management, and page creation</td></tr>
+            <tr><td><strong>Launch</strong></td><td>Coordinated deployment with DNS management, SSL certification, and go-live verification</td></tr>
+            <tr><td><strong>Post-Launch Support</strong></td><td>A 30-day support window for fixes, adjustments, and performance monitoring</td></tr>
+            <tr><td><strong>Maintenance Roadmap</strong></td><td>A documented plan for ongoing updates, security patches, and content refresh cycles</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="stage-outcome">
+        <strong>What you receive:</strong> A live, optimised, and secure website with a trained team and a clear maintenance path forward.
+      </div>
+      <div class="stage-duration">Estimated Duration: 2 to 3 weeks (subject to refinement based on scope confirmed in Stage 1)</div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       SECTION 8: TWO PATHS
+       ========================================== -->
+  <div class="section page-break">
+    <div class="section-number">Section 08</div>
+    <h2>Two Paths Forward</h2>
+
+    <p>To make sure we find the right fit for your needs and current priorities, I am presenting two approaches:</p>
+
+    <div class="paths-grid">
+
+      <div class="path-card">
+        <div class="path-header">
+          <div class="path-tag">Path A</div>
+          <h3>Corporate Presence</h3>
+          <p class="text-small text-muted mt-sm">A professional digital foundation</p>
+        </div>
+        <div class="path-body">
+          <ul>
+            <li>Brand identity refinement (working with existing assets)</li>
+            <li>Corporate group website with divisional overview pages</li>
+            <li>Responsive, mobile-optimised design</li>
+            <li>Basic CMS for content updates</li>
+            <li>SEO foundation and analytics</li>
+            <li>Launch and training</li>
+          </ul>
+        </div>
+        <div class="path-footer">
+          <strong>Scope:</strong> ~15 to 20 pages &nbsp;•&nbsp; <strong>Timeline:</strong> 8 to 10 weeks &nbsp;•&nbsp; <strong>Investment:</strong> Quoted after Discovery
+        </div>
+      </div>
+
+      <div class="path-card recommended">
+        <div class="path-header">
+          <div class="path-tag">Path B (Recommended)</div>
+          <h3>Digital Presence Strategy</h3>
+          <p class="text-small mt-sm" style="color: rgba(255,255,255,0.7);">A comprehensive brand and digital platform</p>
+        </div>
+        <div class="path-body">
+          <ul>
+            <li>Everything in Path A, plus:</li>
+            <li>Complete brand identity development with guidelines</li>
+            <li>Brand architecture strategy</li>
+            <li>Deep-dive discovery workshop</li>
+            <li>Audience-segmented user experience design</li>
+            <li>Design system and component library for long-term scalability</li>
+            <li>Per-division CMS dashboards with role-based access</li>
+            <li>Content strategy and creation support</li>
+            <li>Advanced SEO with per-vertical keyword targeting</li>
+            <li>Post-launch maintenance retainer</li>
+          </ul>
+        </div>
+        <div class="path-footer">
+          <strong>Scope:</strong> ~40 to 60 pages + brand system &nbsp;•&nbsp; <strong>Timeline:</strong> 14 to 18 weeks &nbsp;•&nbsp; <strong>Investment:</strong> Quoted after Discovery
+        </div>
+      </div>
+
+    </div>
+
+    <div class="callout callout-insight">
+      <div class="callout-title">My Recommendation</div>
+      Based on the scope of your operations and the goal of building something that truly stands the test of time, <strong>Path B</strong>
+ provides the strongest foundation for long-term digital success. That 
+said, both paths deliver a professional result, and I am happy to 
+discuss which one aligns best with your current priorities.
+    </div>
+  </div>
+
+  <!-- ==========================================
+       SECTION 9: CREATIVE PREVIEW
+       ========================================== -->
+  <div class="section page-break">
+    <div class="section-number">Section 09</div>
+    <h2>A Preview of What's Possible</h2>
+
+    <p>To give you a sense of the creative direction we would explore, here are two concepts for the homepage experience:</p>
+
+    <div class="concept-card">
+      <div class="concept-header">
+        <h4>Concept 1: Story-First Homepage</h4>
+        <div class="concept-tagline">"From the Soil to the Shelf to the World"</div>
+      </div>
+      <div class="concept-body">
+        <p>Instead of presenting seven divisions as separate boxes on a page, we tell the story of your business as an integrated journey:</p>
+        <p><strong>The Narrative Flow:</strong><br>
+        The land produces → We farm and raise livestock → We process the
+ harvest → We market the commodities → We build the infrastructure → We 
+trade globally → We power the economy</p>
+        <p>Each scroll section introduces a division as a chapter in a 
+larger story. The visitor does not see seven unrelated businesses. They 
+see one powerful conglomerate operating across the entire value chain.</p>
+      </div>
+      <div class="concept-why">
+        <strong>Why this works:</strong> It turns your complexity from a navigation problem into your greatest selling point.
+      </div>
+    </div>
+
+    <div class="concept-card">
+      <div class="concept-header">
+        <h4>Concept 2: Audience-Guided Entry</h4>
+        <div class="concept-tagline">"Welcome. I am..."</div>
+      </div>
+      <div class="concept-body">
+        <p>Instead of pushing every visitor through the same homepage 
+experience, we greet them with a simple question and let them choose 
+their own path:</p>
+        <p>
+          <strong>An Investor</strong> looking to understand the portfolio → corporate overview, financials, leadership<br>
+          <strong>A Customer</strong> looking for products or services → relevant divisional pages<br>
+          <strong>A Partner</strong> exploring collaboration → capabilities, project history, contact<br>
+          <strong>A Job Seeker</strong> looking for opportunities → careers, culture, openings
+        </p>
+        <p>Each path pulls together content from across all seven divisions, tailored specifically to what that visitor cares about.</p>
+      </div>
+      <div class="concept-why">
+        <strong>Why this works:</strong> A website that understands its visitor before they even scroll feels intelligent, considered, and genuinely professional.
+      </div>
+    </div>
+
+    <p class="text-muted text-small text-center mt-lg"><em>These are directions, not final decisions. We will explore, refine, and test these concepts together during Stage 2.</em></p>
+  </div>
+
+  <!-- ==========================================
+       SECTION 10: CLIENT RESPONSIBILITIES
+       ========================================== -->
+  <div class="section page-break">
+    <div class="section-number">Section 10</div>
+    <h2>Your Role in This Partnership</h2>
+
+    <p>A project of this calibre succeeds when both sides bring their best. Here is what each of us contributes.</p>
+
+    <h3>What We Provide</h3>
+    <ul class="list-clean">
+      <li>Strategic thinking, brand development, and creative direction</li>
+      <li>All design, development, and technical implementation</li>
+      <li>Project management, milestone tracking, and proactive communication</li>
+      <li>CMS training and post-launch support</li>
+      <li>Deep experience in translating complex businesses into compelling digital experiences</li>
+    </ul>
+
+    <h3 class="mt-xl">What We Need From You</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Your Responsibility</th>
+          <th>When</th>
+          <th>Why It Matters</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Designate one point of contact</strong> for approvals and feedback</td>
+          <td>Before project starts</td>
+          <td>Prevents conflicting feedback and decision bottlenecks</td>
+        </tr>
+        <tr>
+          <td><strong>Provide company information</strong> (history, bios, certifications, achievements)</td>
+          <td>Within 10 business days of kickoff</td>
+          <td>Required for content strategy and information architecture</td>
+        </tr>
+        <tr>
+          <td><strong>Provide or commission photography</strong></td>
+          <td>Stage 1 to 2</td>
+          <td>Professional photography is the difference between credible and generic</td>
+        </tr>
+        <tr>
+          <td><strong>Review and approve deliverables</strong> within 5 business days</td>
+          <td>Each milestone</td>
+          <td>Keeps the project moving on schedule</td>
+        </tr>
+        <tr>
+          <td><strong>Provide written content</strong> or approve content we draft</td>
+          <td>Per content schedule</td>
+          <td>Content is the number one reason websites stall. Timely delivery prevents delays</td>
+        </tr>
+        <tr>
+          <td><strong>Consolidate feedback</strong> from internal stakeholders before responding</td>
+          <td>Each review cycle</td>
+          <td>One voice, one direction, efficient progress</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 class="mt-xl">Illustrative Timeline (Path B)</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Week</th>
+          <th>Our Activity</th>
+          <th>Your Involvement</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1 to 2</td><td>Discovery Workshop and Research</td><td>Active participation in workshop</td></tr>
+        <tr><td>3 to 5</td><td>Brand Identity Development</td><td>Review and approve brand concepts (2 rounds)</td></tr>
+        <tr><td>6</td><td>Information Architecture and Content Strategy</td><td>Review site map, begin content preparation</td></tr>
+        <tr><td>7 to 9</td><td>UX Wireframes</td><td>Review and approve page layouts (2 rounds)</td></tr>
+        <tr><td>10 to 12</td><td>Visual Design</td><td>Review and approve design concepts (2 rounds)</td></tr>
+        <tr style="background: var(--color-accent-subtle) !important;"><td><strong>12</strong></td><td><strong>Content Delivery Deadline</strong></td><td><strong>All written content and photography due</strong></td></tr>
+        <tr><td>13 to 16</td><td>Development</td><td>Periodic progress reviews</td></tr>
+        <tr><td>17</td><td>Content Integration and Testing</td><td>Final content review and approval</td></tr>
+        <tr><td>18</td><td>Launch and Training</td><td>Team CMS training session</td></tr>
+        <tr><td>18+</td><td>Post-Launch Support</td><td>30-day support window</td></tr>
+      </tbody>
+    </table>
+
+    <p class="text-muted text-small mt-md"><em>This timeline is 
+illustrative and will be finalised during Stage 1 Discovery. Actual 
+duration depends on scope decisions, content readiness, and review 
+turnaround times.</em></p>
+  </div>
+
+  <!-- ==========================================
+       SECTION 11: INVESTMENT
+       ========================================== -->
+  <div class="section page-break">
+    <div class="section-number">Section 11</div>
+    <h2>Investment</h2>
+
+    <p>Our engagement is structured so that you always know what you are
+ paying for, and every stage delivers something valuable in its own 
+right.</p>
+
+    <h3>How Our Pricing Works</h3>
+
+    <p>Stage 1 (Foundation) has a fixed investment because it is a 
+clearly defined scope of work. The investment for Stages 2 and 3 is 
+determined as part of the Stage 1 deliverables, once we have completed 
+discovery and know the true scope of the website. This protects both of 
+us: you are never quoted a price based on assumptions, and we never 
+commit to a scope we have not properly understood.</p>
+
+    <div class="callout callout-insight">
+      <div class="callout-title">Why This Approach</div>
+      <p style="margin-bottom:0.5rem">A project with seven business 
+verticals, multiple audience types, and potential brand identity work 
+could range from a 20-page corporate presence to a 60-page 
+multi-divisional platform. Quoting a fixed price before discovery would 
+mean either overcharging for a simpler scope or underdelivering on a 
+complex one.</p>
+      <p style="margin-bottom:0">Stage 1 gives us both the clarity to 
+commit to accurate, fair pricing for the full project. If you choose not
+ to proceed beyond Stage 1, you keep everything we have produced: the 
+brand identity, the strategy, and the roadmap. Nothing is wasted.</p>
+    </div>
+
+    <h3 class="mt-xl">Stage 1: Foundation (Fixed Investment)</h3>
+
+    <table>
+      <thead>
+        <tr><th>Deliverable</th><th style="text-align:right">Investment</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Discovery Workshop and strategic research</td><td style="text-align:right" rowspan="6"><strong></strong></td></tr>
+        <tr><td>Brand identity system (logo, colours, typography, guidelines)</td></tr>
+        <tr><td>Brand architecture strategy</td></tr>
+        <tr><td>Information architecture and complete site map</td></tr>
+        <tr><td>Content strategy and content delivery plan</td></tr>
+        <tr><td>Detailed project roadmap with Stage 2 and 3 scope and pricing</td></tr>
+      </tbody>
+    </table>
+
+    <p class="text-small text-muted">If you proceed to Stages 2 and 3, 
+the Stage 1 investment is credited toward the total project. If you 
+choose to pause after Stage 1, you retain full ownership of all 
+deliverables produced.</p>
+
+    <h3 class="mt-xl">Stages 2 and 3: Scoped and Quoted During Stage 1</h3>
+
+    <p>As part of the Stage 1 deliverables, we produce a detailed 
+project roadmap that includes a precise scope definition and transparent
+ pricing for Stages 2 and 3. This means you will have a clear, itemised 
+quote before committing to the next phase.</p>
+
+    <p>To give you a sense of the scale involved:</p>
+
+    <table>
+      <thead>
+        <tr><th>Path</th><th>Indicative Scope</th><th>Indicative Timeline</th><th style="text-align:right">Indicative Range</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Path A: Corporate Presence</strong></td>
+          <td>~15 to 20 pages, brand refinement, basic CMS</td>
+          <td>8 to 10 weeks total</td>
+          <td style="text-align:right"></td>
+        </tr>
+        <tr>
+          <td><strong>Path B: Digital Presence Strategy</strong></td>
+          <td>~40 to 60 pages, full brand identity, design system, per-division CMS</td>
+          <td>14 to 18 weeks total</td>
+          <td style="text-align:right"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="text-small text-muted">These are indicative ranges based 
+on projects of comparable scope and are provided to help you plan. Final
+ pricing is confirmed during Stage 1, once we understand the exact 
+requirements together. All figures are open to discussion.</p>
+
+    <h3 class="mt-xl">Payment Schedule</h3>
+
+    <table>
+      <thead>
+        <tr><th>Milestone</th><th style="text-align:center">Payment</th><th>Trigger</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Stage 1 commencement</td><td style="text-align:center">100%</td><td>Signed agreement for Stage 1</td></tr>
+        <tr><td>Stage 2 commencement</td><td style="text-align:center">40%</td><td>Stage 1 deliverables approved, Stage 2 scope agreed</td></tr>
+        <tr><td>Stage 2 midpoint</td><td style="text-align:center">30%</td><td>Visual design approved</td></tr>
+        <tr><td>Launch</td><td style="text-align:center">30%</td><td>Website live and training complete</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="mt-xl">Optional: Ongoing Maintenance</h3>
+
+    <table>
+      <thead>
+        <tr><th>Service</th><th style="text-align:right">Monthly</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Security updates, backups, and monitoring</td><td style="text-align:right"></td></tr>
+        <tr><td>Content updates (up to 4 hours per month)</td><td style="text-align:right"></td></tr>
+        <tr><td>Performance optimisation and reporting</td><td style="text-align:right">Included</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-key mt-lg">
+      <div class="callout-title">No Wasted Investment</div>
+      Every stage delivers standalone value. Stage 1 produces a brand 
+identity system and strategic roadmap you can use across your entire 
+business, whether or not you proceed to Stages 2 and 3 immediately. You 
+are never locked into the next phase, and you always retain full 
+ownership of what has been completed.
+    </div>
+  </div>
+
+  <!-- ==========================================
+       SECTION 12: TERMS
+       ========================================== -->
+  <div class="section page-break">
+    <div class="section-number">Section 12</div>
+    <h2>Terms of Engagement</h2>
+
+    <p>These terms are designed to keep things smooth and professional for both of us.</p>
+
+    <h3>Review and Approval Process</h3>
+    <ul class="list-clean">
+      <li>All deliverables are presented for your review at defined milestones</li>
+      <li><strong>Feedback window:</strong> 5 business days from presentation</li>
+      <li><strong>Feedback format:</strong> Consolidated from all internal stakeholders through one designated contact</li>
+      <li><strong>Revision rounds:</strong> Up to 2 revision rounds per deliverable per stage</li>
+      <li><strong>Sign-off:</strong> Written approval is required before we progress to the next stage</li>
+      <li>If feedback is not received within the designated window, we will treat it as approval to proceed</li>
+    </ul>
+
+    <h3 class="mt-xl">Project Continuity</h3>
+    <ul class="list-clean">
+      <li><strong>Client-side delays:</strong> If content, feedback, or 
+approvals are delayed beyond the agreed timeline, the project schedule 
+will be adjusted accordingly. Extended delays beyond 10 business days 
+may result in project re-scheduling</li>
+      <li><strong>Change requests:</strong> Additions or modifications 
+outside the agreed scope are always welcome. They will be assessed, 
+quoted, and scheduled separately so they do not impact the core project</li>
+      <li><strong>Communication:</strong> You will receive weekly status updates. Emergency contact is available for urgent matters</li>
+    </ul>
+
+    <h3 class="mt-xl">Ownership and Rights</h3>
+    <ul class="list-clean">
+      <li>All design files, code, and brand assets transfer to you upon receipt of final payment for the relevant stage</li>
+      <li>Working files and source code are included in the transfer</li>
+      <li>We retain the right to feature the project in our portfolio, with your approval of what is shown</li>
+    </ul>
+  </div>
+
+  <!-- ==========================================
+       SECTION 13: EXCLUSIONS
+       ========================================== -->
+  <div class="section">
+    <div class="section-number">Section 13</div>
+    <h2>What This Engagement Does Not Include</h2>
+
+    <p>To make sure we are fully aligned, the following fall outside the scope of this engagement:</p>
+
+    <ul class="list-clean">
+      <li>Social media management, content creation for social platforms, or social media advertising</li>
+      <li>Paid advertising campaigns (Google Ads, Facebook Ads, etc.)</li>
+      <li>Ongoing content writing beyond the initial website content</li>
+      <li>Email marketing systems or campaign management</li>
+      <li>Third-party software integrations beyond basic contact forms and maps</li>
+      <li>Mobile application development</li>
+      <li>Video production (though we can coordinate with production partners if needed)</li>
+      <li>Print design beyond what is included in the brand guidelines</li>
+      <li>Domain registration and hosting fees (we will recommend providers and help with setup)</li>
+    </ul>
+
+    <p class="text-muted text-small mt-md">Any of the above can be explored as a separate engagement in the future if the need arises.</p>
+  </div>
+
+  <!-- ==========================================
+       SECTION 14: WHY STRUCTURE MATTERS
+       ========================================== -->
+  <div class="section page-break">
+    <div class="section-number">Section 14</div>
+    <h2>Why a Structured Approach Matters</h2>
+
+    <p>I completely understand the desire to move quickly. Speed is 
+valuable, and I respect it. But in projects of this scope, moving fast 
+without a strategy tends to produce expensive problems down the line:</p>
+
+    <table class="risk-table">
+      <thead>
+        <tr>
+          <th>When Projects Skip...</th>
+          <th>What Typically Happens</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Audience analysis</td><td>The homepage ends up designed for the wrong people. A redesign becomes necessary.</td></tr>
+        <tr><td>Brand guidelines</td><td>The visual identity feels inconsistent. Every page looks like it belongs to a different site.</td></tr>
+        <tr><td>Content strategy</td><td>Design is approved. Development is complete. Then launch stalls because nobody wrote the content.</td></tr>
+        <tr><td>Information architecture</td><td>Navigation confuses visitors. Key pages get buried. Bounce rates climb.</td></tr>
+        <tr><td>Approval workflow</td><td>Conflicting feedback arrives from multiple stakeholders. An 8-week project quietly becomes a 20-week project.</td></tr>
+        <tr><td>Maintenance plan</td><td>The site launches beautifully. A year later, outdated information turns it into a liability.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-key">
+      <div class="callout-title">The Bottom Line</div>
+      A structured approach does not slow the project down. It prevents 
+the project from needing to be done twice. The fastest path to a 
+world-class result is doing it right the first time.
+    </div>
+  </div>
+
+  <!-- ==========================================
+       SECTION 15: ABOUT OUR APPROACH
+       ========================================== -->
+  <div class="section">
+    <div class="section-number">Section 15</div>
+    <h2>About Our Approach</h2>
+
+    <!-- ACTION: Personalise this section with your own philosophy, past work, and credentials. -->
+
+    <p>Our approach is built on a simple principle: <strong>clarity before creativity</strong>.</p>
+
+    <p>We believe the best digital experiences grow from a foundation of
+ deep business understanding, clear brand identity, and user-centred 
+design. We do not start with what looks good. We start with what works 
+for your business and your audience, and then we make it look 
+exceptional.</p>
+
+    <h3 class="mt-xl">What Makes Our Approach Different</h3>
+
+    <table>
+      <thead>
+        <tr><th>Principle</th><th>In Practice</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>We listen before we design</strong></td>
+          <td>The first thing we produce is not a mockup. It is a 
+question. We invest in understanding your business deeply before making 
+any creative decisions.</td>
+        </tr>
+        <tr>
+          <td><strong>We build systems, not just websites</strong></td>
+          <td>A website captures a moment in time. A design system is 
+infrastructure that grows with you. We deliver both: a beautiful website
+ today and a component library your digital presence can build on for 
+years.</td>
+        </tr>
+        <tr>
+          <td><strong>We design for your real audience</strong></td>
+          <td>We optimise for real-world conditions: mobile-first 
+design, performance on variable network speeds, and user experiences 
+that work for your actual visitors.</td>
+        </tr>
+        <tr>
+          <td><strong>We make your team independent</strong></td>
+          <td>Our goal is not a permanent dependency. When we hand over 
+the project, your team has the tools, training, and documentation to 
+manage the website confidently on their own.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ==========================================
+       SECTION 16: NEXT STEP
+       ========================================== -->
+  <div class="section page-break">
+    <div class="section-number">Section 16</div>
+    <h2>Next Step</h2>
+
+    <p>If this document reflects the ambition and direction you envision for your digital presence, there is one clear next step:</p>
+
+    <div class="cta-section">
+      <h3>Schedule a Discovery Kickoff Call</h3>
+
+      <p>In this 60-minute session, we will:</p>
+
+      <ul class="list-clean" style="text-align: left; max-width: 460px; margin: 0 auto; color: rgba(255,255,255,0.85);">
+        <li>Confirm which path aligns with your priorities</li>
+        <li>Identify your designated point of contact for the project</li>
+        <li>Discuss your initial brand architecture preferences</li>
+        <li>Agree on the content inventory and who provides what</li>
+        <li>Set the project commencement date and milestone schedule</li>
+      </ul>
+
+      <div class="cta-contact">
+        <strong>Lawal Awwal</strong><br>
+        awwallawal@gmail.com &nbsp;•&nbsp; +2348053023862
+      </div>
+
+      <div class="cta-deadline" style="display:none">
+        Please respond by [DATE] to secure your project slot
+      </div>
+    </div>
+
+    <p class="text-center text-muted mt-xl"><em>I look forward to bringing clarity, strategy, and exceptional design to your digital presence.</em></p>
+  </div>
+
+  <!-- ==========================================
+       SIGNATURE
+       ========================================== -->
+  <div class="signature">
+    <div class="signature-left">
+      <div class="signature-name">Lawal Awwal</div>
+      Lawal Awwal<br>
+      awwallawal@gmail.com<br>
+      +2348053023862<br>
+      <!-- Add your website URL here when available -->
+    </div>
+    <div class="signature-right" style="display:none">
+      <em style="display:none">Confidential. Prepared exclusively for [COMPANY NAME].</em><br>
+      [DATE]
+    </div>
+  </div>
+
+</div>
+
+
+
+</body></html>

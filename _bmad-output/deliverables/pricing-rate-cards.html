@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing Rate Cards and Negotiation Guide — Internal Reference</title>
+  <style>
+    :root {
+      --color-primary: #0f1b2d;
+      --color-primary-light: #1a2b45;
+      --color-accent: #b8924a;
+      --color-accent-light: #d4af6e;
+      --color-accent-subtle: #f8f3eb;
+      --color-text: #2c3e50;
+      --color-text-light: #5a6a7a;
+      --color-text-muted: #8a95a3;
+      --color-bg: #ffffff;
+      --color-bg-alt: #f7f8fa;
+      --color-bg-section: #fafbfc;
+      --color-border: #e2e6ea;
+      --color-border-light: #eef0f3;
+      --color-white: #ffffff;
+      --color-success: #27ae60;
+      --color-warning: #e67e22;
+      --color-danger: #c0392b;
+      --color-info: #2980b9;
+
+      --font-heading: 'Georgia', 'Times New Roman', serif;
+      --font-body: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      --font-mono: 'Consolas', 'Courier New', monospace;
+
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2rem;
+      --space-2xl: 3rem;
+      --space-3xl: 4rem;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 11pt;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--color-text);
+      line-height: 1.65;
+      background: var(--color-bg);
+    }
+
+    h1, h2, h3, h4, h5 {
+      font-family: var(--font-heading);
+      color: var(--color-primary);
+      line-height: 1.3;
+    }
+
+    h1 { font-size: 2.2rem; font-weight: 400; letter-spacing: -0.02em; }
+    h2 { font-size: 1.5rem; font-weight: 400; letter-spacing: -0.01em; margin-bottom: var(--space-lg); padding-bottom: var(--space-sm); border-bottom: 2px solid var(--color-accent); }
+    h3 { font-size: 1.15rem; font-weight: 600; margin-bottom: var(--space-md); color: var(--color-primary-light); }
+    h4 { font-size: 1rem; font-weight: 600; margin-bottom: var(--space-sm); color: var(--color-primary); }
+    h5 { font-size: 0.9rem; font-weight: 600; margin-bottom: var(--space-xs); color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.05em; }
+
+    p { margin-bottom: var(--space-md); }
+    strong { font-weight: 600; color: var(--color-primary); }
+    em { color: var(--color-text-light); font-style: italic; }
+
+    .page {
+      max-width: 210mm;
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    .confidential-banner {
+      background: var(--color-danger);
+      color: var(--color-white);
+      text-align: center;
+      padding: var(--space-sm) var(--space-md);
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .confidential-banner span {
+      display: inline-block;
+      border: 2px solid rgba(255,255,255,0.5);
+      padding: var(--space-xs) var(--space-lg);
+    }
+
+    .header-block {
+      background: var(--color-primary);
+      color: var(--color-white);
+      padding: var(--space-3xl) var(--space-2xl) var(--space-2xl);
+      text-align: center;
+    }
+
+    .header-block h1 {
+      color: var(--color-white);
+      margin-bottom: var(--space-sm);
+    }
+
+    .header-block .subtitle {
+      color: var(--color-accent-light);
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-size: 1.1rem;
+      margin-bottom: var(--space-lg);
+    }
+
+    .header-block .meta {
+      color: rgba(255,255,255,0.5);
+      font-size: 0.8rem;
+    }
+
+    .content {
+      padding: var(--space-2xl);
+    }
+
+    section {
+      margin-bottom: var(--space-3xl);
+    }
+
+    .section-intro {
+      font-size: 1.05rem;
+      color: var(--color-text-light);
+      margin-bottom: var(--space-xl);
+      padding-left: var(--space-lg);
+      border-left: 3px solid var(--color-accent);
+    }
+
+    /* Table of contents */
+    .toc {
+      background: var(--color-bg-alt);
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      padding: var(--space-xl);
+      margin-bottom: var(--space-3xl);
+    }
+
+    .toc h3 {
+      margin-bottom: var(--space-md);
+    }
+
+    .toc ol {
+      list-style: none;
+      counter-reset: toc-counter;
+      padding: 0;
+    }
+
+    .toc ol li {
+      counter-increment: toc-counter;
+      padding: var(--space-xs) 0;
+    }
+
+    .toc ol li::before {
+      content: counter(toc-counter) ".";
+      color: var(--color-accent);
+      font-weight: 700;
+      margin-right: var(--space-sm);
+      font-family: var(--font-heading);
+    }
+
+    .toc a {
+      color: var(--color-primary);
+      text-decoration: none;
+      border-bottom: 1px dotted var(--color-border);
+      transition: all 0.2s ease;
+    }
+
+    .toc a:hover {
+      color: var(--color-accent);
+      border-bottom-color: var(--color-accent);
+    }
+
+    /* Info boxes */
+    .principle-box {
+      background: var(--color-accent-subtle);
+      border-left: 4px solid var(--color-accent);
+      padding: var(--space-lg);
+      margin-bottom: var(--space-lg);
+      border-radius: 0 6px 6px 0;
+    }
+
+    .principle-box h4 {
+      color: var(--color-accent);
+      margin-bottom: var(--space-sm);
+      font-family: var(--font-heading);
+    }
+
+    .warning-box {
+      background: #fdf2f2;
+      border-left: 4px solid var(--color-danger);
+      padding: var(--space-lg);
+      margin-bottom: var(--space-lg);
+      border-radius: 0 6px 6px 0;
+    }
+
+    .warning-box h4 {
+      color: var(--color-danger);
+      margin-bottom: var(--space-sm);
+    }
+
+    .info-box {
+      background: #edf5fd;
+      border-left: 4px solid var(--color-info);
+      padding: var(--space-lg);
+      margin-bottom: var(--space-lg);
+      border-radius: 0 6px 6px 0;
+    }
+
+    .info-box h4 {
+      color: var(--color-info);
+      margin-bottom: var(--space-sm);
+    }
+
+    .success-box {
+      background: #edfaf3;
+      border-left: 4px solid var(--color-success);
+      padding: var(--space-lg);
+      margin-bottom: var(--space-lg);
+      border-radius: 0 6px 6px 0;
+    }
+
+    .success-box h4 {
+      color: var(--color-success);
+      margin-bottom: var(--space-sm);
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: var(--space-xl);
+      font-size: 0.92rem;
+    }
+
+    thead {
+      background: var(--color-primary);
+      color: var(--color-white);
+    }
+
+    thead th {
+      padding: var(--space-sm) var(--space-md);
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.02em;
+    }
+
+    tbody td {
+      padding: var(--space-sm) var(--space-md);
+      border-bottom: 1px solid var(--color-border-light);
+      vertical-align: top;
+    }
+
+    tbody tr:nth-child(even) {
+      background: var(--color-bg-alt);
+    }
+
+    tbody tr:hover {
+      background: var(--color-accent-subtle);
+    }
+
+    .price-highlight {
+      color: var(--color-accent);
+      font-weight: 700;
+      font-family: var(--font-heading);
+    }
+
+    .tier-header {
+      background: var(--color-primary-light) !important;
+      color: var(--color-white);
+      font-weight: 600;
+    }
+
+    .tier-header td {
+      color: var(--color-white);
+      border-bottom-color: var(--color-primary);
+      padding: var(--space-sm) var(--space-md);
+    }
+
+    /* Lists */
+    ul, ol {
+      margin-bottom: var(--space-md);
+      padding-left: var(--space-xl);
+    }
+
+    li {
+      margin-bottom: var(--space-xs);
+    }
+
+    li + li {
+      margin-top: var(--space-xs);
+    }
+
+    /* Script/dialogue formatting */
+    .script-block {
+      background: var(--color-bg-alt);
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      padding: var(--space-lg);
+      margin-bottom: var(--space-lg);
+    }
+
+    .script-block .label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-accent);
+      font-weight: 700;
+      margin-bottom: var(--space-xs);
+    }
+
+    .say-this {
+      border-left: 3px solid var(--color-success);
+      padding-left: var(--space-md);
+      margin-bottom: var(--space-md);
+    }
+
+    .say-this::before {
+      content: "SAY THIS";
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--color-success);
+      letter-spacing: 0.08em;
+      margin-bottom: var(--space-xs);
+    }
+
+    .never-say {
+      border-left: 3px solid var(--color-danger);
+      padding-left: var(--space-md);
+      margin-bottom: var(--space-md);
+    }
+
+    .never-say::before {
+      content: "NEVER SAY THIS";
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--color-danger);
+      letter-spacing: 0.08em;
+      margin-bottom: var(--space-xs);
+    }
+
+    /* Red flag items */
+    .red-flag {
+      background: #fdf2f2;
+      border: 1px solid #f5c6cb;
+      border-radius: 6px;
+      padding: var(--space-lg);
+      margin-bottom: var(--space-lg);
+    }
+
+    .red-flag h4 {
+      color: var(--color-danger);
+      margin-bottom: var(--space-sm);
+    }
+
+    .red-flag .why {
+      font-size: 0.9rem;
+      color: var(--color-text-light);
+      margin-bottom: var(--space-sm);
+    }
+
+    .red-flag .response {
+      background: var(--color-white);
+      padding: var(--space-sm) var(--space-md);
+      border-radius: 4px;
+      font-style: italic;
+      margin-bottom: var(--space-sm);
+    }
+
+    /* Revenue planning */
+    .revenue-block {
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+      color: var(--color-white);
+      padding: var(--space-xl);
+      border-radius: 8px;
+      margin-bottom: var(--space-lg);
+    }
+
+    .revenue-block h4 {
+      color: var(--color-accent-light);
+      margin-bottom: var(--space-md);
+    }
+
+    .revenue-block .amount {
+      font-size: 1.8rem;
+      font-family: var(--font-heading);
+      color: var(--color-accent-light);
+      font-weight: 400;
+    }
+
+    .revenue-block p {
+      color: rgba(255,255,255,0.8);
+    }
+
+    /* Subsection dividers */
+    .subsection {
+      margin-bottom: var(--space-2xl);
+    }
+
+    .payment-terms {
+      background: var(--color-bg-alt);
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      padding: var(--space-lg);
+      margin-bottom: var(--space-lg);
+    }
+
+    .payment-terms h4 {
+      margin-bottom: var(--space-md);
+      color: var(--color-primary);
+    }
+
+    /* Walkaway threshold styling */
+    .threshold {
+      display: inline-block;
+      background: var(--color-danger);
+      color: var(--color-white);
+      padding: 2px 10px;
+      border-radius: 3px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    /* Footer */
+    .document-footer {
+      text-align: center;
+      padding: var(--space-2xl);
+      color: var(--color-text-muted);
+      font-size: 0.8rem;
+      border-top: 1px solid var(--color-border);
+      margin-top: var(--space-3xl);
+    }
+
+    /* Print styles */
+    @media print {
+      .confidential-banner {
+        position: static;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .page {
+        max-width: 100%;
+      }
+
+      .content {
+        padding: var(--space-lg);
+      }
+
+      body {
+        font-size: 10pt;
+      }
+
+      section {
+        page-break-inside: avoid;
+      }
+
+      table {
+        page-break-inside: avoid;
+      }
+
+      .principle-box, .warning-box, .info-box, .success-box, .red-flag, .script-block {
+        page-break-inside: avoid;
+      }
+
+      h2 {
+        page-break-after: avoid;
+      }
+
+      .header-block {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      thead {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .tier-header {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .revenue-block {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      a {
+        color: var(--color-primary);
+        text-decoration: none;
+      }
+
+      @page {
+        margin: 15mm;
+        size: A4;
+      }
+
+      .toc a::after {
+        content: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="confidential-banner">
+  <span>Confidential -- Internal Use Only -- Not for Client Distribution</span>
+</div>
+
+<div class="page">
+
+  <div class="header-block">
+    <h1>Pricing Rate Cards and Negotiation Guide</h1>
+    <div class="subtitle">The Complete Internal Pricing Reference for Lawal Awwal</div>
+    <div class="meta">Last updated: March 2026 | Review quarterly or after every 3 completed projects</div>
+  </div>
+
+  <div class="content">
+
+    <!-- Table of Contents -->
+    <nav class="toc">
+      <h3>Contents</h3>
+      <ol>
+        <li><a href="#philosophy">Pricing Philosophy</a></li>
+        <li><a href="#international">International Rate Card (GBP)</a></li>
+        <li><a href="#nigerian">Nigerian Local Rate Card (NGN)</a></li>
+        <li><a href="#scope">Scope Adjustment Guide</a></li>
+        <li><a href="#negotiation">Negotiation Guide</a></li>
+        <li><a href="#when-to-say-no">When to Say No</a></li>
+        <li><a href="#revenue">Annual Revenue Planning</a></li>
+      </ol>
+    </nav>
+
+    <!-- ================================================================ -->
+    <!-- SECTION 1: PRICING PHILOSOPHY -->
+    <!-- ================================================================ -->
+    <section id="philosophy">
+      <h2>1. Pricing Philosophy</h2>
+
+      <p class="section-intro">
+        Your pricing is not a number you pull from thin air. It is the single most important business decision you make on every project. These principles are non-negotiable. Internalise them until they are instinct, not something you have to think about.
+      </p>
+
+      <div class="principle-box">
+        <h4>Price to the Client's Economy, Never Convert Between Currencies</h4>
+        <p>When a UK client asks your price, you quote in GBP based on what the UK market expects. When a Nigerian client asks, you quote in NGN based on what the Nigerian market sustains. You never take your GBP rate, convert it to Naira, and present that as your Nigerian price. That would make you unaffordable to most Nigerian businesses. Equally, you never take your Naira rate, convert it to GBP, and present that to a UK client. That would massively undervalue your work in their market.</p>
+        <p>These are two separate rate cards for two separate economic realities. A UK SME paying you £5,000 considers that reasonable. A Nigerian SME paying you ₦1,500,000 also considers that reasonable. Both are right. You are delivering real value in both cases. The fact that one converts to more Naira than the other is irrelevant. You are pricing for the economy the client operates in.</p>
+      </div>
+
+      <div class="principle-box">
+        <h4>Two Separate Rate Cards, No Crossover</h4>
+        <p>You maintain two completely independent rate cards. The International Rate Card is denominated in GBP and designed for UK-based and international clients. The Nigerian Rate Card is denominated in NGN and designed for businesses operating within the Nigerian economy. Never mix them. Never reference one when quoting the other. If a Nigerian-owned company is operating primarily in the UK market and billing in GBP, they get the international rate card. If a UK citizen is running a small NGO based in Lagos and operating in Naira, they get the Nigerian rate card. The determining factor is the client's operating economy, not their nationality or passport.</p>
+      </div>
+
+      <div class="principle-box">
+        <h4>Value-Based Pricing, Not Hourly Rates</h4>
+        <p>You do not sell hours. You sell outcomes. A client does not care that a task took you 3 hours or 30 hours. They care that their brand now communicates authority, their website converts visitors into enquiries, and their digital presence positions them above their competitors. When you price by the hour, you penalise yourself for being fast. When you price by value, you are rewarded for being excellent. Every proposal you write should frame the investment in terms of what the client receives, not how long it takes you to produce it.</p>
+        <p>This also means you never break your pricing down into hourly components on a proposal. If a client asks "how many hours will this take?", redirect: "The investment covers the full scope of work, from discovery through to launch, including all the strategic thinking, creative development, and technical build required to deliver the outcomes we have discussed."</p>
+      </div>
+
+      <div class="principle-box">
+        <h4>The Staged Approach: Stage 1 Fixed, Stages 2 and 3 Scoped During Stage 1</h4>
+        <p>Stage 1 (Discovery and Brand Foundation) is always a fixed price. It is the same price regardless of how large or complex the eventual website might be. This is deliberate. Stage 1 is where you do the thinking, research, and strategic work that defines what the right solution is. You cannot accurately price the design and build of a website until you have completed discovery. Every client gets Stage 1 at the fixed price. At the end of Stage 1, you deliver a project roadmap that includes detailed scope and pricing for Stages 2 and 3. This protects you from underpricing complex work and protects the client from overpaying for simple work.</p>
+        <p>The client is always free to take their Stage 1 deliverables (brand identity, strategy documents, site architecture) and walk away. They have received real, usable value. Most will continue because by that point they trust you and understand the value of the work ahead.</p>
+      </div>
+
+      <div class="principle-box">
+        <h4>Premium Positioning in a Price-Sensitive Market</h4>
+        <p>Nigeria has thousands of people who can build a website for ₦50,000. The UK has thousands of freelancers charging £500 for a WordPress site. You are not competing with them. You are competing with agencies that charge £15,000 to £50,000 but delivering comparable quality at a fraction of their overhead. Your positioning is: senior-level strategic thinking, delivered with the efficiency of a solo operator and the quality of a boutique agency. Premium positioning is not about being expensive for the sake of it. It is about attracting clients who value quality, who are serious about their business, and who will be collaborative, respectful partners. Cheap clients are, without exception, the most demanding, the most difficult, and the least likely to pay on time. Price is a filter. Use it deliberately.</p>
+      </div>
+
+      <div class="principle-box">
+        <h4>How AI Tools Increase Efficiency Without Reducing Prices</h4>
+        <p>You use AI tools across your workflow: research, content drafting, code generation, design iteration, quality assurance. These tools make you faster. They do not make you less valuable. In fact, they make you more valuable because you can deliver higher quality work in less calendar time. If a task that once took 8 hours now takes 3 hours with AI assistance, your effective hourly rate has increased. That is a good thing. You do not pass that efficiency gain to the client as a discount. The client is paying for the outcome, not for your time. They receive the same high-quality deliverable regardless of whether it took you 3 hours or 8 hours to produce. The value to their business is identical.</p>
+        <p>If anyone asks about your use of AI: "I use the best tools available, including AI-assisted workflows, to deliver higher quality work more efficiently. Every output is directed by my strategic judgment and refined to my quality standards. The result is better work, delivered faster."</p>
+      </div>
+
+      <div class="principle-box">
+        <h4>The Commodification Reality: Building is Cheap, Thinking is Expensive</h4>
+        <p>Anyone can install WordPress, pick a theme, and put some text on a page. That part of the work is increasingly commodified. AI can generate a basic website in minutes. What cannot be commodified is the thinking: understanding a client's market, defining the right positioning, crafting a brand that communicates the right things to the right people, architecting an information structure that guides visitors toward conversion, and making the hundreds of strategic micro-decisions that separate an effective website from a pretty but useless one.</p>
+        <p>This is why Stage 1 (the thinking) often costs as much as or more than the build itself, relative to its duration. Clients who understand this are your ideal clients. Clients who think "it is just a website, how hard can it be?" are not your clients. Your value is not in your ability to write HTML. It is in your ability to think clearly about a client's business and translate that thinking into a digital presence that actually works.</p>
+      </div>
+
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- SECTION 2: INTERNATIONAL RATE CARD (GBP) -->
+    <!-- ================================================================ -->
+    <section id="international">
+      <h2>2. International Rate Card (GBP)</h2>
+
+      <p class="section-intro">
+        For UK-based and international clients. All prices in British Pounds Sterling. This rate card positions you in the mid-range of the UK freelance market, above bargain-basement freelancers but significantly below agency rates. For a solo operator with your skill set and strategic approach, this is the correct positioning.
+      </p>
+
+      <!-- Stage 1 -->
+      <div class="subsection">
+        <h3>Stage 1: Foundation</h3>
+
+        <table>
+          <thead>
+            <tr>
+              <th style="width:55%">Deliverable</th>
+              <th style="width:25%">Details</th>
+              <th style="width:20%">Included</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Discovery Workshop and Strategic Research</strong><br>Deep dive into the client's business, market, competitors, audience, goals, and challenges. Produces the strategic foundation for all subsequent work.</td>
+              <td>1 structured workshop session (90 to 120 minutes) plus independent research</td>
+              <td>Yes</td>
+            </tr>
+            <tr>
+              <td><strong>Brand Identity System</strong><br>Logo design (primary, secondary, favicon), colour palette (primary, secondary, accent, neutrals), typography selection (heading and body fonts), basic brand guidelines document.</td>
+              <td>2 initial concept directions, 2 rounds of refinement on the chosen direction</td>
+              <td>Yes</td>
+            </tr>
+            <tr>
+              <td><strong>Brand Architecture Strategy</strong><br>How the brand relates to any sub-brands, products, or service lines. Naming conventions and visual hierarchy.</td>
+              <td>Strategic document</td>
+              <td>Yes</td>
+            </tr>
+            <tr>
+              <td><strong>Information Architecture and Site Map</strong><br>Complete page structure, navigation hierarchy, user flow mapping, content requirements per page.</td>
+              <td>Visual sitemap document</td>
+              <td>Yes</td>
+            </tr>
+            <tr>
+              <td><strong>Content Strategy</strong><br>Tone of voice guidelines, key messaging framework, content requirements and recommendations per page, calls to action strategy.</td>
+              <td>Strategy document</td>
+              <td>Yes</td>
+            </tr>
+            <tr>
+              <td><strong>Project Roadmap</strong><br>Detailed scope, timeline, and pricing for Stages 2 and 3, based on everything learned during discovery.</td>
+              <td>Formal proposal document</td>
+              <td>Yes</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="info-box">
+          <h4>Stage 1 Pricing</h4>
+          <p><span class="price-highlight" style="font-size:1.3rem">£1,500</span> -- fixed price, every project, no exceptions.</p>
+          <p><strong>Duration:</strong> 3 to 4 weeks from kick-off to roadmap delivery.</p>
+          <p><strong>Payment:</strong> 100% upfront before any work begins.</p>
+          <p>This price is the same whether the eventual website is 5 pages or 50 pages. Stage 1 pricing is non-negotiable. If a client cannot invest £1,500 to discover whether you are the right fit, they are not the right client for you.</p>
+        </div>
+      </div>
+
+      <!-- Stages 2-3 -->
+      <div class="subsection">
+        <h3>Stages 2 and 3: Design, Build, and Launch (Quoted After Stage 1)</h3>
+        <p>These prices are indicative ranges. Actual pricing is determined during Stage 1 based on discovered scope. Always quote within these ranges unless exceptional complexity justifies going higher.</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th style="width:20%">Project Path</th>
+              <th style="width:35%">Description</th>
+              <th style="width:25%">Typical Scope</th>
+              <th style="width:20%">Price Range</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Path A</strong><br>Corporate Presence</td>
+              <td>A clean, professional website that establishes credibility and provides core information. Suitable for professional services firms, consultancies, and small to medium businesses.</td>
+              <td>15 to 20 pages, custom design, CMS, basic SEO, responsive, contact forms, analytics integration</td>
+              <td><span class="price-highlight">£4,000 to £6,000</span></td>
+            </tr>
+            <tr>
+              <td><strong>Path B</strong><br>Digital Presence Strategy</td>
+              <td>A comprehensive digital presence with full brand system, extensive content architecture, and advanced functionality. Suitable for multi-service companies, organisations with complex offerings, or businesses requiring significant content management.</td>
+              <td>40 to 60 pages, full brand system, advanced CMS with custom content types, SEO strategy, multiple user journeys, integration requirements, content migration</td>
+              <td><span class="price-highlight">£8,000 to £14,000</span></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="info-box">
+          <h4>Total Project Investment (Stage 1 plus Stages 2 and 3)</h4>
+          <p><strong>Path A total:</strong> £5,500 to £7,500</p>
+          <p><strong>Path B total:</strong> £9,500 to £15,500</p>
+        </div>
+      </div>
+
+      <!-- Standalone Services -->
+      <div class="subsection">
+        <h3>Standalone Services</h3>
+
+        <table>
+          <thead>
+            <tr>
+              <th style="width:35%">Service</th>
+              <th style="width:40%">What is Included</th>
+              <th style="width:25%">Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Brand Identity Only</strong><br>(no website)</td>
+              <td>Discovery session, logo system (primary, secondary, favicon), colour palette, typography, brand guidelines document. Delivered as a complete brand package ready for any designer to implement.</td>
+              <td><span class="price-highlight">£2,000 to £4,000</span></td>
+            </tr>
+            <tr>
+              <td><strong>Brand Audit and Report</strong></td>
+              <td>Comprehensive review of existing brand identity, digital presence, competitor positioning, and market perception. Delivered as a written report with specific, actionable recommendations.</td>
+              <td><span class="price-highlight">£500 to £800</span></td>
+            </tr>
+            <tr>
+              <td><strong>Website Redesign</strong><br>(existing brand)</td>
+              <td>For clients who already have an established brand identity and need their website redesigned and rebuilt. Includes information architecture, design, development, CMS setup, and launch. Does not include brand identity work.</td>
+              <td><span class="price-highlight">£3,000 to £8,000</span></td>
+            </tr>
+            <tr>
+              <td><strong>Landing Page Design and Build</strong></td>
+              <td>Single-page design for campaigns, product launches, or lead generation. Includes responsive design, CMS integration if needed, basic analytics setup, and one round of revisions.</td>
+              <td><span class="price-highlight">£500 to £1,000</span></td>
+            </tr>
+            <tr>
+              <td><strong>CMS Training Session</strong></td>
+              <td>One-on-one training session (60 to 90 minutes) on managing website content. Includes screen-recorded walkthrough video for future reference. Covers content editing, image management, page creation, and basic troubleshooting.</td>
+              <td><span class="price-highlight">£200</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Ongoing Services -->
+      <div class="subsection">
+        <h3>Ongoing Services</h3>
+
+        <table>
+          <thead>
+            <tr>
+              <th style="width:30%">Package</th>
+              <th style="width:45%">What is Included</th>
+              <th style="width:25%">Monthly Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Monthly Maintenance</strong><br>Security, Backups, Monitoring</td>
+              <td>Weekly security scans and updates, automated daily backups with monthly verification, uptime monitoring with alert response, WordPress core, theme, and plugin updates, monthly health report.</td>
+              <td><span class="price-highlight">£100 per month</span></td>
+            </tr>
+            <tr>
+              <td><strong>Monthly Maintenance plus Content Updates</strong></td>
+              <td>Everything in the maintenance package, plus up to 4 hours of content updates per month. This covers text changes, image swaps, new blog posts, minor layout adjustments, and similar small tasks. Unused hours do not roll over.</td>
+              <td><span class="price-highlight">£250 per month</span></td>
+            </tr>
+            <tr>
+              <td><strong>Retainer</strong><br>Priority Access</td>
+              <td>Everything in the maintenance package, plus 10 hours per month of design, development, or strategic work. Priority response within 24 hours on business days. Monthly strategy check-in call (30 minutes). Unused hours do not roll over.</td>
+              <td><span class="price-highlight">£500 per month</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Payment Terms -->
+      <div class="payment-terms">
+        <h4>Payment Terms (International)</h4>
+        <ul>
+          <li><strong>Stage 1:</strong> 100% upfront before work begins. Non-negotiable. No exceptions.</li>
+          <li><strong>Stages 2 and 3:</strong> 40% at commencement (before design begins), 30% at midpoint (design approved, development begins), 30% at launch (before the site goes live).</li>
+          <li><strong>Preferred payment method:</strong> Wise (formerly TransferWise). Recommended for lowest fees and fastest processing. Bank transfer also accepted.</li>
+          <li><strong>Currency:</strong> All international invoices in GBP. Client pays in GBP. Any currency conversion fees are the client's responsibility.</li>
+          <li><strong>Late payment:</strong> A 5% surcharge is applied to any invoice not paid within 14 days of the due date. This is stated in the service agreement. Work pauses on any unpaid milestone until payment is received.</li>
+          <li><strong>Ongoing services:</strong> Invoiced on the 1st of each month, due within 7 days. Service suspended if payment not received within 14 days.</li>
+        </ul>
+      </div>
+
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- SECTION 3: NIGERIAN LOCAL RATE CARD (NGN) -->
+    <!-- ================================================================ -->
+    <section id="nigerian">
+      <h2>3. Nigerian Local Rate Card (NGN)</h2>
+
+      <p class="section-intro">
+        For clients operating within the Nigerian economy. All prices in Nigerian Naira. This rate card is tiered by client size because Nigerian businesses vary enormously in their budgets, expectations, and what they need. A 5-person startup in Yaba does not need (or want to pay for) the same scope as a multi-division conglomerate in Victoria Island.
+      </p>
+
+      <div class="info-box">
+        <h4>How to Determine the Right Tier</h4>
+        <p>Assess the client during your initial conversation. Consider: number of employees, number of locations or offices, annual revenue (if you can gauge it), complexity of their service or product offerings, and the sophistication of their current marketing. When in doubt, quote the tier above. It is easier to adjust scope down than to upsell after you have already quoted a lower figure.</p>
+      </div>
+
+      <!-- Tier 1 -->
+      <div class="subsection">
+        <h3>Tier 1: Small Business and Startup</h3>
+        <p><em>1 to 10 staff, single product or service line, early-stage or bootstrapped, limited marketing budget.</em></p>
+
+        <table>
+          <thead>
+            <tr>
+              <th style="width:40%">Component</th>
+              <th style="width:35%">Scope</th>
+              <th style="width:25%">Price Range</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Stage 1: Discovery and Brand</strong></td>
+              <td>Streamlined discovery session (60 minutes), basic brand package consisting of primary logo, colour palette, and typography selection. No formal brand guidelines document at this tier.</td>
+              <td><span class="price-highlight">₦150,000 to ₦300,000</span></td>
+            </tr>
+            <tr>
+              <td><strong>Full Website: Design and Development</strong></td>
+              <td>5 to 10 page website, mobile-responsive design, basic CMS (WordPress) for the client to manage content, contact form, Google Analytics, basic on-page SEO (meta titles, descriptions). 1 design concept, 1 round of revisions.</td>
+              <td><span class="price-highlight">₦300,000 to ₦600,000</span></td>
+            </tr>
+            <tr>
+              <td><strong>Total Project Range</strong></td>
+              <td>Complete from discovery through launch</td>
+              <td><span class="price-highlight">₦450,000 to ₦900,000</span></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="principle-box">
+          <h4>Tier 1 Scope Adjustments</h4>
+          <p>At this tier, you streamline the process to keep the project profitable. Discovery is a focused 60-minute conversation, not a full workshop. Brand deliverables are limited to a logo, colours, and typography, enough to build the website but not a full brand system. The website is functional and professional but does not include advanced features, complex animations, or custom functionality. CMS training is provided via a recorded video walkthrough rather than a live session. Communication is informal and WhatsApp-friendly.</p>
+        </div>
+      </div>
+
+      <!-- Tier 2 -->
+      <div class="subsection">
+        <h3>Tier 2: Growing SME</h3>
+        <p><em>10 to 50 staff, established revenue, some market presence, investing in growth.</em></p>
+
+        <table>
+          <thead>
+            <tr>
+              <th style="width:40%">Component</th>
+              <th style="width:35%">Scope</th>
+              <th style="width:25%">Price Range</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Stage 1: Discovery and Brand</strong></td>
+              <td>Proper discovery session (90 minutes), full brand identity including primary logo, secondary logo, favicon, colour system, typography, and a brand guidelines document.</td>
+              <td><span class="price-highlight">₦400,000 to ₦800,000</span></td>
+            </tr>
+            <tr>
+              <td><strong>Full Website: Design and Development</strong></td>
+              <td>10 to 20 page website, custom design, responsive, CMS with content management training (live session), contact forms, Google Analytics, SEO fundamentals, social media integration. 2 design concepts, 2 rounds of revisions.</td>
+              <td><span class="price-highlight">₦800,000 to ₦1,500,000</span></td>
+            </tr>
+            <tr>
+              <td><strong>Total Project Range</strong></td>
+              <td>Complete from discovery through launch</td>
+              <td><span class="price-highlight">₦1,200,000 to ₦2,300,000</span></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="principle-box">
+          <h4>Tier 2 Scope Notes</h4>
+          <p>This is the most common tier for Nigerian clients. The discovery session is a genuine working session that produces real strategic insight. Brand deliverables are complete and professional, suitable for use across all marketing channels. The website is custom-designed (not a modified template) and includes a proper CMS that the client can manage independently. CMS training is delivered live, either in person or via video call. Communication is semi-formal: WhatsApp for quick updates, email for approvals and documentation.</p>
+        </div>
+      </div>
+
+      <!-- Tier 3 -->
+      <div class="subsection">
+        <h3>Tier 3: Established Company</h3>
+        <p><em>50 or more staff, multiple locations or divisions, significant annual revenue, board-level stakeholders.</em></p>
+
+        <table>
+          <thead>
+            <tr>
+              <th style="width:40%">Component</th>
+              <th style="width:35%">Scope</th>
+              <th style="width:25%">Price Range</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Stage 1: Discovery and Brand</strong></td>
+              <td>Full discovery workshop (2 to 3 hours, potentially with multiple stakeholders), comprehensive brand system including all logo variations, extended colour system, typography for digital and print, brand guidelines document with usage rules, tone of voice guide.</td>
+              <td><span class="price-highlight">₦800,000 to ₦1,500,000</span></td>
+            </tr>
+            <tr>
+              <td><strong>Full Website: Design and Development</strong></td>
+              <td>20 to 40 page website, fully custom design, advanced CMS with custom content types, SEO strategy and implementation, multiple user journeys, integration with third-party tools (CRM, email marketing, booking systems), performance optimisation. 2 to 3 design concepts, 2 rounds of revisions.</td>
+              <td><span class="price-highlight">₦1,500,000 to ₦3,500,000</span></td>
+            </tr>
+            <tr>
+              <td><strong>Total Project Range</strong></td>
+              <td>Complete from discovery through launch</td>
+              <td><span class="price-highlight">₦2,300,000 to ₦5,000,000</span></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="principle-box">
+          <h4>Tier 3 Scope Notes</h4>
+          <p>At this level, you are delivering work comparable to what a mid-size agency would produce. Discovery may involve workshops with multiple stakeholders across different departments. The brand system is comprehensive enough to be used across digital, print, signage, and corporate communications. The website includes advanced functionality and may require custom development beyond standard CMS capabilities. SEO is not just basic meta tags but a considered strategy. You provide hands-on CMS training and a support period of up to 30 days after launch.</p>
+        </div>
+      </div>
+
+      <!-- Tier 4 -->
+      <div class="subsection">
+        <h3>Tier 4: Nigerian Conglomerate</h3>
+        <p><em>Multi-division organisation, serious scale, potentially publicly listed, sophisticated internal teams, high expectations.</em></p>
+
+        <table>
+          <thead>
+            <tr>
+              <th style="width:40%">Component</th>
+              <th style="width:35%">Scope</th>
+              <th style="width:25%">Price Range</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Stage 1: Discovery and Brand</strong></td>
+              <td>Same depth as International Path B. Multiple discovery sessions across divisions. Full brand architecture strategy, comprehensive brand system, detailed guidelines document covering every use case.</td>
+              <td><span class="price-highlight">₦1,500,000 to ₦3,000,000</span></td>
+            </tr>
+            <tr>
+              <td><strong>Full Website: Design and Development</strong></td>
+              <td>40 or more pages, potentially with sub-sites or divisional sections. Advanced CMS with per-division content management dashboards, role-based access control, custom workflows, full SEO strategy, advanced integrations, performance and security hardening, content migration from existing site(s). 2 to 3 design concepts, 2 rounds of revisions.</td>
+              <td><span class="price-highlight">₦3,000,000 to ₦8,000,000</span></td>
+            </tr>
+            <tr>
+              <td><strong>Total Project Range</strong></td>
+              <td>Complete from discovery through launch</td>
+              <td><span class="price-highlight">₦4,500,000 to ₦11,000,000</span></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="principle-box">
+          <h4>Tier 4 Scope Notes</h4>
+          <p>This is your premium Nigerian offering, equivalent in scope and quality to your International Path B. The full engagement process applies: multiple discovery sessions, comprehensive brand architecture, complex information architecture, advanced CMS with per-division management capabilities. At this tier, communication is formal with structured weekly status reports, milestone sign-offs, and documented change requests. You may need to bring in specialist contractors for specific technical requirements (and should budget for that within the pricing). These projects typically run 3 to 6 months.</p>
+        </div>
+      </div>
+
+      <!-- Standalone Services (Nigerian) -->
+      <div class="subsection">
+        <h3>Standalone Services (Nigerian)</h3>
+
+        <table>
+          <thead>
+            <tr>
+              <th style="width:30%">Service</th>
+              <th style="width:45%">What is Included</th>
+              <th style="width:25%">Price Range (by tier)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Brand Identity Only</strong><br>(no website)</td>
+              <td>Discovery, logo system, colour palette, typography, and brand guidelines. Complexity and number of deliverables scale with tier.</td>
+              <td><span class="price-highlight">₦300,000 to ₦1,500,000</span></td>
+            </tr>
+            <tr>
+              <td><strong>Brand Audit and Report</strong></td>
+              <td>Review of existing brand, competitor analysis, digital presence assessment, written report with recommendations.</td>
+              <td><span class="price-highlight">₦100,000 to ₦300,000</span></td>
+            </tr>
+            <tr>
+              <td><strong>Website Redesign</strong><br>(existing brand)</td>
+              <td>Redesign and rebuild of an existing website using the client's current brand identity. Includes information architecture, design, development, CMS, and launch.</td>
+              <td><span class="price-highlight">₦500,000 to ₦3,000,000</span></td>
+            </tr>
+            <tr>
+              <td><strong>Landing Page Design and Build</strong></td>
+              <td>Single page for campaigns, product launches, or lead generation. Mobile-responsive, basic analytics.</td>
+              <td><span class="price-highlight">₦80,000 to ₦200,000</span></td>
+            </tr>
+            <tr>
+              <td><strong>CMS Training Session</strong></td>
+              <td>One-on-one training on managing website content. Includes recorded walkthrough for future reference.</td>
+              <td><span class="price-highlight">₦30,000 to ₦50,000</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Ongoing Services (Nigerian) -->
+      <div class="subsection">
+        <h3>Ongoing Services (Nigerian)</h3>
+
+        <table>
+          <thead>
+            <tr>
+              <th style="width:30%">Package</th>
+              <th style="width:45%">What is Included</th>
+              <th style="width:25%">Monthly Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Monthly Maintenance</strong></td>
+              <td>Security updates, backups, uptime monitoring, WordPress core and plugin updates, monthly health check.</td>
+              <td><span class="price-highlight">₦30,000 to ₦80,000 per month</span></td>
+            </tr>
+            <tr>
+              <td><strong>Maintenance plus Content Updates</strong></td>
+              <td>Everything in the maintenance package, plus content updates (text changes, image swaps, new pages, blog posts). Scope of updates scales with the monthly fee.</td>
+              <td><span class="price-highlight">₦60,000 to ₦150,000 per month</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Payment Terms (Nigerian) -->
+      <div class="payment-terms">
+        <h4>Payment Terms (Nigerian)</h4>
+        <ul>
+          <li><strong>Stage 1:</strong> 100% upfront before work begins. This is absolutely non-negotiable. Nigerian payment culture often defaults to "pay after delivery." You do not operate that way. Stage 1 payment is the first test of whether a client is serious.</li>
+          <li><strong>Stages 2 and 3:</strong> 50% at commencement (before design begins), 25% at midpoint (design approved, development begins), 25% at launch (before the site goes live). Note this is a heavier front-load than the international terms. This is deliberate. Nigerian payment delays are common, so you collect more upfront to protect yourself.</li>
+          <li><strong>Payment method:</strong> Bank transfer to your Nigerian bank account. Provide your account details on each invoice.</li>
+          <li><strong>Currency:</strong> All Nigerian invoices in NGN. No exceptions.</li>
+          <li><strong>Late payment:</strong> Work pauses immediately when a milestone payment is overdue. No warnings, no grace periods. The project timeline adjusts accordingly. If payment is more than 30 days overdue, you reserve the right to terminate the engagement and retain all payments received to date. This must be stated in your service agreement.</li>
+        </ul>
+      </div>
+
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- SECTION 4: SCOPE ADJUSTMENT GUIDE -->
+    <!-- ================================================================ -->
+    <section id="scope">
+      <h2>4. Scope Adjustment Guide</h2>
+
+      <p class="section-intro">
+        This table shows what changes between tiers and project sizes. When a client needs a lower price, you do not discount. You adjust scope. This table is your reference for what to offer at each level and what to remove when the budget is constrained.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th style="width:18%">Dimension</th>
+            <th style="width:16%">Tier 1 / Path A Low</th>
+            <th style="width:18%">Tier 2 / Path A High</th>
+            <th style="width:20%">Tier 3 / Path B Low</th>
+            <th style="width:20%">Tier 4 / Path B High</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Discovery Depth</strong></td>
+            <td>Focused 60-minute conversation. Questionnaire-driven. You lead.</td>
+            <td>90-minute structured discovery session. Collaborative. One key stakeholder.</td>
+            <td>Full 2 to 3 hour discovery workshop. Multiple stakeholders. Facilitated exercises.</td>
+            <td>Multiple discovery sessions across divisions. Board-level engagement. Full research phase.</td>
+          </tr>
+          <tr>
+            <td><strong>Brand Deliverables</strong></td>
+            <td>Primary logo, colour palette (3 to 4 colours), one font pairing. No formal guidelines document.</td>
+            <td>Logo system (primary, secondary, favicon), full colour palette, typography, brand guidelines PDF.</td>
+            <td>Comprehensive brand system with all logo variations, extended colour system, multiple font weights, tone of voice, usage rules, print and digital specifications.</td>
+            <td>Full brand architecture across divisions. Sub-brand guidelines. Co-branding rules. Signage specifications. Everything in a comprehensive brand book.</td>
+          </tr>
+          <tr>
+            <td><strong>Website Pages</strong></td>
+            <td>5 to 10 pages</td>
+            <td>10 to 20 pages</td>
+            <td>20 to 40 pages</td>
+            <td>40 to 60 or more pages, potentially with divisional sub-sites</td>
+          </tr>
+          <tr>
+            <td><strong>Design Concepts</strong></td>
+            <td>1 concept direction presented</td>
+            <td>2 concept directions presented</td>
+            <td>2 to 3 concept directions presented</td>
+            <td>2 to 3 concept directions presented with detailed rationale</td>
+          </tr>
+          <tr>
+            <td><strong>Revision Rounds</strong></td>
+            <td>1 round of revisions</td>
+            <td>2 rounds of revisions</td>
+            <td>2 rounds of revisions</td>
+            <td>2 rounds of revisions (additional rounds billed separately)</td>
+          </tr>
+          <tr>
+            <td><strong>CMS Complexity</strong></td>
+            <td>Basic WordPress with standard content editing. Pages and posts only.</td>
+            <td>WordPress with custom post types and categories. Client can manage all content independently.</td>
+            <td>Advanced CMS with custom content types, flexible layouts, custom fields, media library organisation.</td>
+            <td>Per-division content management dashboards. Role-based access control. Custom workflows. Content approval chains.</td>
+          </tr>
+          <tr>
+            <td><strong>SEO</strong></td>
+            <td>Basic on-page meta tags (title, description) on all pages. XML sitemap. Google Search Console setup.</td>
+            <td>On-page SEO for all pages. Keyword-informed content structure. Schema markup for key pages. Analytics and Search Console setup.</td>
+            <td>Full SEO strategy. Keyword research. On-page optimisation. Technical SEO audit. Schema markup throughout. Page speed optimisation.</td>
+            <td>Comprehensive SEO strategy. Competitive analysis. Keyword mapping. Technical SEO. Page speed. Core Web Vitals optimisation. Ongoing recommendations.</td>
+          </tr>
+          <tr>
+            <td><strong>Training</strong></td>
+            <td>Recorded video walkthrough of CMS. Written documentation (quick-start guide).</td>
+            <td>Live one-on-one CMS training session (60 minutes). Recorded video for future reference.</td>
+            <td>Live hands-on training session (90 minutes). Recorded video. Written documentation with screenshots.</td>
+            <td>Multiple training sessions for different team members and roles. Admin guide. Editor guide. Full documentation suite.</td>
+          </tr>
+          <tr>
+            <td><strong>Post-Launch Support</strong></td>
+            <td>7 days of bug-fix support after launch.</td>
+            <td>14 days of bug-fix support after launch.</td>
+            <td>30 days of bug-fix support after launch.</td>
+            <td>30 days of comprehensive support after launch. Priority response. Includes minor adjustments, not just bug fixes.</td>
+          </tr>
+          <tr>
+            <td><strong>Communication Style</strong></td>
+            <td>Informal. WhatsApp-friendly. Quick voice notes. Minimal documentation.</td>
+            <td>Semi-formal. WhatsApp for updates, email for approvals. Progress updates at each milestone.</td>
+            <td>Formal. Weekly status reports. Email-based communication with documented decisions. Milestone sign-offs.</td>
+            <td>Fully formal. Weekly written status reports. Structured meetings. Documented change requests. Milestone presentations and sign-offs.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="warning-box">
+        <h4>The Golden Rule of Scope Adjustment</h4>
+        <p>When a client wants to pay less, you always reduce scope. You never reduce your price for the same scope. The conversation goes like this: "I understand the budget is [lower amount]. Here is what I can deliver within that investment." Then you present a reduced scope that is genuinely appropriate for the lower price. The client can then decide whether the reduced scope meets their needs, or whether they want to invest more to get the full scope.</p>
+        <p>Never frame this as a discount or a concession. Frame it as "here is what makes sense at this investment level." You are being professional and flexible, not desperate.</p>
+      </div>
+
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- SECTION 5: NEGOTIATION GUIDE -->
+    <!-- ================================================================ -->
+    <section id="negotiation">
+      <h2>5. Negotiation Guide</h2>
+
+      <p class="section-intro">
+        Pricing conversations are where projects are won or lost. The goal is never to "win" a negotiation. It is to arrive at a scope and price that works for both you and the client. If that is not possible, you walk away. These are the rules you follow every single time.
+      </p>
+
+      <div class="subsection">
+        <h3>Rule 1: Never Quote Immediately</h3>
+        <p>No matter how straightforward the project seems, never give a price during a call, in a casual message, or in an initial email. Always say one of the following:</p>
+
+        <div class="say-this">
+          <p>"I would love to give you a number right now, but I would be doing you a disservice. Every project is different, and I want to make sure the investment I propose actually matches what you need. Let me put together a proper proposal based on what we have discussed, and I will have it to you within [timeframe]."</p>
+        </div>
+
+        <div class="say-this">
+          <p>"I will need to spend a bit of time thinking about the right approach for your situation before I can give you an accurate figure. Can I come back to you with a detailed proposal by [day]?"</p>
+        </div>
+
+        <div class="never-say">
+          <p>"It would probably be around [any number]." (This anchors you to a figure before you have thought it through.)</p>
+        </div>
+
+        <div class="never-say">
+          <p>"My rate is [hourly rate] per hour." (You do not sell hours. You sell outcomes.)</p>
+        </div>
+
+        <p>The only exception is Stage 1. Because Stage 1 is a fixed price (£1,500 for international, or the relevant tier price for Nigerian), you can and should state that price when asked. "The first phase is £1,500, and it includes [list deliverables]. Based on what we discover in that phase, I will provide detailed pricing for the full build."</p>
+      </div>
+
+      <div class="subsection">
+        <h3>Rule 2: Anchor High Within the Range</h3>
+        <p>When you send a proposal, always quote towards the top of your range. If your range for a Path A project is £4,000 to £6,000, quote £5,500 to £6,000. This gives you room to adjust scope downward if the client pushes back, without ever going below the bottom of your range.</p>
+        <p>If you quote at the bottom of the range, you have nowhere to go. Any pushback forces you below your minimum, and you end up either doing the project at a loss or walking away from a client who was willing to pay the bottom of your range.</p>
+
+        <div class="info-box">
+          <h4>Anchoring Example</h4>
+          <p>The client is a UK professional services firm with 15 staff. You assess this as a Path A project. Your range is £4,000 to £6,000 for Stages 2 and 3.</p>
+          <p><strong>Your proposal quotes:</strong> £5,800 for Stages 2 and 3 (plus the £1,500 Stage 1 that is already agreed).</p>
+          <p><strong>If the client says that is more than they expected:</strong> You can adjust scope to bring it to £4,500 to £5,000 by reducing from 20 pages to 15, from 2 design concepts to 1, or by simplifying the CMS requirements.</p>
+          <p><strong>You have stayed within your range and the client feels they have negotiated successfully.</strong></p>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3>Rule 3: Adjust Scope, Never Discount</h3>
+        <p>This is the most important rule. Repeat it to yourself before every pricing conversation. You never reduce your price for the same deliverables. If the client wants to pay less, they receive less. This is not about being rigid. It is about maintaining the integrity of your pricing and the sustainability of your business.</p>
+
+        <div class="say-this">
+          <p>"I completely understand the budget constraints. Let me rework the scope to fit within that investment. For [lower amount], here is what I would recommend we focus on..."</p>
+        </div>
+
+        <div class="say-this">
+          <p>"Absolutely, we can work within [lower amount]. The main difference would be [specific scope reduction]. Would that work for your needs, or is [specific feature] essential?"</p>
+        </div>
+
+        <div class="never-say">
+          <p>"I can do it for less." (This devalues your work and teaches the client that your prices are negotiable.)</p>
+        </div>
+
+        <div class="never-say">
+          <p>"I will give you a discount because..." (Discounts train clients to always ask for discounts.)</p>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3>Rule 4: Handling "That is Too Expensive"</h3>
+        <p>When a client says your price is too high, they are really saying one of three things: (a) they genuinely cannot afford it, (b) they do not understand the value, or (c) they are testing whether you will fold. Your response depends on which one it is.</p>
+
+        <div class="script-block">
+          <div class="label">If they genuinely cannot afford it</div>
+          <div class="say-this">
+            <p>"I appreciate you being upfront about the budget. Let me see what we can do within [their stated budget]. The scope would be [adjusted scope]. Alternatively, we could start with Stage 1 only, which is [price], and that gives you a complete brand foundation and a clear roadmap. You could then decide when the timing is right for the full build."</p>
+          </div>
+        </div>
+
+        <div class="script-block">
+          <div class="label">If they do not understand the value</div>
+          <div class="say-this">
+            <p>"I understand. Let me walk you through what is included and why each element matters for your business. The discovery phase alone typically surfaces insights that change the entire direction of the project. The brand identity system gives you a professional foundation that you will use for years across every touchpoint. And the website itself is not just pages on the internet; it is your most important sales tool, working for you 24 hours a day. What I am really building is a system that generates [leads, credibility, conversions, whatever applies] for your business."</p>
+          </div>
+        </div>
+
+        <div class="script-block">
+          <div class="label">If they are testing your resolve</div>
+          <div class="say-this">
+            <p>"I understand, and I want to make sure this is the right investment for you. The price reflects the scope we discussed and the quality of work I deliver. I am confident it represents good value compared to what you would pay an agency for the same level of work. But if the budget is firm at [lower amount], let me show you what I can deliver within that."</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3>Rule 5: Handling "Let Me Get Other Quotes"</h3>
+        <p>Welcome this. Never panic, never offer to lower your price pre-emptively, and never badmouth competitors.</p>
+
+        <div class="say-this">
+          <p>"Absolutely, I would encourage that. It is important to find the right fit for your project. When you are comparing proposals, I would suggest looking beyond just the price. Consider the strategic approach, the quality of past work, the communication process, and whether you feel confident the person truly understands your business. I am happy to answer any questions that come up as you compare options."</p>
+        </div>
+
+        <p>Most clients who say this and then compare will come back to you if your proposal was thorough and professional. The proposals they receive from cheaper freelancers will typically be a vague email with a number. Yours will be a detailed document that demonstrates strategic thinking. That contrast sells for you.</p>
+      </div>
+
+      <div class="subsection">
+        <h3>Walk-Away Thresholds</h3>
+        <p>Below these amounts, the project is not worth your time. It does not matter how easy the client thinks it will be. These are hard floors.</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Project Type</th>
+              <th>Walk-Away Threshold (International)</th>
+              <th>Walk-Away Threshold (Nigerian)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Full project (brand and website)</strong></td>
+              <td><span class="threshold">Below £3,500 total</span></td>
+              <td><span class="threshold">Below ₦400,000 total</span></td>
+            </tr>
+            <tr>
+              <td><strong>Website only (existing brand)</strong></td>
+              <td><span class="threshold">Below £2,500</span></td>
+              <td><span class="threshold">Below ₦350,000</span></td>
+            </tr>
+            <tr>
+              <td><strong>Brand identity only</strong></td>
+              <td><span class="threshold">Below £1,500</span></td>
+              <td><span class="threshold">Below ₦200,000</span></td>
+            </tr>
+            <tr>
+              <td><strong>Landing page</strong></td>
+              <td><span class="threshold">Below £400</span></td>
+              <td><span class="threshold">Below ₦60,000</span></td>
+            </tr>
+            <tr>
+              <td><strong>Monthly maintenance</strong></td>
+              <td><span class="threshold">Below £80/month</span></td>
+              <td><span class="threshold">Below ₦25,000/month</span></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>If a project comes in below these thresholds, politely decline. The time you spend on an underpaid project is time you cannot spend finding and delivering a properly-priced project.</p>
+      </div>
+
+      <div class="subsection">
+        <h3>Red Flags That Predict Payment Problems</h3>
+        <p>Over time, you will develop an instinct for clients who will cause payment issues. Until then, use this checklist. If a prospective client exhibits two or more of these behaviours, proceed with extreme caution or decline the project.</p>
+
+        <ul>
+          <li><strong>They negotiate aggressively on the upfront payment.</strong> If they struggle to pay Stage 1, they will struggle with every subsequent milestone.</li>
+          <li><strong>They ask for work to begin before the deposit clears.</strong> "The transfer is on the way" is not payment. Payment is money in your account.</li>
+          <li><strong>They want to restructure your payment milestones so more is paid at the end.</strong> This is a classic tactic to maintain leverage and delay payment.</li>
+          <li><strong>They cannot explain their own business clearly.</strong> If they do not know what they do, they will not know what they want, and the project will spiral.</li>
+          <li><strong>They compare you unfavourably to cheaper alternatives during the sales conversation.</strong> "Someone else quoted me ₦100,000 for a website." If they want the ₦100,000 website, they should hire that person.</li>
+          <li><strong>They have a track record of unfinished websites.</strong> Ask if they have worked with a designer or developer before. If they have been through 2 or 3 and none were satisfactory, the common factor is the client.</li>
+          <li><strong>They need it done "urgently" but are slow to provide content, feedback, or payment.</strong> Urgency that only applies to your side of the work is a red flag.</li>
+          <li><strong>They want you to work for "exposure" or "future work."</strong> Exposure does not pay rent. Future work is not a commitment.</li>
+        </ul>
+      </div>
+
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- SECTION 6: WHEN TO SAY NO -->
+    <!-- ================================================================ -->
+    <section id="when-to-say-no">
+      <h2>6. When to Say No</h2>
+
+      <p class="section-intro">
+        Saying no to the wrong projects is just as important as saying yes to the right ones. Every bad project you take on costs you twice: once in the stress, revisions, and payment chasing it creates, and again in the opportunity cost of the good project you could not take because you were stuck on the bad one. Learn these patterns. Recognise them early. Exit gracefully.
+      </p>
+
+      <div class="red-flag">
+        <h4>"I Just Need a Quick Website"</h4>
+        <div class="why"><strong>Why this is a red flag:</strong> This phrase reveals a fundamental misunderstanding of what a professional website involves. The client sees it as a simple task, like ordering business cards. They will be shocked by your pricing, impatient with your process, and resistant to the strategic work that makes the website actually effective. They want a commodity. You sell a service.</div>
+        <div class="response"><strong>What to say:</strong> "I appreciate you reaching out. To make sure I am the right fit for what you need, can you tell me a bit more about what the website needs to accomplish for your business? I specialise in strategic web design that drives real business results, and my process includes a discovery phase that ensures we build something genuinely effective, not just something that exists on the internet."</div>
+        <p><strong>How to exit:</strong> If they push back on the idea that a website requires strategic thinking, they are not your client. Say: "It sounds like your needs might be better served by a platform like Squarespace or Wix, where you can get something up quickly and affordably without needing a designer. I would be happy to recommend some resources if that would help." This is generous, honest, and gets you out of the conversation without burning bridges.</p>
+      </div>
+
+      <div class="red-flag">
+        <h4>"Can I See the Work Before I Pay?"</h4>
+        <div class="why"><strong>Why this is a red flag:</strong> This client does not trust you, does not value your time, and will be the hardest to collect payment from at every milestone. In no professional services industry does the provider work for free and hope to get paid afterward. You do not walk into a lawyer's office and say, "Represent me first, and I will pay you if I like the outcome."</div>
+        <div class="response"><strong>What to say:</strong> "I understand the desire to see work before committing, and I appreciate the caution. My process is designed to manage that risk through stages. Stage 1 is a defined deliverable with a fixed price, and it gives you tangible outputs (brand identity, strategy documents, site architecture) that have standalone value. If at the end of Stage 1 you decide not to continue, you walk away with real deliverables you can use. But I do require payment before work begins, as this is standard practice in professional design and development."</div>
+        <p><strong>How to exit:</strong> If they insist on seeing work before any payment, politely decline: "Unfortunately, that is not how I structure my engagements. I wish you all the best with your project." Do not argue, explain further, or try to convince them. Just exit.</p>
+      </div>
+
+      <div class="red-flag">
+        <h4>"My Nephew (or Friend, or Intern) Can Do It for Less"</h4>
+        <div class="why"><strong>Why this is a red flag:</strong> This is not a negotiation tactic. It is a statement of values. The client sees website design as a commodity and does not understand (or care about) the difference between amateur and professional work. No amount of explaining will change their mind in a single conversation.</div>
+        <div class="response"><strong>What to say:</strong> "That is a fair point, and for some businesses, a simple website built by someone learning their craft is genuinely all they need at this stage. My work is focused on businesses that need their digital presence to actively drive growth, build credibility, and convert visitors into clients. If your nephew is a good fit for what you need right now, I would encourage you to explore that option."</div>
+        <p><strong>How to exit:</strong> This one exits itself. You have acknowledged their position without being defensive, positioned your work appropriately, and given them permission to go elsewhere. If they come back later (and some do), they will come back with a different mindset and a real budget.</p>
+      </div>
+
+      <div class="red-flag">
+        <h4>"We Are Not Really Sure What Our Business Does Yet"</h4>
+        <div class="why"><strong>Why this is a red flag:</strong> If the client cannot articulate what their business does, who it serves, and what outcome they want from a website, the project will be a disaster. You will spend more time helping them figure out their business than designing their website. That is consulting work, not design work, and it is not what they are paying you for.</div>
+        <div class="response"><strong>What to say:</strong> "It sounds like you are in an exciting but early stage. Before investing in a website, I would recommend getting really clear on your core offering, your target audience, and your business model. A website is most effective when it has a clear story to tell. Would it be helpful if I recommended some business strategy resources, or would you like to explore a brand strategy session first to help clarify these foundations?"</div>
+        <p><strong>How to exit:</strong> If they want to proceed with a website despite not knowing what their business does, decline: "I want to set you up for success, and I think the best investment of your time and money right now is getting the business fundamentals clear before building a digital presence. Once you are ready, I would love to have this conversation again."</p>
+      </div>
+
+      <div class="red-flag">
+        <h4>Scope That Keeps Expanding During the Proposal Phase</h4>
+        <div class="why"><strong>Why this is a red flag:</strong> If the scope keeps changing before you have even started, it will keep changing throughout the project. Every conversation adds a new feature, a new page, a new integration. These clients end up getting a £10,000 website for £5,000 because the scope creep happens gradually and you feel obligated to absorb it. The proposal phase is supposed to define the project, not expand it indefinitely.</div>
+        <div class="response"><strong>What to say:</strong> "I want to make sure we capture the full scope before I put together the proposal. It sounds like the requirements are still evolving. Would it make sense to pause on the proposal and schedule a paid discovery session? That will give us the space to properly explore all the requirements and arrive at a scope that truly reflects what you need."</div>
+        <p><strong>How to exit:</strong> If they keep adding requirements but resist the idea of paid discovery, be direct: "The scope we are discussing is significantly larger than what we initially talked about, and I want to make sure the proposal reflects the real project. I am going to need to either scope this at the expanded level (which means a higher investment) or we agree on a defined scope and treat anything additional as a separate phase." If they resist both options, walk away.</p>
+      </div>
+
+      <div class="red-flag">
+        <h4>"We Will Pay When the Project is Done"</h4>
+        <div class="why"><strong>Why this is a red flag:</strong> This is a non-starter. Any client who wants to pay entirely upon completion is either inexperienced with professional services (in which case, educate them) or deliberately structuring the deal to maintain leverage over you (in which case, decline). Your payment structure exists to protect both parties. Milestone payments ensure the client is never more than one payment ahead of the work delivered, and they ensure you are never more than one milestone ahead of the payment received.</div>
+        <div class="response"><strong>What to say:</strong> "I appreciate the suggestion, but my standard terms include milestone-based payments, which is standard practice in the industry. This structure actually protects both of us: you never pay for work that has not been delivered, and I am able to dedicate my full attention to your project knowing each phase is properly funded. The milestone structure is [explain your specific terms]."</div>
+        <p><strong>How to exit:</strong> If they refuse milestone payments, this is a firm no. "Unfortunately, I am not able to take on projects with payment upon completion. I wish you the best with your project. If your circumstances change or you would like to explore the milestone payment structure in future, my door is open."</p>
+      </div>
+
+      <div class="red-flag">
+        <h4>Projects Below Your Minimum Thresholds</h4>
+        <div class="why"><strong>Why this is a red flag:</strong> Even tiny projects consume administrative overhead: communications, file management, invoicing, revisions, support. A project that pays ₦80,000 will take almost as much administrative time as one that pays ₦800,000. The maths does not work. Your time is a finite resource. Every hour spent on a below-threshold project is an hour not spent on prospecting, portfolio development, or delivering a properly-priced project.</div>
+        <div class="response"><strong>What to say:</strong> "Thank you for thinking of me for this project. Based on what you have described, the investment would be below my minimum project threshold. I would not be able to give it the attention it deserves at that level. I would be happy to recommend some other designers who might be a better fit for your budget."</div>
+        <p><strong>How to exit:</strong> If you have a network of junior designers or less experienced freelancers, refer the client to them. This is a genuine kindness: the client gets a recommendation, the junior designer gets a lead, and you maintain a professional relationship with the client for when their needs (and budget) grow.</p>
+      </div>
+
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- SECTION 7: ANNUAL REVENUE PLANNING -->
+    <!-- ================================================================ -->
+    <section id="revenue">
+      <h2>7. Annual Revenue Planning</h2>
+
+      <p class="section-intro">
+        You are running a business, not doing favours for people who need websites. Treat it like a business. That means knowing your numbers, planning your capacity, and making deliberate decisions about which projects to pursue based on their contribution to your annual revenue target.
+      </p>
+
+      <div class="subsection">
+        <h3>Revenue Modelling</h3>
+
+        <div class="revenue-block">
+          <h4>International Revenue Stream</h4>
+          <p>2 international clients per quarter, at an average project value of £5,000 each (this is conservative, falling in the middle of your Path A range).</p>
+          <p><span class="amount">8 clients per year at £5,000 = £40,000 per year</span></p>
+          <p>This assumes a mix of Path A and standalone projects. Some quarters you may land a Path B client worth £10,000 or more, which compensates for quieter quarters.</p>
+        </div>
+
+        <div class="revenue-block">
+          <h4>Nigerian Revenue Stream</h4>
+          <p>3 Nigerian clients per quarter, at an average project value of ₦1,500,000 each (this is a Tier 2 average).</p>
+          <p><span class="amount">12 clients per year at ₦1,500,000 = ₦18,000,000 per year</span></p>
+          <p>This assumes a mix of Tier 1 and Tier 2 projects. Landing even one Tier 3 or Tier 4 project per year significantly boosts this figure.</p>
+        </div>
+
+        <div class="revenue-block">
+          <h4>Combined Annual Revenue Target</h4>
+          <p><span class="amount">£40,000 + ₦18,000,000</span></p>
+          <p>This combined income places you comfortably in the top tier of Nigerian freelance web designers. The GBP income, in particular, provides a hedge against Naira depreciation and positions you with significant purchasing power within Nigeria.</p>
+        </div>
+
+        <div class="info-box">
+          <h4>Add-On Revenue: Ongoing Services</h4>
+          <p>Do not overlook recurring revenue. If you convert even 50% of your project clients into monthly maintenance or retainer clients:</p>
+          <ul>
+            <li>4 international clients on £100/month maintenance = £4,800 per year</li>
+            <li>6 Nigerian clients on ₦50,000/month maintenance = ₦3,600,000 per year</li>
+            <li>1 international retainer client at £500/month = £6,000 per year</li>
+          </ul>
+          <p>Recurring revenue is the foundation of a sustainable freelance business. It smooths out the feast-and-famine cycle of project work and gives you predictable baseline income every month.</p>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3>Capacity Planning</h3>
+
+        <div class="warning-box">
+          <h4>Maximum Simultaneous Projects: 2 to 3</h4>
+          <p>As a solo operator, you can realistically manage 2 to 3 active projects at once. "Active" means projects that require daily attention (design, development, communication). Projects in Stage 1 (discovery) have lighter daily demands and can overlap with projects in Stage 2 or 3. But never have more than 2 projects in the active build phase simultaneously.</p>
+        </div>
+
+        <p>A healthy project pipeline looks like this:</p>
+        <ul>
+          <li><strong>1 project in active build</strong> (Stage 2 or 3, consuming most of your daily time)</li>
+          <li><strong>1 project in discovery</strong> (Stage 1, requiring periodic focused sessions)</li>
+          <li><strong>1 project in proposal or onboarding</strong> (not yet active, requiring occasional communication)</li>
+        </ul>
+
+        <p>If you have more projects than this trying to be active simultaneously, quality will suffer, timelines will slip, and clients will start to notice. It is better to push a start date back by 2 weeks than to try to run 4 projects at once and deliver mediocre work on all of them.</p>
+
+        <div class="info-box">
+          <h4>Typical Project Timeline</h4>
+          <p><strong>Stage 1:</strong> 3 to 4 weeks</p>
+          <p><strong>Stages 2 and 3 (Path A / Tier 1 to 2):</strong> 4 to 6 weeks</p>
+          <p><strong>Stages 2 and 3 (Path B / Tier 3 to 4):</strong> 8 to 12 weeks</p>
+          <p>Total project duration from first contact to launch: 2 to 4 months, depending on complexity and client responsiveness.</p>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3>When to Raise Prices</h3>
+
+        <p>Raise your prices after every 3 to 4 successfully completed projects. Not dramatically. A 10% to 15% increase each time. Here is why:</p>
+
+        <ul>
+          <li><strong>Your skills improve with every project.</strong> You learn more about client management, design patterns, development efficiency, and strategic thinking. Project number 20 is objectively better than project number 5. Your pricing should reflect that.</li>
+          <li><strong>Your portfolio strengthens.</strong> Each completed project gives you another case study, another testimonial, another example of your work. Stronger portfolios command higher prices.</li>
+          <li><strong>Inflation is real.</strong> If you do not raise your prices, you are effectively giving yourself a pay cut every year. In Nigeria, with its inflation rate, this is especially critical.</li>
+          <li><strong>Higher prices attract better clients.</strong> As you move upmarket, you attract clients who value quality, pay on time, and are easier to work with. This is not a theory. It is a pattern that every experienced freelancer confirms.</li>
+        </ul>
+
+        <div class="success-box">
+          <h4>Practical Price Increase Approach</h4>
+          <p>You do not announce price increases to existing clients. You simply quote the new prices on new projects. Existing clients on retainers or maintenance plans get 60 days notice before any increase takes effect. For reference:</p>
+          <ul>
+            <li>If Stage 1 is currently £1,500, after 3 to 4 projects, consider moving it to £1,750.</li>
+            <li>If your Path A range is currently £4,000 to £6,000, shift it to £4,500 to £7,000.</li>
+            <li>If your Nigerian Tier 2 range is currently ₦1,200,000 to ₦2,300,000, shift it to ₦1,400,000 to ₦2,600,000.</li>
+          </ul>
+          <p>Review your rate cards quarterly. If you are winning more than 70% of your proposals, your prices are too low. If you are winning less than 30%, either your prices are too high or your sales process needs work. The sweet spot is winning 40% to 60% of proposals.</p>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3>When to Consider Hiring Help</h3>
+
+        <p>You should start thinking about bringing in help when you consistently experience two or more of the following:</p>
+
+        <ul>
+          <li><strong>You are turning away more than 2 qualified projects per quarter</strong> because you do not have capacity. Turning away 1 is healthy (it means your pricing is right). Turning away 3 or more means you are leaving significant revenue on the table.</li>
+          <li><strong>Your timelines are slipping on active projects</strong> because you are spread too thin. This damages your reputation and your client relationships.</li>
+          <li><strong>You are spending more than 30% of your time on tasks that do not require your strategic or creative judgment.</strong> Basic WordPress development, content entry, image optimisation, QA testing, and similar tasks can be delegated to a junior developer or virtual assistant.</li>
+          <li><strong>Your recurring revenue from maintenance and retainer clients exceeds what one person can service.</strong> If you have 10 or more maintenance clients, the support requests alone can consume significant time.</li>
+        </ul>
+
+        <div class="info-box">
+          <h4>Who to Hire First</h4>
+          <p>When you are ready, the first hire should be a <strong>junior developer or technical assistant</strong>, not another designer. Your value is in the strategic and creative work: discovery, brand identity, design direction, client communication. The technical implementation (WordPress development, CMS configuration, responsive build, testing) is where a junior developer can add the most value at the lowest cost. This frees you to focus on the high-value work and take on more projects.</p>
+          <p>Start with a per-project contractor rather than an employee. Pay them a fixed amount per project, based on the technical scope. This keeps your overhead low and allows you to scale up and down with demand.</p>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Footer -->
+    <div class="document-footer">
+      <p><strong>Confidential -- Internal Use Only</strong></p>
+      <p>This document is the property of Lawal Awwal and is intended solely for his personal business reference. It must not be shared with clients, competitors, or any third party. Pricing information contained herein is sensitive and should be protected accordingly.</p>
+      <p>Last updated: March 2026 | Next review: June 2026 or after 4 completed projects, whichever comes first.</p>
+    </div>
+
+  </div><!-- end content -->
+</div><!-- end page -->
+
+</body>
+</html>

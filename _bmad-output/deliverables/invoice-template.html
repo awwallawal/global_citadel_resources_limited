@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invoice INV-001 | Lawal Awwal</title>
+<style>
+  /* ── Reset ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* ── Palette ── */
+  :root {
+    --navy:  #0f1b2d;
+    --gold:  #b8924a;
+    --light: #f8f7f4;
+    --mid:   #e8e4dc;
+    --text:  #2c2c2c;
+    --muted: #6b6b6b;
+    --white: #ffffff;
+  }
+
+  /* ── Base ── */
+  html { font-size: 15px; }
+  body {
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    color: var(--text);
+    background: var(--white);
+    line-height: 1.55;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* ── Page wrapper (A4) ── */
+  .invoice-page {
+    max-width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto;
+    padding: 40px 48px 36px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ── Header ── */
+  .invoice-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 28px;
+    border-bottom: 3px solid var(--navy);
+    margin-bottom: 28px;
+  }
+  .invoice-title {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .sender-details {
+    text-align: right;
+    font-size: 0.88rem;
+    line-height: 1.65;
+    color: var(--muted);
+  }
+  .sender-name {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 2px;
+  }
+
+  /* ── Meta row ── */
+  .invoice-meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 32px;
+    margin-bottom: 28px;
+  }
+  .meta-block { flex: 1; }
+  .meta-block.right { text-align: right; }
+  .meta-label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 1.6px;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .meta-value {
+    font-size: 0.92rem;
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  /* ── Bill To ── */
+  .bill-to {
+    background: var(--light);
+    border-left: 4px solid var(--gold);
+    padding: 16px 20px;
+    margin-bottom: 28px;
+  }
+  .bill-to .meta-label { margin-bottom: 6px; }
+
+  /* ── Table ── */
+  .items-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 24px;
+    font-size: 0.9rem;
+  }
+  .items-table thead th {
+    background: var(--navy);
+    color: var(--white);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 10px 14px;
+    text-align: left;
+  }
+  .items-table thead th:nth-child(2),
+  .items-table thead th:nth-child(3),
+  .items-table thead th:nth-child(4) { text-align: right; }
+  .items-table tbody td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--mid);
+    vertical-align: top;
+  }
+  .items-table tbody td:nth-child(2),
+  .items-table tbody td:nth-child(3),
+  .items-table tbody td:nth-child(4) { text-align: right; white-space: nowrap; }
+  .items-table tbody tr:last-child td { border-bottom: 2px solid var(--navy); }
+  .item-desc-main { font-weight: 600; color: var(--navy); }
+  .item-desc-sub { font-size: 0.82rem; color: var(--muted); margin-top: 2px; }
+
+  /* ── Totals ── */
+  .totals-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 28px;
+  }
+  .totals-table {
+    width: 280px;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+  }
+  .totals-table td {
+    padding: 7px 14px;
+  }
+  .totals-table td:first-child { text-align: left; color: var(--muted); }
+  .totals-table td:last-child { text-align: right; font-weight: 600; }
+  .totals-table .total-row td {
+    background: var(--navy);
+    color: var(--white);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    padding: 10px 14px;
+  }
+
+  /* ── Notes ── */
+  .notes-section {
+    background: var(--light);
+    border-radius: 4px;
+    padding: 18px 22px;
+    margin-bottom: 24px;
+    font-size: 0.85rem;
+    line-height: 1.7;
+  }
+  .notes-section h3 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.9rem;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+
+  /* ── Payment ── */
+  .payment-section {
+    margin-bottom: 24px;
+  }
+  .payment-heading {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1rem;
+    color: var(--navy);
+    margin-bottom: 14px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--gold);
+    display: inline-block;
+  }
+  .payment-methods {
+    display: flex;
+    gap: 24px;
+  }
+  .payment-method {
+    flex: 1;
+    background: var(--light);
+    border-radius: 4px;
+    padding: 14px 18px;
+    font-size: 0.82rem;
+    line-height: 1.7;
+  }
+  .payment-method-title {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.85rem;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .payment-method .detail-label {
+    color: var(--muted);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .payment-method .detail-value {
+    color: var(--text);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .payment-note {
+    font-size: 0.78rem;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 6px;
+  }
+
+  /* ── Terms ── */
+  .terms-line {
+    text-align: center;
+    font-size: 0.82rem;
+    color: var(--navy);
+    font-weight: 600;
+    background: var(--light);
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+  }
+
+  /* ── Currency note ── */
+  .currency-note {
+    text-align: center;
+    font-size: 0.78rem;
+    color: var(--gold);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 20px;
+  }
+
+  /* ── Footer ── */
+  .invoice-footer {
+    margin-top: auto;
+    text-align: center;
+    padding-top: 18px;
+    border-top: 2px solid var(--mid);
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .footer-thanks {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1rem;
+    color: var(--navy);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  /* ── Print ── */
+  @media print {
+    html { font-size: 13px; }
+    body { background: none; }
+    .invoice-page {
+      padding: 20px 28px 20px;
+      max-width: none;
+      min-height: auto;
+    }
+    .invoice-header { padding-bottom: 20px; margin-bottom: 20px; }
+    .invoice-meta { margin-bottom: 20px; }
+    .bill-to { margin-bottom: 20px; }
+    .items-table { margin-bottom: 16px; }
+    .totals-wrapper { margin-bottom: 20px; }
+    .notes-section { margin-bottom: 16px; }
+    .payment-section { margin-bottom: 16px; }
+    .terms-line { margin-bottom: 14px; }
+    .currency-note { margin-bottom: 14px; }
+    @page {
+      size: A4;
+      margin: 12mm 10mm;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="invoice-page">
+
+  <!-- ═══════ HEADER ═══════ -->
+  <div class="invoice-header">
+    <div>
+      <div class="invoice-title">Invoice</div>
+    </div>
+    <div class="sender-details">
+      <div class="sender-name">Lawal Awwal</div>
+      Freelance Web Designer &amp; Developer<br>
+      Lagos, Nigeria<br>
+      awwallawal@gmail.com<br>
+      +234 805 302 3862
+    </div>
+  </div>
+
+  <!-- ═══════ META ═══════ -->
+  <div class="invoice-meta">
+    <div class="meta-block">
+      <div class="meta-label">Invoice Number</div>
+      <div class="meta-value">INV-001</div>
+    </div>
+    <div class="meta-block">
+      <div class="meta-label">Invoice Date</div>
+      <div class="meta-value">[DD Month YYYY]</div>
+    </div>
+    <div class="meta-block right">
+      <div class="meta-label">Due Date</div>
+      <div class="meta-value">[DD Month YYYY]</div>
+    </div>
+  </div>
+
+  <!-- ═══════ BILL TO ═══════ -->
+  <div class="bill-to">
+    <div class="meta-label">Bill To</div>
+    <div class="meta-value">
+      [Client Full Name]<br>
+      [Company Name]<br>
+      [Street Address]<br>
+      [City, Postcode]<br>
+      [Country]
+    </div>
+  </div>
+
+  <!-- ═══════ ITEMS TABLE ═══════ -->
+  <table class="items-table">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Qty</th>
+        <th>Unit Price</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <div class="item-desc-main">Stage 1: Foundation</div>
+          <div class="item-desc-sub">Discovery, Brand Identity, Strategy, Roadmap</div>
+        </td>
+        <td>1</td>
+        <td>&#8358;500,000</td>
+        <td>&#8358;500,000</td>
+      </tr>
+      <tr>
+        <td>
+          <div class="item-desc-main">[Additional line item]</div>
+          <div class="item-desc-sub">[Description of work or deliverables]</div>
+        </td>
+        <td>[0]</td>
+        <td>&#8358;[0.00]</td>
+        <td>&#8358;[0.00]</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ═══════ TOTALS ═══════ -->
+  <div class="totals-wrapper">
+    <table class="totals-table">
+      <tr>
+        <td>Subtotal</td>
+        <td>&#8358;[0.00]</td>
+      </tr>
+      <tr class="total-row">
+        <td>Total Due</td>
+        <td>&#8358;[0.00]</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- ═══════ CURRENCY NOTE ═══════ -->
+  <div class="currency-note">All amounts are in Nigerian Naira (&#8358;)</div>
+
+  <!-- ═══════ NOTES ═══════ -->
+  <div class="notes-section">
+    <h3>Notes</h3>
+    [Add any additional notes, scope clarifications, or reference to the signed service agreement here. Delete this section if not needed.]
+  </div>
+
+  <!-- ═══════ PAYMENT INSTRUCTIONS ═══════ -->
+  <div class="payment-section">
+    <div class="payment-heading">Payment Instructions</div>
+    <div class="payment-methods">
+
+      <div class="payment-method">
+        <div class="payment-method-title">Option 1: Nigerian Bank Transfer (Preferred)</div>
+        <div class="detail-label">Bank Name</div>
+        <div class="detail-value">[Bank Name]</div>
+        <div class="detail-label">Account Name</div>
+        <div class="detail-value">[Account Name]</div>
+        <div class="detail-label">Account Number</div>
+        <div class="detail-value">[Account Number]</div>
+        <div class="payment-note">
+          This is the preferred payment method for domestic clients.
+          Please use the account details above for direct Naira transfers.
+        </div>
+      </div>
+
+      <div class="payment-method">
+        <div class="payment-method-title">Option 2: International Transfer</div>
+        <div class="detail-label">Bank Name</div>
+        <div class="detail-value">[Bank Name]</div>
+        <div class="detail-label">Account Name</div>
+        <div class="detail-value">[Account Name]</div>
+        <div class="detail-label">Account Number</div>
+        <div class="detail-value">[Account Number]</div>
+        <div class="detail-label">SWIFT / BIC Code</div>
+        <div class="detail-value">[SWIFT Code]</div>
+        <div class="payment-note">
+          For international clients only. International bank transfers may incur additional fees
+          from intermediary banks. Please ensure the full invoiced amount is received after any deductions.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════ TERMS ═══════ -->
+  <div class="terms-line">
+    Payment Terms: Due within 7 days of invoice date unless otherwise agreed in writing.
+  </div>
+
+  <!-- ═══════ FOOTER ═══════ -->
+  <div class="invoice-footer">
+    <div class="footer-thanks">Thank you for your business</div>
+    Lawal Awwal &nbsp;|&nbsp; awwallawal@gmail.com &nbsp;|&nbsp; +234 805 302 3862
+  </div>
+
+</div>
+
+</body>
+</html>

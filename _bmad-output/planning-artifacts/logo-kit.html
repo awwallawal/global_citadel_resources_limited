@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GRCL Logo Kit — Global Resources Citadel Limited</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   TOKENS
+   ============================================ */
+:root {
+  --primary-900: #14532D;
+  --primary-800: #166534;
+  --primary-700: #15803D;
+  --primary-600: #16A34A;
+  --primary-50: #F0FDF4;
+  --gold: #B48A3E;
+  --gold-light: #D4AF6A;
+  --gold-dark: #8A6A2E;
+  --neutral-900: #1F2937;
+  --neutral-700: #4B5563;
+  --neutral-600: #6B7280;
+  --neutral-500: #9CA3AF;
+  --neutral-400: #D1D5DB;
+  --neutral-300: #E5E7EB;
+  --neutral-200: #F3F4F6;
+  --neutral-100: #F9FAFB;
+  --white: #FFFFFF;
+}
+
+/* ============================================
+   RESET & BASE
+   ============================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--neutral-900);
+  background: var(--neutral-100);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============================================
+   LAYOUT
+   ============================================ */
+.container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+section { margin-bottom: 4rem; }
+
+/* ============================================
+   PAGE HEADER
+   ============================================ */
+.page-header {
+  background: linear-gradient(135deg, var(--primary-900) 0%, var(--primary-800) 100%);
+  padding: 4rem 2rem;
+  text-align: center;
+  color: white;
+}
+.page-header h1 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.page-header p {
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.7);
+  max-width: 500px;
+  margin: 0 auto;
+}
+.page-header .gold-line {
+  width: 60px;
+  height: 3px;
+  background: var(--gold);
+  margin: 1rem auto;
+}
+
+/* ============================================
+   SECTION HEADERS
+   ============================================ */
+.section-label {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.5rem;
+}
+.section-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.section-desc {
+  font-size: 0.9rem;
+  color: var(--neutral-600);
+  margin-bottom: 2rem;
+  max-width: 560px;
+}
+
+/* ============================================
+   LOGO DISPLAY CARDS
+   ============================================ */
+.logo-grid { display: grid; gap: 1.5rem; margin-bottom: 2rem; }
+.logo-grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+.logo-grid-4 { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+
+.logo-card {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--neutral-300);
+  background: var(--white);
+}
+.logo-card-label {
+  padding: 0.75rem 1rem;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--neutral-700);
+  border-bottom: 1px solid var(--neutral-200);
+}
+.logo-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2rem;
+  min-height: 180px;
+}
+.logo-display.light { background: var(--white); }
+.logo-display.dark { background: var(--primary-900); }
+.logo-display.neutral { background: var(--neutral-200); }
+.logo-display.compact { padding: 1.5rem; min-height: 80px; }
+
+/* ============================================
+   LOGO LOCKUP — Direction 2 (Monogram + Stacked Wordmark)
+   ============================================ */
+.lockup {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+/* Monogram */
+.monogram {
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  letter-spacing: 0.06em;
+  flex-shrink: 0;
+}
+.monogram-primary {
+  background: var(--primary-900);
+  color: var(--white);
+  border: 2.5px solid var(--gold);
+}
+.monogram-reversed {
+  background: var(--white);
+  color: var(--primary-900);
+  border: 2.5px solid var(--gold);
+}
+.monogram-mono {
+  background: var(--neutral-900);
+  color: var(--white);
+  border: 2.5px solid var(--neutral-700);
+}
+
+/* Stacked wordmark */
+.wordmark {
+  display: flex;
+  flex-direction: column;
+}
+.wordmark .descriptor {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+.wordmark .hero {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  line-height: 1;
+  margin-top: 0.2rem;
+}
+.wordmark .qualifier {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 0.42rem;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  line-height: 1;
+  margin-top: 0.25rem;
+}
+
+/* Colour variants */
+.wordmark-primary .descriptor { color: var(--primary-700); }
+.wordmark-primary .hero { color: var(--primary-900); }
+.wordmark-primary .qualifier { color: var(--primary-600); }
+
+.wordmark-reversed .descriptor { color: var(--gold-light); }
+.wordmark-reversed .hero { color: var(--white); }
+.wordmark-reversed .qualifier { color: rgba(255,255,255,0.55); }
+
+.wordmark-mono .descriptor { color: var(--neutral-700); }
+.wordmark-mono .hero { color: var(--neutral-900); }
+.wordmark-mono .qualifier { color: var(--neutral-600); }
+
+/* Small scale */
+.lockup-sm { gap: 0.6rem; }
+.lockup-sm .monogram { width: 36px; height: 36px; font-size: 0.55rem; border-width: 1.5px; }
+.lockup-sm .wordmark .descriptor { font-size: 0.32rem; letter-spacing: 0.18em; }
+.lockup-sm .wordmark .hero { font-size: 0.9rem; letter-spacing: 0.1em; margin-top: 0.08rem; }
+.lockup-sm .wordmark .qualifier { font-size: 0.2rem; letter-spacing: 0.35em; margin-top: 0.1rem; }
+
+/* ============================================
+   STANDALONE MONOGRAM GRID
+   ============================================ */
+.monogram-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.monogram-item { text-align: center; }
+.monogram-item .label {
+  font-size: 0.7rem;
+  color: var(--neutral-500);
+  margin-top: 0.5rem;
+}
+
+/* ============================================
+   EXPORT NOTE
+   ============================================ */
+.note {
+  background: var(--primary-50);
+  border: 1px solid #BBF7D0;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  font-size: 0.85rem;
+  color: var(--neutral-700);
+  margin-top: 1.5rem;
+}
+.note strong { color: var(--primary-900); }
+
+/* ============================================
+   SVG FILE LINKS
+   ============================================ */
+.file-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+.file-card {
+  border: 1px solid var(--neutral-300);
+  border-radius: 8px;
+  padding: 1.25rem;
+  background: var(--white);
+  text-align: center;
+}
+.file-card .filename {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: var(--primary-900);
+  margin-bottom: 0.25rem;
+}
+.file-card .filedesc {
+  font-size: 0.75rem;
+  color: var(--neutral-600);
+}
+.file-card a {
+  display: inline-block;
+  margin-top: 0.75rem;
+  padding: 6px 16px;
+  background: var(--primary-700);
+  color: white;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.file-card a:hover { background: var(--primary-800); }
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 640px) {
+  .lockup { gap: 0.75rem; }
+  .monogram { width: 56px; height: 56px; font-size: 0.95rem; }
+  .wordmark .hero { font-size: 1.4rem; }
+  .wordmark .descriptor { font-size: 0.55rem; }
+  .logo-display { padding: 2rem 1rem; }
+}
+
+/* ============================================
+   PRINT
+   ============================================ */
+@media print {
+  body { background: white; }
+  .page-header { break-after: page; }
+  .note { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================
+     PAGE HEADER
+     ============================================ -->
+<div class="page-header">
+  <div class="lockup" style="justify-content:center;margin-bottom:2rem;">
+    <div class="monogram monogram-primary" style="width:52px;height:52px;font-size:0.85rem;">GRC</div>
+    <div class="wordmark wordmark-reversed">
+      <span class="descriptor">GLOBAL RESOURCES</span>
+      <span class="hero" style="font-size:1.4rem;">CITADEL</span>
+      <span class="qualifier">LIMITED</span>
+    </div>
+  </div>
+  <h1>Logo Kit</h1>
+  <div class="gold-line"></div>
+  <p>Brand identity assets for Global Resources Citadel Limited. Direction 2 &mdash; Monogram + Stacked Wordmark.</p>
+</div>
+
+<!-- ============================================
+     SVG SOURCE FILES
+     ============================================ -->
+<section style="padding-top:3rem;">
+  <div class="container">
+    <div class="section-label">Source Files</div>
+    <div class="section-title">SVG Vector Files</div>
+    <div class="section-desc">Standalone SVG files for use in design tools, web development, and print production. SVG is the source-of-truth format &mdash; export to PNG/JPEG at any resolution from these.</div>
+
+    <div class="file-grid">
+      <div class="file-card">
+        <div class="filename">logo-primary.svg</div>
+        <div class="filedesc">Full colour, light backgrounds</div>
+        <a href="brand-assets/logo-primary.svg" download>Download SVG</a>
+      </div>
+      <div class="file-card">
+        <div class="filename">logo-reversed.svg</div>
+        <div class="filedesc">White/gold, dark backgrounds</div>
+        <a href="brand-assets/logo-reversed.svg" download>Download SVG</a>
+      </div>
+      <div class="file-card">
+        <div class="filename">logo-monogram.svg</div>
+        <div class="filedesc">GRC mark, primary</div>
+        <a href="brand-assets/logo-monogram.svg" download>Download SVG</a>
+      </div>
+      <div class="file-card">
+        <div class="filename">logo-monogram-reversed.svg</div>
+        <div class="filedesc">GRC mark, reversed</div>
+        <a href="brand-assets/logo-monogram-reversed.svg" download>Download SVG</a>
+      </div>
+    </div>
+
+    <div class="note">
+      <strong>Font dependency:</strong> SVGs reference Poppins via Google Fonts. For guaranteed rendering in all contexts, install Poppins locally or use the rendered versions below for raster export.
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     PRIMARY — FULL COLOUR ON WHITE
+     ============================================ -->
+<section>
+  <div class="container">
+    <div class="section-label">Primary Logo</div>
+    <div class="section-title">Full Colour on White</div>
+    <div class="section-desc">The default logo treatment. Use this wherever possible.</div>
+
+    <div class="logo-grid">
+      <div class="logo-card">
+        <div class="logo-card-label">Primary &mdash; Full Colour</div>
+        <div class="logo-display light">
+          <div class="lockup">
+            <div class="monogram monogram-primary">GRC</div>
+            <div class="wordmark wordmark-primary">
+              <span class="descriptor">GLOBAL RESOURCES</span>
+              <span class="hero">CITADEL</span>
+              <span class="qualifier">LIMITED</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="logo-grid logo-grid-2">
+      <div class="logo-card">
+        <div class="logo-card-label">Reversed &mdash; White on Dark Green</div>
+        <div class="logo-display dark">
+          <div class="lockup">
+            <div class="monogram monogram-reversed">GRC</div>
+            <div class="wordmark wordmark-reversed">
+              <span class="descriptor">GLOBAL RESOURCES</span>
+              <span class="hero">CITADEL</span>
+              <span class="qualifier">LIMITED</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="logo-card">
+        <div class="logo-card-label">Monochrome</div>
+        <div class="logo-display neutral">
+          <div class="lockup">
+            <div class="monogram monogram-mono">GRC</div>
+            <div class="wordmark wordmark-mono">
+              <span class="descriptor">GLOBAL RESOURCES</span>
+              <span class="hero">CITADEL</span>
+              <span class="qualifier">LIMITED</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="logo-grid logo-grid-2">
+      <div class="logo-card">
+        <div class="logo-card-label">Small Scale &mdash; Navigation Size (~40px height)</div>
+        <div class="logo-display light compact">
+          <div class="lockup lockup-sm">
+            <div class="monogram monogram-primary">GRC</div>
+            <div class="wordmark wordmark-primary">
+              <span class="descriptor">GLOBAL RESOURCES</span>
+              <span class="hero">CITADEL</span>
+              <span class="qualifier">LIMITED</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="logo-card">
+        <div class="logo-card-label">Small Scale &mdash; Reversed</div>
+        <div class="logo-display dark compact">
+          <div class="lockup lockup-sm">
+            <div class="monogram monogram-reversed">GRC</div>
+            <div class="wordmark wordmark-reversed">
+              <span class="descriptor">GLOBAL RESOURCES</span>
+              <span class="hero">CITADEL</span>
+              <span class="qualifier">LIMITED</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     STANDALONE MONOGRAM
+     ============================================ -->
+<section>
+  <div class="container">
+    <div class="section-label">Standalone Mark</div>
+    <div class="section-title">GRC Monogram Variations</div>
+    <div class="section-desc">Use the standalone monogram when the full lockup cannot fit: favicons, social media profile images, app icons, watermarks.</div>
+
+    <div class="logo-grid">
+      <div class="logo-card">
+        <div class="logo-card-label">Monogram Variations &mdash; All Sizes</div>
+        <div class="logo-display light" style="padding:2.5rem;">
+          <div class="monogram-row">
+            <div class="monogram-item">
+              <div class="monogram monogram-primary" style="width:80px;height:80px;font-size:1.35rem;">GRC</div>
+              <div class="label">Primary (80px)</div>
+            </div>
+            <div class="monogram-item">
+              <div class="monogram monogram-primary" style="width:80px;height:80px;font-size:1.35rem;border-radius:12px;">GRC</div>
+              <div class="label">Rounded Square</div>
+            </div>
+            <div class="monogram-item">
+              <div class="monogram monogram-reversed" style="width:80px;height:80px;font-size:1.35rem;">GRC</div>
+              <div class="label">Reversed</div>
+            </div>
+            <div class="monogram-item">
+              <div class="monogram monogram-mono" style="width:80px;height:80px;font-size:1.35rem;">GRC</div>
+              <div class="label">Monochrome</div>
+            </div>
+            <div class="monogram-item">
+              <div class="monogram monogram-primary" style="width:48px;height:48px;font-size:0.8rem;border-width:2px;">GRC</div>
+              <div class="label">App Icon (48px)</div>
+            </div>
+            <div class="monogram-item">
+              <div class="monogram monogram-primary" style="width:32px;height:32px;font-size:0.55rem;border-width:1.5px;letter-spacing:0;">GRC</div>
+              <div class="label">Small (32px)</div>
+            </div>
+            <div class="monogram-item">
+              <div class="monogram monogram-primary" style="width:20px;height:20px;font-size:0.32rem;border-width:1px;letter-spacing:0;">GRC</div>
+              <div class="label">Favicon (20px)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     USAGE CONTEXT
+     ============================================ -->
+<section>
+  <div class="container">
+    <div class="section-label">Usage Context</div>
+    <div class="section-title">Where Each Variant Lives</div>
+
+    <div class="logo-grid logo-grid-2">
+      <div class="logo-card">
+        <div class="logo-card-label">Website Header (sticky nav, light background)</div>
+        <div class="logo-display light compact" style="justify-content:flex-start;padding-left:1.5rem;">
+          <div class="lockup lockup-sm">
+            <div class="monogram monogram-primary">GRC</div>
+            <div class="wordmark wordmark-primary">
+              <span class="descriptor">GLOBAL RESOURCES</span>
+              <span class="hero">CITADEL</span>
+              <span class="qualifier">LIMITED</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="logo-card">
+        <div class="logo-card-label">Website Footer (dark background)</div>
+        <div class="logo-display dark compact" style="justify-content:flex-start;padding-left:1.5rem;">
+          <div class="lockup lockup-sm">
+            <div class="monogram monogram-reversed">GRC</div>
+            <div class="wordmark wordmark-reversed">
+              <span class="descriptor">GLOBAL RESOURCES</span>
+              <span class="hero">CITADEL</span>
+              <span class="qualifier">LIMITED</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="logo-card">
+        <div class="logo-card-label">Hero Section (gradient background)</div>
+        <div class="logo-display" style="background:linear-gradient(135deg,#14532D,#15803D);min-height:120px;">
+          <div class="lockup">
+            <div class="monogram monogram-reversed">GRC</div>
+            <div class="wordmark wordmark-reversed">
+              <span class="descriptor">GLOBAL RESOURCES</span>
+              <span class="hero">CITADEL</span>
+              <span class="qualifier">LIMITED</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="logo-card">
+        <div class="logo-card-label">Social Media Profile / App Icon</div>
+        <div class="logo-display light">
+          <div class="monogram-row" style="gap:1.5rem;">
+            <div class="monogram-item">
+              <div class="monogram monogram-primary" style="width:64px;height:64px;font-size:1rem;border-radius:12px;">GRC</div>
+              <div class="label">Square</div>
+            </div>
+            <div class="monogram-item">
+              <div class="monogram monogram-primary" style="width:64px;height:64px;font-size:1rem;">GRC</div>
+              <div class="label">Circle</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note">
+      <strong>Export instructions:</strong> Right-click any logo above &rarr; "Inspect Element" &rarr; screenshot the element. Or open this file in Chrome, use DevTools to select the logo container, and use "Capture node screenshot." For print, use Ctrl+P &rarr; Save as PDF. For vector use, the SVG source files above are the canonical format.
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     REFERENCE
+     ============================================ -->
+<section style="padding-bottom:4rem;">
+  <div class="container">
+    <div class="section-label">Reference</div>
+    <div class="section-title">Related Documents</div>
+    <div class="section-desc">This logo kit is part of the GRCL brand identity system.</div>
+    <ul style="font-size:0.9rem;color:var(--neutral-600);line-height:2;">
+      <li><strong>Brand Identity (canonical):</strong> brand-identity.md</li>
+      <li><strong>Brand Directions (all 3):</strong> brand-identity-options.html</li>
+      <li><strong>Letterhead Template:</strong> letterhead-grcl.html</li>
+      <li><strong>UX Design Specification:</strong> ux-design-specification.md</li>
+      <li><strong>Information Architecture:</strong> information-architecture.md</li>
+    </ul>
+  </div>
+</section>
+
+</body>
+</html>

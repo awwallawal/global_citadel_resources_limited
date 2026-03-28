@@ -1,0 +1,3115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Content Collection System — Lawal Awwal Web Design</title>
+  <style>
+    :root {
+      --color-primary: #0f1b2d;
+      --color-primary-light: #1a2b45;
+      --color-accent: #b8924a;
+      --color-accent-light: #d4af6e;
+      --color-accent-subtle: #f8f3eb;
+      --color-text: #2c3e50;
+      --color-text-light: #5a6a7a;
+      --color-text-muted: #8a95a3;
+      --color-bg: #ffffff;
+      --color-bg-alt: #f7f8fa;
+      --color-bg-section: #fafbfc;
+      --color-border: #e2e6ea;
+      --color-border-light: #eef0f3;
+      --color-white: #ffffff;
+      --color-success: #27ae60;
+      --color-warning: #e67e22;
+      --color-danger: #c0392b;
+      --color-info: #2980b9;
+
+      --font-heading: 'Georgia', 'Times New Roman', serif;
+      --font-body: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      --font-mono: 'Consolas', 'Courier New', monospace;
+
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2rem;
+      --space-2xl: 3rem;
+      --space-3xl: 4rem;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 11pt;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--color-text);
+      line-height: 1.65;
+      background: var(--color-bg);
+    }
+
+    h1, h2, h3, h4, h5 {
+      font-family: var(--font-heading);
+      color: var(--color-primary);
+      line-height: 1.3;
+    }
+
+    h1 { font-size: 2.2rem; font-weight: 400; letter-spacing: -0.02em; }
+    h2 { font-size: 1.5rem; font-weight: 400; letter-spacing: -0.01em; margin-bottom: var(--space-lg); padding-bottom: var(--space-sm); border-bottom: 2px solid var(--color-accent); }
+    h3 { font-size: 1.15rem; font-weight: 600; margin-bottom: var(--space-md); color: var(--color-primary-light); }
+    h4 { font-size: 1rem; font-weight: 600; margin-bottom: var(--space-sm); color: var(--color-primary); }
+    h5 { font-size: 0.9rem; font-weight: 600; margin-bottom: var(--space-xs); color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.05em; }
+
+    p { margin-bottom: var(--space-md); }
+    strong { font-weight: 600; color: var(--color-primary); }
+    em { color: var(--color-text-light); font-style: italic; }
+
+    .page {
+      max-width: 210mm;
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    .section {
+      padding: var(--space-2xl) var(--space-xl);
+      margin-bottom: var(--space-md);
+      background: var(--color-white);
+      border-bottom: 1px solid var(--color-border-light);
+    }
+
+    .section:last-child {
+      border-bottom: none;
+    }
+
+    /* Cover Page */
+    .cover {
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+      color: var(--color-white);
+      padding: var(--space-3xl) var(--space-xl);
+      text-align: center;
+      min-height: 50vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .cover h1 {
+      color: var(--color-white);
+      font-size: 2.6rem;
+      margin-bottom: var(--space-md);
+    }
+
+    .cover .subtitle {
+      font-size: 1.15rem;
+      color: var(--color-accent-light);
+      margin-bottom: var(--space-2xl);
+      font-style: italic;
+    }
+
+    .cover .meta {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.8;
+    }
+
+    .cover .meta strong {
+      color: var(--color-accent-light);
+    }
+
+    .gold-rule {
+      width: 80px;
+      height: 2px;
+      background: var(--color-accent);
+      margin: var(--space-lg) auto;
+      border: none;
+    }
+
+    /* Table of Contents */
+    .toc {
+      background: var(--color-bg-alt);
+      padding: var(--space-2xl) var(--space-xl);
+    }
+
+    .toc ol {
+      list-style: none;
+      counter-reset: toc-counter;
+      padding: 0;
+    }
+
+    .toc ol li {
+      counter-increment: toc-counter;
+      padding: var(--space-sm) 0;
+      border-bottom: 1px solid var(--color-border-light);
+      font-size: 1.05rem;
+    }
+
+    .toc ol li::before {
+      content: counter(toc-counter) ".";
+      color: var(--color-accent);
+      font-weight: 600;
+      margin-right: var(--space-sm);
+      font-family: var(--font-heading);
+    }
+
+    .toc ol li a {
+      color: var(--color-primary);
+      text-decoration: none;
+    }
+
+    .toc ol li a:hover {
+      color: var(--color-accent);
+    }
+
+    /* Alert/Callout Boxes */
+    .callout {
+      padding: var(--space-lg);
+      border-radius: 6px;
+      margin: var(--space-lg) 0;
+      border-left: 4px solid;
+    }
+
+    .callout-warning {
+      background: #fef9e7;
+      border-color: var(--color-warning);
+    }
+
+    .callout-warning .callout-title {
+      color: var(--color-warning);
+    }
+
+    .callout-danger {
+      background: #fdedec;
+      border-color: var(--color-danger);
+    }
+
+    .callout-danger .callout-title {
+      color: var(--color-danger);
+    }
+
+    .callout-info {
+      background: #eaf2f8;
+      border-color: var(--color-info);
+    }
+
+    .callout-info .callout-title {
+      color: var(--color-info);
+    }
+
+    .callout-success {
+      background: #e8f8f0;
+      border-color: var(--color-success);
+    }
+
+    .callout-success .callout-title {
+      color: var(--color-success);
+    }
+
+    .callout-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: var(--space-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .callout p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: var(--space-lg) 0;
+      font-size: 0.88rem;
+    }
+
+    thead th {
+      background: var(--color-primary);
+      color: var(--color-white);
+      padding: var(--space-sm) var(--space-md);
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+
+    tbody td {
+      padding: var(--space-sm) var(--space-md);
+      border-bottom: 1px solid var(--color-border-light);
+      vertical-align: top;
+    }
+
+    tbody tr:nth-child(even) {
+      background: var(--color-bg-alt);
+    }
+
+    tbody tr:hover {
+      background: var(--color-accent-subtle);
+    }
+
+    .table-category-row td {
+      background: var(--color-accent-subtle) !important;
+      font-weight: 700;
+      color: var(--color-primary);
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      padding-top: var(--space-md);
+      border-top: 2px solid var(--color-accent);
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .status-not-started { background: #eee; color: #666; }
+    .status-in-progress { background: #fff3cd; color: #856404; }
+    .status-submitted { background: #cce5ff; color: #004085; }
+    .status-approved { background: #d4edda; color: #155724; }
+
+    /* Lists */
+    ul, ol {
+      margin-bottom: var(--space-md);
+      padding-left: var(--space-xl);
+    }
+
+    li {
+      margin-bottom: var(--space-xs);
+    }
+
+    li + li {
+      margin-top: var(--space-xs);
+    }
+
+    /* Template/Form Styles */
+    .template-block {
+      background: var(--color-bg-alt);
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      padding: var(--space-lg);
+      margin: var(--space-lg) 0;
+    }
+
+    .template-block h4 {
+      color: var(--color-accent);
+      margin-bottom: var(--space-md);
+      padding-bottom: var(--space-sm);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .field-row {
+      display: flex;
+      gap: var(--space-md);
+      margin-bottom: var(--space-sm);
+      padding: var(--space-sm) 0;
+      border-bottom: 1px dotted var(--color-border-light);
+    }
+
+    .field-label {
+      font-weight: 600;
+      color: var(--color-primary);
+      min-width: 240px;
+      flex-shrink: 0;
+      font-size: 0.9rem;
+    }
+
+    .field-value {
+      flex: 1;
+      color: var(--color-text-muted);
+      font-style: italic;
+      font-size: 0.9rem;
+      border-bottom: 1px solid var(--color-border);
+      min-height: 1.4em;
+    }
+
+    .field-value.multi-line {
+      min-height: 4em;
+    }
+
+    /* Folder Tree */
+    .folder-tree {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      background: var(--color-primary);
+      color: #c8d6e5;
+      padding: var(--space-lg);
+      border-radius: 6px;
+      overflow-x: auto;
+      line-height: 1.6;
+      margin: var(--space-lg) 0;
+    }
+
+    .folder-tree .folder {
+      color: var(--color-accent-light);
+      font-weight: 600;
+    }
+
+    .folder-tree .file {
+      color: #a0b4c8;
+    }
+
+    /* Email Templates */
+    .email-template {
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      margin: var(--space-lg) 0;
+      overflow: hidden;
+    }
+
+    .email-header {
+      background: var(--color-bg-alt);
+      padding: var(--space-md) var(--space-lg);
+      border-bottom: 1px solid var(--color-border);
+      font-size: 0.88rem;
+    }
+
+    .email-header .email-field {
+      display: flex;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-xs);
+    }
+
+    .email-header .email-field-label {
+      font-weight: 600;
+      color: var(--color-primary);
+      min-width: 70px;
+    }
+
+    .email-body {
+      padding: var(--space-lg);
+      font-size: 0.92rem;
+      line-height: 1.7;
+    }
+
+    .email-body p {
+      margin-bottom: var(--space-md);
+    }
+
+    /* Internal/Confidential Banner */
+    .internal-banner {
+      background: var(--color-danger);
+      color: var(--color-white);
+      text-align: center;
+      padding: var(--space-md) var(--space-lg);
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin: var(--space-lg) 0;
+      border-radius: 6px;
+    }
+
+    /* Timeline */
+    .timeline {
+      position: relative;
+      padding-left: 30px;
+      margin: var(--space-lg) 0;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 8px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--color-accent);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: var(--space-xl);
+      padding: var(--space-md) var(--space-lg);
+      background: var(--color-bg-alt);
+      border-radius: 6px;
+      border-left: 3px solid var(--color-accent);
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -27px;
+      top: 18px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--color-accent);
+      border: 2px solid var(--color-white);
+    }
+
+    .timeline-item.deadline-hard::before {
+      background: var(--color-danger);
+    }
+
+    .timeline-item.deadline-hard {
+      border-left-color: var(--color-danger);
+    }
+
+    .timeline-week {
+      font-weight: 700;
+      color: var(--color-accent);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xs);
+    }
+
+    .timeline-phase {
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      color: var(--color-primary);
+      margin-bottom: var(--space-sm);
+    }
+
+    /* Numbered section heading */
+    .section-number {
+      display: inline-block;
+      background: var(--color-accent);
+      color: var(--color-white);
+      width: 36px;
+      height: 36px;
+      line-height: 36px;
+      text-align: center;
+      border-radius: 50%;
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      margin-right: var(--space-sm);
+      vertical-align: middle;
+    }
+
+    /* Photo grid placeholder */
+    .photo-checklist {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: var(--space-md);
+      margin: var(--space-lg) 0;
+    }
+
+    .photo-checklist-item {
+      background: var(--color-bg-alt);
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      padding: var(--space-md);
+    }
+
+    .photo-checklist-item h5 {
+      margin-bottom: var(--space-sm);
+    }
+
+    .photo-checklist-item ul {
+      font-size: 0.88rem;
+      padding-left: var(--space-lg);
+      margin-bottom: 0;
+    }
+
+    /* Guideline cards */
+    .guideline-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: var(--space-lg);
+      margin: var(--space-lg) 0;
+    }
+
+    .guideline-card {
+      background: var(--color-bg-alt);
+      border-radius: 6px;
+      padding: var(--space-lg);
+      border-top: 3px solid var(--color-accent);
+    }
+
+    .guideline-card h4 {
+      font-size: 0.95rem;
+      margin-bottom: var(--space-sm);
+    }
+
+    .guideline-card p {
+      font-size: 0.9rem;
+      margin-bottom: 0;
+    }
+
+    /* Utility */
+    .text-accent { color: var(--color-accent); }
+    .text-danger { color: var(--color-danger); }
+    .text-muted { color: var(--color-text-muted); }
+    .text-small { font-size: 0.85rem; }
+    .mt-lg { margin-top: var(--space-lg); }
+    .mb-lg { margin-bottom: var(--space-lg); }
+    .mb-xl { margin-bottom: var(--space-xl); }
+
+    .highlight-box {
+      background: var(--color-accent-subtle);
+      border: 1px solid var(--color-accent);
+      border-radius: 6px;
+      padding: var(--space-lg);
+      margin: var(--space-lg) 0;
+    }
+
+    /* Responsive table wrapper */
+    .table-wrapper {
+      overflow-x: auto;
+      margin: var(--space-lg) 0;
+    }
+
+    /* Folder description list */
+    .folder-desc dt {
+      font-weight: 700;
+      color: var(--color-primary);
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      margin-top: var(--space-md);
+    }
+
+    .folder-desc dd {
+      margin-left: var(--space-xl);
+      margin-bottom: var(--space-sm);
+      font-size: 0.9rem;
+      color: var(--color-text-light);
+    }
+
+    /* Print Styles */
+    @media print {
+      html { font-size: 10pt; }
+
+      body {
+        background: white;
+        color: #000;
+      }
+
+      .page {
+        max-width: 100%;
+      }
+
+      .cover {
+        min-height: auto;
+        padding: var(--space-2xl) var(--space-xl);
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .section {
+        page-break-inside: avoid;
+        padding: var(--space-lg) 0;
+      }
+
+      h2 {
+        page-break-after: avoid;
+      }
+
+      table {
+        page-break-inside: auto;
+        font-size: 0.8rem;
+      }
+
+      thead {
+        display: table-header-group;
+      }
+
+      tr {
+        page-break-inside: avoid;
+      }
+
+      .template-block {
+        page-break-inside: avoid;
+      }
+
+      .callout {
+        page-break-inside: avoid;
+      }
+
+      .email-template {
+        page-break-inside: avoid;
+      }
+
+      .timeline-item {
+        page-break-inside: avoid;
+      }
+
+      .no-print {
+        display: none !important;
+      }
+
+      a {
+        color: #000;
+        text-decoration: none;
+      }
+
+      .internal-banner {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      thead th {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- ============================================ -->
+    <!-- COVER PAGE -->
+    <!-- ============================================ -->
+    <div class="cover">
+      <h1>Content Collection System</h1>
+      <hr class="gold-rule">
+      <p class="subtitle">A structured approach to gathering, organising, and delivering website content on time and to specification.</p>
+      <div class="meta">
+        <strong>Prepared by:</strong> Lawal Awwal<br>
+        <strong>Role:</strong> Freelance Web Designer / Developer<br>
+        <strong>Document type:</strong> Reusable System (adapted per project)<br>
+        <strong>Current client context:</strong> Multi-division conglomerate (7 divisions)<br>
+        <strong>Version:</strong> 1.0<br>
+        <strong>Date:</strong> March 2026
+      </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- TABLE OF CONTENTS -->
+    <!-- ============================================ -->
+    <div class="toc section">
+      <h2>Table of Contents</h2>
+      <ol>
+        <li><a href="#section-1">Content Collection Overview</a></li>
+        <li><a href="#section-2">Master Content Inventory</a></li>
+        <li><a href="#section-3">Image and Photography Requirements</a></li>
+        <li><a href="#section-4">Content Brief Templates</a></li>
+        <li><a href="#section-5">Shared Folder Structure</a></li>
+        <li><a href="#section-6">Content Delivery Schedule</a></li>
+        <li><a href="#section-7">Content Quality Guidelines</a></li>
+        <li><a href="#section-8">Chasing Content (Internal Guide)</a></li>
+      </ol>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- SECTION 1: CONTENT COLLECTION OVERVIEW -->
+    <!-- ============================================ -->
+    <div class="section" id="section-1">
+      <h2><span class="section-number">1</span> Content Collection Overview</h2>
+
+      <h3>Why This System Exists</h3>
+      <p>Your website is being built around your content, not the other way around. Every design decision, every layout choice, and every interactive feature depends on having the right words, images, and information in place at the right time. This document is a structured system for collecting that content from you efficiently, completely, and on schedule.</p>
+
+      <p>Building a website for a conglomerate with seven distinct divisions is a significant undertaking. The sheer volume of content required is substantial: company-wide information, seven unique division profiles, team bios, case studies, photography, legal pages, and more. Without a clear system, content collection becomes the single biggest risk to the project timeline.</p>
+
+      <h3>What Happens When Content Is Late or Disorganised</h3>
+      <div class="callout callout-warning">
+        <p class="callout-title">Real consequences of content delays</p>
+        <ul>
+          <li><strong>Design delays:</strong> Page layouts cannot be finalised with placeholder text. "Lorem ipsum" designs hide problems that only appear when real content is inserted. Paragraphs that are too long break layouts. Headings that are too short look weak. Real content must drive design.</li>
+          <li><strong>Compounding schedule slippage:</strong> Every week of content delay pushes development back by at least that same week, and often more. A two-week content delay does not mean a two-week project delay. It typically means three to four weeks because other scheduled work must be re-sequenced.</li>
+          <li><strong>Rush-quality content:</strong> When content arrives at the last minute, it arrives in poor shape. Descriptions are vague, bios are incomplete, photos are low resolution or taken on a phone in bad lighting. This content goes live on your website representing your business to every visitor.</li>
+          <li><strong>Increased costs:</strong> The project agreement includes provisions for delays caused by late content. Extended timelines mean extended commitment from both sides, and may trigger additional charges as outlined in your service agreement.</li>
+          <li><strong>Missed launch dates:</strong> The most visible consequence. Stakeholders, partners, and customers who have been told to expect the new site are left waiting.</li>
+        </ul>
+      </div>
+
+      <h3>How This System Prevents Problems</h3>
+      <p>This system works by breaking the enormous task of "provide all your website content" into smaller, manageable pieces with clear descriptions of what is needed, who is responsible, and when it is due. Specifically:</p>
+      <ul>
+        <li><strong>The Master Content Inventory (Section 2)</strong> lists every single piece of content needed, so nothing is forgotten or discovered at the last minute.</li>
+        <li><strong>The Image Requirements (Section 3)</strong> specify exactly what photographs are needed and how to take or provide them, eliminating back-and-forth about quality and format.</li>
+        <li><strong>The Content Brief Templates (Section 4)</strong> give you ready-to-fill forms, so you never have to wonder what to write or how much to write.</li>
+        <li><strong>The Shared Folder Structure (Section 5)</strong> ensures every file has a clear home, preventing the chaos of content scattered across email threads, WhatsApp messages, and random file shares.</li>
+        <li><strong>The Delivery Schedule (Section 6)</strong> connects content deadlines to project milestones, so you can see exactly why each deadline matters.</li>
+        <li><strong>The Quality Guidelines (Section 7)</strong> help you provide content that is web-ready, reducing the rounds of revision needed.</li>
+      </ul>
+
+      <div class="callout callout-info">
+        <p class="callout-title">Your role in this process</p>
+        <p>You know your business better than anyone. No web designer can write your company history, describe your services, or capture the spirit of your operations. Your active participation in content collection is essential. This system makes that participation as straightforward as possible, but the content itself must come from you and your team.</p>
+      </div>
+
+      <h3>How to Use This Document</h3>
+      <ol>
+        <li><strong>Read Section 2</strong> to understand the full scope of content needed. Assign responsible people from your team to each category.</li>
+        <li><strong>Review Section 3</strong> and begin planning photography immediately. Good photos take time to organise.</li>
+        <li><strong>Use the templates in Section 4</strong> to draft content. Fill in the blanks, save as Word documents or Google Docs, and upload to the shared folder.</li>
+        <li><strong>Set up the shared folder (Section 5)</strong> early and use it consistently. Everything in one place.</li>
+        <li><strong>Follow the schedule in Section 6</strong> closely. Treat deadlines as non-negotiable.</li>
+      </ol>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- SECTION 2: MASTER CONTENT INVENTORY -->
+    <!-- ============================================ -->
+    <div class="section" id="section-2">
+      <h2><span class="section-number">2</span> Master Content Inventory</h2>
+
+      <p>The following tables list every piece of content required for the website. Each item includes a description of what is needed, who should provide it, the target due date, and the current status. Use these tables as your master checklist throughout the project.</p>
+
+      <div class="callout callout-info">
+        <p class="callout-title">How to read these tables</p>
+        <p><strong>Content Item:</strong> The specific piece of content needed. <strong>Description/Requirements:</strong> Detailed specification including word counts and image dimensions. <strong>Responsible Person:</strong> The person on your team who will provide this (fill in names). <strong>Due Date:</strong> When this content must be delivered to the shared folder. <strong>Status:</strong> Track progress using these labels:</p>
+        <p>
+          <span class="status-badge status-not-started">Not Started</span>
+          <span class="status-badge status-in-progress">In Progress</span>
+          <span class="status-badge status-submitted">Submitted</span>
+          <span class="status-badge status-approved">Approved</span>
+        </p>
+      </div>
+
+      <!-- ===== HOMEPAGE ===== -->
+      <h3>Homepage</h3>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:20%">Content Item</th>
+              <th style="width:35%">Description / Requirements</th>
+              <th style="width:15%">Responsible Person</th>
+              <th style="width:12%">Due Date</th>
+              <th style="width:12%">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Main Headline</td>
+              <td>Primary headline for the hero section. Maximum 10 words. Should communicate the company's core identity and value proposition in a single powerful statement.</td>
+              <td></td>
+              <td>Week 5</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Hero Subtext</td>
+              <td>Supporting line beneath the headline. 15-25 words. Expands on the headline by mentioning the scope of operations (e.g., number of divisions, geographic reach).</td>
+              <td></td>
+              <td>Week 5</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Company Overview Paragraph</td>
+              <td>A concise, compelling introduction to the conglomerate. 80-120 words. Written for someone encountering the company for the first time. Should cover what the company does, its scale, and why it matters.</td>
+              <td></td>
+              <td>Week 5</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Key Statistics</td>
+              <td>4-6 impressive numbers that demonstrate scale and impact. Examples: years in operation, number of employees, states or countries served, tons produced, revenue milestone, hectares under cultivation. Provide exact figures, not approximations.</td>
+              <td></td>
+              <td>Week 5</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Hero Image or Video</td>
+              <td>Primary visual for the homepage hero section. If image: minimum 1920x1080px, landscape orientation, JPG format, showing flagship operations or a strong brand moment. If video: 15-30 seconds, MP4 format, 1080p minimum, no audio required (will play silently).</td>
+              <td></td>
+              <td>Week 6</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Division Summary Cards</td>
+              <td>For each of the 7 divisions: a short title, a one-sentence description (15-20 words), and a representative icon or thumbnail image (400x300px minimum, JPG). These appear as a navigation grid on the homepage.</td>
+              <td></td>
+              <td>Week 6</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Call-to-Action Text</td>
+              <td>Text for the main homepage call-to-action button. 2-5 words (e.g., "Explore Our Divisions", "Partner With Us", "Learn More"). Also provide the destination page this button should link to.</td>
+              <td></td>
+              <td>Week 5</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Featured Testimonial</td>
+              <td>One strong client or partner testimonial for the homepage. Include: the quote (30-60 words), the person's full name, their title/role, and their company or organisation name. A headshot photo is optional but preferred (400x400px, JPG).</td>
+              <td></td>
+              <td>Week 8</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ===== ABOUT US ===== -->
+      <h3>About Us</h3>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:20%">Content Item</th>
+              <th style="width:35%">Description / Requirements</th>
+              <th style="width:15%">Responsible Person</th>
+              <th style="width:12%">Due Date</th>
+              <th style="width:12%">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Company History</td>
+              <td>Narrative of how the company was founded and grew. 300-500 words. Include: the founding story, key moments of growth, how new divisions were added, and where the company stands today. Written in third person.</td>
+              <td></td>
+              <td>Week 3</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Mission Statement</td>
+              <td>A clear statement of the company's core purpose. 1-3 sentences. What does the company exist to do? What impact does it aim to have?</td>
+              <td></td>
+              <td>Week 3</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Vision Statement</td>
+              <td>A forward-looking statement of where the company is headed. 1-3 sentences. What does the company aspire to become or achieve in the long term?</td>
+              <td></td>
+              <td>Week 3</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Core Values</td>
+              <td>3-5 core values that guide the company. For each value: the value name (1-3 words) and a supporting explanation (20-40 words) that describes what this value means in practice at the company.</td>
+              <td></td>
+              <td>Week 3</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Leadership Team</td>
+              <td>For each senior leader (CEO, COO, division heads, board members): full name, job title, professional bio (100-150 words covering background, qualifications, and role), and a professional headshot (minimum 800x800px, JPG, plain or neutral background, head and shoulders framing, well-lit). Aim for 5-10 profiles.</td>
+              <td></td>
+              <td>Week 4</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Company Timeline / Milestones</td>
+              <td>A chronological list of 10-20 significant milestones. For each: the year, a short title (3-6 words), and a one-sentence description (15-25 words). Examples: founding year, first major contract, new division launched, international expansion, major award, key partnership formed.</td>
+              <td></td>
+              <td>Week 5</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Key Achievements / Numbers</td>
+              <td>6-10 quantifiable achievements for an "At a Glance" or "By the Numbers" section. Provide the number and what it represents. Examples: "15+ Years in Operation", "7 Business Divisions", "500+ Employees", "12 States Covered", "10,000 Hectares Cultivated".</td>
+              <td></td>
+              <td>Week 5</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>About Page Photography</td>
+              <td>3-5 photos for the About page. Should include: group leadership photo, office or headquarters exterior, a photo representing company culture (team meeting, event, or community engagement), and any available historical photos (old office, founding team, early operations). Minimum 2000px wide, JPG format.</td>
+              <td></td>
+              <td>Week 6</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ===== CONTACT ===== -->
+      <h3>Contact</h3>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:20%">Content Item</th>
+              <th style="width:35%">Description / Requirements</th>
+              <th style="width:15%">Responsible Person</th>
+              <th style="width:12%">Due Date</th>
+              <th style="width:12%">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Head Office Address</td>
+              <td>Full street address of the company's main headquarters, formatted exactly as it should appear on the website. Include city, state, country, and postal code if applicable.</td>
+              <td></td>
+              <td>Week 3</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Branch Office Addresses</td>
+              <td>Full street addresses for every branch office or operational location that should be listed on the website. Format each the same way: location name, street address, city, state, country.</td>
+              <td></td>
+              <td>Week 3</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Phone Numbers</td>
+              <td>Primary phone number(s) for general enquiries. If different divisions or locations have separate numbers, list each with a label (e.g., "Head Office: +234 XXX XXX XXXX", "Crop Farming Division: +234 XXX XXX XXXX"). Include country code.</td>
+              <td></td>
+              <td>Week 3</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Email Addresses</td>
+              <td>All email addresses to be listed on the site. At minimum: a general enquiry email (e.g., info@company.com). Ideally also: separate emails for careers, partnerships, media enquiries, and each division if applicable.</td>
+              <td></td>
+              <td>Week 3</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Google Maps Locations</td>
+              <td>For each office location that should show on an embedded map: the exact address or GPS coordinates. If you have a Google Business listing, provide the Google Maps link. Also confirm which location should be the primary/default map.</td>
+              <td></td>
+              <td>Week 5</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Operating Hours</td>
+              <td>Business hours for each location, if applicable. Format: Monday-Friday: 8:00 AM - 5:00 PM (WAT). Note any variations for weekends or specific divisions.</td>
+              <td></td>
+              <td>Week 3</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Social Media Links</td>
+              <td>Full URLs for all active social media profiles: LinkedIn, Twitter/X, Facebook, Instagram, YouTube, or any other platforms. Only list profiles that are actively maintained.</td>
+              <td></td>
+              <td>Week 3</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Contact Form Fields</td>
+              <td>Confirm which fields the contact form should include. Standard recommendation: Full Name (required), Email Address (required), Phone Number (optional), Subject/Enquiry Type dropdown (list the options you want), Message (required). Confirm or modify this list, and specify which email address form submissions should be sent to.</td>
+              <td></td>
+              <td>Week 5</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ===== CAREERS ===== -->
+      <h3>Careers</h3>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:20%">Content Item</th>
+              <th style="width:35%">Description / Requirements</th>
+              <th style="width:15%">Responsible Person</th>
+              <th style="width:12%">Due Date</th>
+              <th style="width:12%">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Company Culture Description</td>
+              <td>150-250 words describing what it is like to work at the company. Cover: work environment, team dynamics, growth opportunities, training and development, and any unique aspects of the company culture. Written to attract talented applicants.</td>
+              <td></td>
+              <td>Week 8</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Employee Benefits</td>
+              <td>A list of all benefits and perks offered to employees. For each benefit: the benefit name and a one-sentence description. Examples: health insurance, annual leave policy, professional development budget, housing allowance, transport, pension contribution, performance bonuses.</td>
+              <td></td>
+              <td>Week 8</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Current Job Openings</td>
+              <td>For each open position (provide at least 3 for launch): job title, division, location, employment type (full-time/part-time/contract), brief description (50-80 words), key responsibilities (5-8 bullet points), required qualifications (5-8 bullet points), and how to apply (email address or application process).</td>
+              <td></td>
+              <td>Week 10</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Workplace Photography</td>
+              <td>3-5 photos showing the work environment. Ideas: team collaborating in an office, field operations, team event or celebration, training session, office facilities. Minimum 2000px wide, JPG. Must feature real employees (obtain their consent for website use).</td>
+              <td></td>
+              <td>Week 8</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ===== NEWS / UPDATES ===== -->
+      <h3>News / Updates</h3>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:20%">Content Item</th>
+              <th style="width:35%">Description / Requirements</th>
+              <th style="width:15%">Responsible Person</th>
+              <th style="width:12%">Due Date</th>
+              <th style="width:12%">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>News Article 1</td>
+              <td>A recent company achievement, partnership, milestone, or event. Include: headline (8-12 words), publication date, article body (300-500 words), and 1-2 accompanying photos (minimum 1200px wide, JPG). Write in a professional but engaging tone.</td>
+              <td></td>
+              <td>Week 10</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>News Article 2</td>
+              <td>A second distinct article. Could be about: a division-specific accomplishment, a community engagement initiative, a new facility or equipment acquisition, or an industry recognition. Same specifications as Article 1: headline, date, 300-500 words, 1-2 photos.</td>
+              <td></td>
+              <td>Week 10</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>News Article 3</td>
+              <td>A third distinct article. Consider covering a different topic area from the first two to show breadth. Same specifications: headline, date, 300-500 words, 1-2 photos.</td>
+              <td></td>
+              <td>Week 10</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ===== PER DIVISION CONTENT ===== -->
+      <h3>Per Division Content (Repeat for Each of 7 Divisions)</h3>
+
+      <div class="callout callout-info">
+        <p class="callout-title">Seven divisions requiring individual content</p>
+        <p>The tables below must be completed separately for each of the following divisions. The requirements are identical for each division, but the content must be unique and specific to that division's operations.</p>
+        <ol>
+          <li><strong>Crop Farming</strong></li>
+          <li><strong>Animal Husbandry</strong></li>
+          <li><strong>Agro-Processing</strong></li>
+          <li><strong>Commodity Marketing</strong></li>
+          <li><strong>Real Estate</strong></li>
+          <li><strong>Import &amp; Export</strong></li>
+          <li><strong>Oil &amp; Gas</strong></li>
+        </ol>
+      </div>
+
+      <!-- Division 1: Crop Farming -->
+      <h4 class="text-accent" style="margin-top: var(--space-xl);">Division 1: Crop Farming</h4>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:20%">Content Item</th>
+              <th style="width:35%">Description / Requirements</th>
+              <th style="width:15%">Responsible Person</th>
+              <th style="width:12%">Due Date</th>
+              <th style="width:12%">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Division Overview</td>
+              <td>200-300 word description of the Crop Farming division. Cover: what crops are grown, scale of operations (hectares, annual output), farming methods used, geographic coverage, and the division's role within the larger conglomerate. Written for potential clients and partners visiting the website.</td>
+              <td></td>
+              <td>Week 5</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Key Products / Services</td>
+              <td>List each major crop or farming service offered. For each item: the product/service name and a 50-100 word description covering what it is, how it is produced or delivered, and why it matters to the customer. Provide at least 4-6 items.</td>
+              <td></td>
+              <td>Week 5</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Division Team Members</td>
+              <td>For each key team member in this division: full name, job title, short bio (80-120 words), and a professional headshot (minimum 800x800px, JPG, plain background). Include the division head and 2-4 other key personnel.</td>
+              <td></td>
+              <td>Week 4</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Case Study 1</td>
+              <td>A real project or success story. Include: project name or client name, date/year, the challenge (50-100 words describing the problem or opportunity), the solution (100-150 words describing what the division did), the outcome (50-100 words with measurable results), an optional client testimonial quote, and 3 or more photos showing the project. See Case Study Template in Section 4.</td>
+              <td></td>
+              <td>Week 8</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Case Study 2</td>
+              <td>A second distinct project or success story. Same specifications as Case Study 1. Choose a project that demonstrates a different capability or crop type than Case Study 1 to show range.</td>
+              <td></td>
+              <td>Week 8</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Certifications / Credentials</td>
+              <td>List all relevant certifications, regulatory approvals, accreditations, or compliance standards for this division. For each: the certification name, issuing body, date obtained, and a brief note on what it signifies. Provide digital copies or scans of certificates if available.</td>
+              <td></td>
+              <td>Week 8</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Client Testimonials</td>
+              <td>1-3 testimonials from clients or partners of this division. For each: the quote (30-80 words), the person's full name, their title/role, and their organisation. Written permission to use the testimonial on the website must be obtained.</td>
+              <td></td>
+              <td>Week 8</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Gallery Images</td>
+              <td>Minimum 5 professional-quality photographs showing Crop Farming operations. Must include a variety: farmland/fields, crops at various stages, planting or harvesting activities, farming equipment and machinery, storage or processing facilities, and workers in action. Minimum 2000px wide, JPG, authentic (no stock photos). See Section 3 for full photography guide.</td>
+              <td></td>
+              <td>Week 6</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Division 2: Animal Husbandry -->
+      <h4 class="text-accent" style="margin-top: var(--space-xl);">Division 2: Animal Husbandry</h4>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:20%">Content Item</th>
+              <th style="width:35%">Description / Requirements</th>
+              <th style="width:15%">Responsible Person</th>
+              <th style="width:12%">Due Date</th>
+              <th style="width:12%">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Division Overview</td>
+              <td>200-300 word description of the Animal Husbandry division. Cover: types of livestock reared, scale of operations (herd sizes, facilities), breeding and management practices, geographic locations, and the division's contribution to the company's overall mission.</td>
+              <td></td>
+              <td>Week 5</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Key Products / Services</td>
+              <td>List each major livestock product or service. For each: the product/service name and a 50-100 word description. Examples: cattle ranching, poultry production, feed supply, breeding services, livestock sales. Provide at least 4-6 items.</td>
+              <td></td>
+              <td>Week 5</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Division Team Members</td>
+              <td>For each key team member: full name, job title, short bio (80-120 words), and professional headshot (minimum 800x800px, JPG, plain background). Include the division head and 2-4 other key personnel.</td>
+              <td></td>
+              <td>Week 4</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Case Study 1</td>
+              <td>A real project or success story from this division. Include: project/client name, date/year, the challenge (50-100 words), the solution (100-150 words), the outcome (50-100 words with measurable results), optional client testimonial, and 3+ photos.</td>
+              <td></td>
+              <td>Week 8</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Case Study 2</td>
+              <td>A second distinct project or success story. Same specifications. Choose a project that highlights a different aspect of the division's capabilities.</td>
+              <td></td>
+              <td>Week 8</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Certifications / Credentials</td>
+              <td>All relevant certifications, veterinary compliance standards, health and safety approvals, or quality assurance accreditations. For each: name, issuing body, date, and significance. Provide digital copies if available.</td>
+              <td></td>
+              <td>Week 8</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Client Testimonials</td>
+              <td>1-3 testimonials from clients or partners. For each: quote (30-80 words), person's name, title, and organisation. Written permission required.</td>
+              <td></td>
+              <td>Week 8</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Gallery Images</td>
+              <td>Minimum 5 professional photographs: livestock (cattle, poultry, etc.), grazing pastures, animal housing/barns, feeding operations, veterinary care, workers tending animals. Minimum 2000px wide, JPG, authentic only.</td>
+              <td></td>
+              <td>Week 6</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Division 3: Agro-Processing -->
+      <h4 class="text-accent" style="margin-top: var(--space-xl);">Division 3: Agro-Processing</h4>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:20%">Content Item</th>
+              <th style="width:35%">Description / Requirements</th>
+              <th style="width:15%">Responsible Person</th>
+              <th style="width:12%">Due Date</th>
+              <th style="width:12%">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Division Overview</td>
+              <td>200-300 word description of the Agro-Processing division. Cover: types of agricultural products processed, processing methods and technology used, production capacity, quality control measures, and end products delivered to market.</td>
+              <td></td>
+              <td>Week 5</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Key Products / Services</td>
+              <td>List each major processed product or processing service. For each: the product/service name and a 50-100 word description covering raw materials, processing method, and end product. Provide at least 4-6 items.</td>
+              <td></td>
+              <td>Week 5</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Division Team Members</td>
+              <td>For each key team member: full name, job title, short bio (80-120 words), and professional headshot (minimum 800x800px, JPG, plain background). Include the division head and 2-4 other key personnel.</td>
+              <td></td>
+              <td>Week 4</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Case Study 1</td>
+              <td>A real project or success story. Include: project/client name, date/year, the challenge (50-100 words), the solution (100-150 words), the outcome (50-100 words), optional client testimonial, and 3+ photos showing the processing operation or finished products.</td>
+              <td></td>
+              <td>Week 8</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Case Study 2</td>
+              <td>A second distinct project or success story. Same specifications. Showcase a different product line or processing capability.</td>
+              <td></td>
+              <td>Week 8</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Certifications / Credentials</td>
+              <td>All relevant certifications: food safety (NAFDAC, SON, ISO 22000), quality management (ISO 9001), environmental compliance, export certifications. For each: name, issuing body, date, significance. Provide digital copies.</td>
+              <td></td>
+              <td>Week 8</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Client Testimonials</td>
+              <td>1-3 testimonials from buyers, distributors, or partners. For each: quote (30-80 words), person's name, title, and organisation. Written permission required.</td>
+              <td></td>
+              <td>Week 8</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Gallery Images</td>
+              <td>Minimum 5 professional photographs: factory/facility exterior and interior, production lines in operation, raw materials being received, quality control processes, finished packaged products, workers in protective equipment. Minimum 2000px wide, JPG, authentic only.</td>
+              <td></td>
+              <td>Week 6</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Division 4: Commodity Marketing -->
+      <h4 class="text-accent" style="margin-top: var(--space-xl);">Division 4: Commodity Marketing</h4>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:20%">Content Item</th>
+              <th style="width:35%">Description / Requirements</th>
+              <th style="width:15%">Responsible Person</th>
+              <th style="width:12%">Due Date</th>
+              <th style="width:12%">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Division Overview</td>
+              <td>200-300 word description of the Commodity Marketing division. Cover: commodities traded, sourcing and supply chain model, market reach (domestic and international), volume handled, and competitive advantages in the marketplace.</td>
+              <td></td>
+              <td>Week 5</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Key Products / Services</td>
+              <td>List each major commodity or marketing service. For each: the commodity/service name and a 50-100 word description covering sourcing, quality standards, and target markets. Provide at least 4-6 items.</td>
+              <td></td>
+              <td>Week 5</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Division Team Members</td>
+              <td>For each key team member: full name, job title, short bio (80-120 words), and professional headshot (minimum 800x800px, JPG, plain background). Include the division head and 2-4 other key personnel.</td>
+              <td></td>
+              <td>Week 4</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Case Study 1</td>
+              <td>A real trading success story or major deal. Include: project/client name, date/year, the challenge (50-100 words), the solution (100-150 words), the outcome (50-100 words with volumes, revenue, or other measurable results), optional testimonial, and 3+ photos.</td>
+              <td></td>
+              <td>Week 8</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Case Study 2</td>
+              <td>A second distinct trading success or partnership story. Same specifications. Choose a different commodity or market to demonstrate breadth.</td>
+              <td></td>
+              <td>Week 8</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Certifications / Credentials</td>
+              <td>All relevant certifications: commodity exchange memberships, trade licences, quality assurance standards, export/import permits. For each: name, issuing body, date, significance. Provide digital copies.</td>
+              <td></td>
+              <td>Week 8</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Client Testimonials</td>
+              <td>1-3 testimonials from buyers, suppliers, or trading partners. For each: quote (30-80 words), person's name, title, and organisation. Written permission required.</td>
+              <td></td>
+              <td>Week 8</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Gallery Images</td>
+              <td>Minimum 5 professional photographs: warehouses with stored commodities, commodity grading/sorting, packaging and labelling, loading/shipping, market or trading floor activity, product samples. Minimum 2000px wide, JPG, authentic only.</td>
+              <td></td>
+              <td>Week 6</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Division 5: Real Estate -->
+      <h4 class="text-accent" style="margin-top: var(--space-xl);">Division 5: Real Estate</h4>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:20%">Content Item</th>
+              <th style="width:35%">Description / Requirements</th>
+              <th style="width:15%">Responsible Person</th>
+              <th style="width:12%">Due Date</th>
+              <th style="width:12%">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Division Overview</td>
+              <td>200-300 word description of the Real Estate division. Cover: types of properties developed or managed (residential, commercial, industrial, land), key locations, development philosophy, number of completed projects, and the division's track record.</td>
+              <td></td>
+              <td>Week 5</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Key Products / Services</td>
+              <td>List each major real estate service or property type. For each: the service/product name and a 50-100 word description. Examples: residential development, commercial leasing, land acquisition, property management, construction services. Provide at least 4-6 items.</td>
+              <td></td>
+              <td>Week 5</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Division Team Members</td>
+              <td>For each key team member: full name, job title, short bio (80-120 words), and professional headshot (minimum 800x800px, JPG, plain background). Include the division head and 2-4 other key personnel.</td>
+              <td></td>
+              <td>Week 4</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Case Study 1</td>
+              <td>A completed or ongoing development project. Include: project name and location, date/year, the challenge (50-100 words covering site conditions, client requirements, or market opportunity), the solution (100-150 words on design, construction, and delivery), the outcome (50-100 words with units sold, occupancy rates, or ROI), optional client testimonial, and 3+ photos (exterior, interior, and during construction).</td>
+              <td></td>
+              <td>Week 8</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Case Study 2</td>
+              <td>A second distinct development project. Same specifications. Choose a different property type or location to show versatility.</td>
+              <td></td>
+              <td>Week 8</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Certifications / Credentials</td>
+              <td>All relevant licences and certifications: real estate development licences, construction permits, professional body memberships (NIESV, REDAN, COREN), building compliance certificates. For each: name, issuing body, date, significance.</td>
+              <td></td>
+              <td>Week 8</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Client Testimonials</td>
+              <td>1-3 testimonials from property buyers, tenants, or development partners. For each: quote (30-80 words), person's name, title, and organisation. Written permission required.</td>
+              <td></td>
+              <td>Week 8</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Gallery Images</td>
+              <td>Minimum 5 professional photographs: completed property exteriors (various angles, good lighting), interior shots of key spaces, construction-in-progress photos, team on site, architectural details, surrounding neighbourhood or amenities. Minimum 2000px wide, JPG, authentic only.</td>
+              <td></td>
+              <td>Week 6</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Division 6: Import & Export -->
+      <h4 class="text-accent" style="margin-top: var(--space-xl);">Division 6: Import &amp; Export</h4>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:20%">Content Item</th>
+              <th style="width:35%">Description / Requirements</th>
+              <th style="width:15%">Responsible Person</th>
+              <th style="width:12%">Due Date</th>
+              <th style="width:12%">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Division Overview</td>
+              <td>200-300 word description of the Import &amp; Export division. Cover: types of goods traded internationally, countries and trade routes, volume of trade, logistics capabilities, customs and compliance expertise, and how this division supports the conglomerate's other operations.</td>
+              <td></td>
+              <td>Week 5</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Key Products / Services</td>
+              <td>List each major import/export product or trade service. For each: the product/service name and a 50-100 word description covering what is traded, origin/destination markets, and logistics involved. Provide at least 4-6 items.</td>
+              <td></td>
+              <td>Week 5</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Division Team Members</td>
+              <td>For each key team member: full name, job title, short bio (80-120 words), and professional headshot (minimum 800x800px, JPG, plain background). Include the division head and 2-4 other key personnel.</td>
+              <td></td>
+              <td>Week 4</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Case Study 1</td>
+              <td>A significant import or export transaction or trade relationship. Include: project/client name, date/year, the challenge (50-100 words covering logistics, regulatory, or market challenges), the solution (100-150 words), the outcome (50-100 words with measurable results), optional testimonial, and 3+ photos.</td>
+              <td></td>
+              <td>Week 8</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Case Study 2</td>
+              <td>A second distinct trade story. Same specifications. Showcase a different product category or trade corridor.</td>
+              <td></td>
+              <td>Week 8</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Certifications / Credentials</td>
+              <td>All relevant certifications: import/export licences, customs broker registration, trade association memberships, international trade certifications, phytosanitary certificates, quality inspection standards. For each: name, issuing body, date, significance.</td>
+              <td></td>
+              <td>Week 8</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Client Testimonials</td>
+              <td>1-3 testimonials from international buyers, suppliers, or logistics partners. For each: quote (30-80 words), person's name, title, and organisation. Written permission required.</td>
+              <td></td>
+              <td>Week 8</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Gallery Images</td>
+              <td>Minimum 5 professional photographs: shipping containers being loaded, warehouse operations, products being inspected or packaged for export, port or logistics facilities, customs documentation process, team coordinating shipments. Minimum 2000px wide, JPG, authentic only.</td>
+              <td></td>
+              <td>Week 6</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Division 7: Oil & Gas -->
+      <h4 class="text-accent" style="margin-top: var(--space-xl);">Division 7: Oil &amp; Gas</h4>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:20%">Content Item</th>
+              <th style="width:35%">Description / Requirements</th>
+              <th style="width:15%">Responsible Person</th>
+              <th style="width:12%">Due Date</th>
+              <th style="width:12%">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Division Overview</td>
+              <td>200-300 word description of the Oil &amp; Gas division. Cover: scope of operations (retail, distribution, haulage, or exploration), infrastructure (number of stations, fleet size), geographic coverage, safety record, and growth trajectory.</td>
+              <td></td>
+              <td>Week 5</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Key Products / Services</td>
+              <td>List each major product or service. For each: the product/service name and a 50-100 word description. Examples: petrol/diesel retail, bulk fuel distribution, LPG supply, lubricants, petroleum haulage, fuel station management. Provide at least 4-6 items.</td>
+              <td></td>
+              <td>Week 5</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Division Team Members</td>
+              <td>For each key team member: full name, job title, short bio (80-120 words), and professional headshot (minimum 800x800px, JPG, plain background). Include the division head and 2-4 other key personnel.</td>
+              <td></td>
+              <td>Week 4</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Case Study 1</td>
+              <td>A significant project, contract, or operational milestone. Include: project name, date/year, the challenge (50-100 words), the solution (100-150 words), the outcome (50-100 words), optional testimonial, and 3+ photos. Focus on scale, reliability, and safety if relevant.</td>
+              <td></td>
+              <td>Week 8</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Case Study 2</td>
+              <td>A second distinct project or success story. Same specifications. Demonstrate a different capability or service area.</td>
+              <td></td>
+              <td>Week 8</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Certifications / Credentials</td>
+              <td>All relevant certifications and licences: DPR (Department of Petroleum Resources) licences, NMDPRA approvals, safety certifications, environmental compliance, fleet operator licences, insurance certifications. For each: name, issuing body, date, significance.</td>
+              <td></td>
+              <td>Week 8</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Client Testimonials</td>
+              <td>1-3 testimonials from fuel buyers, corporate clients, or distribution partners. For each: quote (30-80 words), person's name, title, and organisation. Written permission required.</td>
+              <td></td>
+              <td>Week 8</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Gallery Images</td>
+              <td>Minimum 5 professional photographs: fuel stations (branded exterior, forecourt, shop interior), tanker trucks or haulage fleet, depot operations, safety equipment and procedures, team in PPE, loading or distribution operations. Minimum 2000px wide, JPG, authentic only.</td>
+              <td></td>
+              <td>Week 6</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ===== SUPPORTING CONTENT ===== -->
+      <h3>Supporting Content</h3>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:20%">Content Item</th>
+              <th style="width:35%">Description / Requirements</th>
+              <th style="width:15%">Responsible Person</th>
+              <th style="width:12%">Due Date</th>
+              <th style="width:12%">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="table-category-row">
+              <td colspan="5">Legal Pages</td>
+            </tr>
+            <tr>
+              <td>Privacy Policy</td>
+              <td>A privacy policy compliant with applicable data protection laws (NDPR in Nigeria, GDPR if operating internationally). Should cover: what data is collected, how it is used, how it is stored, user rights, and contact information for data enquiries. If the company has an existing privacy policy, provide it for adaptation. Otherwise, confirm that you authorise Awwal to draft one for your review. Typically 800-1500 words.</td>
+              <td></td>
+              <td>Week 10</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Terms of Use</td>
+              <td>Website terms of use covering: acceptable use of the website, intellectual property rights, limitation of liability, governing law, and dispute resolution. If the company has existing terms, provide them. Otherwise, confirm authorisation for Awwal to draft for your review. Typically 600-1200 words.</td>
+              <td></td>
+              <td>Week 10</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Cookie Policy</td>
+              <td>A policy explaining what cookies and tracking technologies the website uses, their purpose, and how users can manage cookie preferences. Awwal will draft this based on the website's technical implementation. Client to review and approve. Typically 400-800 words.</td>
+              <td></td>
+              <td>Week 10</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr class="table-category-row">
+              <td colspan="5">Frequently Asked Questions (FAQ)</td>
+            </tr>
+            <tr>
+              <td>FAQ 1: Company Overview</td>
+              <td><strong>Q:</strong> What does [Company Name] do?<br><strong>A:</strong> Provide a clear, jargon-free answer in 40-80 words explaining the conglomerate's scope across all seven divisions.</td>
+              <td></td>
+              <td>Week 8</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>FAQ 2: Operating Locations</td>
+              <td><strong>Q:</strong> Where does [Company Name] operate?<br><strong>A:</strong> 30-60 words listing states, regions, or countries of operation. Be specific.</td>
+              <td></td>
+              <td>Week 8</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>FAQ 3: Partnerships</td>
+              <td><strong>Q:</strong> How can I partner with [Company Name]?<br><strong>A:</strong> 40-80 words explaining the process for initiating a business partnership or collaboration, including which contact to reach.</td>
+              <td></td>
+              <td>Week 8</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>FAQ 4: Product Enquiries</td>
+              <td><strong>Q:</strong> How can I purchase products from [Company Name]?<br><strong>A:</strong> 40-80 words explaining the buying process, minimum order quantities (if any), and who to contact for pricing or orders.</td>
+              <td></td>
+              <td>Week 8</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>FAQ 5: Careers</td>
+              <td><strong>Q:</strong> How do I apply for a job at [Company Name]?<br><strong>A:</strong> 30-60 words directing applicants to the careers page and explaining the application process.</td>
+              <td></td>
+              <td>Week 8</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>FAQ 6: Quality Standards</td>
+              <td><strong>Q:</strong> What quality standards does [Company Name] follow?<br><strong>A:</strong> 40-80 words listing key certifications, regulatory compliance, and quality assurance measures across divisions.</td>
+              <td></td>
+              <td>Week 8</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>FAQ 7: Sustainability</td>
+              <td><strong>Q:</strong> What is [Company Name]'s approach to sustainability?<br><strong>A:</strong> 40-80 words describing environmental and social responsibility practices across the company's agricultural and industrial operations.</td>
+              <td></td>
+              <td>Week 8</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>FAQ 8: Real Estate</td>
+              <td><strong>Q:</strong> How can I invest in or purchase property from the Real Estate division?<br><strong>A:</strong> 40-80 words covering available property types, the enquiry process, and relevant contact information.</td>
+              <td></td>
+              <td>Week 8</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>FAQ 9: International Trade</td>
+              <td><strong>Q:</strong> Does [Company Name] export to international markets?<br><strong>A:</strong> 40-80 words explaining the Import &amp; Export division's international capabilities, key markets, and how to initiate a trade enquiry.</td>
+              <td></td>
+              <td>Week 8</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>FAQ 10: Community Impact</td>
+              <td><strong>Q:</strong> How does [Company Name] contribute to local communities?<br><strong>A:</strong> 40-80 words describing CSR initiatives, employment creation, and community development programmes.</td>
+              <td></td>
+              <td>Week 8</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr class="table-category-row">
+              <td colspan="5">Partner and Certification Assets</td>
+            </tr>
+            <tr>
+              <td>Partner Logos</td>
+              <td>High-resolution logos of key business partners, clients, or affiliated organisations for a "Partners" or "Trusted By" section. PNG format with transparent background. Minimum 500px wide. Provide as many as relevant (aim for 6-12). Obtain permission from each partner to display their logo on the website.</td>
+              <td></td>
+              <td>Week 8</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+            <tr>
+              <td>Certification Badges / Logos</td>
+              <td>Digital versions of all certification logos, quality marks, or compliance badges that the company holds. PNG format with transparent background. These will be displayed in a "Certifications" section and may also appear on relevant division pages. Provide the certificate number or reference alongside each.</td>
+              <td></td>
+              <td>Week 8</td>
+              <td><span class="status-badge status-not-started">Not Started</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- SECTION 3: IMAGE AND PHOTOGRAPHY REQUIREMENTS -->
+    <!-- ============================================ -->
+    <div class="section" id="section-3">
+      <h2><span class="section-number">3</span> Image and Photography Requirements</h2>
+
+      <p>Photography is one of the most impactful elements of any website. The difference between a website with authentic, high-quality photography and one relying on generic images is immediately obvious to visitors. This section provides everything you need to plan, capture, and deliver the photographs required for the project.</p>
+
+      <h3>Technical Requirements</h3>
+      <div class="highlight-box">
+        <h4>Minimum Specifications for All Photos</h4>
+        <ul>
+          <li><strong>Resolution:</strong> Minimum 2000 pixels wide. For hero images and full-width backgrounds, 2400px or wider is preferred. Height should be proportional to the composition.</li>
+          <li><strong>File format:</strong> JPG (JPEG) for all photographs. PNG for logos, graphics, or any image requiring a transparent background.</li>
+          <li><strong>File size:</strong> Aim for 1-5 MB per photo. Files under 500 KB are likely too compressed and will appear blurry. Files over 10 MB are unnecessarily large.</li>
+          <li><strong>Colour space:</strong> sRGB (the default for most cameras and phones).</li>
+          <li><strong>Orientation:</strong> Landscape (horizontal) orientation is preferred for most website uses. Portrait (vertical) is acceptable for team headshots and specific gallery images.</li>
+          <li><strong>Headshots:</strong> Minimum 800x800 pixels. Square or portrait orientation. Head and shoulders framing. Plain or neutral background. Even, flattering lighting with no harsh shadows.</li>
+        </ul>
+      </div>
+
+      <h3>No Stock Photos Policy</h3>
+      <div class="callout callout-danger">
+        <p class="callout-title">Stock photos are not acceptable</p>
+        <p>Every photograph on your website must be authentic, meaning it must show your actual operations, facilities, people, and products. Stock photography (generic images purchased from image libraries) will not be used on this project for the following reasons:</p>
+        <ul>
+          <li><strong>Credibility:</strong> Visitors can identify stock photos instantly. They signal that a company either does not have real operations worth photographing or does not care enough to show them. For a conglomerate with seven active divisions, this would be a missed opportunity.</li>
+          <li><strong>Trust:</strong> Authentic photos build trust. When a potential partner sees your actual farm, your real team, and your genuine facilities, they know they are dealing with a real, operational business.</li>
+          <li><strong>Differentiation:</strong> Your competitors may use the same stock photos. Your authentic photos are uniquely yours and cannot appear on any other website.</li>
+          <li><strong>Legal risk:</strong> Stock photo licensing is complex. Authentic photos that you own outright carry no licensing risks.</li>
+        </ul>
+        <p>If professional photography cannot be arranged, high-quality photos taken with a modern smartphone (2020 or newer) are acceptable, provided the guidelines below are followed.</p>
+      </div>
+
+      <h3>Shot List by Division Type</h3>
+
+      <div class="photo-checklist">
+        <div class="photo-checklist-item">
+          <h5>Crop Farming</h5>
+          <ul>
+            <li>Wide aerial or panoramic view of farmland showing scale</li>
+            <li>Close-up of crops at various growth stages (seedling, mid-growth, harvest-ready)</li>
+            <li>Planting or sowing operations with workers and equipment</li>
+            <li>Harvesting operations in action</li>
+            <li>Farming equipment and machinery (tractors, irrigation systems, planters)</li>
+            <li>Storage facilities (silos, warehouses, drying areas)</li>
+            <li>Workers in the field performing various tasks</li>
+            <li>Irrigation infrastructure if applicable</li>
+            <li>Produce after harvest (bags, crates, or bulk)</li>
+            <li>Farm entrance or signage</li>
+          </ul>
+        </div>
+
+        <div class="photo-checklist-item">
+          <h5>Animal Husbandry</h5>
+          <ul>
+            <li>Livestock in open grazing or pasture (wide shot showing numbers)</li>
+            <li>Close-up portraits of healthy, well-kept animals</li>
+            <li>Animal housing and shelter facilities</li>
+            <li>Feeding operations (feed storage, troughs, feeding time)</li>
+            <li>Veterinary care or health monitoring activities</li>
+            <li>Poultry houses or hatcheries if applicable</li>
+            <li>Workers interacting with animals (feeding, herding, monitoring)</li>
+            <li>Water supply infrastructure for animals</li>
+            <li>Young animals or breeding stock</li>
+            <li>Processing or output (eggs, milk, live sales area)</li>
+          </ul>
+        </div>
+
+        <div class="photo-checklist-item">
+          <h5>Agro-Processing</h5>
+          <ul>
+            <li>Factory or processing facility exterior (full building shot)</li>
+            <li>Interior of production floor showing machinery and workflow</li>
+            <li>Raw materials being received or stored</li>
+            <li>Processing equipment in operation (milling, pressing, sorting)</li>
+            <li>Quality control and testing processes</li>
+            <li>Finished products on the production line</li>
+            <li>Packaging and labelling operations</li>
+            <li>Workers in appropriate protective equipment (hairnets, gloves, aprons)</li>
+            <li>Warehoused finished goods ready for distribution</li>
+            <li>Loading dock or dispatch area</li>
+          </ul>
+        </div>
+
+        <div class="photo-checklist-item">
+          <h5>Commodity Marketing</h5>
+          <ul>
+            <li>Warehouses with stored commodities (showing volume and organisation)</li>
+            <li>Commodity grading, sorting, or quality testing</li>
+            <li>Product packaging and branding</li>
+            <li>Loading and shipping operations</li>
+            <li>Market or trading environments</li>
+            <li>Close-up product shots (grains, produce, raw materials)</li>
+            <li>Transportation and logistics (trucks, containers)</li>
+            <li>Client meetings or deal negotiations</li>
+            <li>Office or trading floor environment</li>
+            <li>Inventory or stock management systems in use</li>
+          </ul>
+        </div>
+
+        <div class="photo-checklist-item">
+          <h5>Real Estate</h5>
+          <ul>
+            <li>Completed project exteriors (multiple angles, shot during the "golden hour" just after sunrise or before sunset for best lighting)</li>
+            <li>Interior shots of key spaces (living rooms, bedrooms, offices, lobbies)</li>
+            <li>Construction in progress (foundation, framing, roofing stages)</li>
+            <li>Team on site with hard hats and safety gear</li>
+            <li>Architectural details (facades, entrances, landscaping)</li>
+            <li>Aerial or elevated view of developments</li>
+            <li>Before-and-after comparisons of land or renovation projects</li>
+            <li>Community amenities or infrastructure</li>
+            <li>Signage and branding at project sites</li>
+            <li>Handover or completion ceremony photos</li>
+          </ul>
+        </div>
+
+        <div class="photo-checklist-item">
+          <h5>Import &amp; Export / Trade</h5>
+          <ul>
+            <li>Shipping containers being loaded or unloaded</li>
+            <li>Warehouse interior showing organised inventory</li>
+            <li>Products being inspected, sorted, or prepared for export</li>
+            <li>Packaging and crating operations</li>
+            <li>Port, customs, or logistics terminal activity</li>
+            <li>Transportation vehicles (trucks, container ships at port)</li>
+            <li>Documentation and clearance processes</li>
+            <li>Product samples or catalogue shots</li>
+            <li>International trade meetings or exhibitions</li>
+            <li>Import arrival and inspection</li>
+          </ul>
+        </div>
+
+        <div class="photo-checklist-item">
+          <h5>Oil &amp; Gas</h5>
+          <ul>
+            <li>Fuel station exterior (full branded frontage, clean and well-lit)</li>
+            <li>Fuel station forecourt showing pumps and canopy</li>
+            <li>Tanker trucks or haulage fleet (line-up showing fleet size)</li>
+            <li>Fuel loading or delivery operations</li>
+            <li>Depot or storage facility</li>
+            <li>Safety equipment and procedures (fire extinguishers, PPE, safety signage)</li>
+            <li>Team members in PPE at operational sites</li>
+            <li>Convenience store or retail area at stations</li>
+            <li>LPG operations if applicable (cylinders, filling, distribution)</li>
+            <li>Maintenance or safety drills</li>
+          </ul>
+        </div>
+
+        <div class="photo-checklist-item">
+          <h5>General / Corporate</h5>
+          <ul>
+            <li>Company headquarters exterior</li>
+            <li>Office interior (reception, meeting rooms, workspaces)</li>
+            <li>Full leadership team group photo</li>
+            <li>Individual headshots of all listed team members</li>
+            <li>Company events (awards, celebrations, launches)</li>
+            <li>Community engagement or CSR activities</li>
+            <li>Training or team development sessions</li>
+            <li>Historical photos (founding days, early operations, milestone events)</li>
+            <li>Company vehicles or branded assets</li>
+            <li>Any awards, trophies, or certificates on display</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Tips for Taking Good Photos Without a Professional Photographer</h3>
+      <div class="guideline-grid">
+        <div class="guideline-card">
+          <h4>Lighting</h4>
+          <p>Natural light is your best friend. Shoot outdoors in the early morning (7-9 AM) or late afternoon (4-6 PM) when the light is warm and soft. Avoid midday sun, which creates harsh shadows. Indoors, position subjects near large windows. Never shoot with a bright light source (window or sun) directly behind your subject.</p>
+        </div>
+        <div class="guideline-card">
+          <h4>Stability</h4>
+          <p>Hold the phone or camera with both hands and brace your elbows against your body. Better yet, use a tripod or rest the camera on a stable surface. Blurry photos from camera shake are the most common problem and cannot be fixed afterwards.</p>
+        </div>
+        <div class="guideline-card">
+          <h4>Composition</h4>
+          <p>Use the "rule of thirds": imagine the frame divided into a 3x3 grid and place key subjects along the grid lines or at their intersections. Most phone cameras have a grid overlay option in settings. Leave some space around your subject rather than cropping too tightly.</p>
+        </div>
+        <div class="guideline-card">
+          <h4>Clean the Scene</h4>
+          <p>Before shooting, remove distracting elements: clutter, rubbish, personal items, brand logos of competitors, or anything that does not represent the company positively. Make sure uniforms are clean, safety gear is worn properly, and work areas are tidy.</p>
+        </div>
+        <div class="guideline-card">
+          <h4>Multiple Angles</h4>
+          <p>Take each shot from at least three different angles and distances (wide, medium, close-up). Take more photos than you think you need. It is far easier to choose from 20 photos than to reshoot because none of the original 5 worked.</p>
+        </div>
+        <div class="guideline-card">
+          <h4>People in Photos</h4>
+          <p>Include people in operational shots to add scale and human interest. People should be actively doing something (not posing awkwardly for the camera). Ensure everyone is wearing appropriate attire and safety gear for the setting. Obtain verbal or written consent from every person photographed.</p>
+        </div>
+        <div class="guideline-card">
+          <h4>Phone Camera Settings</h4>
+          <p>Shoot at the highest resolution available. Do not use digital zoom (it degrades quality; move closer instead). Turn off beauty filters and HDR modes for operational shots. Clean the camera lens with a soft cloth before shooting. Use the main camera, not the selfie camera, for all non-headshot photos.</p>
+        </div>
+        <div class="guideline-card">
+          <h4>Headshot Tips</h4>
+          <p>Have the subject stand facing a window or in open shade outdoors. Use a plain wall as the background (white, grey, or a neutral colour). Frame from the chest up. Have them look directly at the camera with a natural, relaxed expression. Take at least 10 shots to get one good one.</p>
+        </div>
+      </div>
+
+      <h3>Photo Naming Convention</h3>
+      <p>Consistent file naming prevents confusion and makes it easy to match photos to content. Name every photo file using this format:</p>
+      <div class="highlight-box">
+        <p style="font-family: var(--font-mono); font-size: 1.05rem; text-align: center; margin-bottom: var(--space-md);"><strong>[division]_[description]_[number].jpg</strong></p>
+        <p><strong>Division prefix options:</strong></p>
+        <ul>
+          <li><code>cropfarming</code> - Crop Farming division photos</li>
+          <li><code>animalhusbandry</code> - Animal Husbandry division photos</li>
+          <li><code>agroprocessing</code> - Agro-Processing division photos</li>
+          <li><code>commoditymarketing</code> - Commodity Marketing division photos</li>
+          <li><code>realestate</code> - Real Estate division photos</li>
+          <li><code>importexport</code> - Import &amp; Export division photos</li>
+          <li><code>oilgas</code> - Oil &amp; Gas division photos</li>
+          <li><code>corporate</code> - Company-wide or general photos</li>
+          <li><code>headshot</code> - Individual team headshots</li>
+        </ul>
+        <p><strong>Examples:</strong></p>
+        <ul>
+          <li><code>cropfarming_maize-harvest_01.jpg</code></li>
+          <li><code>cropfarming_irrigation-system_01.jpg</code></li>
+          <li><code>animalhusbandry_cattle-grazing_01.jpg</code></li>
+          <li><code>agroprocessing_factory-interior_01.jpg</code></li>
+          <li><code>agroprocessing_packaging-line_02.jpg</code></li>
+          <li><code>realestate_villa-exterior_01.jpg</code></li>
+          <li><code>realestate_construction-progress_03.jpg</code></li>
+          <li><code>oilgas_station-frontage_01.jpg</code></li>
+          <li><code>oilgas_tanker-fleet_01.jpg</code></li>
+          <li><code>importexport_warehouse-interior_02.jpg</code></li>
+          <li><code>corporate_office-exterior_01.jpg</code></li>
+          <li><code>corporate_team-event_01.jpg</code></li>
+          <li><code>headshot_ibrahim-musa_01.jpg</code> (use the person's name)</li>
+        </ul>
+        <p class="text-small text-muted">Use lowercase letters, hyphens between words, and underscores between sections. No spaces, no special characters, no capital letters.</p>
+      </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- SECTION 4: CONTENT BRIEF TEMPLATES -->
+    <!-- ============================================ -->
+    <div class="section" id="section-4">
+      <h2><span class="section-number">4</span> Content Brief Templates</h2>
+
+      <p>The following templates are ready-to-fill forms for each major content type. Copy these into Word documents or Google Docs, fill in the fields, and upload the completed versions to the shared project folder (see Section 5). Each template specifies exactly what is needed and how much to write.</p>
+
+      <!-- Company Overview Template -->
+      <div class="template-block">
+        <h4>Company Overview Template</h4>
+        <p class="text-small text-muted">Complete one copy for the entire company. This information appears on the Homepage and About Us page.</p>
+
+        <div class="field-row">
+          <span class="field-label">Company name (legal name):</span>
+          <span class="field-value"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Company name (trading name, if different):</span>
+          <span class="field-value"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Year established:</span>
+          <span class="field-value"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Headquarters location (city, state, country):</span>
+          <span class="field-value"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Number of employees (approximate):</span>
+          <span class="field-value"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Countries of operation:</span>
+          <span class="field-value"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">States or regions of operation:</span>
+          <span class="field-value"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Company description (200-300 words):</span>
+          <span class="field-value multi-line">Write a comprehensive overview of the entire conglomerate. Cover: what the company does across all divisions, its founding purpose, scale of operations, geographic reach, key markets served, and overall position in the industry. Write in third person ("The company..." not "We...").</span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Mission statement (1-3 sentences):</span>
+          <span class="field-value multi-line">What does the company exist to do? What impact does it aim to have on its industry, customers, and community?</span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Vision statement (1-3 sentences):</span>
+          <span class="field-value multi-line">Where is the company heading? What does it aspire to become or achieve in the long term?</span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Core value 1 - Name:</span>
+          <span class="field-value"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Core value 1 - Explanation (20-40 words):</span>
+          <span class="field-value multi-line">What does this value mean in practice at the company? How does it show up in daily operations?</span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Core value 2 - Name:</span>
+          <span class="field-value"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Core value 2 - Explanation (20-40 words):</span>
+          <span class="field-value multi-line"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Core value 3 - Name:</span>
+          <span class="field-value"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Core value 3 - Explanation (20-40 words):</span>
+          <span class="field-value multi-line"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Core value 4 - Name (optional):</span>
+          <span class="field-value"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Core value 4 - Explanation (20-40 words):</span>
+          <span class="field-value multi-line"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Core value 5 - Name (optional):</span>
+          <span class="field-value"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Core value 5 - Explanation (20-40 words):</span>
+          <span class="field-value multi-line"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Key achievement / milestone 1 (year + description):</span>
+          <span class="field-value"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Key achievement / milestone 2:</span>
+          <span class="field-value"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Key achievement / milestone 3:</span>
+          <span class="field-value"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Key achievement / milestone 4:</span>
+          <span class="field-value"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Key achievement / milestone 5:</span>
+          <span class="field-value"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Key achievement / milestone 6:</span>
+          <span class="field-value"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Key achievement / milestone 7:</span>
+          <span class="field-value"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Key achievement / milestone 8:</span>
+          <span class="field-value"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Key achievement / milestone 9:</span>
+          <span class="field-value"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Key achievement / milestone 10:</span>
+          <span class="field-value"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Additional milestones (continue numbering):</span>
+          <span class="field-value multi-line">List as many as relevant, up to 20. Include year and a one-sentence description for each.</span>
+        </div>
+      </div>
+
+      <!-- Division Profile Template -->
+      <div class="template-block">
+        <h4>Division Profile Template</h4>
+        <p class="text-small text-muted">Complete one copy for EACH of the 7 divisions. Label each copy clearly (e.g., "Division Profile - Crop Farming").</p>
+
+        <div class="field-row">
+          <span class="field-label">Division name:</span>
+          <span class="field-value"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Year this division started:</span>
+          <span class="field-value"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Division head / leader full name:</span>
+          <span class="field-value"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Division head / leader title:</span>
+          <span class="field-value"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Overview description (200-300 words):</span>
+          <span class="field-value multi-line">Describe what this division does, its scale, key operations, geographic reach, primary products or services, and its role within the conglomerate. Write for someone unfamiliar with the company who is deciding whether to do business with this division.</span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Service/Product 1 - Name:</span>
+          <span class="field-value"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Service/Product 1 - Description (50-100 words):</span>
+          <span class="field-value multi-line">What is this product or service? How is it delivered? What value does it provide to the customer?</span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Service/Product 2 - Name:</span>
+          <span class="field-value"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Service/Product 2 - Description (50-100 words):</span>
+          <span class="field-value multi-line"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Service/Product 3 - Name:</span>
+          <span class="field-value"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Service/Product 3 - Description (50-100 words):</span>
+          <span class="field-value multi-line"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Service/Product 4 - Name:</span>
+          <span class="field-value"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Service/Product 4 - Description (50-100 words):</span>
+          <span class="field-value multi-line"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Service/Product 5 - Name (if applicable):</span>
+          <span class="field-value"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Service/Product 5 - Description (50-100 words):</span>
+          <span class="field-value multi-line"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Service/Product 6 - Name (if applicable):</span>
+          <span class="field-value"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Service/Product 6 - Description (50-100 words):</span>
+          <span class="field-value multi-line"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">What makes this division different from competitors (50-100 words):</span>
+          <span class="field-value multi-line">What do you do better, differently, or that others cannot match? This could be about scale, technology, relationships, certifications, experience, or geographic access.</span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Key statistic 1 (number + label):</span>
+          <span class="field-value">e.g., "5,000 hectares under cultivation"</span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Key statistic 2:</span>
+          <span class="field-value"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Key statistic 3:</span>
+          <span class="field-value"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Key statistic 4:</span>
+          <span class="field-value"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Certifications or regulatory compliance (list all):</span>
+          <span class="field-value multi-line">Name of certification, issuing body, and year obtained. List each on a separate line.</span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Target customers (who buys from this division):</span>
+          <span class="field-value multi-line">Describe the primary customer segments: are they individuals, small businesses, corporations, government agencies, international buyers? Be specific about the type and size of customer.</span>
+        </div>
+      </div>
+
+      <!-- Team Member Template -->
+      <div class="template-block">
+        <h4>Team Member Template</h4>
+        <p class="text-small text-muted">Complete one copy for EACH person to appear on the website. This includes leadership team, division heads, and key personnel. Label each copy with the person's name.</p>
+
+        <div class="field-row">
+          <span class="field-label">Full name (as it should appear on site):</span>
+          <span class="field-value"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Job title:</span>
+          <span class="field-value"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Division:</span>
+          <span class="field-value">e.g., "Corporate / Executive", "Crop Farming", "Oil &amp; Gas"</span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Professional bio (100-150 words):</span>
+          <span class="field-value multi-line">Write in third person ("Mr. Ahmed has over 15 years of experience..."). Cover: professional background, years of experience, key expertise areas, relevant qualifications or education, notable achievements in their role, and what they bring to the company. Keep the tone professional but approachable.</span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Key qualification 1:</span>
+          <span class="field-value">e.g., "MBA, Ahmadu Bello University"</span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Key qualification 2:</span>
+          <span class="field-value"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Key qualification 3:</span>
+          <span class="field-value"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Key achievement 1:</span>
+          <span class="field-value">e.g., "Led the expansion of crop farming operations from 500 to 5,000 hectares"</span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Key achievement 2:</span>
+          <span class="field-value"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Key achievement 3:</span>
+          <span class="field-value"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Professional headshot:</span>
+          <span class="field-value multi-line">Upload to the shared folder under 03_Photography/Team_Headshots/. Requirements: minimum 800x800px, JPG, head and shoulders framing, plain or neutral background, well-lit with no harsh shadows, professional attire, natural and relaxed expression. Name the file: headshot_firstname-lastname_01.jpg</span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">LinkedIn profile URL (optional):</span>
+          <span class="field-value"></span>
+        </div>
+      </div>
+
+      <!-- Case Study Template -->
+      <div class="template-block">
+        <h4>Case Study Template</h4>
+        <p class="text-small text-muted">Complete at least 2 case studies per division (14 total minimum). Label each copy with the division name and project name (e.g., "Case Study - Crop Farming - Maize Cultivation Project").</p>
+
+        <div class="field-row">
+          <span class="field-label">Project or client name:</span>
+          <span class="field-value">The name you use to refer to this project or the client's name (with their permission)</span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Division:</span>
+          <span class="field-value"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Date or year:</span>
+          <span class="field-value"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Location (city, state, or region):</span>
+          <span class="field-value"></span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">The Challenge (50-100 words):</span>
+          <span class="field-value multi-line">What problem needed solving? What was the client's need or the market opportunity? What made this project difficult or significant? Set the scene so the reader understands why this project mattered.</span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">The Solution (100-150 words):</span>
+          <span class="field-value multi-line">What did your division do? Describe the approach, methods, resources deployed, and key decisions made. Be specific about what made your approach effective. This is your chance to demonstrate expertise and capability.</span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">The Outcome (50-100 words):</span>
+          <span class="field-value multi-line">What were the results? Use specific, measurable outcomes wherever possible: yield improvements, revenue generated, cost savings, timeframe achieved, client satisfaction metrics, units delivered, area covered. Concrete numbers are far more convincing than vague claims.</span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Client testimonial quote (if available):</span>
+          <span class="field-value multi-line">A direct quote from the client or partner about their experience working with you. Include the person's name, title, and organisation. Written permission to publish must be obtained.</span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Photo 1 description and filename:</span>
+          <span class="field-value">e.g., "Before - cleared land before planting. File: cropfarming_maize-project-before_01.jpg"</span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Photo 2 description and filename:</span>
+          <span class="field-value">e.g., "During - planting operations in progress. File: cropfarming_maize-project-planting_01.jpg"</span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Photo 3 description and filename:</span>
+          <span class="field-value">e.g., "After - mature crop ready for harvest. File: cropfarming_maize-project-harvest_01.jpg"</span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Additional photos (list descriptions and filenames):</span>
+          <span class="field-value multi-line">Provide as many relevant photos as available. Each photo should show a different aspect of the project. Upload all photos to the relevant division folder in 03_Photography/.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- SECTION 5: SHARED FOLDER STRUCTURE -->
+    <!-- ============================================ -->
+    <div class="section" id="section-5">
+      <h2><span class="section-number">5</span> Shared Folder Structure</h2>
+
+      <p>A well-organised shared folder is essential for managing the volume of content this project requires. Set this up on Google Drive (or a similar cloud platform) at the very start of the project. Share editing access with Awwal and all content contributors on your team. Every piece of content and every photograph should be uploaded here. Nothing should be sent via email or WhatsApp.</p>
+
+      <div class="folder-tree">
+<span class="folder">[COMPANY NAME] Website Project/</span>
+├── <span class="folder">00_Project_Documents/</span>
+│   ├── <span class="file">Service_Agreement.pdf</span>
+│   ├── <span class="file">Alignment_Document.pdf</span>
+│   └── <span class="file">Project_Roadmap.pdf</span>
+├── <span class="folder">01_Brand_Assets/</span>
+│   ├── <span class="folder">Existing_Logo/</span>
+│   ├── <span class="folder">Existing_Materials/</span>
+│   └── <span class="folder">Brand_References/</span>
+├── <span class="folder">02_Content/</span>
+│   ├── <span class="folder">Company_Overview/</span>
+│   ├── <span class="folder">Division_01_Crop_Farming/</span>
+│   ├── <span class="folder">Division_02_Animal_Husbandry/</span>
+│   ├── <span class="folder">Division_03_Agro_Processing/</span>
+│   ├── <span class="folder">Division_04_Commodity_Marketing/</span>
+│   ├── <span class="folder">Division_05_Real_Estate/</span>
+│   ├── <span class="folder">Division_06_Import_Export/</span>
+│   ├── <span class="folder">Division_07_Oil_Gas/</span>
+│   ├── <span class="folder">Team_Profiles/</span>
+│   ├── <span class="folder">Case_Studies/</span>
+│   └── <span class="folder">Legal_Pages/</span>
+├── <span class="folder">03_Photography/</span>
+│   ├── <span class="folder">Company_General/</span>
+│   ├── <span class="folder">Division_01_Crop_Farming/</span>
+│   ├── <span class="folder">Division_02_Animal_Husbandry/</span>
+│   ├── <span class="folder">Division_03_Agro_Processing/</span>
+│   ├── <span class="folder">Division_04_Commodity_Marketing/</span>
+│   ├── <span class="folder">Division_05_Real_Estate/</span>
+│   ├── <span class="folder">Division_06_Import_Export/</span>
+│   ├── <span class="folder">Division_07_Oil_Gas/</span>
+│   ├── <span class="folder">Team_Headshots/</span>
+│   └── <span class="folder">Facilities_Offices/</span>
+├── <span class="folder">04_Deliverables/</span>
+│   ├── <span class="folder">Stage_1_Foundation/</span>
+│   ├── <span class="folder">Stage_2_Design_Build/</span>
+│   └── <span class="folder">Stage_3_Launch/</span>
+└── <span class="folder">05_Feedback/</span>
+    ├── <span class="folder">Stage_1/</span>
+    └── <span class="folder">Stage_2/</span>
+      </div>
+
+      <h3>Folder Descriptions</h3>
+
+      <h4>00_Project_Documents/</h4>
+      <p>Central home for all project governance documents. Contains the signed service agreement, the alignment document (project scope, objectives, and mutual commitments), and the project roadmap (timeline, milestones, and deliverables). These documents are the reference point for any questions about what was agreed. Both Awwal and the client should keep these updated as the project progresses.</p>
+
+      <h4>01_Brand_Assets/</h4>
+      <dl class="folder-desc">
+        <dt>Existing_Logo/</dt>
+        <dd>Upload every version of the current company logo: full colour, black and white, icon-only, horizontal layout, stacked layout. Provide the highest resolution versions available. Preferred formats: AI (Adobe Illustrator), EPS, SVG, or PNG with transparent background. If only a JPG is available, that is acceptable as a starting point.</dd>
+        <dt>Existing_Materials/</dt>
+        <dd>Any existing marketing materials that show the current brand in use: brochures, business cards, letterheads, presentation decks, social media graphics, packaging designs, signage photos, uniforms, vehicle wraps. These help Awwal understand the existing brand identity and ensure the website aligns with or evolves from it.</dd>
+        <dt>Brand_References/</dt>
+        <dd>Examples of other websites, colour schemes, visual styles, or brands that the client admires or wants to take inspiration from. Include URLs or screenshots. Also include any formal brand guidelines document if one exists (specifying colours, fonts, logo usage rules, etc.).</dd>
+      </dl>
+
+      <h4>02_Content/</h4>
+      <dl class="folder-desc">
+        <dt>Company_Overview/</dt>
+        <dd>The completed Company Overview Template (Section 4), including company description, mission, vision, values, and milestone history. Also place the About Us page content, key statistics, and any company-wide narrative content here.</dd>
+        <dt>Division_01_Crop_Farming/ through Division_07_Oil_Gas/</dt>
+        <dd>Each division gets its own folder. Place the completed Division Profile Template, service/product descriptions, and any written content specific to that division here. Keep case study write-ups in the Case_Studies folder (see below), not in the division folders.</dd>
+        <dt>Team_Profiles/</dt>
+        <dd>Completed Team Member Templates for every person appearing on the website. One document per person, named clearly (e.g., "Team Profile - Ibrahim Musa.docx"). Do not place headshot photos here; those go in 03_Photography/Team_Headshots/.</dd>
+        <dt>Case_Studies/</dt>
+        <dd>Completed Case Study Templates, organised by division. Create sub-folders if needed (e.g., "Case_Studies/Crop_Farming/", "Case_Studies/Real_Estate/"). One document per case study. Accompanying photos go in the relevant division folder under 03_Photography/.</dd>
+        <dt>Legal_Pages/</dt>
+        <dd>Privacy policy, terms of use, and cookie policy drafts. If the company has existing legal documents, upload them here for adaptation. If Awwal is drafting these, the drafts will be placed here for client review and approval.</dd>
+      </dl>
+
+      <h4>03_Photography/</h4>
+      <dl class="folder-desc">
+        <dt>Company_General/</dt>
+        <dd>Photos that represent the company as a whole rather than a specific division: headquarters exterior and interior, company events, CSR activities, group team photos, historical photos, awards ceremonies, and company branding in the real world (vehicles, signage, exhibitions).</dd>
+        <dt>Division_01_Crop_Farming/ through Division_07_Oil_Gas/</dt>
+        <dd>All operational, project, and product photos specific to each division. Follow the naming convention in Section 3. Include gallery images, case study photos, and any other visual content related to that division's operations.</dd>
+        <dt>Team_Headshots/</dt>
+        <dd>Individual professional headshots for every person appearing on the website. Named using the convention: headshot_firstname-lastname_01.jpg. Include multiple options if available so the best one can be selected.</dd>
+        <dt>Facilities_Offices/</dt>
+        <dd>Photos of physical locations that serve the company as a whole: corporate headquarters, branch offices, reception areas, meeting rooms, co-working spaces, and any shared facilities that do not belong to a single division.</dd>
+      </dl>
+
+      <h4>04_Deliverables/</h4>
+      <dl class="folder-desc">
+        <dt>Stage_1_Foundation/</dt>
+        <dd>Awwal's deliverables from Stage 1 of the project: brand identity concepts, style tiles, mood boards, colour palette options, typography selections, and any foundational design work. Client reviews these and provides feedback in 05_Feedback/Stage_1/.</dd>
+        <dt>Stage_2_Design_Build/</dt>
+        <dd>Stage 2 deliverables: wireframes, page layout designs, homepage mockup, inner page mockups, and working prototypes or staging site links. Client reviews and provides feedback in 05_Feedback/Stage_2/.</dd>
+        <dt>Stage_3_Launch/</dt>
+        <dd>Final deliverables: completed website files, login credentials for the live hosting environment, CMS admin access, documentation on how to update the site, and any training materials.</dd>
+      </dl>
+
+      <h4>05_Feedback/</h4>
+      <dl class="folder-desc">
+        <dt>Stage_1/</dt>
+        <dd>Client feedback on Stage 1 deliverables. Upload written feedback documents, annotated screenshots, or recorded voice/video feedback. Keep all feedback for Stage 1 in this folder so nothing is lost across email threads.</dd>
+        <dt>Stage_2/</dt>
+        <dd>Client feedback on Stage 2 deliverables. Same approach: upload all feedback here. If providing feedback on specific pages, label files clearly (e.g., "Feedback - Homepage Design v2.docx", "Feedback - Crop Farming Page.docx").</dd>
+      </dl>
+
+      <div class="callout callout-success">
+        <p class="callout-title">Golden rule for the shared folder</p>
+        <p>If it relates to the website project, it goes in the shared folder. Not in email. Not in WhatsApp. Not on a personal hard drive. The shared folder is the single source of truth. If a file is not in the shared folder, it does not exist as far as the project is concerned.</p>
+      </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- SECTION 6: CONTENT DELIVERY SCHEDULE -->
+    <!-- ============================================ -->
+    <div class="section" id="section-6">
+      <h2><span class="section-number">6</span> Content Delivery Schedule</h2>
+
+      <p>Content deadlines are not arbitrary. Each deadline is tied to a specific project milestone. When content arrives on time, the project flows smoothly from one phase to the next. When content is late, the delays ripple forward and compound. The schedule below shows what is due when and why.</p>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-week">Weeks 1-2</div>
+          <div class="timeline-phase">Discovery and Foundation</div>
+          <p><strong>Project phase:</strong> Discovery calls, research, strategic alignment.</p>
+          <p><strong>Content due from client:</strong></p>
+          <ul>
+            <li>Company overview and basic information (company name, founding year, HQ location, employee count, countries/states of operation)</li>
+            <li>Existing brand materials (logos, brochures, business cards, any current marketing assets)</li>
+            <li>Current status of each division (active, planned, description of current operations)</li>
+            <li>Any existing website content or documentation that can be repurposed</li>
+            <li>Brand reference examples (websites, styles, or brands you admire)</li>
+            <li>Contact details (addresses, phone numbers, email addresses, social media links)</li>
+            <li>Operating hours for all locations</li>
+          </ul>
+          <p><strong>Why this matters:</strong> This information shapes the project strategy, site architecture, and brand direction. Without it, design work cannot begin on solid ground.</p>
+          <div class="callout callout-warning">
+            <p class="callout-title">If this content is late</p>
+            <p>Brand development cannot begin until the foundation information is in place. Every day of delay at this stage pushes the entire project timeline forward by the same amount. The discovery phase sets the pace for everything that follows.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-week">Weeks 3-4</div>
+          <div class="timeline-phase">Brand Development</div>
+          <p><strong>Project phase:</strong> Visual identity development, colour palette, typography, brand positioning.</p>
+          <p><strong>Content due from client:</strong></p>
+          <ul>
+            <li>Company history narrative (300-500 words)</li>
+            <li>Mission statement, vision statement, and core values</li>
+            <li>Team member bios (completed Team Member Templates for all people to appear on the site)</li>
+            <li>Team headshot photography (scheduled and taken during this window)</li>
+            <li>Division team members identified (names and titles confirmed for each division)</li>
+          </ul>
+          <p><strong>Why this matters:</strong> Bios and headshots are needed early because the "People" and "About" sections are foundational to the site's credibility. Photography takes time to organise, schedule, and execute, so starting now ensures photos are ready when design work calls for them.</p>
+          <div class="callout callout-warning">
+            <p class="callout-title">If this content is late</p>
+            <p>Design mockups will proceed with placeholder profiles and stock headshots. When real content arrives later, layouts may need to be redesigned to accommodate different bio lengths, photo styles, or team sizes. This creates rework that could have been avoided.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-week">Weeks 5-6</div>
+          <div class="timeline-phase">Wireframes and Information Architecture</div>
+          <p><strong>Project phase:</strong> Page layouts, content hierarchy, navigation structure, wireframe design.</p>
+          <p><strong>Content due from client:</strong></p>
+          <ul>
+            <li>All 7 division overview descriptions (200-300 words each)</li>
+            <li>All division service/product lists with descriptions (50-100 words each)</li>
+            <li>Homepage headline, subtext, overview paragraph, and key statistics</li>
+            <li>Company timeline / milestone list</li>
+            <li>Key achievements / numbers for the About page</li>
+            <li>Homepage call-to-action text</li>
+            <li>Division summary cards (short descriptions for homepage navigation)</li>
+            <li>Gallery photography for all 7 divisions (minimum 5 photos each)</li>
+            <li>Contact page details (map locations, contact form field preferences)</li>
+          </ul>
+          <p><strong>Why this matters:</strong> Wireframes are the blueprint for every page. They determine how much space each content block gets, how navigation works, and how information flows. Real content of the correct length is essential for accurate wireframing. Content that is "about 200 words" and content that is "exactly 287 words" produce very different layouts.</p>
+          <div class="callout callout-warning">
+            <p class="callout-title">If this content is late</p>
+            <p>Wireframes built without real content are guesswork. When actual content arrives and does not fit the wireframe, pages must be redesigned. This is the most common cause of project delays in web design. Providing content on time at this stage prevents weeks of rework later.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-week">Weeks 8-10</div>
+          <div class="timeline-phase">Visual Design and Detailed Content</div>
+          <p><strong>Project phase:</strong> Full-colour page designs, responsive layouts, interactive elements.</p>
+          <p><strong>Content due from client:</strong></p>
+          <ul>
+            <li>All case studies (minimum 2 per division, 14 total) with photographs</li>
+            <li>Client testimonials for each division (where available)</li>
+            <li>Featured testimonial for the homepage</li>
+            <li>Hero image or video for the homepage</li>
+            <li>Company culture description for the Careers page</li>
+            <li>Employee benefits list</li>
+            <li>Workplace photography</li>
+            <li>FAQ answers (all 10 questions)</li>
+            <li>Partner logos</li>
+            <li>Certification badges and logos</li>
+            <li>What makes each division different from competitors</li>
+            <li>Target customer descriptions for each division</li>
+          </ul>
+          <p><strong>Why this matters:</strong> Visual design is where the website truly comes to life. Every photograph, testimonial, and case study is placed into the design at this stage. Missing content means missing sections in the design, which means the client cannot accurately review and approve the design.</p>
+          <div class="callout callout-warning">
+            <p class="callout-title">If this content is late</p>
+            <p>Visual designs will be presented with gaps. Client approval becomes conditional ("we approve, but we still need to see the case studies in place"). Development may begin with missing sections, requiring integration work later that is more expensive and error-prone than doing it right the first time.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-week">Week 10</div>
+          <div class="timeline-phase">Legal and Final Content</div>
+          <p><strong>Project phase:</strong> Transition from design to development.</p>
+          <p><strong>Content due from client:</strong></p>
+          <ul>
+            <li>Privacy policy (provided or approved draft)</li>
+            <li>Terms of use (provided or approved draft)</li>
+            <li>Cookie policy (review and approve Awwal's draft)</li>
+            <li>Current job openings with full descriptions (minimum 3)</li>
+            <li>News articles (minimum 3 with photographs)</li>
+            <li>Any remaining division-specific content not yet submitted</li>
+          </ul>
+          <p><strong>Why this matters:</strong> Legal pages must be in place before launch. Job openings and news articles add credibility and freshness. Development is about to begin, and any content not yet received will need to be retrofitted into a partially built site.</p>
+          <div class="callout callout-warning">
+            <p class="callout-title">If this content is late</p>
+            <p>Development begins without these pages. They will need to be added after the main build, potentially delaying testing and launch. Legal pages are a compliance requirement and the site cannot go live without them.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item deadline-hard">
+          <div class="timeline-week">Week 12</div>
+          <div class="timeline-phase">HARD DEADLINE: All Content Must Be Delivered</div>
+          <p><strong>Project phase:</strong> Development is underway. Content integration and testing.</p>
+          <p><strong>Content due from client:</strong></p>
+          <ul>
+            <li>ALL remaining content, without exception</li>
+            <li>Any revisions to previously submitted content</li>
+            <li>Final approval on all photographs to be used</li>
+            <li>Confirmation that all team members have approved their bios and headshots</li>
+            <li>Final confirmation of all contact details, addresses, and phone numbers</li>
+          </ul>
+          <div class="callout callout-danger">
+            <p class="callout-title">This is a hard deadline</p>
+            <p>After Week 12, the development build is based on whatever content has been received. Content arriving after this deadline requires additional development cycles to integrate, which may trigger the late content provisions in the service agreement. Specifically:</p>
+            <ul>
+              <li>The project launch date will be pushed back by at least the duration of the delay, plus additional time for re-testing.</li>
+              <li>If content remains outstanding 2 weeks past this deadline, Awwal reserves the right to invoke the project pause clause as outlined in the service agreement.</li>
+              <li>Additional charges may apply for content integration work performed outside the original project scope and timeline.</li>
+            </ul>
+            <p><strong>There are no extensions to this deadline without a formal, written agreement from both parties that includes a revised timeline and any associated cost adjustments.</strong></p>
+          </div>
+        </div>
+      </div>
+
+      <h3>Summary: Content Due Dates at a Glance</h3>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Week</th>
+              <th>Project Phase</th>
+              <th>Content Categories Due</th>
+              <th>Items Count</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1-2</td>
+              <td>Discovery</td>
+              <td>Company basics, existing materials, contact details, brand references, division status</td>
+              <td>~15 items</td>
+            </tr>
+            <tr>
+              <td>3-4</td>
+              <td>Brand Development</td>
+              <td>Company history, mission/vision/values, team bios, headshots, division team lists</td>
+              <td>~20 items</td>
+            </tr>
+            <tr>
+              <td>5-6</td>
+              <td>Wireframes</td>
+              <td>Division overviews, service lists, homepage content, timeline, statistics, gallery photos, map details</td>
+              <td>~50 items</td>
+            </tr>
+            <tr>
+              <td>8-10</td>
+              <td>Visual Design</td>
+              <td>Case studies, testimonials, hero image/video, careers content, FAQ, partner logos, certifications</td>
+              <td>~40 items</td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td>Pre-Development</td>
+              <td>Legal pages, job openings, news articles, remaining content</td>
+              <td>~10 items</td>
+            </tr>
+            <tr style="background: #fdedec !important;">
+              <td><strong>12</strong></td>
+              <td><strong>HARD DEADLINE</strong></td>
+              <td><strong>ALL remaining content, revisions, and final approvals</strong></td>
+              <td><strong>Everything</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- SECTION 7: CONTENT QUALITY GUIDELINES -->
+    <!-- ============================================ -->
+    <div class="section" id="section-7">
+      <h2><span class="section-number">7</span> Content Quality Guidelines</h2>
+
+      <p>Good website content is not about fancy writing. It is about clear, purposeful communication that helps your visitors find what they need and take action. The following guidelines will help you write content that works well on the web and reduces the number of revision rounds needed.</p>
+
+      <div class="guideline-grid">
+        <div class="guideline-card">
+          <h4>Write for Your Audience, Not for Yourself</h4>
+          <p>Before writing any content, ask: "Who will read this, and what do they need to know?" A potential investor reads differently from a farmer looking to buy seeds. A job seeker reads differently from a bulk commodity buyer. Tailor your language, tone, and detail level to the person you most want to reach on each page.</p>
+        </div>
+
+        <div class="guideline-card">
+          <h4>Keep Paragraphs Short</h4>
+          <p>On a screen, long paragraphs are intimidating walls of text. Most visitors scan rather than read word-by-word. Limit paragraphs to 3-4 sentences maximum. Break complex ideas into multiple short paragraphs. Use bullet points for lists of items, features, or benefits. White space is your friend.</p>
+        </div>
+
+        <div class="guideline-card">
+          <h4>Lead With the Most Important Information</h4>
+          <p>Put the conclusion first, then the supporting details. Most visitors will not read past the first sentence of a section. If your key message is buried in the third paragraph, most people will never see it. Open every section with the single most important thing the reader should know.</p>
+        </div>
+
+        <div class="guideline-card">
+          <h4>Use Specific Numbers, Not Vague Claims</h4>
+          <p>Vague claims like "we serve many farmers" or "we have extensive experience" say nothing and convince no one. Specific numbers are compelling and credible. Write "Serving 500+ farmers across 12 states" instead. Write "15 years of continuous operation" instead of "many years of experience." If you have the numbers, use them.</p>
+        </div>
+
+        <div class="guideline-card">
+          <h4>Avoid Jargon Unless Your Audience Expects It</h4>
+          <p>Industry terminology can make you sound knowledgeable to insiders, but it confuses everyone else. Use plain language for general pages (Homepage, About, Contact). Use technical terms only on division-specific pages where the audience is likely to be industry professionals. When in doubt, choose the simpler word.</p>
+        </div>
+
+        <div class="guideline-card">
+          <h4>Every Page Needs a Clear Purpose and Call to Action</h4>
+          <p>Before writing content for any page, answer two questions: "What is the purpose of this page?" and "What do I want the visitor to do after reading it?" The purpose shapes what you write. The call to action tells the visitor what to do next: contact you, request a quote, explore a division, apply for a job, or learn more.</p>
+        </div>
+
+        <div class="guideline-card">
+          <h4>Write in Active Voice</h4>
+          <p>Active voice is more direct and engaging. Write "Our team cultivates 5,000 hectares of farmland" instead of "5,000 hectares of farmland are cultivated by our team." Active voice tells the reader who is doing what, making the content stronger and easier to understand.</p>
+        </div>
+
+        <div class="guideline-card">
+          <h4>Proofread Everything</h4>
+          <p>Spelling errors, grammatical mistakes, and inconsistencies undermine credibility. Before submitting any content, read it aloud to catch awkward phrasing. Have a second person review it. Check that company names, job titles, and statistics are consistent across all documents. If in doubt, provide raw information and Awwal can help refine the writing.</p>
+        </div>
+      </div>
+
+      <h3>Quick Reference: Word Count Guide</h3>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Content Type</th>
+              <th>Word Count</th>
+              <th>Equivalent</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Headline</td>
+              <td>3-10 words</td>
+              <td>1 short sentence</td>
+            </tr>
+            <tr>
+              <td>Subtext / tagline</td>
+              <td>15-25 words</td>
+              <td>1-2 sentences</td>
+            </tr>
+            <tr>
+              <td>Mission / Vision statement</td>
+              <td>20-50 words</td>
+              <td>1-3 sentences</td>
+            </tr>
+            <tr>
+              <td>Core value explanation</td>
+              <td>20-40 words</td>
+              <td>2-3 sentences</td>
+            </tr>
+            <tr>
+              <td>Service / product description</td>
+              <td>50-100 words</td>
+              <td>1 short paragraph</td>
+            </tr>
+            <tr>
+              <td>Team member bio</td>
+              <td>100-150 words</td>
+              <td>1-2 paragraphs</td>
+            </tr>
+            <tr>
+              <td>Division overview</td>
+              <td>200-300 words</td>
+              <td>2-3 paragraphs</td>
+            </tr>
+            <tr>
+              <td>Company history</td>
+              <td>300-500 words</td>
+              <td>3-5 paragraphs</td>
+            </tr>
+            <tr>
+              <td>News article</td>
+              <td>300-500 words</td>
+              <td>3-5 paragraphs</td>
+            </tr>
+            <tr>
+              <td>Case study (total)</td>
+              <td>200-350 words</td>
+              <td>Challenge + Solution + Outcome combined</td>
+            </tr>
+            <tr>
+              <td>FAQ answer</td>
+              <td>30-80 words</td>
+              <td>2-4 sentences</td>
+            </tr>
+            <tr>
+              <td>Testimonial quote</td>
+              <td>30-80 words</td>
+              <td>2-4 sentences</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- SECTION 8: CHASING CONTENT (INTERNAL) -->
+    <!-- ============================================ -->
+    <div class="section" id="section-8">
+      <h2><span class="section-number">8</span> Chasing Content (Internal Guide)</h2>
+
+      <div class="internal-banner">
+        INTERNAL USE ONLY - FOR LAWAL AWWAL - NOT FOR CLIENT DISTRIBUTION
+      </div>
+
+      <p>Content chasing is an inevitable part of freelance web design. This section provides a systematic approach to following up on late content, protecting yourself contractually, and maintaining the client relationship throughout the process.</p>
+
+      <h3>Follow-Up Timeline</h3>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Timing</th>
+              <th>Action</th>
+              <th>Tone</th>
+              <th>Method</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>3 days before deadline</strong></td>
+              <td>First reminder</td>
+              <td>Friendly, helpful</td>
+              <td>Email + WhatsApp message</td>
+            </tr>
+            <tr>
+              <td><strong>On deadline day</strong></td>
+              <td>Second reminder</td>
+              <td>Professional, firmer</td>
+              <td>Email (creates paper trail)</td>
+            </tr>
+            <tr>
+              <td><strong>3 days after deadline</strong></td>
+              <td>Escalation notice</td>
+              <td>Formal, references contract</td>
+              <td>Email only (documented)</td>
+            </tr>
+            <tr>
+              <td><strong>7 days after deadline</strong></td>
+              <td>Impact assessment</td>
+              <td>Formal, outlines consequences</td>
+              <td>Email with revised timeline</td>
+            </tr>
+            <tr>
+              <td><strong>14 days after deadline</strong></td>
+              <td>Project pause consideration</td>
+              <td>Firm but professional</td>
+              <td>Formal email, reference pause clause</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Email Template 1: First Reminder (3 Days Before Deadline)</h3>
+      <div class="email-template">
+        <div class="email-header">
+          <div class="email-field">
+            <span class="email-field-label">Subject:</span>
+            <span>Friendly Reminder: Website Content Due [DATE] - [CONTENT CATEGORY]</span>
+          </div>
+          <div class="email-field">
+            <span class="email-field-label">Send to:</span>
+            <span>[Client primary contact]</span>
+          </div>
+          <div class="email-field">
+            <span class="email-field-label">Send via:</span>
+            <span>Email + brief WhatsApp follow-up</span>
+          </div>
+        </div>
+        <div class="email-body">
+          <p>Hi [NAME],</p>
+          <p>I hope all is well. Just a quick heads-up that the following content is due on <strong>[DATE]</strong> (that is [DAY OF WEEK], three days from now):</p>
+          <ul>
+            <li>[Content item 1]</li>
+            <li>[Content item 2]</li>
+            <li>[Content item 3]</li>
+          </ul>
+          <p>These items feed directly into the <strong>[PROJECT PHASE]</strong> phase of the project, which is scheduled to begin on <strong>[PHASE START DATE]</strong>. Having them on time means we stay on track for your <strong>[MILESTONE, e.g., "homepage design review"]</strong>.</p>
+          <p>As a reminder, you can upload everything to the shared folder here: <strong>[SHARED FOLDER LINK]</strong></p>
+          <p>If you have any questions about what is needed or would like to discuss any of the items, I am happy to jump on a quick call.</p>
+          <p>Thank you,<br>Awwal</p>
+        </div>
+      </div>
+
+      <h3>Email Template 2: Second Reminder (On Deadline Day)</h3>
+      <div class="email-template">
+        <div class="email-header">
+          <div class="email-field">
+            <span class="email-field-label">Subject:</span>
+            <span>Content Due Today: [CONTENT CATEGORY] - Action Needed</span>
+          </div>
+          <div class="email-field">
+            <span class="email-field-label">Send to:</span>
+            <span>[Client primary contact]</span>
+          </div>
+          <div class="email-field">
+            <span class="email-field-label">Send via:</span>
+            <span>Email only</span>
+          </div>
+        </div>
+        <div class="email-body">
+          <p>Hi [NAME],</p>
+          <p>I wanted to follow up on the content items that are due today, <strong>[DATE]</strong>. I have checked the shared folder and the following items have not yet been uploaded:</p>
+          <ul>
+            <li>[Content item 1] - needed for [specific reason]</li>
+            <li>[Content item 2] - needed for [specific reason]</li>
+            <li>[Content item 3] - needed for [specific reason]</li>
+          </ul>
+          <p>I understand that gathering content across seven divisions is a significant task, and I appreciate the effort your team is putting in. However, I want to be transparent about the impact on the project timeline:</p>
+          <p>The <strong>[PROJECT PHASE]</strong> phase is scheduled to begin on <strong>[DATE]</strong>, and these items are prerequisites. If they are delayed, I will need to adjust the project schedule accordingly, which will push the <strong>[NEXT MILESTONE]</strong> from <strong>[ORIGINAL DATE]</strong> to a later date.</p>
+          <p>If there are specific items your team is finding difficult or unclear, please let me know and I can provide guidance or simplify the requirements.</p>
+          <p>Could you please confirm when I can expect these items?</p>
+          <p>Thank you,<br>Awwal</p>
+        </div>
+      </div>
+
+      <h3>Email Template 3: Escalation (3 Days After Deadline)</h3>
+      <div class="email-template">
+        <div class="email-header">
+          <div class="email-field">
+            <span class="email-field-label">Subject:</span>
+            <span>Project Update: Outstanding Content and Timeline Impact - [COMPANY NAME] Website</span>
+          </div>
+          <div class="email-field">
+            <span class="email-field-label">Send to:</span>
+            <span>[Client primary contact] + [Client decision-maker/MD if different]</span>
+          </div>
+          <div class="email-field">
+            <span class="email-field-label">Send via:</span>
+            <span>Email only (formal record)</span>
+          </div>
+        </div>
+        <div class="email-body">
+          <p>Dear [NAME],</p>
+          <p>I am writing to provide a formal update on the status of content delivery for the [COMPANY NAME] website project.</p>
+          <p>The following content items were due on <strong>[ORIGINAL DEADLINE]</strong> and remain outstanding as of today, <strong>[TODAY'S DATE]</strong>:</p>
+          <ul>
+            <li>[Content item 1]</li>
+            <li>[Content item 2]</li>
+            <li>[Content item 3]</li>
+          </ul>
+          <p><strong>Impact on the project:</strong></p>
+          <p>As outlined in our alignment document and discussed at the project kickoff, content delivery timelines are directly tied to project milestones. The current delay of [NUMBER] days means:</p>
+          <ul>
+            <li>The <strong>[CURRENT PHASE]</strong> phase cannot be completed as planned.</li>
+            <li>The <strong>[NEXT MILESTONE]</strong>, originally scheduled for <strong>[DATE]</strong>, will need to be pushed back by a minimum of <strong>[NUMBER]</strong> working days.</li>
+            <li>The projected launch date moves from <strong>[ORIGINAL LAUNCH DATE]</strong> to <strong>[REVISED ESTIMATE]</strong> at minimum.</li>
+          </ul>
+          <p>As per Section [X] of our service agreement, delays caused by late content delivery from the client may result in a revised project timeline and, if the delay exceeds [THRESHOLD] days, may incur additional project management charges.</p>
+          <p>I remain fully committed to delivering an excellent website for [COMPANY NAME] and want to work with you to get back on track. I would suggest we schedule a brief call this week to discuss a realistic plan for the outstanding content and agree on a revised delivery schedule.</p>
+          <p>Please let me know your availability.</p>
+          <p>Kind regards,<br>Lawal Awwal<br>Web Designer / Developer</p>
+        </div>
+      </div>
+
+      <h3>Email Template 4: Impact Assessment (7 Days After Deadline)</h3>
+      <div class="email-template">
+        <div class="email-header">
+          <div class="email-field">
+            <span class="email-field-label">Subject:</span>
+            <span>Revised Project Timeline - [COMPANY NAME] Website</span>
+          </div>
+          <div class="email-field">
+            <span class="email-field-label">Send to:</span>
+            <span>[Client primary contact] + [Client decision-maker]</span>
+          </div>
+          <div class="email-field">
+            <span class="email-field-label">Send via:</span>
+            <span>Email only (formal record)</span>
+          </div>
+        </div>
+        <div class="email-body">
+          <p>Dear [NAME],</p>
+          <p>Further to my previous communications regarding outstanding content, I am writing to formally document the revised project timeline necessitated by the current delays.</p>
+          <p><strong>Content status as of [TODAY'S DATE]:</strong></p>
+          <ul>
+            <li>Items received on time: [NUMBER] of [TOTAL]</li>
+            <li>Items received late: [NUMBER]</li>
+            <li>Items still outstanding: [NUMBER] (now [DAYS] days overdue)</li>
+          </ul>
+          <p><strong>Revised timeline:</strong></p>
+          <ul>
+            <li>[PHASE]: Original date [DATE], revised to [DATE]</li>
+            <li>[PHASE]: Original date [DATE], revised to [DATE]</li>
+            <li>[PHASE]: Original date [DATE], revised to [DATE]</li>
+            <li>Projected launch: Original [DATE], revised to [DATE]</li>
+          </ul>
+          <p>This revised timeline assumes all outstanding content will be received within [NUMBER] working days from today. Further delays will require additional timeline adjustments.</p>
+          <p>Please review the revised timeline above and confirm your acknowledgement by replying to this email. If you would prefer to discuss this in a call, I am available at [YOUR AVAILABILITY].</p>
+          <p>I want to reiterate that I am committed to delivering the best possible result for this project. Timely content delivery is the most important thing you can do to keep us on track.</p>
+          <p>Kind regards,<br>Lawal Awwal<br>Web Designer / Developer</p>
+        </div>
+      </div>
+
+      <h3>Email Template 5: Project Pause Notice (14 Days After Deadline)</h3>
+      <div class="email-template">
+        <div class="email-header">
+          <div class="email-field">
+            <span class="email-field-label">Subject:</span>
+            <span>IMPORTANT: Project Pause Notice - [COMPANY NAME] Website</span>
+          </div>
+          <div class="email-field">
+            <span class="email-field-label">Send to:</span>
+            <span>[Client primary contact] + [Client decision-maker] + [Any other stakeholders]</span>
+          </div>
+          <div class="email-field">
+            <span class="email-field-label">Send via:</span>
+            <span>Email only (formal record, keep delivery receipt)</span>
+          </div>
+        </div>
+        <div class="email-body">
+          <p>Dear [NAME],</p>
+          <p>I am writing regarding the [COMPANY NAME] website project, reference [PROJECT REFERENCE/AGREEMENT NUMBER].</p>
+          <p>Despite multiple communications on [DATE OF REMINDER 1], [DATE OF REMINDER 2], [DATE OF ESCALATION], and [DATE OF IMPACT ASSESSMENT], a significant volume of content required for the project remains outstanding. It is now <strong>[NUMBER] days</strong> past the agreed content delivery deadline.</p>
+          <p><strong>Outstanding items:</strong></p>
+          <ul>
+            <li>[List all outstanding items]</li>
+          </ul>
+          <p>As provided for in Section [X] of our service agreement, when client-side deliverables are delayed beyond [THRESHOLD] days, I reserve the right to pause active project work until the outstanding items are received.</p>
+          <p><strong>Effective [DATE - typically 3 working days from this email], the project will be placed on pause.</strong></p>
+          <p>What this means:</p>
+          <ul>
+            <li>Active design and development work will be suspended.</li>
+            <li>The project will be resumed within [NUMBER] working days of receiving all outstanding content.</li>
+            <li>The project timeline will be recalculated from the resume date.</li>
+            <li>Depending on the duration of the pause and the impact on my schedule, a project re-engagement fee may apply as outlined in the service agreement.</li>
+            <li>All work completed to date is preserved and will carry forward when the project resumes.</li>
+          </ul>
+          <p>I want to emphasise that this decision is not taken lightly. I have greatly valued working with you and your team, and I remain committed to completing this project to the highest standard. However, I must manage my professional commitments responsibly, and an indefinite hold on project progress is not sustainable.</p>
+          <p>If you would like to discuss a plan to resolve the outstanding content and avoid the pause, please contact me before <strong>[PAUSE EFFECTIVE DATE]</strong>. I am open to finding a workable solution.</p>
+          <p>Kind regards,<br>Lawal Awwal<br>Web Designer / Developer<br>[Phone number]<br>[Email address]</p>
+        </div>
+      </div>
+
+      <h3>When to Invoke the Project Pause Clause</h3>
+      <p>The pause clause is a last resort. Before invoking it, ensure all of the following are true:</p>
+      <ol>
+        <li><strong>You have a documented trail:</strong> All reminder emails have been sent on schedule and you have records (sent emails, read receipts where possible).</li>
+        <li><strong>The delay is significant:</strong> At least 14 calendar days past the deadline, and the delay is blocking meaningful progress on the project.</li>
+        <li><strong>You have offered alternatives:</strong> You have offered calls, simplified requirements, extended mini-deadlines, and the client has not responded or has not followed through.</li>
+        <li><strong>Your contract supports it:</strong> The service agreement contains a clause that permits pausing work due to client delays. If it does not, you cannot invoke this. Instead, document the delays and negotiate.</li>
+        <li><strong>You are prepared for the consequence:</strong> A pause may damage the client relationship. Weigh this against the cost of indefinite waiting. If the client is a major account or a referral source, consider whether a more flexible approach (extra reminders, in-person visit, offering to write content from interview notes) would be more strategic.</li>
+      </ol>
+
+      <h3>How to Document Delivery Status</h3>
+      <p>Maintain a private tracking spreadsheet (not shared with the client) that records the following for every content item:</p>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Column</th>
+              <th>What to Record</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Content Item</strong></td>
+              <td>The specific item name, matching the Master Content Inventory in Section 2.</td>
+            </tr>
+            <tr>
+              <td><strong>Division / Category</strong></td>
+              <td>Which division or page this content belongs to.</td>
+            </tr>
+            <tr>
+              <td><strong>Original Due Date</strong></td>
+              <td>The date from the agreed schedule.</td>
+            </tr>
+            <tr>
+              <td><strong>Reminder 1 Sent</strong></td>
+              <td>Date you sent the first reminder (3 days before deadline). Leave blank if not yet applicable.</td>
+            </tr>
+            <tr>
+              <td><strong>Reminder 2 Sent</strong></td>
+              <td>Date you sent the second reminder (on deadline day).</td>
+            </tr>
+            <tr>
+              <td><strong>Escalation Sent</strong></td>
+              <td>Date you sent the escalation email (3 days after deadline). Leave blank if content arrived on time.</td>
+            </tr>
+            <tr>
+              <td><strong>Date Received</strong></td>
+              <td>The actual date the content was uploaded to the shared folder or otherwise delivered.</td>
+            </tr>
+            <tr>
+              <td><strong>Days Late</strong></td>
+              <td>Number of days between the due date and the received date. 0 if on time. Negative if early.</td>
+            </tr>
+            <tr>
+              <td><strong>Quality Status</strong></td>
+              <td>"Usable as-is", "Needs minor edits", "Needs major revision", or "Unusable - must redo". Note what the issues are.</td>
+            </tr>
+            <tr>
+              <td><strong>Notes</strong></td>
+              <td>Any relevant context: who provided it, verbal commitments made, reasons given for delay, or quality issues found.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>Update this spreadsheet at least twice per week during active content collection phases. This record serves three purposes:</p>
+      <ol>
+        <li><strong>Self-protection:</strong> If a dispute arises about whether content was delivered or when, you have a complete record.</li>
+        <li><strong>Project management:</strong> You can see at a glance which items are blocking progress and prioritise your follow-ups accordingly.</li>
+        <li><strong>Pattern recognition:</strong> If a specific division or person is consistently late, you can address this directly with the client by offering additional support or adjusting expectations for that area.</li>
+      </ol>
+
+      <h3>Additional Strategies for Difficult Content Collection</h3>
+      <ul>
+        <li><strong>Offer to conduct interviews:</strong> If the client struggles to write content, offer to interview them (by phone or video call) and write the content yourself based on their answers. This is faster for them and gives you more control over quality. Factor the time into your project estimate.</li>
+        <li><strong>Break large requests into smaller tasks:</strong> Instead of asking for "all 7 division overviews," ask for one division per week. Smaller asks feel more achievable.</li>
+        <li><strong>Provide examples:</strong> Write one division overview as a sample and send it to the client as a reference for the remaining six. People write better when they have a model to follow.</li>
+        <li><strong>Set up a content workshop:</strong> Block 2-3 hours with the client and key team members. Walk through the templates together, answer questions in real-time, and get as much content drafted as possible in one session.</li>
+        <li><strong>Identify a content champion:</strong> Ask the client to designate one person whose job it is to coordinate content collection across all divisions. Having a single point of accountability is far more effective than chasing seven different people.</li>
+        <li><strong>Send weekly status updates:</strong> Every Friday, send a brief email summarising what has been received, what is outstanding, and what is due the following week. This keeps the project visible and creates ongoing accountability without being pushy.</li>
+        <li><strong>Celebrate submissions:</strong> When content arrives on time and is high quality, acknowledge it. A brief "Thank you, the Crop Farming overview is excellent and exactly what we needed" reinforces good behaviour and motivates the team to keep delivering.</li>
+      </ul>
+
+      <div class="callout callout-info">
+        <p class="callout-title">Remember</p>
+        <p>Content collection difficulty is not a reflection of the client's commitment to the project. Most clients genuinely want to provide content but are overwhelmed by the volume, unsure of what to write, or simply too busy with their core business. Your role is to make it as easy as possible for them to succeed, while protecting yourself and the project from the consequences of delays.</p>
+      </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- FOOTER -->
+    <!-- ============================================ -->
+    <div class="section" style="background: var(--color-primary); color: rgba(255,255,255,0.7); text-align: center; padding: var(--space-xl);">
+      <p style="margin-bottom: var(--space-xs); color: var(--color-accent-light); font-family: var(--font-heading); font-size: 1.1rem;">Content Collection System</p>
+      <p style="margin-bottom: var(--space-sm);">Lawal Awwal - Freelance Web Designer / Developer</p>
+      <p style="font-size: 0.8rem; color: rgba(255,255,255,0.4);">Version 1.0 - March 2026. Sections 1-7 may be shared with clients. Section 8 is for internal use only.</p>
+    </div>
+
+  </div>
+</body>
+</html>

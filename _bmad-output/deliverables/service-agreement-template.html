@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Service Agreement | Lawal Awwal &mdash; Web Design &amp; Development</title>
+<style>
+  /* ===== RESET & BASE ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0f1b2d;
+    --navy-light: #1a2a42;
+    --navy-faint: #f4f5f7;
+    --gold: #b8924a;
+    --gold-light: #d4b06a;
+    --gold-faint: #faf6ef;
+    --text: #2c2c2c;
+    --text-light: #5a5a5a;
+    --border: #dde0e4;
+    --white: #ffffff;
+    --radius: 6px;
+  }
+
+  html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: var(--text);
+    line-height: 1.72;
+    background: #eceef1;
+    padding: 2rem 1rem;
+  }
+
+  /* ===== DOCUMENT WRAPPER ===== */
+  .document {
+    max-width: 860px;
+    margin: 0 auto;
+    background: var(--white);
+    border-radius: 4px;
+    box-shadow: 0 2px 24px rgba(15,27,45,0.10);
+    overflow: hidden;
+  }
+
+  /* ===== HEADER ===== */
+  .doc-header {
+    background: var(--navy);
+    color: var(--white);
+    padding: 3rem 3.5rem 2.6rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .doc-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+  }
+
+  .doc-header .provider-name {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--gold);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+
+  .doc-header h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 2.3rem;
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 0.8rem;
+  }
+
+  .doc-header .subtitle {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.6);
+    font-weight: 400;
+  }
+
+  .doc-header .doc-meta {
+    margin-top: 1.8rem;
+    display: flex;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .doc-header .meta-item {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .doc-header .meta-item strong {
+    display: block;
+    color: var(--gold-light);
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.15rem;
+  }
+
+  /* ===== DISCLAIMER BANNER ===== */
+  .disclaimer-banner {
+    background: var(--gold-faint);
+    border-left: 4px solid var(--gold);
+    padding: 1.2rem 3.5rem 1.2rem 2rem;
+    margin: 0;
+    font-size: 0.88rem;
+    color: var(--text-light);
+    line-height: 1.6;
+  }
+
+  .disclaimer-banner strong {
+    color: var(--navy);
+    font-weight: 700;
+    display: block;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.2rem;
+  }
+
+  /* ===== BODY CONTENT ===== */
+  .doc-body {
+    padding: 2.5rem 3.5rem 3rem;
+  }
+
+  /* ===== SECTION HEADINGS ===== */
+  .section {
+    margin-bottom: 2.4rem;
+    page-break-inside: avoid;
+  }
+
+  .section-number {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 0.78rem;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+
+  .section h2 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.45rem;
+    font-weight: 400;
+    color: var(--navy);
+    line-height: 1.3;
+    margin-bottom: 1rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section h3 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--navy-light);
+    margin-top: 1.4rem;
+    margin-bottom: 0.6rem;
+  }
+
+  /* ===== PARAGRAPH & LIST ===== */
+  .section p {
+    margin-bottom: 0.9rem;
+    font-size: 0.95rem;
+  }
+
+  .section ul, .section ol {
+    margin: 0.6rem 0 1rem 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  .section li {
+    margin-bottom: 0.4rem;
+    padding-left: 0.3rem;
+  }
+
+  .section li::marker {
+    color: var(--gold);
+  }
+
+  /* ===== PLACEHOLDER STYLING ===== */
+  .placeholder {
+    background: var(--gold-faint);
+    color: var(--navy);
+    font-weight: 600;
+    padding: 0.1em 0.35em;
+    border-radius: 3px;
+    border-bottom: 2px solid var(--gold);
+    font-size: 0.92em;
+    white-space: nowrap;
+  }
+
+  /* ===== INFO TABLE (parties, etc.) ===== */
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin: 1.2rem 0 1rem;
+  }
+
+  .info-card {
+    background: var(--navy-faint);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.3rem 1.4rem;
+  }
+
+  .info-card .card-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--gold);
+    margin-bottom: 0.7rem;
+  }
+
+  .info-card p {
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+    line-height: 1.6;
+  }
+
+  /* ===== DELIVERABLES TABLE ===== */
+  .deliverables-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  .deliverables-table thead th {
+    background: var(--navy);
+    color: var(--white);
+    font-weight: 600;
+    text-align: left;
+    padding: 0.7rem 1rem;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .deliverables-table thead th:first-child {
+    border-radius: var(--radius) 0 0 0;
+  }
+
+  .deliverables-table thead th:last-child {
+    border-radius: 0 var(--radius) 0 0;
+  }
+
+  .deliverables-table tbody td {
+    padding: 0.65rem 1rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  .deliverables-table tbody tr:nth-child(even) {
+    background: var(--navy-faint);
+  }
+
+  .deliverables-table tbody tr:last-child td:first-child {
+    border-radius: 0 0 0 var(--radius);
+  }
+
+  .deliverables-table tbody tr:last-child td:last-child {
+    border-radius: 0 0 var(--radius) 0;
+  }
+
+  /* ===== HIGHLIGHT BOX ===== */
+  .highlight-box {
+    background: var(--navy-faint);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 1rem 1.3rem;
+    margin: 1rem 0;
+    font-size: 0.92rem;
+  }
+
+  .highlight-box.navy-box {
+    background: var(--navy);
+    color: var(--white);
+    border-left-color: var(--gold);
+  }
+
+  .highlight-box.navy-box strong {
+    color: var(--gold-light);
+  }
+
+  /* ===== SIGNATURE BLOCK ===== */
+  .signature-section {
+    margin-top: 3rem;
+    page-break-inside: avoid;
+  }
+
+  .sig-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 1.2rem;
+  }
+
+  .sig-block {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.6rem 1.5rem;
+    background: var(--navy-faint);
+  }
+
+  .sig-block .sig-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .sig-line {
+    border-bottom: 1px solid var(--navy);
+    margin-bottom: 0.5rem;
+    min-height: 2.5rem;
+  }
+
+  .sig-field-label {
+    font-size: 0.78rem;
+    color: var(--text-light);
+    margin-bottom: 1.2rem;
+  }
+
+  /* ===== FOOTER ===== */
+  .doc-footer {
+    background: var(--navy);
+    color: rgba(255,255,255,0.4);
+    text-align: center;
+    padding: 1.5rem 3.5rem;
+    font-size: 0.78rem;
+    line-height: 1.6;
+  }
+
+  .doc-footer .footer-gold {
+    color: var(--gold-light);
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 700px) {
+    body { padding: 0.5rem; }
+    .doc-header, .doc-body { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .disclaimer-banner { padding-left: 1.2rem; padding-right: 1.2rem; }
+    .info-grid, .sig-grid { grid-template-columns: 1fr; }
+    .doc-header h1 { font-size: 1.7rem; }
+  }
+
+  /* ===== PRINT ===== */
+  @media print {
+    html { font-size: 11pt; }
+
+    body {
+      background: white;
+      padding: 0;
+      color: #000;
+    }
+
+    .document {
+      box-shadow: none;
+      border-radius: 0;
+      max-width: 100%;
+    }
+
+    .doc-header {
+      padding: 2rem 2.5rem 1.8rem;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .doc-header::after {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .disclaimer-banner {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+      padding-left: 1.5rem;
+      padding-right: 2.5rem;
+    }
+
+    .doc-body {
+      padding: 1.5rem 2.5rem 2rem;
+    }
+
+    .section {
+      page-break-inside: avoid;
+    }
+
+    .section h2 {
+      page-break-after: avoid;
+    }
+
+    .info-card, .sig-block {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .deliverables-table thead th {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .deliverables-table tbody tr:nth-child(even) {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .highlight-box, .highlight-box.navy-box {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .signature-section {
+      page-break-inside: avoid;
+      page-break-before: auto;
+    }
+
+    .doc-footer {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+      padding: 1rem 2.5rem;
+    }
+
+    a { text-decoration: none; color: inherit; }
+  }
+</style>
+</head>
+<body>
+
+<div class="document">
+
+  <!-- ===== HEADER ===== -->
+  <header class="doc-header">
+    <div class="provider-name">Lawal Awwal</div>
+    <h1>Service Agreement</h1>
+    <p class="subtitle">Web Design, Brand Identity &amp; Digital Strategy Services</p>
+    <div class="doc-meta">
+      <div class="meta-item">
+        <strong>Agreement Date</strong>
+        <span class="placeholder">[DATE]</span>
+      </div>
+      <div class="meta-item">
+        <strong>Reference</strong>
+        <span class="placeholder">[PROJECT-REF]</span>
+      </div>
+      <div class="meta-item">
+        <strong>Version</strong>
+        1.0
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== DISCLAIMER ===== -->
+  <div class="disclaimer-banner">
+    <strong>Important Notice</strong>
+    This template is provided for guidance purposes. It is recommended that both parties seek independent legal advice before signing. This document does not constitute legal advice and should be reviewed by a qualified solicitor, particularly given the cross-border nature of this engagement.
+  </div>
+
+  <!-- ===== BODY ===== -->
+  <div class="doc-body">
+
+    <!-- SECTION 1: PARTIES -->
+    <div class="section">
+      <span class="section-number">Section 1</span>
+      <h2>The Parties</h2>
+      <p>This Service Agreement ("Agreement") is entered into on <span class="placeholder">[DATE]</span> between the following parties:</p>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <div class="card-label">Service Provider</div>
+          <p><strong>Lawal Awwal</strong></p>
+          <p>Freelance Web Designer &amp; Developer</p>
+          <p><span class="placeholder">[PROVIDER ADDRESS]</span></p>
+          <p>Nigeria</p>
+          <p>Email: <span class="placeholder">[PROVIDER EMAIL]</span></p>
+        </div>
+        <div class="info-card">
+          <div class="card-label">Client</div>
+          <p><strong><span class="placeholder">[CLIENT FULL NAME]</span></strong></p>
+          <p><span class="placeholder">[CLIENT COMPANY NAME]</span></p>
+          <p><span class="placeholder">[CLIENT ADDRESS]</span></p>
+          <p>United Kingdom</p>
+          <p>Email: <span class="placeholder">[CLIENT EMAIL]</span></p>
+        </div>
+      </div>
+
+      <p>The Service Provider and the Client are each referred to individually as a "Party" and collectively as the "Parties" throughout this Agreement.</p>
+    </div>
+
+    <!-- SECTION 2: BACKGROUND -->
+    <div class="section">
+      <span class="section-number">Section 2</span>
+      <h2>Background and Context</h2>
+      <p>The Client owns and operates a conglomerate based in Nigeria with seven distinct business verticals, managed from the United Kingdom. The Client requires comprehensive web design, brand identity, and digital strategy services to establish or strengthen the digital presence of these businesses.</p>
+      <p>The Service Provider is a freelance web designer and developer based in Nigeria with experience serving UK and international clients. The Service Provider has been engaged to deliver these services across a phased, multi-stage project structure as described in this Agreement.</p>
+      <p>This Agreement covers <strong>Stage 1 (Foundation)</strong> in full and sets out the framework for subsequent stages. Each further stage will be governed by its own supplementary agreement, building on the foundation laid in Stage 1.</p>
+    </div>
+
+    <!-- SECTION 3: SCOPE OF WORK -->
+    <div class="section">
+      <span class="section-number">Section 3</span>
+      <h2>Scope of Work</h2>
+
+      <h3>3.1 Project Structure Overview</h3>
+      <p>The project is divided into three stages. This phased approach ensures that every decision in later stages is grounded in the strategic work completed during the foundation stage. The stages are:</p>
+      <ul>
+        <li><strong>Stage 1: Foundation</strong> (Discovery + Brand Identity + Strategy) -- covered in full by this Agreement</li>
+        <li><strong>Stage 2: Design</strong> (Visual Design + Content Architecture) -- to be scoped during Stage 1</li>
+        <li><strong>Stage 3: Build and Launch</strong> (Development + Testing + Deployment) -- to be scoped during Stage 1</li>
+      </ul>
+
+      <h3>3.2 Stage 1: Foundation -- Detailed Scope</h3>
+      <p>Stage 1 comprises three core workstreams: Discovery, Brand Identity, and Digital Strategy. The Service Provider will deliver the following:</p>
+
+      <table class="deliverables-table">
+        <thead>
+          <tr>
+            <th>Workstream</th>
+            <th>Deliverable</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td rowspan="4"><strong>Discovery</strong></td>
+            <td>Discovery Call(s)</td>
+            <td>In-depth conversations to understand the Client's businesses, goals, target audiences, competitors, and vision across all seven verticals.</td>
+          </tr>
+          <tr>
+            <td>Business Analysis Summary</td>
+            <td>A written summary of findings from the discovery process, capturing the current state of each vertical and key opportunities.</td>
+          </tr>
+          <tr>
+            <td>Audience Profiles</td>
+            <td>Detailed profiles for the target audiences of each business vertical, including demographics, behaviours, and needs.</td>
+          </tr>
+          <tr>
+            <td>Competitive Landscape Review</td>
+            <td>An overview of key competitors for each vertical, noting what works well in the market and where the Client can differentiate.</td>
+          </tr>
+          <tr>
+            <td rowspan="4"><strong>Brand Identity</strong></td>
+            <td>Brand Strategy Document</td>
+            <td>Core brand positioning, messaging framework, tone of voice guidelines, and brand values for the conglomerate and its verticals.</td>
+          </tr>
+          <tr>
+            <td>Visual Identity Direction</td>
+            <td>Colour palettes, typography recommendations, and visual style exploration for the parent brand and sub-brands.</td>
+          </tr>
+          <tr>
+            <td>Logo Concepts</td>
+            <td>Initial logo concepts for the parent brand (and guidance on how sub-brands relate visually). Up to <span class="placeholder">[NUMBER]</span> initial concepts, refined through the revision rounds described in Section 9.</td>
+          </tr>
+          <tr>
+            <td>Brand Guidelines Document</td>
+            <td>A comprehensive guide showing how to apply the brand consistently across digital and print materials.</td>
+          </tr>
+          <tr>
+            <td rowspan="3"><strong>Digital Strategy</strong></td>
+            <td>Digital Presence Strategy</td>
+            <td>A strategic plan for the Client's online presence, covering website architecture, content strategy, and how the seven verticals are best represented digitally.</td>
+          </tr>
+          <tr>
+            <td>Sitemap and Information Architecture</td>
+            <td>Detailed sitemap(s) showing the proposed structure of the website(s), page hierarchy, and navigation approach.</td>
+          </tr>
+          <tr>
+            <td>Scope Definition for Stages 2 and 3</td>
+            <td>Based on the foundation work, a detailed proposal covering scope, deliverables, timelines, and pricing for the Design and Build stages.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>3.3 Revenue Role Assessment</h3>
+      <p>Stage 1 includes an assessment of the website's role in the Client's revenue generation strategy. If the assessment determines that a website is not the highest-value investment at this time, the Provider will advise accordingly and recommend alternative approaches. All other Stage 1 deliverables remain valid and are transferred to the Client upon receipt of full payment, regardless of the outcome of the Revenue Role assessment.</p>
+
+      <h3>3.4 Stages 2 and 3: Future Scope</h3>
+      <p>Stages 2 and 3 will be defined based on the strategic direction established during Stage 1. At the conclusion of Stage 1, the Service Provider will present a detailed proposal for each subsequent stage, including specific deliverables, timelines, and pricing.</p>
+      <p>Each future stage will be governed by a separate supplementary agreement that references this Agreement and adopts the same general terms (Sections 5 through 14) unless explicitly amended. Neither Party is obligated to proceed to subsequent stages. Proceeding to Stage 2 or Stage 3 requires mutual written agreement and a signed supplementary agreement for that stage.</p>
+
+      <h3>3.5 What is Not Included</h3>
+      <p>Unless explicitly added through a supplementary agreement, the following are outside the scope of this Agreement:</p>
+      <ul>
+        <li>Copywriting or content creation (the Client is responsible for supplying written content, though the Service Provider may offer guidance on structure and tone)</li>
+        <li>Photography, videography, or stock image licensing</li>
+        <li>Third-party software subscriptions, domain registration, or hosting fees</li>
+        <li>Search engine optimisation (SEO) services beyond basic on-page recommendations</li>
+        <li>Ongoing website maintenance or support after launch</li>
+        <li>Social media management or advertising campaigns</li>
+        <li>Print design beyond what is specified in the brand guidelines deliverable</li>
+      </ul>
+    </div>
+
+    <!-- SECTION 4: TIMELINE -->
+    <div class="section">
+      <span class="section-number">Section 4</span>
+      <h2>Timeline</h2>
+
+      <h3>4.1 Stage 1 Estimated Duration</h3>
+      <p>Stage 1 is estimated to take <strong>3 to 4 weeks</strong> from the date work begins. The projected start date is <span class="placeholder">[START DATE]</span> and the projected completion date is <span class="placeholder">[END DATE]</span>.</p>
+
+      <h3>4.2 Factors Affecting the Timeline</h3>
+      <p>The estimated duration assumes that the Client provides timely feedback, materials, and approvals as described in Section 8 (Client Responsibilities). Specifically, the timeline is based on the following assumptions:</p>
+      <ul>
+        <li>The Client will respond to requests for information, content, or feedback within 5 business days of receiving them.</li>
+        <li>Feedback will be provided in consolidated form (not in multiple rounds of partial comments).</li>
+        <li>Discovery sessions and calls will be scheduled within 3 business days of a scheduling request.</li>
+        <li>The Client's designated point of contact will be available and authorised to make decisions.</li>
+      </ul>
+      <p>If any of these assumptions are not met, the estimated timeline will be extended accordingly. The Service Provider will communicate any anticipated delays promptly and in writing.</p>
+
+      <h3>4.3 Milestone Checkpoints</h3>
+      <p>The Service Provider will provide regular progress updates and will notify the Client upon completion of each major deliverable. Both Parties will use these checkpoints to ensure the project remains on track and aligned with expectations.</p>
+    </div>
+
+    <!-- SECTION 5: INVESTMENT & PAYMENT -->
+    <div class="section">
+      <span class="section-number">Section 5</span>
+      <h2>Investment and Payment Terms</h2>
+
+      <h3>5.1 Stage 1 Fee</h3>
+      <div class="highlight-box navy-box">
+        <p><strong>Stage 1 (Foundation) Investment:</strong> &#8358;500,000 NGN (Nigerian Naira)</p>
+      </div>
+      <p>This is a fixed price for the complete Stage 1 scope of work as described in Section 3.2. The fee covers all deliverables listed, all communication and collaboration time, and up to two rounds of revisions per deliverable as outlined in Section 9. This fee is payable in full before work begins.</p>
+
+      <h3>5.2 Payment Schedule</h3>
+      <p>Payment for Stage 1 is due <strong>100% upfront before work begins</strong>. The Service Provider will issue an invoice upon signing of this Agreement. Work will commence within 3 business days of the Service Provider confirming receipt of payment.</p>
+      <p>For Stages 2 and 3 (when scoped), the following payment schedule applies unless otherwise agreed in the relevant supplementary agreement:</p>
+      <ul>
+        <li><strong>Stage commencement:</strong> 50% of the stage fee, due before work begins on that stage.</li>
+        <li><strong>Stage midpoint:</strong> 25% of the stage fee, due upon reaching the midpoint milestone as defined in the supplementary agreement.</li>
+        <li><strong>Launch:</strong> 25% of the stage fee, due upon completion and launch of the deliverables for that stage.</li>
+      </ul>
+
+      <h3>5.3 Accepted Payment Methods</h3>
+      <p>The Client may pay using the following methods:</p>
+      <ul>
+        <li><strong>Nigerian Bank Transfer:</strong> Payment to the Service Provider's Nigerian bank account. Account details will be provided on the invoice. This is the primary and preferred payment method.</li>
+        <li><strong>Wise or International Transfer:</strong> Available as an alternative for international payments where Nigerian bank transfer is not feasible. Details will be provided on the invoice upon request.</li>
+      </ul>
+
+      <h3>5.4 Currency</h3>
+      <p>All amounts in this Agreement are stated in <strong>Nigerian Naira (NGN, &#8358;)</strong>. Invoices will be issued in NGN. Any currency conversion costs or bank transfer fees incurred by the Client are the Client's responsibility.</p>
+
+      <h3>5.5 Late Payment</h3>
+      <p>If payment is not received by the due date stated on the invoice, the following applies:</p>
+      <ul>
+        <li>Project work will pause until outstanding payment is received. The Service Provider will notify the Client in writing that work has been paused due to non-payment.</li>
+        <li>The Service Provider is under no obligation to resume work or meet previously agreed timelines until full payment of the outstanding amount is confirmed.</li>
+        <li>If payment remains outstanding for more than 30 days past the due date, the Service Provider reserves the right to terminate this Agreement in accordance with Section 13.</li>
+      </ul>
+
+      <h3>5.6 Stages 2 and 3 Pricing</h3>
+      <p>Fees for Stages 2 and 3 will be quoted separately in NGN as part of the scope definition deliverable at the end of Stage 1. Unless otherwise agreed, the default payment structure for Stages 2 and 3 is the milestone-based schedule described in Section 5.2 (50% at commencement, 25% at midpoint, 25% at launch). Payment terms for those stages will be confirmed in their respective supplementary agreements.</p>
+
+      <h3>5.7 Additional Work</h3>
+      <p>Any work requested by the Client that falls outside the scope defined in Section 3 will be quoted separately in writing before the work begins. The Service Provider will not undertake out-of-scope work without the Client's prior written approval of the additional fee.</p>
+    </div>
+
+    <!-- SECTION 6: HOW WE WORK TOGETHER -->
+    <div class="section">
+      <span class="section-number">Section 6</span>
+      <h2>How We Work Together</h2>
+
+      <h3>6.1 Communication</h3>
+      <p>Day-to-day communication will take place primarily via email. The Service Provider may also suggest project management tools or shared documents to keep things organised. Both Parties agree to be responsive and professional in all communications.</p>
+
+      <h3>6.2 Working Hours</h3>
+      <p>The Service Provider operates from Nigeria (West Africa Time, WAT/GMT+1). The Client is based in the United Kingdom (GMT/BST). Both Parties acknowledge this time difference and agree to schedule meetings at mutually convenient times. The Service Provider's standard working hours are Monday to Friday, 9:00 AM to 6:00 PM WAT, excluding Nigerian public holidays.</p>
+
+      <h3>6.3 Meetings and Calls</h3>
+      <p>Meetings and calls will be conducted via video conferencing (Zoom, Google Meet, or another platform agreed upon by both Parties). The Service Provider will give reasonable notice for scheduled calls and will provide an agenda or context in advance when possible.</p>
+    </div>
+
+    <!-- SECTION 7: TOOLS AND TECHNOLOGY -->
+    <div class="section">
+      <span class="section-number">Section 7</span>
+      <h2>Tools and Technology</h2>
+
+      <p>The Service Provider will use industry-standard tools appropriate to each deliverable. These may include (but are not limited to) design tools such as Figma or Adobe Creative Suite, development tools, and collaboration platforms. If a specific tool or platform is required for the project, the Service Provider will discuss this with the Client before incurring any costs.</p>
+      <p>Any third-party tools, subscriptions, or licenses that the Client needs to purchase for the project (such as hosting, domain names, or premium plugins) are the Client's financial responsibility unless otherwise agreed in writing.</p>
+    </div>
+
+    <!-- SECTION 8: CLIENT RESPONSIBILITIES -->
+    <div class="section">
+      <span class="section-number">Section 8</span>
+      <h2>Client Responsibilities</h2>
+
+      <p>The success of this project depends on active and timely collaboration from the Client. The Client agrees to the following responsibilities:</p>
+
+      <h3>8.1 Single Point of Contact</h3>
+      <p>The Client will designate a single point of contact ("Project Lead") who is authorised to make decisions, provide approvals, and give feedback on behalf of the Client. The Client's Project Lead for this Agreement is:</p>
+      <p><strong>Name:</strong> <span class="placeholder">[CLIENT CONTACT NAME]</span><br>
+      <strong>Email:</strong> <span class="placeholder">[CLIENT CONTACT EMAIL]</span><br>
+      <strong>Phone:</strong> <span class="placeholder">[CLIENT CONTACT PHONE]</span></p>
+      <p>If the Project Lead changes, the Client must notify the Service Provider in writing. Decisions and approvals given by the Project Lead are considered binding on behalf of the Client.</p>
+
+      <h3>8.2 Content and Materials</h3>
+      <p>The Client will provide all necessary content, materials, brand assets, business information, and access credentials that the Service Provider needs to complete the work. These items should be delivered by the deadlines agreed during the project, or within 5 business days of a request if no specific deadline has been set.</p>
+
+      <h3>8.3 Feedback and Approvals</h3>
+      <p>The Client will provide feedback on deliverables <strong>within 5 business days</strong> of receiving them. Feedback should be:</p>
+      <ul>
+        <li><strong>Consolidated:</strong> All feedback from the Client's team should be gathered and provided in a single, unified response. The Service Provider should not receive conflicting feedback from different people within the Client's organisation.</li>
+        <li><strong>Specific:</strong> Feedback should clearly state what needs to change and why, rather than vague preferences.</li>
+        <li><strong>Actionable:</strong> The Service Provider should be able to implement the feedback without needing significant follow-up clarification.</li>
+      </ul>
+      <p>If feedback is not received within 5 business days, the Service Provider will send a reminder. If feedback is still not received after an additional 5 business days (10 business days total), the deliverable will be considered approved, and the project will move forward.</p>
+
+      <h3>8.4 Availability for Discovery</h3>
+      <p>The Client will make key stakeholders available for discovery sessions, interviews, and workshops as needed during Stage 1. The Service Provider will provide reasonable notice and flexibility in scheduling these sessions.</p>
+    </div>
+
+    <!-- SECTION 9: REVISION POLICY -->
+    <div class="section">
+      <span class="section-number">Section 9</span>
+      <h2>Revision Policy</h2>
+
+      <h3>9.1 Included Revisions</h3>
+      <p>The Stage 1 fee includes <strong>up to 2 rounds of revisions per deliverable</strong>. A "round of revisions" means one consolidated set of feedback from the Client, followed by the Service Provider implementing the requested changes.</p>
+
+      <h3>9.2 What Counts as a Revision</h3>
+      <p>A revision is a change to a deliverable that has already been presented to the Client. Revisions include adjustments to design direction, content structure, colour choices, layout changes, and similar modifications to existing work. Revisions do not include entirely new concepts or a fundamentally different direction from what was discussed and agreed upon during the project. A request for a completely new approach would be considered additional scope and quoted separately.</p>
+
+      <h3>9.3 Additional Revisions</h3>
+      <p>If the Client requires more than 2 rounds of revisions on any deliverable, the Service Provider will provide a written quote for the additional revision work before proceeding. Additional revisions will be billed at <span class="placeholder">[HOURLY RATE OR FIXED FEE PER ADDITIONAL ROUND]</span> NGN. The Client must approve this quote in writing before the additional work begins.</p>
+
+      <h3>9.4 Revision Turnaround</h3>
+      <p>The Service Provider will complete each round of revisions within 3 to 5 business days of receiving consolidated feedback, depending on the complexity and volume of changes requested.</p>
+    </div>
+
+    <!-- SECTION 10: INTELLECTUAL PROPERTY -->
+    <div class="section">
+      <span class="section-number">Section 10</span>
+      <h2>Intellectual Property</h2>
+
+      <h3>10.1 Ownership of Work Product</h3>
+      <p>Upon receipt of full payment for the relevant stage, all rights, title, and interest in the deliverables produced during that stage transfer to the Client. This means the Client will own all final designs, documents, strategies, and creative work produced as part of the paid stage.</p>
+
+      <h3>10.2 Working Files</h3>
+      <p>The transfer of ownership includes all working files (such as source design files, editable documents, and layered design files) for the relevant stage. The Service Provider will provide these files in their native, editable format upon the Client's request and upon receipt of full payment for that stage.</p>
+
+      <h3>10.3 Pre-existing Materials</h3>
+      <p>Any tools, frameworks, templates, code libraries, or methodologies that the Service Provider developed before this project, or develops independently outside this project, remain the property of the Service Provider. Where such pre-existing materials are incorporated into deliverables, the Client receives a perpetual, non-exclusive licence to use them as part of the delivered work, but the Service Provider retains ownership of the underlying materials.</p>
+
+      <h3>10.4 Portfolio Usage Rights</h3>
+      <p>The Service Provider would like to showcase the work produced under this Agreement in their professional portfolio, website, case studies, and social media. The Service Provider will seek the Client's written approval before publishing any work from this project publicly. The Client agrees not to unreasonably withhold such approval. Portfolio usage will not include the disclosure of confidential business information, financial details, or strategic plans.</p>
+
+      <h3>10.5 Before Full Payment</h3>
+      <p>Until full payment for a given stage is received, the Service Provider retains all rights to the work produced in that stage. The Client may not use, publish, distribute, or modify any deliverables for which payment has not been received in full.</p>
+    </div>
+
+    <!-- SECTION 11: CONFIDENTIALITY -->
+    <div class="section">
+      <span class="section-number">Section 11</span>
+      <h2>Confidentiality</h2>
+
+      <h3>11.1 Mutual Obligations</h3>
+      <p>Both Parties agree to keep confidential any information received from the other Party that is not publicly available. This includes, but is not limited to, business plans, financial information, client lists, technical data, strategies, and trade secrets. Both Parties will take reasonable steps to protect such information and will not disclose it to any third party without the other Party's prior written consent.</p>
+
+      <h3>11.2 Client Business Information</h3>
+      <p>The Service Provider acknowledges that they will have access to sensitive information about the Client's businesses, including details about the seven business verticals, financial performance, competitive strategies, customer data, and internal operations. The Service Provider agrees to treat all such information with the highest level of care and discretion. The Service Provider will not use the Client's business information for any purpose other than completing the work described in this Agreement.</p>
+
+      <h3>11.3 Exceptions</h3>
+      <p>The confidentiality obligations in this section do not apply to information that:</p>
+      <ul>
+        <li>Is or becomes publicly available through no fault of the receiving Party.</li>
+        <li>Was already known to the receiving Party before being disclosed by the other Party.</li>
+        <li>Is independently developed by the receiving Party without use of the disclosing Party's confidential information.</li>
+        <li>Is required to be disclosed by law, regulation, or court order, provided that the disclosing Party is given reasonable prior notice where possible.</li>
+      </ul>
+
+      <h3>11.4 Duration</h3>
+      <p>The confidentiality obligations in this section will survive the termination or expiry of this Agreement and will remain in effect for a period of 2 years after the last date on which either Party provided confidential information to the other.</p>
+
+      <h3>11.5 Subcontractors</h3>
+      <p>If the Service Provider engages any subcontractors to assist with the project (with the Client's prior knowledge), the Service Provider will ensure that those subcontractors are bound by confidentiality obligations that are at least as protective as those in this Agreement.</p>
+    </div>
+
+    <!-- SECTION 12: PROJECT DELAYS AND PAUSES -->
+    <div class="section">
+      <span class="section-number">Section 12</span>
+      <h2>Project Delays and Pauses</h2>
+
+      <h3>12.1 Client-Side Delays</h3>
+      <p>If the Client causes a delay by not providing feedback, materials, approvals, or access within the timescales described in this Agreement, the project timeline will be adjusted to account for the delay. The Service Provider will notify the Client in writing when a delay is affecting the project schedule.</p>
+
+      <h3>12.2 Extended Delays (Beyond 10 Business Days)</h3>
+      <p>If any single delay on the Client's side extends beyond 10 business days, the Service Provider reserves the right to adjust the project timeline by a corresponding period, plus a reasonable amount of time to reorganise their schedule. The Service Provider will confirm the revised timeline in writing.</p>
+
+      <h3>12.3 Project on Hold (30 Days)</h3>
+      <p>If the Client does not respond to communications or provide necessary materials for a continuous period of 30 calendar days, the project will be placed on hold. The Service Provider will notify the Client in writing that the project has been placed on hold. While on hold:</p>
+      <ul>
+        <li>No further work will be carried out.</li>
+        <li>The Service Provider is free to take on other projects and commitments.</li>
+        <li>The original timeline no longer applies.</li>
+      </ul>
+      <p>To reactivate a project that has been on hold, the Client must contact the Service Provider in writing to request resumption. The Service Provider will then provide a revised timeline based on their current availability.</p>
+
+      <h3>12.4 Reactivation After 60 Days</h3>
+      <p>If the project has been on hold for 60 calendar days or more, the Service Provider may require a re-scoping fee to account for the time needed to review previous work, re-familiarise themselves with the project, and reorganise their schedule. This re-scoping fee will be quoted in writing and must be approved by the Client before work resumes. The re-scoping fee will not exceed 20% of the original Stage 1 fee unless the scope of work has materially changed during the pause.</p>
+
+      <h3>12.5 Service Provider Delays</h3>
+      <p>If the Service Provider is unable to meet a deadline due to illness, personal emergency, or other unforeseen circumstances, they will notify the Client as soon as reasonably possible and provide a revised delivery date. The Service Provider will make every reasonable effort to minimise disruption to the project.</p>
+    </div>
+
+    <!-- SECTION 13: TERMINATION -->
+    <div class="section">
+      <span class="section-number">Section 13</span>
+      <h2>Termination</h2>
+
+      <h3>13.1 Termination by Either Party</h3>
+      <p>Either Party may terminate this Agreement by providing the other Party with <strong>14 days' written notice</strong>. Written notice must be sent by email to the address listed in Section 1 of this Agreement (or to an updated address provided in writing during the project).</p>
+
+      <h3>13.2 Payment Upon Termination</h3>
+      <p>If the Client terminates this Agreement, the Client will pay for all work completed up to the date of termination. If payment was made in advance (as is the case for Stage 1), the Service Provider will calculate the value of work completed based on the proportion of deliverables finished or substantially progressed, and will refund the difference between the amount paid and the value of work completed. The Service Provider will provide a written breakdown of this calculation within 10 business days of termination.</p>
+
+      <h3>13.3 Termination by the Service Provider</h3>
+      <p>If the Service Provider terminates this Agreement, the same payment calculation applies. The Service Provider will refund the Client for any work not yet completed. The Service Provider will make reasonable efforts to ensure an orderly handover, including providing all working files and documentation for the work completed to date.</p>
+
+      <h3>13.4 Deliverables Upon Termination</h3>
+      <p>Upon termination and receipt of appropriate payment, the Service Provider will transfer to the Client all completed deliverables and working files for the work that has been paid for. Work in progress that has not been paid for remains the property of the Service Provider.</p>
+
+      <h3>13.5 Termination for Cause</h3>
+      <p>Either Party may terminate this Agreement immediately (without the 14-day notice period) if the other Party commits a material breach of this Agreement and fails to remedy that breach within 10 business days of receiving written notice of the breach. A material breach includes, but is not limited to, non-payment, misuse of confidential information, or failure to perform fundamental obligations under this Agreement.</p>
+
+      <h3>13.6 Surviving Clauses</h3>
+      <p>The following sections will survive the termination or expiry of this Agreement: Section 10 (Intellectual Property), Section 11 (Confidentiality), Section 14 (Limitation of Liability), and Section 15 (Dispute Resolution).</p>
+    </div>
+
+    <!-- SECTION 14: LIMITATION OF LIABILITY -->
+    <div class="section">
+      <span class="section-number">Section 14</span>
+      <h2>Limitation of Liability</h2>
+
+      <h3>14.1 Cap on Liability</h3>
+      <p>The total liability of the Service Provider under or in connection with this Agreement, whether in contract, tort (including negligence), breach of statutory duty, or otherwise, shall not exceed the total amount paid by the Client to the Service Provider for the relevant stage of the project. For the avoidance of doubt, liability in relation to Stage 1 is capped at the amount paid for Stage 1, and liability in relation to any subsequent stage is capped at the amount paid for that stage.</p>
+
+      <h3>14.2 Indirect and Consequential Losses</h3>
+      <p>Neither Party shall be liable to the other for any indirect, incidental, special, or consequential losses or damages, including (but not limited to) loss of profit, loss of revenue, loss of business, loss of data, or loss of anticipated savings, even if the Party has been advised of the possibility of such losses.</p>
+
+      <h3>14.3 Reasonable Skill and Care</h3>
+      <p>The Service Provider will perform the work with reasonable skill, care, and diligence, consistent with generally accepted industry standards for freelance web design and brand identity services. The Service Provider does not guarantee specific business outcomes, results, or returns from the work delivered under this Agreement.</p>
+
+      <h3>14.4 Third-Party Services</h3>
+      <p>The Service Provider is not liable for the performance, availability, or reliability of any third-party tools, platforms, services, or hosting providers used in connection with the project. Recommendations made by the Service Provider regarding third-party services are made in good faith but do not constitute a warranty or guarantee of those services.</p>
+
+      <h3>14.5 Nothing in This Section</h3>
+      <p>Nothing in this Agreement excludes or limits either Party's liability for fraud, death or personal injury caused by negligence, or any other liability that cannot be excluded or limited by law.</p>
+    </div>
+
+    <!-- SECTION 15: DISPUTE RESOLUTION -->
+    <div class="section">
+      <span class="section-number">Section 15</span>
+      <h2>Dispute Resolution</h2>
+
+      <h3>15.1 Good Faith Negotiation</h3>
+      <p>If any dispute or disagreement arises between the Parties in connection with this Agreement, the Parties agree to first attempt to resolve the matter through good faith negotiation. Either Party may initiate this process by sending a written notice to the other Party describing the dispute and requesting a discussion. Both Parties will make themselves available for a call or meeting within 10 business days of such notice and will make reasonable efforts to reach an amicable resolution.</p>
+
+      <h3>15.2 Mediation</h3>
+      <p>If the dispute cannot be resolved through good faith negotiation within 30 calendar days of the initial written notice, either Party may refer the matter to mediation. The Parties will agree on a mutually acceptable mediator. If they cannot agree on a mediator within 14 calendar days, either Party may request the appointment of a mediator through a recognised mediation body. The costs of mediation will be shared equally between the Parties, with each Party bearing their own legal costs.</p>
+
+      <h3>15.3 Continued Performance</h3>
+      <p>Unless the dispute relates to a matter that makes continued performance impossible, both Parties agree to continue performing their obligations under this Agreement while the dispute resolution process is underway.</p>
+    </div>
+
+    <!-- SECTION 16: GENERAL PROVISIONS -->
+    <div class="section">
+      <span class="section-number">Section 16</span>
+      <h2>General Provisions</h2>
+
+      <h3>16.1 Entire Agreement</h3>
+      <p>This Agreement, together with any supplementary agreements for subsequent stages, constitutes the entire agreement between the Parties and supersedes all previous discussions, correspondence, negotiations, arrangements, understandings, and agreements between them relating to the subject matter of this Agreement. Neither Party has relied on any representation, warranty, or statement that is not set out in this Agreement.</p>
+
+      <h3>16.2 Amendments</h3>
+      <p>Any amendment or variation to this Agreement must be made in writing and signed by both Parties. Verbal agreements or informal email discussions do not constitute amendments to this Agreement unless they are subsequently confirmed in a signed written amendment.</p>
+
+      <h3>16.3 Severability</h3>
+      <p>If any provision of this Agreement is found to be invalid, illegal, or unenforceable by a court or other authority, that provision will be deemed modified to the minimum extent necessary to make it valid and enforceable. If the provision cannot be modified, it will be severed from this Agreement, and the remaining provisions will continue in full force and effect.</p>
+
+      <h3>16.4 Waiver</h3>
+      <p>A failure or delay by either Party in exercising any right or remedy under this Agreement does not constitute a waiver of that right or remedy. A waiver of a right or remedy under this Agreement must be in writing and will apply only to the specific instance to which it relates.</p>
+
+      <h3>16.5 Assignment</h3>
+      <p>Neither Party may assign, transfer, or subcontract any of their rights or obligations under this Agreement without the prior written consent of the other Party. The Service Provider may engage subcontractors to assist with specific tasks, provided that the Service Provider remains responsible for the quality of the work and for ensuring compliance with this Agreement (including confidentiality obligations).</p>
+
+      <h3>16.6 Notices</h3>
+      <p>All formal notices under this Agreement must be sent by email to the addresses listed in Section 1 (or to an updated address provided in writing). Notices sent by email are deemed received on the next business day after sending.</p>
+
+      <h3>16.7 Relationship of the Parties</h3>
+      <p>The Service Provider is an independent contractor and not an employee, agent, or partner of the Client. Nothing in this Agreement creates an employment relationship, partnership, joint venture, or agency arrangement between the Parties. The Service Provider is responsible for their own taxes, insurance, and compliance with applicable laws in Nigeria.</p>
+
+      <h3>16.8 Force Majeure</h3>
+      <p>Neither Party shall be liable for any failure or delay in performing their obligations under this Agreement if that failure or delay is caused by circumstances beyond their reasonable control, including (but not limited to) natural disasters, war, pandemic, government action, internet outages, or power failures. The affected Party must notify the other Party as soon as reasonably possible and make every reasonable effort to resume performance.</p>
+
+      <h3>16.9 Governing Law</h3>
+      <div class="highlight-box">
+        <p><strong>Important Note on Governing Law:</strong> This is a cross-border agreement between a service provider in Nigeria and a client in the United Kingdom. The Parties agree that this Agreement shall be governed by and construed in accordance with the laws of England and Wales. Both Parties are strongly advised to seek independent legal advice from solicitors qualified in their respective jurisdictions before signing this Agreement. The choice of English law is intended to provide a clear and well-established legal framework for this Agreement but does not constitute legal advice from either Party to the other.</p>
+      </div>
+    </div>
+
+    <!-- SECTION 17: SIGNATURES -->
+    <div class="section signature-section">
+      <span class="section-number">Section 17</span>
+      <h2>Signatures</h2>
+      <p>By signing below, both Parties confirm that they have read, understood, and agree to be bound by the terms of this Agreement. Both Parties confirm that the person signing has the authority to enter into this Agreement.</p>
+
+      <div class="sig-grid">
+        <div class="sig-block">
+          <div class="sig-label">Service Provider</div>
+
+          <div class="sig-line"></div>
+          <div class="sig-field-label">Signature</div>
+
+          <div class="sig-line"></div>
+          <div class="sig-field-label">Full Name: Lawal Awwal</div>
+
+          <div class="sig-line"></div>
+          <div class="sig-field-label">Date</div>
+        </div>
+
+        <div class="sig-block">
+          <div class="sig-label">Client</div>
+
+          <div class="sig-line"></div>
+          <div class="sig-field-label">Signature</div>
+
+          <div class="sig-line"></div>
+          <div class="sig-field-label">Full Name: <span class="placeholder">[CLIENT FULL NAME]</span></div>
+
+          <div class="sig-line"></div>
+          <div class="sig-field-label">Date</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- APPENDIX -->
+    <div class="section">
+      <span class="section-number">Appendix A</span>
+      <h2>Placeholder Reference</h2>
+      <p>Before signing, ensure all placeholders in this document have been completed. The following placeholders appear throughout this Agreement:</p>
+
+      <table class="deliverables-table">
+        <thead>
+          <tr>
+            <th>Placeholder</th>
+            <th>Location</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="placeholder">[DATE]</span></td>
+            <td>Header, Section 1</td>
+            <td style="min-width: 180px;"></td>
+          </tr>
+          <tr>
+            <td><span class="placeholder">[PROJECT-REF]</span></td>
+            <td>Header</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><span class="placeholder">[PROVIDER ADDRESS]</span></td>
+            <td>Section 1</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><span class="placeholder">[PROVIDER EMAIL]</span></td>
+            <td>Section 1</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><span class="placeholder">[CLIENT FULL NAME]</span></td>
+            <td>Section 1, Section 17</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><span class="placeholder">[CLIENT COMPANY NAME]</span></td>
+            <td>Section 1</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><span class="placeholder">[CLIENT ADDRESS]</span></td>
+            <td>Section 1</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><span class="placeholder">[CLIENT EMAIL]</span></td>
+            <td>Section 1</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><span class="placeholder">[CLIENT CONTACT NAME]</span></td>
+            <td>Section 8</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><span class="placeholder">[CLIENT CONTACT EMAIL]</span></td>
+            <td>Section 8</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><span class="placeholder">[CLIENT CONTACT PHONE]</span></td>
+            <td>Section 8</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><span class="placeholder">[START DATE]</span></td>
+            <td>Section 4</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><span class="placeholder">[END DATE]</span></td>
+            <td>Section 4</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Stage 1 Amount</td>
+            <td>Section 5</td>
+            <td>&#8358;500,000 NGN (fixed)</td>
+          </tr>
+          <tr>
+            <td><span class="placeholder">[NUMBER]</span></td>
+            <td>Section 3 (logo concepts)</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><span class="placeholder">[HOURLY RATE OR FIXED FEE PER ADDITIONAL ROUND]</span></td>
+            <td>Section 9</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div><!-- end .doc-body -->
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="doc-footer">
+    <span class="footer-gold">Lawal Awwal</span> &middot; Web Design &amp; Development Services<br>
+    This document is confidential and intended solely for the named Parties.
+  </footer>
+
+</div><!-- end .document -->
+
+</body>
+</html>

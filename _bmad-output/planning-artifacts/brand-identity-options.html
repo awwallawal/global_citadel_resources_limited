@@ -1,0 +1,2075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Global Resources Citadel Limited — Brand Identity Directions</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   CSS CUSTOM PROPERTIES
+   ============================================ */
+:root {
+  --primary-900: #14532D;
+  --primary-700: #166534;
+  --primary-600: #15803D;
+  --primary-500: #16A34A;
+  --primary-100: #DCFCE7;
+  --primary-50: #F0FDF4;
+  --gold: #B48A3E;
+  --gold-light: #D4AF6A;
+  --gold-dark: #8A6A2E;
+  --neutral-900: #1F2937;
+  --neutral-800: #374151;
+  --neutral-700: #4B5563;
+  --neutral-600: #6B7280;
+  --neutral-500: #9CA3AF;
+  --neutral-400: #D1D5DB;
+  --neutral-300: #E5E7EB;
+  --neutral-200: #F3F4F6;
+  --neutral-100: #F9FAFB;
+  --white: #FFFFFF;
+}
+
+/* ============================================
+   RESET & BASE
+   ============================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--neutral-900);
+  background: var(--neutral-100);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============================================
+   PREMIUM BACKGROUND TEXTURE
+   ============================================ */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image:
+    radial-gradient(circle at 25% 25%, rgba(20,83,45,0.02) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(180,138,62,0.02) 0%, transparent 50%),
+    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23166534' fill-opacity='0.015'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ============================================
+   LAYOUT
+   ============================================ */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+section {
+  margin-bottom: 4rem;
+}
+
+/* ============================================
+   COVER / TITLE PAGE
+   ============================================ */
+.cover {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--primary-900) 0%, var(--primary-700) 40%, var(--primary-600) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.cover::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background:
+    radial-gradient(ellipse at 20% 80%, rgba(180,138,62,0.15) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(255,255,255,0.05) 0%, transparent 40%);
+}
+
+.cover::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M50 50 L55 45 L60 50 L55 55Z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.cover-content {
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  padding: 3rem;
+}
+
+.cover-content .brand-mark {
+  width: 80px;
+  height: 4px;
+  background: var(--gold);
+  margin: 0 auto 3rem;
+}
+
+.cover-content h1 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  color: var(--white);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.cover-content .subtitle {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  color: var(--gold-light);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin-bottom: 3rem;
+}
+
+.cover-content .doc-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 0.08em;
+  margin-bottom: 0.5rem;
+}
+
+.cover-content .doc-date {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.05em;
+}
+
+.cover-content .brand-mark-bottom {
+  width: 40px;
+  height: 2px;
+  background: var(--gold);
+  margin: 2.5rem auto 0;
+  opacity: 0.6;
+}
+
+/* ============================================
+   NAVIGATION / TOC
+   ============================================ */
+.toc {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--white);
+  border-bottom: 1px solid var(--neutral-300);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  padding: 0;
+}
+
+.toc-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  overflow-x: auto;
+}
+
+.toc-brand {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: var(--primary-700);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 1rem 1.5rem 1rem 0;
+  border-right: 1px solid var(--neutral-300);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.toc a {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--neutral-600);
+  text-decoration: none;
+  padding: 1rem 1.25rem;
+  white-space: nowrap;
+  transition: color 0.2s, border-color 0.2s;
+  border-bottom: 2px solid transparent;
+  display: block;
+}
+
+.toc a:hover {
+  color: var(--primary-600);
+  border-bottom-color: var(--primary-600);
+}
+
+/* ============================================
+   SECTION HEADERS
+   ============================================ */
+.section-header {
+  text-align: center;
+  padding: 5rem 2rem 3rem;
+}
+
+.section-header .section-number {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 0.75rem;
+  color: var(--gold);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.section-header h2 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  color: var(--primary-900);
+  margin-bottom: 1rem;
+}
+
+.section-header p {
+  font-size: 1rem;
+  color: var(--neutral-600);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.section-header .accent-line {
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-600), var(--gold));
+  margin: 1.5rem auto 0;
+  border-radius: 2px;
+}
+
+/* ============================================
+   LOGO DISPLAY CARDS
+   ============================================ */
+.logo-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.logo-card {
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
+  overflow: hidden;
+  transition: box-shadow 0.3s;
+}
+
+.logo-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08), 0 8px 24px rgba(0,0,0,0.06);
+}
+
+.logo-card-header {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--neutral-200);
+}
+
+.logo-card-header h4 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: var(--neutral-700);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.logo-display {
+  padding: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+}
+
+.logo-display.dark-bg {
+  background: var(--primary-900);
+}
+
+.logo-display.light-bg {
+  background: var(--white);
+}
+
+.logo-display.neutral-bg {
+  background: var(--neutral-200);
+}
+
+.logo-display.small-scale {
+  min-height: 80px;
+  padding: 1.5rem 3rem;
+  background: var(--neutral-100);
+}
+
+/* Two-column grid for medium displays */
+.logo-grid-2col {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+/* Three-column grid */
+.logo-grid-3col {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+/* ============================================
+   WORDMARK STYLES — DIRECTION 1
+   (Three-tier stacked wordmark)
+   ============================================ */
+.wordmark {
+  font-family: 'Poppins', sans-serif;
+  text-transform: uppercase;
+  line-height: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wordmark .descriptor {
+  display: block;
+}
+
+.wordmark .main {
+  display: block;
+}
+
+.wordmark .qualifier {
+  display: block;
+}
+
+/* Primary wordmark — large */
+.wordmark-primary .descriptor {
+  font-weight: 500;
+  font-size: 1.1rem;
+  letter-spacing: 0.25em;
+  color: var(--primary-600);
+  margin-bottom: 0.2rem;
+}
+
+.wordmark-primary .main {
+  font-weight: 700;
+  font-size: 3rem;
+  letter-spacing: 0.18em;
+  color: var(--primary-900);
+}
+
+.wordmark-primary .qualifier {
+  font-weight: 300;
+  font-size: 0.55rem;
+  letter-spacing: 0.5em;
+  color: var(--neutral-500);
+  margin-top: 0.35rem;
+}
+
+/* Reversed */
+.wordmark-reversed .descriptor {
+  font-weight: 500;
+  font-size: 1.1rem;
+  letter-spacing: 0.25em;
+  color: var(--gold-light);
+  margin-bottom: 0.2rem;
+}
+
+.wordmark-reversed .main {
+  font-weight: 700;
+  font-size: 3rem;
+  letter-spacing: 0.18em;
+  color: var(--white);
+}
+
+.wordmark-reversed .qualifier {
+  font-weight: 300;
+  font-size: 0.55rem;
+  letter-spacing: 0.5em;
+  color: rgba(255,255,255,0.4);
+  margin-top: 0.35rem;
+}
+
+/* Monochrome */
+.wordmark-mono .descriptor {
+  font-weight: 500;
+  font-size: 1.1rem;
+  letter-spacing: 0.25em;
+  color: var(--neutral-600);
+  margin-bottom: 0.2rem;
+}
+
+.wordmark-mono .main {
+  font-weight: 700;
+  font-size: 3rem;
+  letter-spacing: 0.18em;
+  color: var(--neutral-900);
+}
+
+.wordmark-mono .qualifier {
+  font-weight: 300;
+  font-size: 0.55rem;
+  letter-spacing: 0.5em;
+  color: var(--neutral-500);
+  margin-top: 0.35rem;
+}
+
+/* Small scale */
+.wordmark-small .descriptor {
+  font-weight: 500;
+  font-size: 0.4rem;
+  letter-spacing: 0.2em;
+  color: var(--primary-600);
+  margin-bottom: 0.05rem;
+}
+
+.wordmark-small .main {
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  color: var(--primary-900);
+}
+
+.wordmark-small .qualifier {
+  font-weight: 300;
+  font-size: 0.2rem;
+  letter-spacing: 0.4em;
+  color: var(--neutral-500);
+  margin-top: 0.05rem;
+}
+
+/* With tagline */
+.wordmark-tagline .descriptor {
+  font-weight: 500;
+  font-size: 1rem;
+  letter-spacing: 0.25em;
+  color: var(--primary-600);
+  margin-bottom: 0.2rem;
+}
+
+.wordmark-tagline .main {
+  font-weight: 700;
+  font-size: 2.6rem;
+  letter-spacing: 0.18em;
+  color: var(--primary-900);
+}
+
+.wordmark-tagline .qualifier {
+  font-weight: 300;
+  font-size: 0.5rem;
+  letter-spacing: 0.5em;
+  color: var(--neutral-500);
+  margin-top: 0.3rem;
+}
+
+.tagline {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  color: var(--neutral-500);
+  margin-top: 1rem;
+  font-style: italic;
+}
+
+.tagline-light {
+  color: rgba(255,255,255,0.5);
+}
+
+/* ============================================
+   MONOGRAM STYLES — DIRECTION 2
+   ============================================ */
+.logo-lockup {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.logo-lockup-vertical {
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.monogram {
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  letter-spacing: 0.06em;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.monogram-green {
+  background: var(--primary-900);
+  color: var(--gold-light);
+  border: 2px solid var(--primary-700);
+}
+
+.monogram-gold-ring {
+  background: var(--primary-900);
+  color: var(--white);
+  border: 2.5px solid var(--gold);
+}
+
+.monogram-reversed {
+  background: var(--white);
+  color: var(--primary-900);
+  border: 2.5px solid var(--gold);
+}
+
+.monogram-mono {
+  background: var(--neutral-900);
+  color: var(--white);
+}
+
+.monogram-small {
+  width: 38px;
+  height: 38px;
+  font-size: 0.55rem;
+  letter-spacing: 0.04em;
+  border-width: 1.5px;
+}
+
+.monogram-square {
+  border-radius: 8px;
+}
+
+.monogram-square.monogram-small {
+  border-radius: 4px;
+}
+
+/* Lockup wordmark next to monogram — three-tier */
+.lockup-text {
+  text-align: left;
+}
+
+.lockup-text .descriptor {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  display: block;
+  line-height: 1;
+  margin-bottom: 0.1rem;
+}
+
+.lockup-text .main {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  line-height: 1;
+  display: block;
+}
+
+.lockup-text .qualifier {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 0.35rem;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  display: block;
+  margin-top: 0.15rem;
+}
+
+.lockup-text-green .descriptor { color: var(--primary-600); }
+.lockup-text-green .main { color: var(--primary-900); }
+.lockup-text-green .qualifier { color: var(--neutral-500); }
+
+.lockup-text-white .descriptor { color: var(--gold-light); }
+.lockup-text-white .main { color: var(--white); }
+.lockup-text-white .qualifier { color: rgba(255,255,255,0.4); }
+
+.lockup-text-mono .descriptor { color: var(--neutral-600); }
+.lockup-text-mono .main { color: var(--neutral-900); }
+.lockup-text-mono .qualifier { color: var(--neutral-500); }
+
+.lockup-text-small .descriptor { font-size: 0.35rem; letter-spacing: 0.15em; }
+.lockup-text-small .main { font-size: 0.85rem; letter-spacing: 0.12em; }
+.lockup-text-small .qualifier { font-size: 0.18rem; letter-spacing: 0.35em; }
+
+/* Standalone monogram display */
+.monogram-standalone-row {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.monogram-standalone-row .monogram-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  color: var(--neutral-500);
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.monogram-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ============================================
+   ABSTRACT MARK STYLES — DIRECTION 3
+   ============================================ */
+.abstract-mark {
+  width: 64px;
+  height: 64px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.abstract-mark-small {
+  width: 32px;
+  height: 32px;
+}
+
+/* Growth/interconnection symbol: Three ascending bars with connecting element */
+.growth-mark {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 100%;
+  padding: 8px 6px;
+}
+
+.growth-mark-small {
+  gap: 2px;
+  padding: 4px 3px;
+}
+
+.growth-bar {
+  flex: 1;
+  border-radius: 2px;
+  position: relative;
+}
+
+.growth-bar-small {
+  border-radius: 1px;
+}
+
+.growth-bar:nth-child(1) { height: 40%; }
+.growth-bar:nth-child(2) { height: 65%; }
+.growth-bar:nth-child(3) { height: 90%; }
+.growth-bar:nth-child(4) { height: 55%; }
+
+.growth-bar-green { background: var(--primary-600); }
+.growth-bar-gold { background: var(--gold); }
+.growth-bar-white { background: var(--white); }
+.growth-bar-dark { background: var(--neutral-900); }
+
+/* Alternate abstract: Interlocking diamond/arrow */
+.interlock-mark {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.interlock-mark svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ============================================
+   LETTERHEAD MOCKUP
+   ============================================ */
+.letterhead-container {
+  max-width: 680px;
+  margin: 0 auto 3rem;
+}
+
+.letterhead {
+  background: var(--white);
+  aspect-ratio: 210 / 297;
+  max-height: 900px;
+  border-radius: 4px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08), 0 12px 40px rgba(0,0,0,0.05);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.letterhead-header {
+  padding: 2.5rem 3rem 1.5rem;
+  position: relative;
+}
+
+.letterhead-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 3rem;
+  right: 3rem;
+  height: 1px;
+  background: var(--neutral-300);
+}
+
+/* Stripe accent at very top */
+.letterhead-stripe {
+  height: 5px;
+  background: linear-gradient(90deg, var(--primary-900) 0%, var(--primary-600) 60%, var(--gold) 100%);
+  flex-shrink: 0;
+}
+
+.letterhead-header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.letterhead-logo {
+  flex-shrink: 0;
+}
+
+.letterhead-address {
+  text-align: right;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.6rem;
+  line-height: 1.7;
+  color: var(--neutral-600);
+}
+
+.letterhead-body {
+  flex: 1;
+  padding: 2rem 3rem;
+}
+
+.letterhead-body .date {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.65rem;
+  color: var(--neutral-600);
+  margin-bottom: 1.5rem;
+}
+
+.letterhead-body .recipient {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.65rem;
+  color: var(--neutral-900);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.letterhead-body .body-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.6rem;
+  color: var(--neutral-700);
+  line-height: 1.8;
+}
+
+.letterhead-body .body-text p {
+  margin-bottom: 0.8rem;
+}
+
+.letterhead-body .signature {
+  margin-top: 2rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.6rem;
+  color: var(--neutral-900);
+  line-height: 1.6;
+}
+
+.letterhead-body .sig-name {
+  font-weight: 600;
+}
+
+.letterhead-footer {
+  padding: 1rem 3rem;
+  border-top: 1px solid var(--neutral-300);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.letterhead-footer::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-900) 0%, var(--primary-600) 60%, var(--gold) 100%);
+}
+
+.letterhead-footer .footer-left,
+.letterhead-footer .footer-right {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.5rem;
+  color: var(--neutral-500);
+  line-height: 1.6;
+}
+
+.letterhead-footer .footer-divider {
+  width: 1px;
+  height: 20px;
+  background: var(--neutral-300);
+}
+
+/* ============================================
+   COMPARE SECTION
+   ============================================ */
+.compare-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.compare-card {
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.compare-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1), 0 12px 32px rgba(0,0,0,0.08);
+  transform: translateY(-2px);
+}
+
+.compare-preview {
+  padding: 2.5rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 180px;
+  background: var(--primary-50);
+  border-bottom: 1px solid var(--neutral-200);
+}
+
+.compare-info {
+  padding: 1.25rem 1.5rem;
+}
+
+.compare-info h4 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--primary-900);
+  margin-bottom: 0.25rem;
+}
+
+.compare-info p {
+  font-size: 0.8rem;
+  color: var(--neutral-600);
+}
+
+/* ============================================
+   COLOUR SYSTEM DISPLAY
+   ============================================ */
+.colour-system {
+  display: flex;
+  gap: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 2rem 0;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+.colour-swatch {
+  flex: 1;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.colour-swatch .swatch-name {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+}
+
+.colour-swatch .swatch-hex {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.6rem;
+  opacity: 0.7;
+}
+
+/* ============================================
+   DIVIDER
+   ============================================ */
+.section-divider {
+  text-align: center;
+  padding: 3rem 0;
+}
+
+.section-divider .divider-line {
+  width: 120px;
+  height: 1px;
+  background: var(--neutral-300);
+  margin: 0 auto;
+  position: relative;
+}
+
+.section-divider .divider-line::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 7px;
+  height: 7px;
+  background: var(--gold);
+  border-radius: 50%;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+  .compare-grid { grid-template-columns: 1fr; }
+  .logo-grid-2col { grid-template-columns: 1fr; }
+  .logo-grid-3col { grid-template-columns: 1fr; }
+  .logo-display { padding: 2rem 1.5rem; }
+  .wordmark-primary .main,
+  .wordmark-reversed .main,
+  .wordmark-mono .main { font-size: 2rem; }
+  .wordmark-primary .descriptor,
+  .wordmark-reversed .descriptor,
+  .wordmark-mono .descriptor { font-size: 0.75rem; }
+  .wordmark-primary .qualifier,
+  .wordmark-reversed .qualifier,
+  .wordmark-mono .qualifier { font-size: 0.45rem; }
+  .letterhead-header { padding: 1.5rem 2rem 1rem; }
+  .letterhead-header::after { left: 2rem; right: 2rem; }
+  .letterhead-body { padding: 1.5rem 2rem; }
+  .letterhead-footer { padding: 0.75rem 2rem; }
+  .logo-lockup { gap: 1rem; }
+  .lockup-text .main { font-size: 1.3rem; }
+  .toc-inner { gap: 0; }
+  .container { padding: 0 1rem; }
+  .monogram-standalone-row { gap: 1rem; }
+}
+
+@media (max-width: 480px) {
+  .wordmark-primary .main,
+  .wordmark-reversed .main,
+  .wordmark-mono .main { font-size: 1.4rem; letter-spacing: 0.12em; }
+  .wordmark-primary .descriptor,
+  .wordmark-reversed .descriptor,
+  .wordmark-mono .descriptor { font-size: 0.55rem; letter-spacing: 0.18em; }
+  .wordmark-primary .qualifier,
+  .wordmark-reversed .qualifier,
+  .wordmark-mono .qualifier { font-size: 0.35rem; letter-spacing: 0.35em; }
+  .lockup-text .main { font-size: 1rem; }
+  .monogram { width: 58px; height: 58px; font-size: 1rem; }
+}
+
+/* ============================================
+   UTILITY
+   ============================================ */
+.text-center { text-align: center; }
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+.mb-4 { margin-bottom: 2rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-4 { margin-top: 2rem; }
+
+.note-card {
+  background: var(--primary-50);
+  border-left: 3px solid var(--primary-600);
+  padding: 1.25rem 1.5rem;
+  border-radius: 0 8px 8px 0;
+  margin: 1.5rem 0;
+}
+
+.note-card p {
+  font-size: 0.85rem;
+  color: var(--primary-900);
+  line-height: 1.6;
+}
+
+.note-card strong {
+  font-weight: 600;
+}
+
+/* Separator with label */
+.labeled-separator {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.labeled-separator .sep-line {
+  flex: 1;
+  height: 1px;
+  background: var(--neutral-300);
+}
+
+.labeled-separator .sep-label {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--neutral-500);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ============================================
+   LETTERHEAD LOGO VARIANTS (smaller for letterhead)
+   — Three-tier structure
+   ============================================ */
+.lh-wordmark {
+  text-align: left;
+}
+
+.lh-wordmark .descriptor {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 0.38rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--primary-600);
+  display: block;
+  line-height: 1;
+  margin-bottom: 0.05rem;
+}
+
+.lh-wordmark .main {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--primary-900);
+  line-height: 1;
+  display: block;
+}
+
+.lh-wordmark .qualifier {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 0.2rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--neutral-500);
+  display: block;
+  margin-top: 0.06rem;
+}
+
+.lh-lockup {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.lh-monogram {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 0.5rem;
+  letter-spacing: 0.03em;
+  flex-shrink: 0;
+  background: var(--primary-900);
+  color: var(--gold-light);
+  border: 1.5px solid var(--gold);
+}
+
+.lh-lockup-text .descriptor {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 0.3rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--primary-600);
+  display: block;
+  line-height: 1;
+  margin-bottom: 0.04rem;
+}
+
+.lh-lockup-text .main {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primary-900);
+  line-height: 1;
+  display: block;
+}
+
+.lh-lockup-text .qualifier {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 0.18rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--neutral-500);
+  display: block;
+  margin-top: 0.04rem;
+}
+
+/* Direction 3 letterhead mark */
+.lh-abstract-lockup {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.lh-abstract-mark {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  padding: 3px 2px;
+}
+
+.lh-growth-bar {
+  flex: 1;
+  border-radius: 1px;
+}
+
+.lh-growth-bar:nth-child(1) { height: 40%; }
+.lh-growth-bar:nth-child(2) { height: 65%; }
+.lh-growth-bar:nth-child(3) { height: 90%; }
+.lh-growth-bar:nth-child(4) { height: 55%; }
+
+.lh-growth-bar-green { background: var(--primary-600); }
+.lh-growth-bar-gold { background: var(--gold); }
+
+</style>
+</head>
+<body>
+
+<!-- ============================================
+     COVER PAGE
+     ============================================ -->
+<div class="cover">
+  <div class="cover-content">
+    <div class="brand-mark"></div>
+    <h1>Global Resources Citadel Limited</h1>
+    <div class="subtitle">Brand Identity Directions</div>
+    <div class="doc-title">Visual Identity Exploration &mdash; Confidential</div>
+    <div class="doc-date">March 2026</div>
+    <div class="brand-mark-bottom"></div>
+  </div>
+</div>
+
+<!-- ============================================
+     STICKY NAVIGATION
+     ============================================ -->
+<nav class="toc">
+  <div class="toc-inner">
+    <span class="toc-brand">GRCL</span>
+    <a href="#compare">Overview</a>
+    <a href="#colours">Colours</a>
+    <a href="#direction-1">Direction 1</a>
+    <a href="#direction-2">Direction 2</a>
+    <a href="#direction-3">Direction 3</a>
+  </div>
+</nav>
+
+<!-- ============================================
+     COMPARE ALL — OVERVIEW
+     ============================================ -->
+<section id="compare">
+  <div class="section-header">
+    <div class="section-number">Overview</div>
+    <h2>Three Directions at a Glance</h2>
+    <p>Each direction interprets the Global Resources Citadel Limited brand through a different lens &mdash; from restrained typographic authority to iconographic flexibility. Click any card to jump to its section.</p>
+    <div class="accent-line"></div>
+  </div>
+
+  <div class="container">
+    <div class="compare-grid">
+      <!-- Direction 1 Thumbnail -->
+      <a href="#direction-1" class="compare-card">
+        <div class="compare-preview">
+          <div class="wordmark" style="pointer-events:none;">
+            <span class="descriptor" style="font-weight:500;font-size:0.5rem;letter-spacing:0.2em;color:var(--primary-600);">GLOBAL RESOURCES</span>
+            <span class="main" style="font-weight:700;font-size:1.3rem;letter-spacing:0.15em;color:var(--primary-900);">CITADEL</span>
+            <span class="qualifier" style="font-weight:300;font-size:0.22rem;letter-spacing:0.4em;color:var(--neutral-500);margin-top:0.15rem;">LIMITED</span>
+          </div>
+        </div>
+        <div class="compare-info">
+          <h4>Direction 1</h4>
+          <p>Stacked Wordmark &mdash; The name is the brand</p>
+        </div>
+      </a>
+
+      <!-- Direction 2 Thumbnail -->
+      <a href="#direction-2" class="compare-card">
+        <div class="compare-preview">
+          <div class="logo-lockup" style="gap:0.8rem;pointer-events:none;">
+            <div class="monogram monogram-gold-ring" style="width:48px;height:48px;font-size:0.85rem;">GRC</div>
+            <div>
+              <span style="font-family:'Poppins',sans-serif;font-weight:500;font-size:0.35rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--primary-600);display:block;line-height:1;margin-bottom:0.05rem;">GLOBAL RESOURCES</span>
+              <span style="font-family:'Poppins',sans-serif;font-weight:700;font-size:1rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--primary-900);display:block;line-height:1;">CITADEL</span>
+              <span style="font-family:'Poppins',sans-serif;font-weight:300;font-size:0.2rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--neutral-500);display:block;margin-top:0.08rem;">LIMITED</span>
+            </div>
+          </div>
+        </div>
+        <div class="compare-info">
+          <h4>Direction 2</h4>
+          <p>Wordmark + Monogram &mdash; Flexible identity system</p>
+        </div>
+      </a>
+
+      <!-- Direction 3 Thumbnail -->
+      <a href="#direction-3" class="compare-card">
+        <div class="compare-preview">
+          <div class="logo-lockup" style="gap:0.8rem;pointer-events:none;">
+            <div style="width:40px;height:40px;display:flex;align-items:flex-end;gap:2px;padding:4px 3px;">
+              <div style="flex:1;height:40%;border-radius:1px;background:var(--primary-600);"></div>
+              <div style="flex:1;height:65%;border-radius:1px;background:var(--primary-500);"></div>
+              <div style="flex:1;height:90%;border-radius:1px;background:var(--primary-900);"></div>
+              <div style="flex:1;height:55%;border-radius:1px;background:var(--gold);"></div>
+            </div>
+            <div>
+              <span style="font-family:'Poppins',sans-serif;font-weight:500;font-size:0.35rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--primary-600);display:block;line-height:1;margin-bottom:0.05rem;">GLOBAL RESOURCES</span>
+              <span style="font-family:'Poppins',sans-serif;font-weight:700;font-size:1rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--primary-900);display:block;line-height:1;">CITADEL</span>
+              <span style="font-family:'Poppins',sans-serif;font-weight:300;font-size:0.2rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--neutral-500);display:block;margin-top:0.08rem;">LIMITED</span>
+            </div>
+          </div>
+        </div>
+        <div class="compare-info">
+          <h4>Direction 3</h4>
+          <p>Wordmark + Abstract Mark &mdash; Growth and structure</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     COLOUR SYSTEM
+     ============================================ -->
+<section id="colours">
+  <div class="section-header">
+    <div class="section-number">Colour System</div>
+    <h2>The Palette</h2>
+    <p>A deep forest green anchors authority and trust. Warm gold provides a premium accent without excess. Clean neutrals let the brand breathe.</p>
+    <div class="accent-line"></div>
+  </div>
+
+  <div class="container">
+    <div class="colour-system">
+      <div class="colour-swatch" style="background:var(--primary-900);">
+        <span class="swatch-name" style="color:var(--primary-100);">Primary 900</span>
+        <span class="swatch-hex" style="color:var(--primary-100);">#14532D</span>
+      </div>
+      <div class="colour-swatch" style="background:var(--primary-700);">
+        <span class="swatch-name" style="color:var(--primary-100);">Primary 700</span>
+        <span class="swatch-hex" style="color:var(--primary-100);">#166534</span>
+      </div>
+      <div class="colour-swatch" style="background:var(--primary-600);">
+        <span class="swatch-name" style="color:var(--white);">Primary 600</span>
+        <span class="swatch-hex" style="color:var(--white);">#15803D</span>
+      </div>
+      <div class="colour-swatch" style="background:var(--primary-500);">
+        <span class="swatch-name" style="color:var(--white);">Primary 500</span>
+        <span class="swatch-hex" style="color:var(--white);">#16A34A</span>
+      </div>
+      <div class="colour-swatch" style="background:var(--primary-100);">
+        <span class="swatch-name" style="color:var(--primary-900);">Primary 100</span>
+        <span class="swatch-hex" style="color:var(--primary-700);">#DCFCE7</span>
+      </div>
+      <div class="colour-swatch" style="background:var(--primary-50);">
+        <span class="swatch-name" style="color:var(--primary-900);">Primary 50</span>
+        <span class="swatch-hex" style="color:var(--primary-700);">#F0FDF4</span>
+      </div>
+    </div>
+
+    <div class="colour-system">
+      <div class="colour-swatch" style="background:var(--gold-dark);flex:0.5;">
+        <span class="swatch-name" style="color:var(--white);">Gold Dark</span>
+        <span class="swatch-hex" style="color:rgba(255,255,255,0.7);">#8A6A2E</span>
+      </div>
+      <div class="colour-swatch" style="background:var(--gold);flex:1;">
+        <span class="swatch-name" style="color:var(--white);">Gold</span>
+        <span class="swatch-hex" style="color:rgba(255,255,255,0.7);">#B48A3E</span>
+      </div>
+      <div class="colour-swatch" style="background:var(--gold-light);flex:0.5;">
+        <span class="swatch-name" style="color:var(--neutral-900);">Gold Light</span>
+        <span class="swatch-hex" style="color:var(--neutral-700);">#D4AF6A</span>
+      </div>
+      <div class="colour-swatch" style="background:var(--neutral-900);flex:0.5;">
+        <span class="swatch-name" style="color:var(--white);">Neutral 900</span>
+        <span class="swatch-hex" style="color:rgba(255,255,255,0.5);">#1F2937</span>
+      </div>
+      <div class="colour-swatch" style="background:var(--neutral-600);flex:0.5;">
+        <span class="swatch-name" style="color:var(--white);">Neutral 600</span>
+        <span class="swatch-hex" style="color:rgba(255,255,255,0.5);">#6B7280</span>
+      </div>
+      <div class="colour-swatch" style="background:var(--neutral-200);flex:0.5;">
+        <span class="swatch-name" style="color:var(--neutral-900);">Neutral 200</span>
+        <span class="swatch-hex" style="color:var(--neutral-600);">#F3F4F6</span>
+      </div>
+    </div>
+
+    <div class="note-card">
+      <p><strong>Typography:</strong> Poppins serves as the brand typeface for all headlines and the wordmark. Inter is used for body copy, UI, and supporting text. Both loaded from Google Fonts.</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"><div class="divider-line"></div></div>
+
+<!-- ============================================
+     DIRECTION 1: STACKED WORDMARK
+     ============================================ -->
+<section id="direction-1">
+  <div class="section-header">
+    <div class="section-number">Direction One</div>
+    <h2>Stacked Wordmark</h2>
+    <p>The name carries all the weight. A three-tier typographic hierarchy turns a four-word corporate name into a focused brand statement. The mark of a company that needs no symbol to be recognised.</p>
+    <div class="accent-line"></div>
+  </div>
+
+  <div class="container">
+    <!-- Primary: Full colour on white -->
+    <div class="logo-grid">
+      <div class="logo-card">
+        <div class="logo-card-header">
+          <h4>Primary &mdash; Full Colour on White</h4>
+        </div>
+        <div class="logo-display light-bg">
+          <div class="wordmark wordmark-primary">
+            <span class="descriptor">GLOBAL RESOURCES</span>
+            <span class="main">CITADEL</span>
+            <span class="qualifier">LIMITED</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="logo-grid-2col">
+      <!-- Reversed -->
+      <div class="logo-card">
+        <div class="logo-card-header">
+          <h4>Reversed &mdash; White on Dark Green</h4>
+        </div>
+        <div class="logo-display dark-bg">
+          <div class="wordmark wordmark-reversed">
+            <span class="descriptor">GLOBAL RESOURCES</span>
+            <span class="main">CITADEL</span>
+            <span class="qualifier">LIMITED</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Monochrome -->
+      <div class="logo-card">
+        <div class="logo-card-header">
+          <h4>Monochrome</h4>
+        </div>
+        <div class="logo-display neutral-bg">
+          <div class="wordmark wordmark-mono">
+            <span class="descriptor">GLOBAL RESOURCES</span>
+            <span class="main">CITADEL</span>
+            <span class="qualifier">LIMITED</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="logo-grid-2col">
+      <!-- Small Scale -->
+      <div class="logo-card">
+        <div class="logo-card-header">
+          <h4>Small Scale &mdash; Navigation Size (~40px)</h4>
+        </div>
+        <div class="logo-display small-scale">
+          <div class="wordmark wordmark-small">
+            <span class="descriptor">GLOBAL RESOURCES</span>
+            <span class="main">CITADEL</span>
+            <span class="qualifier">LIMITED</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- With Tagline -->
+      <div class="logo-card">
+        <div class="logo-card-header">
+          <h4>With Tagline</h4>
+        </div>
+        <div class="logo-display light-bg">
+          <div class="wordmark wordmark-tagline">
+            <span class="descriptor">GLOBAL RESOURCES</span>
+            <span class="main">CITADEL</span>
+            <span class="qualifier">LIMITED</span>
+            <span class="tagline">Building Across Sectors</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Letterhead Mockup -->
+    <div class="labeled-separator">
+      <div class="sep-line"></div>
+      <span class="sep-label">Letterhead Mockup</span>
+      <div class="sep-line"></div>
+    </div>
+
+    <div class="letterhead-container">
+      <div class="letterhead">
+        <div class="letterhead-stripe"></div>
+        <div class="letterhead-header">
+          <div class="letterhead-header-content">
+            <div class="letterhead-logo">
+              <div class="lh-wordmark">
+                <span class="descriptor">GLOBAL RESOURCES</span>
+                <span class="main">CITADEL</span>
+                <span class="qualifier">LIMITED</span>
+              </div>
+            </div>
+            <div class="letterhead-address">
+              14 Akin Adesola Street<br>
+              Victoria Island, Lagos<br>
+              Nigeria<br>
+              <span style="color:var(--primary-600);">www.grcl.com</span>
+            </div>
+          </div>
+        </div>
+        <div class="letterhead-body">
+          <div class="date">27 March 2026</div>
+          <div class="recipient">
+            Mr. Abdullahi Mohammed<br>
+            Director of Operations<br>
+            Northern Agricultural Holdings Ltd.<br>
+            12 Ibrahim Taiwo Road, Kano
+          </div>
+          <div class="body-text">
+            <p>Dear Mr. Mohammed,</p>
+            <p>Thank you for your correspondence regarding the proposed partnership between our agricultural divisions. At Global Resources Citadel, we take great pride in our commitment to sustainable growth across every sector we operate in, and we are pleased to explore this opportunity further.</p>
+            <p>Our team has reviewed the preliminary terms and we believe there is strong alignment between our respective organisations. We would welcome an opportunity to meet at your earliest convenience to discuss the finer details of this arrangement.</p>
+            <p>Please do not hesitate to contact our offices should you require any additional information prior to our meeting.</p>
+            <div class="signature">
+              Yours sincerely,<br><br><br>
+              <span class="sig-name">Awwal Ibrahim</span><br>
+              Group Managing Director<br>
+              Global Resources Citadel Limited
+            </div>
+          </div>
+        </div>
+        <div class="letterhead-footer">
+          <div class="footer-left">
+            info@grcl.com<br>
+            +234 XXX XXX XXXX
+          </div>
+          <div class="footer-divider"></div>
+          <div class="footer-right" style="text-align:right;">
+            RC: 000000<br>
+            14 Akin Adesola Street, Victoria Island, Lagos
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note-card">
+      <p><strong>Design rationale:</strong> The stacked wordmark creates a visual hierarchy where "CITADEL" commands attention while "GLOBAL RESOURCES" provides context and "LIMITED" establishes corporate formality. The three-tier approach turns a four-word name into a focused brand statement. The generous letter-spacing in "CITADEL" conveys openness and confidence, the lighter-weight descriptor line sits above as a contextual anchor, and the quiet qualifier below completes the corporate identity. No symbol competes for attention; the typography does all the work.</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"><div class="divider-line"></div></div>
+
+<!-- ============================================
+     DIRECTION 2: WORDMARK + MONOGRAM
+     ============================================ -->
+<section id="direction-2">
+  <div class="section-header">
+    <div class="section-number">Direction Two</div>
+    <h2>Wordmark + Monogram</h2>
+    <p>A strong "GRC" monogram gives the brand an icon that works everywhere &mdash; from favicon to boardroom. Paired with the wordmark, it creates a flexible identity system with depth.</p>
+    <div class="accent-line"></div>
+  </div>
+
+  <div class="container">
+    <!-- Primary: Full colour on white -->
+    <div class="logo-grid">
+      <div class="logo-card">
+        <div class="logo-card-header">
+          <h4>Primary &mdash; Full Colour on White</h4>
+        </div>
+        <div class="logo-display light-bg">
+          <div class="logo-lockup">
+            <div class="monogram monogram-gold-ring">GRC</div>
+            <div class="lockup-text lockup-text-green">
+              <span class="descriptor">GLOBAL RESOURCES</span>
+              <span class="main">CITADEL</span>
+              <span class="qualifier">LIMITED</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="logo-grid-2col">
+      <!-- Reversed -->
+      <div class="logo-card">
+        <div class="logo-card-header">
+          <h4>Reversed &mdash; White on Dark Green</h4>
+        </div>
+        <div class="logo-display dark-bg">
+          <div class="logo-lockup">
+            <div class="monogram monogram-reversed">GRC</div>
+            <div class="lockup-text lockup-text-white">
+              <span class="descriptor">GLOBAL RESOURCES</span>
+              <span class="main">CITADEL</span>
+              <span class="qualifier">LIMITED</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Monochrome -->
+      <div class="logo-card">
+        <div class="logo-card-header">
+          <h4>Monochrome</h4>
+        </div>
+        <div class="logo-display neutral-bg">
+          <div class="logo-lockup">
+            <div class="monogram monogram-mono">GRC</div>
+            <div class="lockup-text lockup-text-mono">
+              <span class="descriptor">GLOBAL RESOURCES</span>
+              <span class="main">CITADEL</span>
+              <span class="qualifier">LIMITED</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="logo-grid-2col">
+      <!-- Small Scale -->
+      <div class="logo-card">
+        <div class="logo-card-header">
+          <h4>Small Scale &mdash; Navigation Size (~40px)</h4>
+        </div>
+        <div class="logo-display small-scale">
+          <div class="logo-lockup" style="gap:0.6rem;">
+            <div class="monogram monogram-gold-ring monogram-small">GRC</div>
+            <div class="lockup-text lockup-text-green lockup-text-small">
+              <span class="descriptor">GLOBAL RESOURCES</span>
+              <span class="main">CITADEL</span>
+              <span class="qualifier">LIMITED</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- With Tagline -->
+      <div class="logo-card">
+        <div class="logo-card-header">
+          <h4>With Tagline</h4>
+        </div>
+        <div class="logo-display light-bg">
+          <div style="text-align:center;">
+            <div class="logo-lockup" style="justify-content:center;">
+              <div class="monogram monogram-gold-ring">GRC</div>
+              <div class="lockup-text lockup-text-green">
+                <span class="descriptor">GLOBAL RESOURCES</span>
+                <span class="main">CITADEL</span>
+                <span class="qualifier">LIMITED</span>
+              </div>
+            </div>
+            <div class="tagline" style="margin-top:0.75rem;">Building Across Sectors</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Standalone Monogram Variations -->
+    <div class="labeled-separator">
+      <div class="sep-line"></div>
+      <span class="sep-label">Standalone Monogram</span>
+      <div class="sep-line"></div>
+    </div>
+
+    <div class="logo-grid">
+      <div class="logo-card">
+        <div class="logo-card-header">
+          <h4>Monogram Variations &mdash; Standalone Use</h4>
+        </div>
+        <div class="logo-display light-bg" style="padding:2.5rem;">
+          <div class="monogram-standalone-row">
+            <div class="monogram-item">
+              <div class="monogram monogram-gold-ring" style="width:80px;height:80px;font-size:1.35rem;">GRC</div>
+              <div class="monogram-label">Circle / Gold Ring</div>
+            </div>
+            <div class="monogram-item">
+              <div class="monogram monogram-gold-ring monogram-square" style="width:80px;height:80px;font-size:1.35rem;">GRC</div>
+              <div class="monogram-label">Rounded Square</div>
+            </div>
+            <div class="monogram-item">
+              <div class="monogram monogram-green" style="width:80px;height:80px;font-size:1.35rem;">GRC</div>
+              <div class="monogram-label">Circle / Green</div>
+            </div>
+            <div class="monogram-item">
+              <div class="monogram monogram-mono" style="width:80px;height:80px;font-size:1.35rem;">GRC</div>
+              <div class="monogram-label">Mono</div>
+            </div>
+            <!-- Small sizes -->
+            <div class="monogram-item">
+              <div class="monogram monogram-gold-ring" style="width:40px;height:40px;font-size:0.7rem;border-width:2px;">GRC</div>
+              <div class="monogram-label">App Icon</div>
+            </div>
+            <div class="monogram-item">
+              <div class="monogram monogram-gold-ring" style="width:20px;height:20px;font-size:0.3rem;border-width:1px;letter-spacing:0;">GRC</div>
+              <div class="monogram-label">Favicon</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Letterhead Mockup -->
+    <div class="labeled-separator">
+      <div class="sep-line"></div>
+      <span class="sep-label">Letterhead Mockup</span>
+      <div class="sep-line"></div>
+    </div>
+
+    <div class="letterhead-container">
+      <div class="letterhead">
+        <div class="letterhead-stripe"></div>
+        <div class="letterhead-header">
+          <div class="letterhead-header-content">
+            <div class="letterhead-logo">
+              <div class="lh-lockup">
+                <div class="lh-monogram">GRC</div>
+                <div class="lh-lockup-text">
+                  <span class="descriptor">GLOBAL RESOURCES</span>
+                  <span class="main">CITADEL</span>
+                  <span class="qualifier">LIMITED</span>
+                </div>
+              </div>
+            </div>
+            <div class="letterhead-address">
+              14 Akin Adesola Street<br>
+              Victoria Island, Lagos<br>
+              Nigeria<br>
+              <span style="color:var(--primary-600);">www.grcl.com</span>
+            </div>
+          </div>
+        </div>
+        <div class="letterhead-body">
+          <div class="date">27 March 2026</div>
+          <div class="recipient">
+            Mr. Abdullahi Mohammed<br>
+            Director of Operations<br>
+            Northern Agricultural Holdings Ltd.<br>
+            12 Ibrahim Taiwo Road, Kano
+          </div>
+          <div class="body-text">
+            <p>Dear Mr. Mohammed,</p>
+            <p>Thank you for your correspondence regarding the proposed partnership between our agricultural divisions. At Global Resources Citadel, we take great pride in our commitment to sustainable growth across every sector we operate in, and we are pleased to explore this opportunity further.</p>
+            <p>Our team has reviewed the preliminary terms and we believe there is strong alignment between our respective organisations. We would welcome an opportunity to meet at your earliest convenience to discuss the finer details of this arrangement.</p>
+            <p>Please do not hesitate to contact our offices should you require any additional information prior to our meeting.</p>
+            <div class="signature">
+              Yours sincerely,<br><br><br>
+              <span class="sig-name">Awwal Ibrahim</span><br>
+              Group Managing Director<br>
+              Global Resources Citadel Limited
+            </div>
+          </div>
+        </div>
+        <div class="letterhead-footer">
+          <div class="footer-left">
+            info@grcl.com<br>
+            +234 XXX XXX XXXX
+          </div>
+          <div class="footer-divider"></div>
+          <div class="footer-right" style="text-align:right;">
+            RC: 000000<br>
+            14 Akin Adesola Street, Victoria Island, Lagos
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note-card">
+      <p><strong>Design rationale:</strong> The monogram creates a compact, memorable mark that scales from a 16px favicon to a boardroom wall. With three characters "GRC", the mark remains compact while capturing the brand's initials. The gold ring treatment adds warmth and premium positioning without excess. When the full name cannot be displayed, the "GRC" monogram carries the brand independently &mdash; essential for app icons, social profiles, and watermarks.</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"><div class="divider-line"></div></div>
+
+<!-- ============================================
+     DIRECTION 3: WORDMARK + ABSTRACT MARK
+     ============================================ -->
+<section id="direction-3">
+  <div class="section-header">
+    <div class="section-number">Direction Three</div>
+    <h2>Wordmark + Abstract Mark</h2>
+    <p>A geometric growth symbol &mdash; four ascending bars &mdash; suggests upward trajectory, diversification, and structured progress. Industry-agnostic by design, it speaks to the conglomerate&rsquo;s breadth without anchoring to any single vertical.</p>
+    <div class="accent-line"></div>
+  </div>
+
+  <div class="container">
+    <!-- Primary: Full colour on white -->
+    <div class="logo-grid">
+      <div class="logo-card">
+        <div class="logo-card-header">
+          <h4>Primary &mdash; Full Colour on White</h4>
+        </div>
+        <div class="logo-display light-bg">
+          <div class="logo-lockup">
+            <div class="abstract-mark">
+              <div class="growth-mark">
+                <div class="growth-bar growth-bar-green" style="opacity:0.6;"></div>
+                <div class="growth-bar growth-bar-green" style="opacity:0.8;"></div>
+                <div class="growth-bar growth-bar-green"></div>
+                <div class="growth-bar growth-bar-gold"></div>
+              </div>
+            </div>
+            <div class="lockup-text lockup-text-green">
+              <span class="descriptor">GLOBAL RESOURCES</span>
+              <span class="main">CITADEL</span>
+              <span class="qualifier">LIMITED</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="logo-grid-2col">
+      <!-- Reversed -->
+      <div class="logo-card">
+        <div class="logo-card-header">
+          <h4>Reversed &mdash; White on Dark Green</h4>
+        </div>
+        <div class="logo-display dark-bg">
+          <div class="logo-lockup">
+            <div class="abstract-mark">
+              <div class="growth-mark">
+                <div class="growth-bar growth-bar-white" style="opacity:0.4;"></div>
+                <div class="growth-bar growth-bar-white" style="opacity:0.6;"></div>
+                <div class="growth-bar growth-bar-white" style="opacity:0.85;"></div>
+                <div class="growth-bar" style="background:var(--gold-light);"></div>
+              </div>
+            </div>
+            <div class="lockup-text lockup-text-white">
+              <span class="descriptor">GLOBAL RESOURCES</span>
+              <span class="main">CITADEL</span>
+              <span class="qualifier">LIMITED</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Monochrome -->
+      <div class="logo-card">
+        <div class="logo-card-header">
+          <h4>Monochrome</h4>
+        </div>
+        <div class="logo-display neutral-bg">
+          <div class="logo-lockup">
+            <div class="abstract-mark">
+              <div class="growth-mark">
+                <div class="growth-bar growth-bar-dark" style="opacity:0.35;"></div>
+                <div class="growth-bar growth-bar-dark" style="opacity:0.55;"></div>
+                <div class="growth-bar growth-bar-dark" style="opacity:0.8;"></div>
+                <div class="growth-bar growth-bar-dark"></div>
+              </div>
+            </div>
+            <div class="lockup-text lockup-text-mono">
+              <span class="descriptor">GLOBAL RESOURCES</span>
+              <span class="main">CITADEL</span>
+              <span class="qualifier">LIMITED</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="logo-grid-2col">
+      <!-- Small Scale -->
+      <div class="logo-card">
+        <div class="logo-card-header">
+          <h4>Small Scale &mdash; Navigation Size (~40px)</h4>
+        </div>
+        <div class="logo-display small-scale">
+          <div class="logo-lockup" style="gap:0.5rem;">
+            <div class="abstract-mark abstract-mark-small">
+              <div class="growth-mark growth-mark-small">
+                <div class="growth-bar growth-bar-small growth-bar-green" style="opacity:0.6;"></div>
+                <div class="growth-bar growth-bar-small growth-bar-green" style="opacity:0.8;"></div>
+                <div class="growth-bar growth-bar-small growth-bar-green"></div>
+                <div class="growth-bar growth-bar-small growth-bar-gold"></div>
+              </div>
+            </div>
+            <div class="lockup-text lockup-text-green lockup-text-small">
+              <span class="descriptor">GLOBAL RESOURCES</span>
+              <span class="main">CITADEL</span>
+              <span class="qualifier">LIMITED</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- With Tagline -->
+      <div class="logo-card">
+        <div class="logo-card-header">
+          <h4>With Tagline</h4>
+        </div>
+        <div class="logo-display light-bg">
+          <div style="text-align:center;">
+            <div class="logo-lockup" style="justify-content:center;">
+              <div class="abstract-mark">
+                <div class="growth-mark">
+                  <div class="growth-bar growth-bar-green" style="opacity:0.6;"></div>
+                  <div class="growth-bar growth-bar-green" style="opacity:0.8;"></div>
+                  <div class="growth-bar growth-bar-green"></div>
+                  <div class="growth-bar growth-bar-gold"></div>
+                </div>
+              </div>
+              <div class="lockup-text lockup-text-green">
+                <span class="descriptor">GLOBAL RESOURCES</span>
+                <span class="main">CITADEL</span>
+                <span class="qualifier">LIMITED</span>
+              </div>
+            </div>
+            <div class="tagline" style="margin-top:0.75rem;">Building Across Sectors</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Standalone Mark Variations -->
+    <div class="labeled-separator">
+      <div class="sep-line"></div>
+      <span class="sep-label">Standalone Abstract Mark</span>
+      <div class="sep-line"></div>
+    </div>
+
+    <div class="logo-grid">
+      <div class="logo-card">
+        <div class="logo-card-header">
+          <h4>Mark Variations &mdash; Standalone Use</h4>
+        </div>
+        <div class="logo-display light-bg" style="padding:2.5rem;">
+          <div class="monogram-standalone-row">
+            <!-- Large standalone -->
+            <div class="monogram-item">
+              <div style="width:80px;height:80px;display:flex;align-items:flex-end;gap:4px;padding:8px 6px;">
+                <div style="flex:1;height:40%;border-radius:2px;background:var(--primary-600);opacity:0.6;"></div>
+                <div style="flex:1;height:65%;border-radius:2px;background:var(--primary-600);opacity:0.8;"></div>
+                <div style="flex:1;height:90%;border-radius:2px;background:var(--primary-600);"></div>
+                <div style="flex:1;height:55%;border-radius:2px;background:var(--gold);"></div>
+              </div>
+              <div class="monogram-label">Full Colour</div>
+            </div>
+            <!-- In circle container -->
+            <div class="monogram-item">
+              <div style="width:80px;height:80px;border-radius:50%;background:var(--primary-900);display:flex;align-items:flex-end;justify-content:center;gap:3px;padding:16px 14px;">
+                <div style="flex:1;height:40%;border-radius:2px;background:var(--primary-500);opacity:0.6;"></div>
+                <div style="flex:1;height:65%;border-radius:2px;background:var(--primary-500);opacity:0.8;"></div>
+                <div style="flex:1;height:90%;border-radius:2px;background:rgba(255,255,255,0.85);"></div>
+                <div style="flex:1;height:55%;border-radius:2px;background:var(--gold-light);"></div>
+              </div>
+              <div class="monogram-label">In Circle</div>
+            </div>
+            <!-- In square container -->
+            <div class="monogram-item">
+              <div style="width:80px;height:80px;border-radius:10px;background:var(--primary-900);display:flex;align-items:flex-end;justify-content:center;gap:3px;padding:16px 14px;">
+                <div style="flex:1;height:40%;border-radius:2px;background:var(--primary-500);opacity:0.6;"></div>
+                <div style="flex:1;height:65%;border-radius:2px;background:var(--primary-500);opacity:0.8;"></div>
+                <div style="flex:1;height:90%;border-radius:2px;background:rgba(255,255,255,0.85);"></div>
+                <div style="flex:1;height:55%;border-radius:2px;background:var(--gold-light);"></div>
+              </div>
+              <div class="monogram-label">Rounded Square</div>
+            </div>
+            <!-- Mono -->
+            <div class="monogram-item">
+              <div style="width:80px;height:80px;display:flex;align-items:flex-end;gap:4px;padding:8px 6px;">
+                <div style="flex:1;height:40%;border-radius:2px;background:var(--neutral-900);opacity:0.35;"></div>
+                <div style="flex:1;height:65%;border-radius:2px;background:var(--neutral-900);opacity:0.55;"></div>
+                <div style="flex:1;height:90%;border-radius:2px;background:var(--neutral-900);opacity:0.8;"></div>
+                <div style="flex:1;height:55%;border-radius:2px;background:var(--neutral-900);"></div>
+              </div>
+              <div class="monogram-label">Mono</div>
+            </div>
+            <!-- App icon size -->
+            <div class="monogram-item">
+              <div style="width:40px;height:40px;border-radius:8px;background:var(--primary-900);display:flex;align-items:flex-end;justify-content:center;gap:2px;padding:8px 7px;">
+                <div style="flex:1;height:40%;border-radius:1px;background:var(--primary-500);opacity:0.6;"></div>
+                <div style="flex:1;height:65%;border-radius:1px;background:var(--primary-500);opacity:0.8;"></div>
+                <div style="flex:1;height:90%;border-radius:1px;background:rgba(255,255,255,0.85);"></div>
+                <div style="flex:1;height:55%;border-radius:1px;background:var(--gold-light);"></div>
+              </div>
+              <div class="monogram-label">App Icon</div>
+            </div>
+            <!-- Favicon size -->
+            <div class="monogram-item">
+              <div style="width:20px;height:20px;border-radius:3px;background:var(--primary-900);display:flex;align-items:flex-end;justify-content:center;gap:1px;padding:4px 3px;">
+                <div style="flex:1;height:40%;border-radius:1px;background:var(--primary-500);opacity:0.6;"></div>
+                <div style="flex:1;height:65%;border-radius:1px;background:var(--primary-500);opacity:0.8;"></div>
+                <div style="flex:1;height:90%;border-radius:1px;background:rgba(255,255,255,0.85);"></div>
+                <div style="flex:1;height:55%;border-radius:1px;background:var(--gold-light);"></div>
+              </div>
+              <div class="monogram-label">Favicon</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Letterhead Mockup -->
+    <div class="labeled-separator">
+      <div class="sep-line"></div>
+      <span class="sep-label">Letterhead Mockup</span>
+      <div class="sep-line"></div>
+    </div>
+
+    <div class="letterhead-container">
+      <div class="letterhead">
+        <div class="letterhead-stripe"></div>
+        <div class="letterhead-header">
+          <div class="letterhead-header-content">
+            <div class="letterhead-logo">
+              <div class="lh-abstract-lockup">
+                <div class="lh-abstract-mark">
+                  <div class="lh-growth-bar lh-growth-bar-green" style="opacity:0.6;"></div>
+                  <div class="lh-growth-bar lh-growth-bar-green" style="opacity:0.8;"></div>
+                  <div class="lh-growth-bar lh-growth-bar-green"></div>
+                  <div class="lh-growth-bar lh-growth-bar-gold"></div>
+                </div>
+                <div class="lh-lockup-text">
+                  <span class="descriptor">GLOBAL RESOURCES</span>
+                  <span class="main">CITADEL</span>
+                  <span class="qualifier">LIMITED</span>
+                </div>
+              </div>
+            </div>
+            <div class="letterhead-address">
+              14 Akin Adesola Street<br>
+              Victoria Island, Lagos<br>
+              Nigeria<br>
+              <span style="color:var(--primary-600);">www.grcl.com</span>
+            </div>
+          </div>
+        </div>
+        <div class="letterhead-body">
+          <div class="date">27 March 2026</div>
+          <div class="recipient">
+            Mr. Abdullahi Mohammed<br>
+            Director of Operations<br>
+            Northern Agricultural Holdings Ltd.<br>
+            12 Ibrahim Taiwo Road, Kano
+          </div>
+          <div class="body-text">
+            <p>Dear Mr. Mohammed,</p>
+            <p>Thank you for your correspondence regarding the proposed partnership between our agricultural divisions. At Global Resources Citadel, we take great pride in our commitment to sustainable growth across every sector we operate in, and we are pleased to explore this opportunity further.</p>
+            <p>Our team has reviewed the preliminary terms and we believe there is strong alignment between our respective organisations. We would welcome an opportunity to meet at your earliest convenience to discuss the finer details of this arrangement.</p>
+            <p>Please do not hesitate to contact our offices should you require any additional information prior to our meeting.</p>
+            <div class="signature">
+              Yours sincerely,<br><br><br>
+              <span class="sig-name">Awwal Ibrahim</span><br>
+              Group Managing Director<br>
+              Global Resources Citadel Limited
+            </div>
+          </div>
+        </div>
+        <div class="letterhead-footer">
+          <div class="footer-left">
+            info@grcl.com<br>
+            +234 XXX XXX XXXX
+          </div>
+          <div class="footer-divider"></div>
+          <div class="footer-right" style="text-align:right;">
+            RC: 000000<br>
+            14 Akin Adesola Street, Victoria Island, Lagos
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note-card">
+      <p><strong>Design rationale:</strong> The four ascending bars represent the group's diversified portfolio and upward growth trajectory. The varying heights suggest different sectors operating at different scales but moving together. The gold accent bar signals premium positioning. The mark is deliberately industry-agnostic &mdash; it reads as "structured progress" rather than any single vertical, which is exactly right for a seven-division conglomerate. Paired with the three-tier "Global Resources Citadel Limited" wordmark, the abstract symbol adds narrative depth without limiting scope.</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"><div class="divider-line"></div></div>
+
+<!-- ============================================
+     CLOSING NOTES
+     ============================================ -->
+<section id="closing" style="padding-bottom:6rem;">
+  <div class="section-header">
+    <div class="section-number">Next Steps</div>
+    <h2>Moving Forward</h2>
+    <p>Select a preferred direction, or combine elements across directions. Each can be refined, iterated, and extended into a complete brand system including sub-brand lockups, stationery suite, digital assets, and environmental signage.</p>
+    <div class="accent-line"></div>
+  </div>
+
+  <div class="container">
+    <div class="logo-grid-3col">
+      <div class="note-card" style="margin:0;">
+        <p><strong>Direction 1:</strong> Best if the name alone should carry all brand equity. The three-tier stacked wordmark turns a long corporate name into a commanding typographic statement. Simplest to execute across media.</p>
+      </div>
+      <div class="note-card" style="margin:0;">
+        <p><strong>Direction 2:</strong> Best for digital-first flexibility. The GRC monogram serves as a strong standalone identifier on apps, social, and compact spaces.</p>
+      </div>
+      <div class="note-card" style="margin:0;">
+        <p><strong>Direction 3:</strong> Best for communicating growth and diversification visually. The abstract mark adds narrative depth without limiting scope.</p>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:3rem;">
+      <p style="font-family:'Poppins',sans-serif;font-weight:600;font-size:0.75rem;color:var(--neutral-500);letter-spacing:0.15em;text-transform:uppercase;">Prepared for Global Resources Citadel Limited &bull; March 2026 &bull; Confidential</p>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

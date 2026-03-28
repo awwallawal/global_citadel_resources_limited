@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Client Onboarding Pack | Lawal Awwal</title>
+<style>
+  /* ── Reset ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* ── Palette ── */
+  :root {
+    --navy:  #0f1b2d;
+    --gold:  #b8924a;
+    --light: #f8f7f4;
+    --mid:   #e8e4dc;
+    --text:  #2c2c2c;
+    --muted: #6b6b6b;
+    --white: #ffffff;
+    --gold-faint: #b8924a18;
+  }
+
+  /* ── Base ── */
+  html { font-size: 15px; }
+  body {
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    color: var(--text);
+    background: var(--light);
+    line-height: 1.65;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* ── Page shell ── */
+  .page {
+    max-width: 820px;
+    margin: 0 auto;
+    background: var(--white);
+    min-height: 100vh;
+  }
+
+  /* ── Cover header ── */
+  .cover {
+    background: var(--navy);
+    color: var(--white);
+    padding: 56px 52px 48px;
+  }
+  .cover-label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .cover-title {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 8px;
+  }
+  .cover-subtitle {
+    font-size: 1rem;
+    color: #a0aec0;
+    margin-bottom: 28px;
+  }
+  .cover-meta {
+    display: flex;
+    gap: 40px;
+    font-size: 0.82rem;
+    color: #a0aec0;
+  }
+  .cover-meta strong { color: var(--white); }
+
+  /* ── Content area ── */
+  .content { padding: 44px 52px 60px; }
+
+  /* ── Section ── */
+  .section { margin-bottom: 44px; }
+  .section:last-child { margin-bottom: 0; }
+
+  .section-number {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .section-title {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 18px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--gold);
+  }
+
+  /* ── Body text ── */
+  p { margin-bottom: 14px; font-size: 0.94rem; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── Timeline steps ── */
+  .timeline { list-style: none; padding: 0; margin: 0 0 8px; counter-reset: step; }
+  .timeline li {
+    counter-increment: step;
+    position: relative;
+    padding: 14px 18px 14px 56px;
+    margin-bottom: 6px;
+    background: var(--light);
+    border-radius: 4px;
+    font-size: 0.92rem;
+    line-height: 1.55;
+  }
+  .timeline li::before {
+    content: counter(step);
+    position: absolute;
+    left: 16px;
+    top: 14px;
+    width: 26px;
+    height: 26px;
+    background: var(--navy);
+    color: var(--white);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .timeline li strong { color: var(--navy); }
+  .timeline-note {
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-top: 2px;
+    display: block;
+  }
+
+  /* ── Questionnaire ── */
+  .q-group {
+    margin-bottom: 32px;
+  }
+  .q-group:last-child { margin-bottom: 0; }
+  .q-group-title {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 14px;
+    padding: 10px 16px;
+    background: var(--navy);
+    color: var(--white);
+    border-radius: 4px;
+  }
+  .q-item {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--mid);
+    font-size: 0.9rem;
+  }
+  .q-item:last-child { border-bottom: none; }
+  .q-label {
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+  .q-answer {
+    border: 1px solid var(--mid);
+    border-radius: 4px;
+    padding: 10px 14px;
+    min-height: 40px;
+    background: var(--light);
+    color: var(--muted);
+    font-size: 0.85rem;
+    font-style: italic;
+    margin-top: 4px;
+  }
+  .q-answer-tall {
+    min-height: 72px;
+  }
+  .q-instruction {
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 2px;
+    margin-bottom: 4px;
+  }
+
+  /* ── Division repeater ── */
+  .division-block {
+    background: var(--light);
+    border-left: 4px solid var(--gold);
+    padding: 18px 20px;
+    margin-bottom: 16px;
+    border-radius: 0 4px 4px 0;
+  }
+  .division-block-title {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  /* ── How We Work list ── */
+  .work-list { list-style: none; padding: 0; margin: 0; }
+  .work-item {
+    display: flex;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--mid);
+    font-size: 0.92rem;
+  }
+  .work-item:last-child { border-bottom: none; }
+  .work-icon {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    background: var(--navy);
+    color: var(--gold);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+  }
+  .work-item strong { color: var(--navy); display: block; margin-bottom: 2px; }
+
+  /* ── Checklist ── */
+  .checklist { list-style: none; padding: 0; margin: 0; }
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 16px;
+    margin-bottom: 6px;
+    background: var(--light);
+    border-radius: 4px;
+    font-size: 0.92rem;
+    line-height: 1.5;
+  }
+  .checkbox {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--navy);
+    border-radius: 3px;
+    margin-top: 1px;
+  }
+
+  /* ── Callout box ── */
+  .callout {
+    background: var(--gold-faint);
+    border-left: 4px solid var(--gold);
+    padding: 16px 20px;
+    border-radius: 0 4px 4px 0;
+    margin: 20px 0;
+    font-size: 0.88rem;
+    line-height: 1.65;
+  }
+  .callout strong { color: var(--navy); }
+
+  /* ── Footer ── */
+  .pack-footer {
+    background: var(--navy);
+    color: #a0aec0;
+    text-align: center;
+    padding: 28px 52px;
+    font-size: 0.82rem;
+    line-height: 1.7;
+  }
+  .pack-footer strong { color: var(--white); }
+
+  /* ── Page break helper ── */
+  .page-break { page-break-before: always; }
+
+  /* ── Print ── */
+  @media print {
+    html { font-size: 12px; }
+    body { background: none; }
+    .page { max-width: none; box-shadow: none; }
+    .cover { padding: 36px 40px 32px; }
+    .content { padding: 32px 40px 40px; }
+    .section { margin-bottom: 28px; }
+    .pack-footer { padding: 18px 40px; }
+    @page {
+      size: A4;
+      margin: 12mm 10mm;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- COVER                                       -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="cover">
+    <div class="cover-label">Client Onboarding Pack</div>
+    <div class="cover-title">Welcome to Your<br>Digital Presence Project</div>
+    <div class="cover-subtitle">Everything you need to get started with Stage 1: Foundation</div>
+    <div class="cover-meta">
+      <div><strong>Prepared for:</strong> [Client Name / Company]</div>
+      <div><strong>Date:</strong> [DD Month YYYY]</div>
+      <div><strong>Prepared by:</strong> Lawal Awwal</div>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SECTION 1: WELCOME                         -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div class="section">
+      <div class="section-number">Section One</div>
+      <div class="section-title">Welcome</div>
+
+      <p>Thank you for choosing to work with me on your digital presence. I am genuinely excited to partner with you on this project, and I want to make sure the experience is smooth, transparent, and productive from the very first step.</p>
+
+      <p>You have committed to <strong>Stage 1: Foundation</strong>, which covers Discovery, Brand Identity, Strategy, and your Digital Roadmap. This stage is the bedrock of everything that follows. It ensures that every design decision, every line of code, and every piece of content is grounded in a clear understanding of your business, your audience, and your goals.</p>
+
+      <p>This onboarding pack contains everything you need to know about what happens next, what I need from you, and how we will work together. Please read through it carefully and complete the required action items at your earliest convenience so we can hit the ground running.</p>
+
+      <div class="callout">
+        <strong>A note on partnership:</strong> The best results come from genuine collaboration. I bring the design, development, and strategy expertise. You bring the deep knowledge of your business, your customers, and your ambitions. Together, we will build something exceptional.
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SECTION 2: WHAT HAPPENS NEXT               -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div class="section">
+      <div class="section-number">Section Two</div>
+      <div class="section-title">What Happens Next</div>
+
+      <p>Here is a clear overview of the journey from today through to the completion of Stage 1. Each step builds on the one before it, so completing them in order keeps the project on track.</p>
+
+      <ol class="timeline">
+        <li>
+          <strong>Sign the Service Agreement and Submit Stage 1 Payment</strong>
+          <span class="timeline-note">I will send you the service agreement separately. Once signed and payment is received, the project officially begins.</span>
+        </li>
+        <li>
+          <strong>Receive Access to Your Shared Project Folder</strong>
+          <span class="timeline-note">You will receive a link to a shared folder where all project documents, deliverables, and resources will be stored. This is your single source of truth for the project.</span>
+        </li>
+        <li>
+          <strong>Complete the Pre-Discovery Questionnaire</strong>
+          <span class="timeline-note">The questionnaire is included in Section 3 of this document. Please complete it as thoroughly as possible. This saves valuable time during the Discovery Workshop by ensuring I already understand the fundamentals of your business before we meet.</span>
+        </li>
+        <li>
+          <strong>Schedule the Discovery Workshop (60 to 90 minutes)</strong>
+          <span class="timeline-note">This is a structured, in-depth conversation where we explore your goals, audience, competitors, and vision in detail. It can be conducted via video call. Please propose 2 to 3 preferred dates and times when you submit the questionnaire.</span>
+        </li>
+        <li>
+          <strong>Stage 1 Work Begins</strong>
+          <span class="timeline-note">Following the Discovery Workshop, I begin working on your brand identity concepts, strategic framework, and digital roadmap. You will not be left waiting in the dark. I will keep you informed of progress at every step.</span>
+        </li>
+        <li>
+          <strong>Deliverables Presented at Defined Milestones</strong>
+          <span class="timeline-note">You will receive deliverables for review and feedback at agreed milestones throughout Stage 1. This ensures you are always involved and nothing comes as a surprise.</span>
+        </li>
+        <li>
+          <strong>Stage 1 Completion and Review</strong>
+          <span class="timeline-note">We will hold a final review session to walk through all Stage 1 deliverables, confirm alignment, and discuss recommendations for Stage 2 and beyond.</span>
+        </li>
+      </ol>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SECTION 3: PRE-DISCOVERY QUESTIONNAIRE     -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div class="section page-break">
+      <div class="section-number">Section Three</div>
+      <div class="section-title">Pre-Discovery Questionnaire</div>
+
+      <p>Please complete this questionnaire as thoroughly as you can. Do not worry if you do not have answers to every question. Incomplete answers are far better than no answers. The information you provide here allows me to prepare properly for our Discovery Workshop, so we can spend that time on the deeper, more strategic conversations rather than covering basics.</p>
+
+      <div class="callout">
+        <strong>How to complete this:</strong> You can print this document and fill it in by hand, or you can type your answers into a separate document and send it to me by email at awwallawal@gmail.com. If you prefer, you can also respond by voice note or short video for any question where that feels easier.
+      </div>
+
+      <!-- ── BUSINESS OVERVIEW ── -->
+      <div class="q-group">
+        <div class="q-group-title">Business Overview</div>
+
+        <div class="q-item">
+          <div class="q-label">1. What is the official registered name of your company?</div>
+          <div class="q-answer">Your answer here</div>
+        </div>
+
+        <div class="q-item">
+          <div class="q-label">2. What are your company registration details?</div>
+          <div class="q-instruction">Include registration number and country of registration if available.</div>
+          <div class="q-answer">Your answer here</div>
+        </div>
+
+        <div class="q-item">
+          <div class="q-label">3. What year was the company established?</div>
+          <div class="q-answer">Your answer here</div>
+        </div>
+
+        <div class="q-item">
+          <div class="q-label">4. Approximately how many employees does the company have in total?</div>
+          <div class="q-answer">Your answer here</div>
+        </div>
+
+        <div class="q-item">
+          <div class="q-label">5. What are your primary markets or regions of operation?</div>
+          <div class="q-instruction">List all countries or regions where you actively operate or serve clients.</div>
+          <div class="q-answer q-answer-tall">Your answer here</div>
+        </div>
+
+        <div class="q-item">
+          <div class="q-label">6. Does your company have a formal mission statement or vision statement? If yes, please share it below.</div>
+          <div class="q-answer q-answer-tall">Your answer here</div>
+        </div>
+      </div>
+
+      <!-- ── DIVISION STATUS ── -->
+      <div class="q-group">
+        <div class="q-group-title">Division Status</div>
+
+        <p style="margin-bottom: 16px; font-size: 0.88rem; color: var(--muted);">Please complete the following questions for each of your company's divisions. Copy and complete this block for every division. If you have seven divisions, there should be seven completed blocks.</p>
+
+        <div class="division-block">
+          <div class="division-block-title">Division: [Division Name]</div>
+
+          <div class="q-item">
+            <div class="q-label">Is this division currently active and generating revenue?</div>
+            <div class="q-answer">Yes / No</div>
+          </div>
+
+          <div class="q-item">
+            <div class="q-label">How many years has this division been operating?</div>
+            <div class="q-answer">Your answer here</div>
+          </div>
+
+          <div class="q-item">
+            <div class="q-label">Approximately how many staff members work in this division?</div>
+            <div class="q-answer">Your answer here</div>
+          </div>
+
+          <div class="q-item">
+            <div class="q-label">What are the key products or services offered by this division?</div>
+            <div class="q-answer q-answer-tall">Your answer here</div>
+          </div>
+
+          <div class="q-item">
+            <div class="q-label">Who are the main customers for this division?</div>
+            <div class="q-instruction">Describe the types of customers, industries, or client profiles this division typically serves.</div>
+            <div class="q-answer q-answer-tall">Your answer here</div>
+          </div>
+
+          <div class="q-item">
+            <div class="q-label">Do you have existing marketing materials, brochures, or documentation for this division?</div>
+            <div class="q-instruction">If yes, please describe what is available and whether they are in digital or print format.</div>
+            <div class="q-answer q-answer-tall">Your answer here</div>
+          </div>
+
+          <div class="q-item">
+            <div class="q-label">Do you have professional photography of this division's operations, products, or facilities?</div>
+            <div class="q-instruction">If yes, please describe what is available. If no, note whether this is something you would be willing to invest in.</div>
+            <div class="q-answer q-answer-tall">Your answer here</div>
+          </div>
+        </div>
+
+        <div class="callout">
+          <strong>Repeat this block for each division.</strong> Please copy the block above and complete it separately for every division in your company. If a division is not yet active, still complete the block and indicate that it is not yet operational in the first question.
+        </div>
+      </div>
+
+      <!-- ── BRAND AND IDENTITY ── -->
+      <div class="q-group">
+        <div class="q-group-title">Brand and Identity</div>
+
+        <div class="q-item">
+          <div class="q-label">7. Do you have an existing logo for the company?</div>
+          <div class="q-answer">Yes / No</div>
+        </div>
+
+        <div class="q-item">
+          <div class="q-label">8. If you do have a logo, do you have the original design files?</div>
+          <div class="q-instruction">Original files are typically in formats such as AI, EPS, SVG, or PSD. These are different from JPG or PNG images.</div>
+          <div class="q-answer">Your answer here</div>
+        </div>
+
+        <div class="q-item">
+          <div class="q-label">9. Do you have established brand colours? If yes, what are they?</div>
+          <div class="q-instruction">If you know the specific colour codes (hex, RGB, or Pantone), please include them. If not, simply describe the colours.</div>
+          <div class="q-answer">Your answer here</div>
+        </div>
+
+        <div class="q-item">
+          <div class="q-label">10. Do you have a brand guidelines document?</div>
+          <div class="q-instruction">A brand guidelines document typically defines how your logo, colours, fonts, and visual style should be used consistently.</div>
+          <div class="q-answer">Yes / No (if yes, please share it)</div>
+        </div>
+
+        <div class="q-item">
+          <div class="q-label">11. How would you describe your company's personality in three words?</div>
+          <div class="q-instruction">Think about the impression you want to give customers. For example: professional, reliable, innovative. Or: bold, modern, approachable.</div>
+          <div class="q-answer">1. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.</div>
+        </div>
+
+        <div class="q-item">
+          <div class="q-label">12. Are there any companies whose visual style you admire? These can be from any industry at all.</div>
+          <div class="q-instruction">Please name the companies and briefly explain what you admire about their visual presentation.</div>
+          <div class="q-answer q-answer-tall">Your answer here</div>
+        </div>
+      </div>
+
+      <!-- ── WEBSITE GOALS ── -->
+      <div class="q-group">
+        <div class="q-group-title">Website Goals</div>
+
+        <div class="q-item">
+          <div class="q-label">13. If the website could achieve only one thing, what would it be?</div>
+          <div class="q-instruction">Try to distill your answer to a single, clear objective. For example: "Convince large companies that we are a credible partner" or "Generate enquiries for our services."</div>
+          <div class="q-answer q-answer-tall">Your answer here</div>
+        </div>
+
+        <div class="q-item">
+          <div class="q-label">14. Who is the single most important audience for the website?</div>
+          <div class="q-instruction">If you serve multiple audiences, choose the one that matters most to your business goals right now.</div>
+          <div class="q-answer q-answer-tall">Your answer here</div>
+        </div>
+
+        <div class="q-item">
+          <div class="q-label">15. Are there specific websites that you admire or that you would like yours to feel similar to?</div>
+          <div class="q-instruction">Please provide the web addresses (URLs) and a brief note on what you like about each one.</div>
+          <div class="q-answer q-answer-tall">Your answer here</div>
+        </div>
+
+        <div class="q-item">
+          <div class="q-label">16. What action do you want a visitor to take after visiting your website?</div>
+          <div class="q-instruction">For example: fill out a contact form, call your office, request a quote, download a brochure, or something else.</div>
+          <div class="q-answer q-answer-tall">Your answer here</div>
+        </div>
+
+        <div class="q-item">
+          <div class="q-label">17. How do you see the website contributing to your revenue? For example: generating customer enquiries, attracting investors, supporting tender applications, reducing phone-based enquiries, recruiting staff, or something else entirely?</div>
+          <div class="q-answer q-answer-tall">Your answer here</div>
+        </div>
+
+        <div class="q-item">
+          <div class="q-label">18. If the website could generate one specific business outcome in its first year, what would that be?</div>
+          <div class="q-answer q-answer-tall">Your answer here</div>
+        </div>
+
+        <div class="q-item">
+          <div class="q-label">19. Is there a specific business challenge you are hoping the website will solve? If so, what is it?</div>
+          <div class="q-answer q-answer-tall">Your answer here</div>
+        </div>
+
+        <div class="q-item">
+          <div class="q-label">20. Do you already have a domain name? If yes, what is it?</div>
+          <div class="q-instruction">A domain name is your website address, such as www.yourcompany.com. If you own multiple domains, please list them all.</div>
+          <div class="q-answer">Your answer here</div>
+        </div>
+      </div>
+
+      <!-- ── CONTENT READINESS ── -->
+      <div class="q-group">
+        <div class="q-group-title">Content Readiness</div>
+
+        <div class="q-item">
+          <div class="q-label">21. Do you have written company descriptions or company profiles that are ready to use?</div>
+          <div class="q-instruction">These might be from previous marketing materials, investor documents, or corporate presentations.</div>
+          <div class="q-answer">Your answer here</div>
+        </div>
+
+        <div class="q-item">
+          <div class="q-label">22. Do you have team biographies and professional headshot photographs for key staff?</div>
+          <div class="q-instruction">If only some are available, please indicate which team members have them and which do not.</div>
+          <div class="q-answer q-answer-tall">Your answer here</div>
+        </div>
+
+        <div class="q-item">
+          <div class="q-label">23. Do you have case studies, project portfolios, or success stories that you can share?</div>
+          <div class="q-instruction">These are powerful for building credibility. Even rough outlines or bullet points are useful at this stage.</div>
+          <div class="q-answer q-answer-tall">Your answer here</div>
+        </div>
+
+        <div class="q-item">
+          <div class="q-label">24. Do you have certifications, licences, or compliance documents that should be displayed on the website?</div>
+          <div class="q-instruction">These might include industry certifications, ISO standards, government licences, or professional memberships.</div>
+          <div class="q-answer q-answer-tall">Your answer here</div>
+        </div>
+
+        <div class="q-item">
+          <div class="q-label">25. Who in your organisation will be responsible for providing content (text, images, documents) for the website?</div>
+          <div class="q-instruction">Please provide their name, role, and email address.</div>
+          <div class="q-answer q-answer-tall">Your answer here</div>
+        </div>
+      </div>
+
+      <!-- ── TECHNICAL ── -->
+      <div class="q-group">
+        <div class="q-group-title">Technical</div>
+
+        <div class="q-item">
+          <div class="q-label">26. Do you currently have a website? If yes, please provide the web address (URL).</div>
+          <div class="q-answer">Your answer here</div>
+        </div>
+
+        <div class="q-item">
+          <div class="q-label">27. Do you use any specific software systems that might need to be integrated with the website?</div>
+          <div class="q-instruction">For example: a CRM system, booking platform, accounting software, email marketing tool, or inventory management system.</div>
+          <div class="q-answer q-answer-tall">Your answer here</div>
+        </div>
+
+        <div class="q-item">
+          <div class="q-label">28. Does your team have any experience updating or managing website content?</div>
+          <div class="q-instruction">This helps me determine the right content management approach and the level of training that may be needed.</div>
+          <div class="q-answer q-answer-tall">Your answer here</div>
+        </div>
+
+        <div class="q-item">
+          <div class="q-label">29. Do you have any preferences for specific technology platforms?</div>
+          <div class="q-instruction">For example, some clients prefer WordPress, while others are open to recommendations. If you have no preference, simply say so.</div>
+          <div class="q-answer">Your answer here</div>
+        </div>
+      </div>
+
+      <!-- ── PROJECT LOGISTICS ── -->
+      <div class="q-group">
+        <div class="q-group-title">Project Logistics</div>
+
+        <div class="q-item">
+          <div class="q-label">30. Who is the primary point of contact for this project?</div>
+          <div class="q-instruction">Please provide their full name, role, email address, and phone number.</div>
+          <div class="q-answer q-answer-tall">Your answer here</div>
+        </div>
+
+        <div class="q-item">
+          <div class="q-label">31. Who has final approval authority on project deliverables?</div>
+          <div class="q-instruction">This is the person who can give the final sign-off on designs, content, and the completed website. If this is the same person as the primary contact, simply say so.</div>
+          <div class="q-answer q-answer-tall">Your answer here</div>
+        </div>
+
+        <div class="q-item">
+          <div class="q-label">32. Are there other stakeholders who will need to review work during the project? If yes, who are they?</div>
+          <div class="q-instruction">Please provide their names and roles. Understanding the review chain helps me plan realistic timelines for feedback rounds.</div>
+          <div class="q-answer q-answer-tall">Your answer here</div>
+        </div>
+
+        <div class="q-item">
+          <div class="q-label">33. Are there any hard deadlines or events that this website needs to be ready for?</div>
+          <div class="q-instruction">For example: a product launch, industry conference, investor meeting, or regulatory requirement.</div>
+          <div class="q-answer q-answer-tall">Your answer here</div>
+        </div>
+
+        <div class="q-item">
+          <div class="q-label">34. Is there anything else you think I should know before we begin working together?</div>
+          <div class="q-instruction">This is your open space. Share anything that feels relevant, even if it does not fit neatly into the questions above.</div>
+          <div class="q-answer q-answer-tall">Your answer here</div>
+        </div>
+      </div>
+
+    </div><!-- end questionnaire section -->
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SECTION 4: HOW WE WORK TOGETHER            -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div class="section page-break">
+      <div class="section-number">Section Four</div>
+      <div class="section-title">How We Work Together</div>
+
+      <p>Clear communication and well-defined processes make for a smoother project and better outcomes. Here is how our collaboration will work in practice.</p>
+
+      <ul class="work-list">
+        <li class="work-item">
+          <div class="work-icon">1</div>
+          <div>
+            <strong>Primary Communication: Email</strong>
+            Our primary communication channel is email. All project-related discussions, decisions, and file sharing should go through email so that everything is documented and easy to reference later. I aim to respond to all emails within 24 business hours. If a matter is genuinely urgent, you are welcome to call or send a text message to +234 805 302 3862.
+          </div>
+        </li>
+        <li class="work-item">
+          <div class="work-icon">2</div>
+          <div>
+            <strong>Shared Project Folder</strong>
+            You will receive access to a shared project folder organised into clear sections: Deliverables (where finished work lives), Working Files (drafts and works in progress), Client Materials (files you provide to me), and Reference (research, inspiration, and strategy documents). Please upload all materials you want me to work with into the Client Materials folder rather than sending them as email attachments, especially if the files are large.
+          </div>
+        </li>
+        <li class="work-item">
+          <div class="work-icon">3</div>
+          <div>
+            <strong>How Deliverables Will Be Presented</strong>
+            Design concepts and visual deliverables will be shared as high-quality PDF previews for your review. Once designs are approved, interactive prototypes and live preview links will be provided where appropriate so you can experience the design in a browser. All deliverable presentations will include a brief written explanation of the thinking behind each design decision.
+          </div>
+        </li>
+        <li class="work-item">
+          <div class="work-icon">4</div>
+          <div>
+            <strong>How to Give Feedback</strong>
+            Good feedback keeps the project moving efficiently. Please consolidate feedback from all stakeholders into a single, unified response rather than sending multiple rounds of conflicting comments. Be as specific as possible. For example, "The heading font feels too formal for our brand" is much more useful than "I do not like the fonts." All feedback should come through the designated primary point of contact to avoid confusion.
+          </div>
+        </li>
+        <li class="work-item">
+          <div class="work-icon">5</div>
+          <div>
+            <strong>Weekly Status Updates</strong>
+            Every week, you will receive a brief status update by email covering: what was completed since the last update, what is currently in progress, what is coming up next, and whether I need anything from you. This ensures you are never left wondering about the state of your project.
+          </div>
+        </li>
+      </ul>
+
+      <div class="callout">
+        <strong>Response times matter both ways.</strong> I commit to responding within 24 business hours. To keep the project on schedule, I ask that you also aim to provide feedback and requested materials within the timeframes we agree upon. Delays in feedback or content can push the overall timeline, so prompt responses help us both.
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SECTION 5: YOUR FIRST ACTION ITEMS         -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div class="section">
+      <div class="section-number">Section Five</div>
+      <div class="section-title">Your First Action Items</div>
+
+      <p>To get the project started promptly, please complete the following items as soon as possible. These are listed in order of priority.</p>
+
+      <ul class="checklist">
+        <li>
+          <div class="checkbox"></div>
+          <div><strong>Sign and return the service agreement.</strong> I will send this to you separately by email. Please review it carefully, sign it, and return a scanned copy or a photograph of the signed document.</div>
+        </li>
+        <li>
+          <div class="checkbox"></div>
+          <div><strong>Submit the Stage 1 payment.</strong> Payment details and the invoice are provided separately. Payment is due within 7 days of the invoice date unless we have agreed otherwise. The project officially begins once payment is received.</div>
+        </li>
+        <li>
+          <div class="checkbox"></div>
+          <div><strong>Complete the Pre-Discovery Questionnaire.</strong> The full questionnaire is in Section 3 of this document. Please complete it as thoroughly as you can and return it by email at least 3 business days before our scheduled Discovery Workshop.</div>
+        </li>
+        <li>
+          <div class="checkbox"></div>
+          <div><strong>Gather any existing brand materials.</strong> This includes your current logo files (especially original design files in AI, EPS, SVG, or PSD format), brand guidelines documents, marketing brochures, company profiles, photography, and any other visual materials you have. Upload these to the shared project folder once you have access, or send them by email.</div>
+        </li>
+        <li>
+          <div class="checkbox"></div>
+          <div><strong>Identify your designated point of contact.</strong> Confirm who will serve as the single point of contact for the project. This person will be responsible for consolidating internal feedback and communicating decisions to me.</div>
+        </li>
+        <li>
+          <div class="checkbox"></div>
+          <div><strong>Propose 2 to 3 preferred dates for the Discovery Workshop.</strong> The workshop typically runs 60 to 90 minutes and is conducted via video call. Please suggest dates and times that work for you and any other stakeholders who should attend. I will confirm the final date within 24 hours of receiving your preferences.</div>
+        </li>
+      </ul>
+
+      <div class="callout">
+        <strong>Questions?</strong> If anything in this document is unclear, or if you have questions about any aspect of the process, please do not hesitate to reach out. I am here to help, and no question is too small. Email me at awwallawal@gmail.com or call +234 805 302 3862.
+      </div>
+    </div>
+
+  </div><!-- end content -->
+
+  <!-- ═══════ FOOTER ═══════ -->
+  <div class="pack-footer">
+    <strong>Lawal Awwal</strong> &nbsp;|&nbsp; Freelance Web Designer &amp; Developer<br>
+    awwallawal@gmail.com &nbsp;|&nbsp; +234 805 302 3862<br><br>
+    This document is confidential and intended solely for the named recipient.
+  </div>
+
+</div>
+
+</body>
+</html>

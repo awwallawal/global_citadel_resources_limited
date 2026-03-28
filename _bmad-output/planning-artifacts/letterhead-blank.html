@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GRCL Blank Letterhead</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+@page {
+  size: A4;
+  margin: 0;
+}
+
+:root {
+  --primary-900: #14532D;
+  --primary-800: #166534;
+  --primary-700: #15803D;
+  --primary-600: #16A34A;
+  --gold: #B48A3E;
+  --gold-light: #D4AF6A;
+  --neutral-900: #1F2937;
+  --neutral-700: #4B5563;
+  --neutral-600: #6B7280;
+  --neutral-500: #9CA3AF;
+  --white: #FFFFFF;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-font-smoothing: antialiased; }
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--neutral-900);
+  background: #E5E7EB;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem;
+}
+
+.instructions {
+  max-width: 210mm;
+  width: 100%;
+  background: var(--primary-900);
+  color: white;
+  border-radius: 10px 10px 0 0;
+  padding: 1rem 2rem;
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+.instructions strong { color: var(--gold); }
+
+.letterhead {
+  width: 210mm;
+  height: 297mm;
+  background: var(--white);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* HEADER */
+.lh-header {
+  padding: 28mm 25mm 8mm 25mm;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+}
+.lh-header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-900) 0%, var(--primary-700) 40%, var(--gold) 100%);
+}
+.lh-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 25mm; right: 25mm;
+  height: 1px;
+  background: linear-gradient(90deg, var(--primary-700) 0%, var(--gold-light) 50%, transparent 100%);
+}
+.lh-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.lh-monogram {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--primary-900); border: 2px solid var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Poppins', sans-serif; font-weight: 700;
+  font-size: 0.55rem; color: var(--white); letter-spacing: 0.04em;
+  flex-shrink: 0;
+}
+.lh-wordmark { display: flex; flex-direction: column; }
+.lh-wordmark .descriptor {
+  font-family: 'Poppins', sans-serif; font-weight: 500; font-size: 6.5pt;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--primary-700); line-height: 1;
+}
+.lh-wordmark .hero {
+  font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16pt;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--primary-900);
+  line-height: 1; margin-top: 1px;
+}
+.lh-wordmark .qualifier {
+  font-family: 'Poppins', sans-serif; font-weight: 300; font-size: 5pt;
+  letter-spacing: 0.4em; text-transform: uppercase; color: var(--primary-600);
+  line-height: 1; margin-top: 2px;
+}
+.lh-address {
+  text-align: right; font-size: 8.5pt; color: var(--neutral-600); line-height: 1.5;
+}
+.lh-address .website { color: var(--primary-700); font-weight: 500; }
+
+/* BODY — empty */
+.lh-body {
+  flex: 1;
+  padding: 12mm 25mm 10mm 25mm;
+}
+
+/* FOOTER */
+.lh-footer {
+  padding: 0 25mm 12mm 25mm;
+  font-size: 7.5pt; color: var(--neutral-500);
+  display: flex; justify-content: space-between; align-items: flex-end;
+  position: relative;
+}
+.lh-footer::before {
+  content: '';
+  position: absolute; top: 0; left: 25mm; right: 25mm;
+  height: 1px; background: var(--gold-light);
+}
+.lh-footer-left { line-height: 1.5; padding-top: 4mm; }
+.lh-footer-right { text-align: right; line-height: 1.5; padding-top: 4mm; }
+
+@media print {
+  body { background: white; padding: 0; }
+  .instructions { display: none; }
+  .letterhead { box-shadow: none; width: 100%; min-height: auto; }
+}
+
+@media screen and (max-width: 800px) {
+  .letterhead { width: 100%; min-height: auto; }
+  .lh-header { padding: 20mm 15mm 6mm 15mm; }
+  .lh-header::after { left: 15mm; right: 15mm; }
+  .lh-body { padding: 10mm 15mm 8mm 15mm; }
+  .lh-footer { padding: 0 15mm 10mm 15mm; }
+  .lh-footer::before { left: 15mm; right: 15mm; }
+}
+</style>
+</head>
+<body>
+
+<div class="instructions">
+  <strong>Blank Letterhead</strong> — Open in Chrome, press Ctrl+P, set paper to A4, margins to None, enable "Background graphics", save as PDF.
+</div>
+
+<div class="letterhead">
+  <div class="lh-header">
+    <div class="lh-logo">
+      <div class="lh-monogram">GRC</div>
+      <div class="lh-wordmark">
+        <span class="descriptor">GLOBAL RESOURCES</span>
+        <span class="hero">CITADEL</span>
+        <span class="qualifier">LIMITED</span>
+      </div>
+    </div>
+    <div class="lh-address">
+      14 Akin Adesola Street<br>
+      Victoria Island, Lagos<br>
+      Nigeria<br>
+      <span class="website">www.grcl.com</span>
+    </div>
+  </div>
+
+  <div class="lh-body"></div>
+
+  <div class="lh-footer">
+    <div class="lh-footer-left">
+      info@grcl.com<br>
+      +234 XXX XXX XXXX
+    </div>
+    <div class="lh-footer-right">
+      RC: 000000<br>
+      14 Akin Adesola Street, Victoria Island, Lagos
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

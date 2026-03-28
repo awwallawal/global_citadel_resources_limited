@@ -1,0 +1,1971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discovery Call Guide — Internal Playbook</title>
+  <style>
+    :root {
+      --color-primary: #0f1b2d;
+      --color-primary-light: #1a2b45;
+      --color-accent: #b8924a;
+      --color-accent-light: #d4af6e;
+      --color-accent-subtle: #f8f3eb;
+      --color-text: #2c3e50;
+      --color-text-light: #5a6a7a;
+      --color-text-muted: #8a95a3;
+      --color-bg: #ffffff;
+      --color-bg-alt: #f7f8fa;
+      --color-bg-section: #fafbfc;
+      --color-border: #e2e6ea;
+      --color-border-light: #eef0f3;
+      --color-white: #ffffff;
+      --color-success: #27ae60;
+      --color-warning: #e67e22;
+      --color-danger: #c0392b;
+      --color-info: #2980b9;
+
+      --font-heading: 'Georgia', 'Times New Roman', serif;
+      --font-body: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      --font-mono: 'Consolas', 'Courier New', monospace;
+
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2rem;
+      --space-2xl: 3rem;
+      --space-3xl: 4rem;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 11pt;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--color-text);
+      line-height: 1.65;
+      background: var(--color-bg);
+    }
+
+    h1, h2, h3, h4, h5 {
+      font-family: var(--font-heading);
+      color: var(--color-primary);
+      line-height: 1.3;
+    }
+
+    h1 { font-size: 2.2rem; font-weight: 400; letter-spacing: -0.02em; }
+    h2 { font-size: 1.5rem; font-weight: 400; letter-spacing: -0.01em; margin-bottom: var(--space-lg); padding-bottom: var(--space-sm); border-bottom: 2px solid var(--color-accent); }
+    h3 { font-size: 1.15rem; font-weight: 600; margin-bottom: var(--space-md); color: var(--color-primary-light); }
+    h4 { font-size: 1rem; font-weight: 600; margin-bottom: var(--space-sm); color: var(--color-primary); }
+    h5 { font-size: 0.9rem; font-weight: 600; margin-bottom: var(--space-xs); color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.05em; }
+
+    p { margin-bottom: var(--space-md); }
+    strong { font-weight: 600; color: var(--color-primary); }
+    em { color: var(--color-text-light); font-style: italic; }
+
+    .page {
+      max-width: 210mm;
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    /* COVER */
+    .cover {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: var(--color-primary);
+      color: var(--color-white);
+      padding: 3rem;
+      page-break-after: always;
+    }
+
+    .cover-label {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 1.5rem;
+    }
+
+    .cover h1 {
+      color: var(--color-white);
+      font-size: 2.8rem;
+      font-weight: 400;
+      margin-bottom: 0.5rem;
+    }
+
+    .cover-rule {
+      width: 60px;
+      height: 2px;
+      background: var(--color-accent);
+      margin: 1.5rem auto;
+    }
+
+    .cover-subtitle {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      color: var(--color-accent-light);
+      font-weight: 400;
+      font-style: italic;
+      max-width: 500px;
+      line-height: 1.6;
+    }
+
+    .cover-meta {
+      margin-top: 3rem;
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+      line-height: 1.8;
+    }
+
+    .cover-meta strong {
+      color: rgba(255,255,255,0.7);
+    }
+
+    .cover-badge {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 0.4rem 1.2rem;
+      border: 1px solid var(--color-accent);
+      color: var(--color-accent);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      border-radius: 2px;
+    }
+
+    /* SECTIONS */
+    .section {
+      padding: 2.5rem 3rem;
+      page-break-inside: avoid;
+    }
+
+    .section + .section {
+      border-top: 1px solid var(--color-border-light);
+    }
+
+    .section-number {
+      display: inline-block;
+      font-family: var(--font-heading);
+      font-size: 0.8rem;
+      color: var(--color-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: var(--space-sm);
+    }
+
+    /* TABLES */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: var(--space-lg) 0;
+      font-size: 0.9rem;
+    }
+
+    thead th {
+      background: var(--color-primary);
+      color: var(--color-white);
+      padding: 0.7rem 1rem;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.8rem;
+      letter-spacing: 0.03em;
+    }
+
+    thead th:first-child { border-radius: 4px 0 0 0; }
+    thead th:last-child { border-radius: 0 4px 0 0; }
+
+    tbody td {
+      padding: 0.65rem 1rem;
+      border-bottom: 1px solid var(--color-border-light);
+      vertical-align: top;
+    }
+
+    tbody tr:nth-child(even) { background: var(--color-bg-alt); }
+    tbody tr:last-child td:first-child { border-radius: 0 0 0 4px; }
+    tbody tr:last-child td:last-child { border-radius: 0 0 4px 0; }
+
+    /* CALLOUTS */
+    .callout {
+      border-radius: 6px;
+      padding: var(--space-lg) var(--space-xl);
+      margin: var(--space-lg) 0;
+      font-size: 0.92rem;
+    }
+
+    .callout-gold {
+      background: var(--color-accent-subtle);
+      border-left: 4px solid var(--color-accent);
+    }
+
+    .callout-green {
+      background: #eafaf1;
+      border-left: 4px solid var(--color-success);
+    }
+
+    .callout-red {
+      background: #fdf0ef;
+      border-left: 4px solid var(--color-danger);
+    }
+
+    .callout-blue {
+      background: #ebf5fb;
+      border-left: 4px solid var(--color-info);
+    }
+
+    .callout-dark {
+      background: var(--color-primary);
+      color: var(--color-white);
+      border-left: 4px solid var(--color-accent);
+    }
+
+    .callout-dark strong {
+      color: var(--color-accent-light);
+    }
+
+    .callout-title {
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-sm);
+    }
+
+    .callout-gold .callout-title { color: var(--color-accent); }
+    .callout-green .callout-title { color: var(--color-success); }
+    .callout-red .callout-title { color: var(--color-danger); }
+    .callout-blue .callout-title { color: var(--color-info); }
+    .callout-dark .callout-title { color: var(--color-accent-light); }
+
+    /* SCRIPT BLOCKS */
+    .script-block {
+      background: var(--color-bg-alt);
+      border-left: 3px solid var(--color-accent);
+      padding: var(--space-lg) var(--space-xl);
+      margin: var(--space-lg) 0;
+      border-radius: 0 6px 6px 0;
+      font-size: 0.92rem;
+      line-height: 1.7;
+    }
+
+    .script-block .script-label {
+      font-weight: 700;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-accent);
+      margin-bottom: var(--space-sm);
+      display: block;
+    }
+
+    .script-block p {
+      margin-bottom: var(--space-sm);
+      color: var(--color-primary);
+    }
+
+    /* LISTS */
+    ul, ol {
+      margin: var(--space-sm) 0 var(--space-lg) var(--space-xl);
+    }
+
+    li {
+      margin-bottom: var(--space-sm);
+      padding-left: var(--space-xs);
+    }
+
+    ul.checklist {
+      list-style: none;
+      margin-left: 0;
+    }
+
+    ul.checklist li {
+      padding: 0.4rem 0 0.4rem 1.8rem;
+      position: relative;
+      border-bottom: 1px solid var(--color-border-light);
+    }
+
+    ul.checklist li::before {
+      content: "\25A1";
+      position: absolute;
+      left: 0;
+      color: var(--color-accent);
+      font-size: 1.1rem;
+    }
+
+    /* TIMELINE BAR */
+    .timeline {
+      display: flex;
+      margin: var(--space-xl) 0;
+      border-radius: 6px;
+      overflow: hidden;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .timeline-block {
+      padding: 0.6rem 0.3rem;
+      color: var(--color-white);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      line-height: 1.3;
+    }
+
+    .timeline-block span {
+      font-weight: 400;
+      font-size: 0.65rem;
+      opacity: 0.85;
+    }
+
+    /* QUESTION CARD */
+    .q-card {
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      padding: var(--space-lg);
+      margin: var(--space-md) 0;
+    }
+
+    .q-card h5 {
+      margin-bottom: var(--space-sm);
+    }
+
+    .q-card ul {
+      margin-top: var(--space-sm);
+      margin-bottom: var(--space-sm);
+    }
+
+    /* SIGNAL CARDS */
+    .signal-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-md);
+      margin: var(--space-lg) 0;
+    }
+
+    .signal-card {
+      border-radius: 6px;
+      padding: var(--space-lg);
+      font-size: 0.88rem;
+    }
+
+    .signal-card.green { background: #eafaf1; border: 1px solid #a9dfbf; }
+    .signal-card.yellow { background: #fef9e7; border: 1px solid #f9e79f; }
+    .signal-card.orange { background: #fdf2e9; border: 1px solid #f5cba7; }
+    .signal-card.red { background: #fdf0ef; border: 1px solid #f5b7b1; }
+
+    .signal-card h5 {
+      margin-bottom: var(--space-sm);
+    }
+
+    .signal-card.green h5 { color: var(--color-success); }
+    .signal-card.yellow h5 { color: #b7950b; }
+    .signal-card.orange h5 { color: var(--color-warning); }
+    .signal-card.red h5 { color: var(--color-danger); }
+
+    /* OBJECTION BLOCK */
+    .objection-block {
+      margin: var(--space-lg) 0;
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .objection-header {
+      background: var(--color-primary);
+      color: var(--color-white);
+      padding: 0.8rem var(--space-lg);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .objection-body {
+      padding: var(--space-lg);
+    }
+
+    .objection-body h5 {
+      margin-top: var(--space-md);
+    }
+
+    .objection-body h5:first-child {
+      margin-top: 0;
+    }
+
+    /* DIVIDER */
+    .divider {
+      width: 40px;
+      height: 2px;
+      background: var(--color-accent);
+      margin: var(--space-lg) 0;
+    }
+
+    /* TOC */
+    .toc-list {
+      list-style: none;
+      padding: 0;
+      margin-top: var(--space-xl);
+    }
+
+    .toc-list li {
+      display: flex;
+      align-items: baseline;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--color-border-light);
+      font-size: 0.95rem;
+    }
+
+    .toc-number {
+      font-family: var(--font-heading);
+      color: var(--color-accent);
+      min-width: 2.5rem;
+      font-size: 0.85rem;
+    }
+
+    .toc-title { flex: 1; color: var(--color-primary); }
+
+    /* PRINT */
+    @media print {
+      .section { padding: 2rem 0; }
+      .cover { padding: 3rem 1rem; }
+      body { font-size: 10pt; }
+      .no-print { display: none; }
+    }
+
+    /* RESPONSIVE */
+    @media screen and (max-width: 768px) {
+      .section { padding: 1.5rem 1.2rem; }
+      .cover { padding: 2rem 1.2rem; }
+      .cover h1 { font-size: 2rem; }
+      .signal-grid { grid-template-columns: 1fr; }
+      table { font-size: 0.8rem; }
+      thead th, tbody td { padding: 0.5rem 0.6rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ============================================================
+       COVER
+       ============================================================ -->
+  <div class="cover">
+    <div class="cover-label">Internal Document &bull; Not for Client Distribution</div>
+    <h1>Discovery Call Guide</h1>
+    <div class="cover-rule"></div>
+    <div class="cover-subtitle">
+      60-Minute Kickoff Call Playbook<br>
+      Multi-Vertical Conglomerate Project
+    </div>
+    <div class="cover-meta">
+      <strong>Prepared for:</strong> Awwal's personal use only<br>
+      <strong>Project:</strong> UK-Based Conglomerate &bull; 7 Business Divisions<br>
+      <strong>Call Type:</strong> Discovery Kickoff &bull; 60 Minutes<br>
+      <strong>Status:</strong> Alignment document sent. Pricing removed. Gauging willingness.
+    </div>
+    <div class="cover-badge">Confidential &bull; Internal Playbook</div>
+  </div>
+
+  <!-- ============================================================
+       TABLE OF CONTENTS
+       ============================================================ -->
+  <div class="section">
+    <span class="section-number">Contents</span>
+    <h2>Table of Contents</h2>
+    <ul class="toc-list">
+      <li><span class="toc-number">01</span><span class="toc-title">Pre-Call Preparation Checklist</span></li>
+      <li><span class="toc-number">02</span><span class="toc-title">Call Structure and Timing (60-Minute Breakdown)</span></li>
+      <li><span class="toc-number">03</span><span class="toc-title">Questions Bank (Organized by Section)</span></li>
+      <li><span class="toc-number">04</span><span class="toc-title">The 3-Layer Exercise: Step by Step</span></li>
+      <li><span class="toc-number">05</span><span class="toc-title">Revenue Role Framework</span></li>
+      <li><span class="toc-number">06</span><span class="toc-title">Pricing Conversation Script</span></li>
+      <li><span class="toc-number">07</span><span class="toc-title">Red Flag Detection Guide</span></li>
+      <li><span class="toc-number">08</span><span class="toc-title">Post-Call Actions</span></li>
+      <li><span class="toc-number">09</span><span class="toc-title">Objection Handling Reference</span></li>
+      <li><span class="toc-number">10</span><span class="toc-title">Maybe You Do Not Need a Website</span></li>
+    </ul>
+  </div>
+
+  <!-- ============================================================
+       SECTION 1: PRE-CALL PREPARATION CHECKLIST
+       ============================================================ -->
+  <div class="section">
+    <span class="section-number">Section 01</span>
+    <h2>Pre-Call Preparation Checklist</h2>
+
+    <p>This is your launch pad. Complete every item before the call starts. The goal is to walk in calm, prepared, and in control of the conversation. The client was impressed by your structured thinking on the first call. That happened because you were ready. Do not leave this one to chance.</p>
+
+    <h3>Documents and Files to Have Open</h3>
+    <ul class="checklist">
+      <li>Alignment document (the version you sent to the client, with all 16 sections)</li>
+      <li>This Discovery Call Guide (printed or on a second screen)</li>
+      <li>A blank document or notebook for real-time notes during the call</li>
+      <li>The 3-Layer Business Model template table (Section 4 of this guide) ready to fill in</li>
+      <li>Your calendar open for scheduling the next session if the call goes well</li>
+      <li>A copy of the client's company website or social media pages (if any exist) for quick reference</li>
+    </ul>
+
+    <h3>Information to Review</h3>
+    <ul class="checklist">
+      <li>All 7 business divisions and their core activities (Crop Farming, Animal Husbandry, Agro-Processing, Commodity Marketing, Real Estate, Import &amp; Export, Oil &amp; Gas)</li>
+      <li>The 4 brand architecture models you outlined (Branded House, House of Brands, Endorsed Brands, Hybrid)</li>
+      <li>The 3 stages you proposed (Foundation, Design &amp; Build, Launch &amp; Growth)</li>
+      <li>The two paths (Path A: Corporate Presence, Path B: Digital Presence Strategy)</li>
+      <li>The two creative concepts (Story-First Homepage, Audience-Guided Entry)</li>
+      <li>The audience segments table from the alignment document</li>
+      <li>Your pricing: Stage 1 at 500,000 NGN fixed; Stages 2 and 3 to be quoted after discovery</li>
+    </ul>
+
+    <h3>Technical Setup</h3>
+    <ul class="checklist">
+      <li>Stable internet connection verified (do a speed test 30 minutes before)</li>
+      <li>Video call software tested and ready (camera on, microphone clear)</li>
+      <li>Background clean and professional (or use a simple blurred background)</li>
+      <li>Phone on silent, notifications off on desktop</li>
+      <li>Water nearby (60 minutes of talking requires hydration)</li>
+      <li>Backup plan: have the client's phone number ready in case the video call drops</li>
+    </ul>
+
+    <h3>Mental Preparation</h3>
+    <ul class="checklist">
+      <li>Remind yourself: you are the expert here. The client came to you because of how you think, not just what you build.</li>
+      <li>You are not selling a website. You are selling clarity, structure, and a partnership that protects the client from their own impulse to rush.</li>
+      <li>The client was impressed by your 7-theme framework on the initial call. That structured approach is your competitive advantage. Lean into it again.</li>
+      <li>Pricing is not in the alignment document on purpose. You removed it to create space for a conversation, not a reaction. Stay comfortable with that silence when it comes.</li>
+      <li>Your job in this call is 60% listening, 30% guiding, 10% presenting. If you are talking more than the client, slow down and ask more questions.</li>
+    </ul>
+
+    <div class="callout callout-gold">
+      <div class="callout-title">Mindset Anchor</div>
+      <p>You are not asking permission to do this work. You are offering to solve a problem the client does not yet fully understand. The alignment document already proved your value. This call is about confirming fit on both sides and setting the terms under which you will deliver.</p>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 2: CALL STRUCTURE AND TIMING
+       ============================================================ -->
+  <div class="section">
+    <span class="section-number">Section 02</span>
+    <h2>Call Structure and Timing</h2>
+
+    <p>This is a 60-minute call. You are driving the agenda. The client should never feel interrogated, but they should feel guided. Think of yourself as a consultant leading a workshop, not a freelancer on a sales call.</p>
+
+    <div class="callout callout-blue">
+      <div class="callout-title">Timing Discipline</div>
+      <p>Keep a clock visible. Each section has a target duration. You do not need to hit these to the minute, but if the alignment review is eating 20 minutes instead of 10, you are losing time for the pricing conversation. And that conversation cannot be rushed or skipped.</p>
+    </div>
+
+    <!-- TIMELINE BAR -->
+    <div class="timeline">
+      <div class="timeline-block" style="flex:5; background: #1a2b45;">Opening<br><span>5 min</span></div>
+      <div class="timeline-block" style="flex:10; background: #243a5a;">Alignment<br><span>10 min</span></div>
+      <div class="timeline-block" style="flex:15; background: #b8924a;">3-Layer Model<br><span>15 min</span></div>
+      <div class="timeline-block" style="flex:5; background: #243a5a;">Brand Arch.<br><span>5 min</span></div>
+      <div class="timeline-block" style="flex:5; background: #1a2b45;">Audience<br><span>5 min</span></div>
+      <div class="timeline-block" style="flex:5; background: #243a5a;">Content<br><span>5 min</span></div>
+      <div class="timeline-block" style="flex:10; background: #96782e;">Pricing<br><span>10 min</span></div>
+      <div class="timeline-block" style="flex:5; background: #1a2b45;">Close<br><span>5 min</span></div>
+    </div>
+
+    <!-- BLOCK 1 -->
+    <h3>Block 1: Opening and Rapport (Minutes 0 to 5)</h3>
+    <p><strong>Goal:</strong> Reestablish the warm connection from the first call. Remind the client that you listened, you understood, and you came prepared.</p>
+
+    <div class="script-block">
+      <span class="script-label">Opening Script</span>
+      <p>"Good to see you again. Before we get into it, I want to thank you for taking the time to go through the alignment document. I put a lot of thought into it because your business genuinely fascinated me during our first conversation. Today, my goal is simple: I want to make sure I understood everything correctly, walk through a few exercises that will sharpen our direction, and by the end, we should both have a clear picture of what happens next. Does that sound good?"</p>
+    </div>
+
+    <p><strong>What to do:</strong></p>
+    <ul>
+      <li>Ask how they have been. Be genuine. If they mention something personal, acknowledge it warmly but do not linger.</li>
+      <li>Confirm they received and reviewed the alignment document. Do not assume they read every word.</li>
+      <li>Set the agenda for the call. Framing the structure early signals professionalism and keeps you in control.</li>
+    </ul>
+
+    <p><strong>What to avoid:</strong></p>
+    <ul>
+      <li>Do not spend more than 5 minutes here. Warmth is important, but the client is busy and expects substance.</li>
+      <li>Do not ask "Did you have any questions about the document?" as your first move. That puts you on the defensive. You will get to that in Block 2.</li>
+    </ul>
+
+    <!-- BLOCK 2 -->
+    <h3>Block 2: Alignment Document Review (Minutes 5 to 15)</h3>
+    <p><strong>Goal:</strong> Confirm the client read the document, check for misunderstandings, and surface any new information that has changed since you sent it.</p>
+
+    <div class="script-block">
+      <span class="script-label">Transition Script</span>
+      <p>"Let me quickly walk through the key points from the alignment document to make sure we are on the same page. I would rather catch any misunderstanding now than discover it three weeks into the project."</p>
+    </div>
+
+    <p><strong>Walk through these items:</strong></p>
+    <ol>
+      <li><strong>The 7 divisions:</strong> "I mapped your business across 7 verticals. Has anything changed? Any new divisions, or any that are on pause?"</li>
+      <li><strong>The audience segments:</strong> "I identified investors, agricultural customers, real estate customers, oil and gas clients, government bodies, job seekers, and the general public. Did I miss anyone critical?"</li>
+      <li><strong>The brand-first approach:</strong> "I made the case that brand identity needs to come before website design. How did that land with you?"</li>
+      <li><strong>The 3-stage structure:</strong> "Foundation, then Design and Build, then Launch and Growth. Each stage produces standalone deliverables. Does that phased approach work for your planning?"</li>
+      <li><strong>The two paths:</strong> "I outlined Path A as a corporate presence and Path B as a comprehensive digital strategy. Which one resonated more?"</li>
+    </ol>
+
+    <div class="callout callout-gold">
+      <div class="callout-title">Listen For</div>
+      <p>If the client says "I showed it to my partner" or "We discussed it internally," immediately ask: "Great, what was the overall reaction? Were there any concerns or questions from the team?" This reveals how many decision-makers are involved and whether there is internal alignment.</p>
+    </div>
+
+    <!-- BLOCK 3 -->
+    <h3>Block 3: The 3-Layer Business Model Exercise (Minutes 15 to 30)</h3>
+    <p><strong>Goal:</strong> This is the centrepiece of the call. Guide the client through categorizing each of their 7 divisions as Core, Supporting, or Vision. This exercise achieves three things at once: it provides genuine strategic value, it demonstrates your consulting ability, and it naturally sets up the pricing conversation by making the project's complexity tangible.</p>
+    <p>Full facilitation guide is in <strong>Section 4</strong> of this document.</p>
+
+    <!-- BLOCK 4 -->
+    <h3>Block 4: Brand Architecture Discussion (Minutes 30 to 35)</h3>
+    <p><strong>Goal:</strong> Gauge the client's instinct on how the divisions should relate to each other visually. You are not making the decision here. You are planting the seed and noting their gut reaction.</p>
+
+    <div class="script-block">
+      <span class="script-label">Transition Script</span>
+      <p>"Now that we have a sense of which divisions are doing the heavy lifting, let me raise a question that will shape everything visual about this project. When people interact with your crop farming operation and then your real estate operation, should it feel like the same company? Or should they have their own personalities, with the parent company as a quiet endorsement in the background?"</p>
+    </div>
+
+    <p><strong>What to do:</strong></p>
+    <ul>
+      <li>Briefly restate the four models (Branded House, House of Brands, Endorsed, Hybrid) using the examples from the alignment document (Google, Unilever, Marriott).</li>
+      <li>Ask: "Which of these feels closest to how you see your business?"</li>
+      <li>Note their answer. Do not push for a final decision. Say: "This is exactly the kind of thing we will resolve properly in Stage 1. I just wanted to know your instinct."</li>
+    </ul>
+
+    <p><strong>What to avoid:</strong></p>
+    <ul>
+      <li>Do not let this turn into a 15-minute debate. Keep it to 5 minutes. The purpose is awareness, not resolution.</li>
+      <li>Do not let the client dismiss the question. If they say "Just use one brand for everything," gently note: "That is a valid approach. During discovery, I will show you what that looks like concretely so we can confirm it is the right call."</li>
+    </ul>
+
+    <!-- BLOCK 5 -->
+    <h3>Block 5: Audience Prioritization (Minutes 35 to 40)</h3>
+    <p><strong>Goal:</strong> Get the client to rank their audiences. A website that speaks to everyone speaks to no one. The client needs to choose who the homepage is primarily for.</p>
+
+    <div class="script-block">
+      <span class="script-label">Key Question</span>
+      <p>"If someone visits your website tomorrow and they can only take away one impression, who do you want that person to be? An investor seeing scale and credibility? A customer finding products and services? A partner exploring collaboration?"</p>
+    </div>
+
+    <p><strong>What to do:</strong></p>
+    <ul>
+      <li>Present the audience segments from the alignment document.</li>
+      <li>Ask the client to pick their top two. Not all seven. Two.</li>
+      <li>If they struggle, help them: "Think about who, if they visited and were impressed, would have the biggest impact on your business in the next 12 months."</li>
+    </ul>
+
+    <p><strong>What to avoid:</strong></p>
+    <ul>
+      <li>Do not accept "all of them" as an answer. Push gently: "I hear you. All audiences matter. But the homepage has to lead with one voice. The other audiences will still be served through dedicated pages and navigation. This is about the first 5 seconds of experience."</li>
+    </ul>
+
+    <!-- BLOCK 6 -->
+    <h3>Block 6: Content Reality Check (Minutes 40 to 45)</h3>
+    <p><strong>Goal:</strong> Surface the biggest project risk early. Content collection silence kills more websites than bad design. Find out what exists and what does not.</p>
+
+    <div class="script-block">
+      <span class="script-label">Transition Script</span>
+      <p>"I want to be upfront about something. In my experience, the number one reason website projects stall is not design disagreements or technical issues. It is content. The words, the photos, the team bios, the project descriptions. Seven divisions could mean 50 to 100 pages of content. So let me ask: how much of that exists today?"</p>
+    </div>
+
+    <p><strong>What to do:</strong></p>
+    <ul>
+      <li>Ask specifically: "Do you have professional photography of your operations? Farms, processing facilities, properties, petrol stations?"</li>
+      <li>Ask: "Do you have written descriptions of each division? Service pages? Team profiles?"</li>
+      <li>Ask: "Who on your team would be responsible for gathering this content?"</li>
+      <li>Ask: "Would you want us to handle content writing, or do you have someone in-house?"</li>
+    </ul>
+
+    <p><strong>What to listen for:</strong></p>
+    <ul>
+      <li>If the client says "We have everything," probe: "That is great. Is it in digital format? Is the photography recent and professional quality?"</li>
+      <li>If the client goes quiet or vague, that is your red flag. Note it. You will address it in the pricing conversation by positioning Stage 1 as the place where content strategy gets resolved.</li>
+    </ul>
+
+    <!-- BLOCK 7 -->
+    <h3>Block 7: Pricing Conversation (Minutes 45 to 55)</h3>
+    <p><strong>Goal:</strong> Introduce pricing naturally, present Stage 1 at 500,000 NGN, gauge willingness, and close or plan the next move. This is the most important 10 minutes of the call.</p>
+    <p>Full script and scenarios are in <strong>Section 6</strong> of this document.</p>
+
+    <!-- BLOCK 8 -->
+    <h3>Block 8: Next Steps and Close (Minutes 55 to 60)</h3>
+    <p><strong>Goal:</strong> End with absolute clarity on what happens next. No ambiguity. No "let's stay in touch." A clear next action with a date.</p>
+
+    <div class="script-block">
+      <span class="script-label">Closing Script (If Client Says Yes)</span>
+      <p>"Brilliant. Here is what happens next. I will send you a project brief summarizing everything we discussed today, including the 3-Layer categorization, the brand architecture direction, and the audience priorities. Alongside that, I will send a simple agreement for Stage 1 and an invoice. Once that is signed and the deposit is received, we officially kick off. I can have that to you within 48 hours. Does that work?"</p>
+    </div>
+
+    <div class="script-block">
+      <span class="script-label">Closing Script (If Client Needs Time)</span>
+      <p>"I completely understand. This is a significant decision and I want you to feel confident about it. Here is what I suggest: I will send you a summary of everything we covered today so you have it in writing. Take the time you need. Can we set a date to reconnect? I want to make sure this does not lose momentum. Would [suggest a date 5 to 7 days out] work for a quick 15-minute follow-up?"</p>
+    </div>
+
+    <p><strong>Always end with:</strong></p>
+    <ul>
+      <li>A specific next action (not a vague "I will be in touch")</li>
+      <li>A specific date or timeline for that action</li>
+      <li>Gratitude: "I appreciate your time today. This is going to be a strong project."</li>
+    </ul>
+  </div>
+
+  <!-- ============================================================
+       SECTION 3: QUESTIONS BANK
+       ============================================================ -->
+  <div class="section">
+    <span class="section-number">Section 03</span>
+    <h2>Questions Bank</h2>
+
+    <p>Every question here serves a purpose. Primary questions are your must-asks. Follow-up probes are for when answers are vague or surface-level. "Listening for" tells you what the answers reveal about the client's readiness. "What not to say" protects you from common traps.</p>
+
+    <!-- OPENING -->
+    <div class="q-card">
+      <h4>Opening and Rapport</h4>
+
+      <h5>Primary Questions</h5>
+      <ul>
+        <li>"How has business been since we last spoke? Any developments across the divisions?"</li>
+        <li>"Did you get a chance to review the alignment document I sent over?"</li>
+        <li>"What was your first impression when you read through it?"</li>
+      </ul>
+
+      <h5>Follow-Up Probes</h5>
+      <ul>
+        <li>"Was there anything that surprised you, either positively or negatively?"</li>
+        <li>"Did you share it with anyone else on your team? What was their reaction?"</li>
+      </ul>
+
+      <h5>What You Are Listening For</h5>
+      <ul>
+        <li><strong>Good sign:</strong> "I was really impressed by how thorough it was." This means the document did its job. They see you as a professional, not a commodity.</li>
+        <li><strong>Good sign:</strong> "I showed it to my business partner and he was impressed too." This tells you there is a second decision-maker and they are positively inclined.</li>
+        <li><strong>Caution sign:</strong> "I have not had time to read it properly yet." This suggests the project may not be a top priority. Adjust expectations accordingly.</li>
+        <li><strong>Red flag:</strong> "I skimmed it. Can you just give me the summary?" This person values speed over substance. Your structured approach may face resistance.</li>
+      </ul>
+
+      <h5>What Not to Say</h5>
+      <ul>
+        <li>Do not say: "Did you have any questions?" This makes you sound like a student submitting homework. Instead, say: "Let me walk you through the key points so we are aligned."</li>
+        <li>Do not say: "I hope you liked it." You are not seeking approval. You are confirming understanding.</li>
+      </ul>
+    </div>
+
+    <!-- ALIGNMENT REVIEW -->
+    <div class="q-card">
+      <h4>Alignment Document Review</h4>
+
+      <h5>Primary Questions</h5>
+      <ul>
+        <li>"I mapped your business across 7 verticals. Has anything changed since our first conversation? Any new divisions being planned, or any that are currently on pause?"</li>
+        <li>"I made the case that brand identity should come before website design. How did that sit with you?"</li>
+        <li>"I outlined two paths: Path A as a corporate presence and Path B as a full digital strategy. Which one resonated more with your vision?"</li>
+        <li>"I proposed a phased approach across three stages. Does that kind of structured rollout work for how you plan and budget?"</li>
+      </ul>
+
+      <h5>Follow-Up Probes</h5>
+      <ul>
+        <li>"When you think about the divisions, are there any that are more established than others? Any that are still in early stages?"</li>
+        <li>"Is there a specific division that is driving the most revenue right now?"</li>
+        <li>"You mentioned wanting to move quickly on the first call. After reading the document, do you still feel the same urgency, or do you see value in the phased approach?"</li>
+        <li>"Was there anything in the document you disagreed with or felt did not accurately represent your business?"</li>
+      </ul>
+
+      <h5>What You Are Listening For</h5>
+      <ul>
+        <li><strong>Good sign:</strong> "Path B is what we need." This client understands the scope and is willing to invest properly.</li>
+        <li><strong>Good sign:</strong> "The branding-first point made sense to me." They are coachable and receptive to your process.</li>
+        <li><strong>Caution sign:</strong> "Can we just do Path A for now and add things later?" They may be budget-constrained. Not necessarily a deal-breaker, but you need to understand why.</li>
+        <li><strong>Caution sign:</strong> "My partner thinks we should just get a simple site up." Multiple decision-makers with different visions. You need to get them aligned.</li>
+        <li><strong>Red flag:</strong> "I do not really understand why we cannot just start designing." They did not absorb the document's core message. You will need to re-educate during the call.</li>
+      </ul>
+
+      <h5>What Not to Say</h5>
+      <ul>
+        <li>Do not say: "Path B is obviously the better option." Let them arrive at that conclusion. Your job is to present, not pressure.</li>
+        <li>Do not say: "If you want quality, you need Path B." This sounds condescending. Instead, lay out what each path delivers and let the gap speak for itself.</li>
+      </ul>
+    </div>
+
+    <!-- 3-LAYER MODEL -->
+    <div class="q-card">
+      <h4>3-Layer Business Model Exercise</h4>
+
+      <h5>Primary Questions</h5>
+      <ul>
+        <li>"If you had to pick the one or two divisions that define who your company is at its core, which would they be?"</li>
+        <li>"Which divisions are essential because they support the core operations, even if they are not the public face of the business?"</li>
+        <li>"Are there any divisions that represent where you want to be in 3 to 5 years, but are not yet fully operational or generating significant revenue?"</li>
+        <li>"If a journalist wrote a profile of your company tomorrow, which divisions would you want them to lead with?"</li>
+      </ul>
+
+      <h5>Follow-Up Probes</h5>
+      <ul>
+        <li>"You said Crop Farming is core. Is that because of revenue, because of history, or because it is the foundation that everything else is built on?"</li>
+        <li>"You mentioned Oil and Gas is newer. Is it currently generating revenue, or is it still in setup phase?"</li>
+        <li>"If you had to shut down one division tomorrow and the business would survive, which would it be?" (This question sounds harsh but it reveals true priorities.)</li>
+        <li>"Which division gets the most enquiries from outside? Which one brings people to your door?"</li>
+      </ul>
+
+      <h5>What You Are Listening For</h5>
+      <ul>
+        <li><strong>Good sign:</strong> The client can clearly articulate which divisions matter most. This means they have strategic clarity, and the project will be easier to scope.</li>
+        <li><strong>Good sign:</strong> "That is a great question, I have never thought about it that way." You are providing value in real time. This builds trust and justifies your fee.</li>
+        <li><strong>Caution sign:</strong> "They are all equally important." This is almost never true. Push gently. This answer usually means they have not done the strategic thinking yet, which is exactly what Stage 1 is for.</li>
+        <li><strong>Red flag:</strong> The client gets defensive or irritated by the exercise. "Why does this matter for a website?" If they cannot see the connection between business strategy and web design, you will face resistance at every stage.</li>
+      </ul>
+
+      <h5>What Not to Say</h5>
+      <ul>
+        <li>Do not say: "So this division is not important?" Reframe as: "This division plays a supporting role, which is valuable. On the website, it means we give it a strong presence without making it compete with the core story."</li>
+        <li>Do not say: "You should probably drop this division from the website." Every division matters to the client. Your job is to prioritize, not eliminate.</li>
+      </ul>
+    </div>
+
+    <!-- BRAND ARCHITECTURE -->
+    <div class="q-card">
+      <h4>Brand Architecture Discussion</h4>
+
+      <h5>Primary Questions</h5>
+      <ul>
+        <li>"When a customer deals with your real estate division and then your crop farming division, should it feel like the same company, or should they have distinct identities?"</li>
+        <li>"Do any of your divisions currently have their own logos, colour schemes, or branding separate from the parent company?"</li>
+        <li>"When you think about companies you admire, do you lean toward the Virgin model where everything is 'Virgin This, Virgin That,' or the Unilever model where each brand stands on its own?"</li>
+      </ul>
+
+      <h5>Follow-Up Probes</h5>
+      <ul>
+        <li>"If your Oil and Gas division bids for a government contract, does it help or hurt that they immediately see you also do crop farming?"</li>
+        <li>"Do your divisions share office space, staff, or customers? Or are they operationally independent?"</li>
+      </ul>
+
+      <h5>What You Are Listening For</h5>
+      <ul>
+        <li><strong>Good sign:</strong> "I want it to feel unified but each division needs its own space." This aligns with the Endorsed or Hybrid model and shows nuanced thinking.</li>
+        <li><strong>Caution sign:</strong> "Just put everything under one logo." This may be a valid choice, but make sure it is a strategic decision and not a cost-saving shortcut.</li>
+        <li><strong>Red flag:</strong> "Each division should have its own completely separate website and brand." This is a much larger scope than what is currently being discussed. It changes the project entirely.</li>
+      </ul>
+
+      <h5>What Not to Say</h5>
+      <ul>
+        <li>Do not say: "The Hybrid model is the best one." You have not done the discovery work yet. Present the options neutrally and note their preference for Stage 1.</li>
+      </ul>
+    </div>
+
+    <!-- AUDIENCE PRIORITIZATION -->
+    <div class="q-card">
+      <h4>Audience Prioritization</h4>
+
+      <h5>Primary Questions</h5>
+      <ul>
+        <li>"If only one type of person visits your website this year and they are impressed, who would have the biggest impact on your business?"</li>
+        <li>"Are you primarily trying to attract new customers, impress potential investors, recruit talent, or establish credibility with government and regulators?"</li>
+        <li>"When someone Googles your company name right now, what do you want them to find?"</li>
+      </ul>
+
+      <h5>Follow-Up Probes</h5>
+      <ul>
+        <li>"Are you actively seeking investment or partnerships right now, or is this more of a long-term play?"</li>
+        <li>"Which division gets the most customer enquiries? Where is the highest demand?"</li>
+        <li>"Do you currently get inbound interest from international buyers or partners?"</li>
+      </ul>
+
+      <h5>What You Are Listening For</h5>
+      <ul>
+        <li><strong>Good sign:</strong> "Investors are the priority. We are raising capital." Clear priority. The website can be designed with a strong corporate angle.</li>
+        <li><strong>Good sign:</strong> "Customers first. We need to drive sales across our agricultural products." This points toward a more commercial, product-focused design.</li>
+        <li><strong>Caution sign:</strong> "Everyone. All audiences matter equally." Push back gently. This answer leads to a homepage that serves nobody well.</li>
+      </ul>
+
+      <h5>What Not to Say</h5>
+      <ul>
+        <li>Do not say: "You cannot serve all audiences." Instead say: "Every audience will have a path on the website. The question is which audience shapes the first impression, the homepage experience. Everyone else gets dedicated sections built for them."</li>
+      </ul>
+    </div>
+
+    <!-- CONTENT REALITY CHECK -->
+    <div class="q-card">
+      <h4>Content Reality Check</h4>
+
+      <h5>Primary Questions</h5>
+      <ul>
+        <li>"Across all 7 divisions, how much written content exists today? Do you have company profiles, service descriptions, team bios?"</li>
+        <li>"Do you have professional photography of your operations? Farms, processing plants, real estate properties, petrol stations, offices?"</li>
+        <li>"Who on your team would be responsible for gathering and approving content?"</li>
+        <li>"Would you want us to handle the copywriting, or do you have an in-house team or writer?"</li>
+      </ul>
+
+      <h5>Follow-Up Probes</h5>
+      <ul>
+        <li>"Is the content in digital format, or would it need to be digitized from brochures and physical documents?"</li>
+        <li>"How recent is the photography? Would it represent the business as it is today?"</li>
+        <li>"Do you have a brand story or company history document written anywhere?"</li>
+        <li>"For certifications and compliance documents (NAFDAC, NUPRC), are those ready to share digitally?"</li>
+      </ul>
+
+      <h5>What You Are Listening For</h5>
+      <ul>
+        <li><strong>Good sign:</strong> "We have most of it. I can get it together within two weeks." This client is organized and the project will move smoothly.</li>
+        <li><strong>Caution sign:</strong> Long pause, followed by "We have some things..." Content is going to be the bottleneck. Build extra time into your timeline.</li>
+        <li><strong>Red flag:</strong> "Can you just use placeholder text for now?" This client does not understand that a website without content is a brochure full of Lorem Ipsum. Address this directly.</li>
+        <li><strong>Red flag:</strong> "My secretary will handle it." Content requires decision-maker involvement, not delegation to someone who may not understand the business deeply enough.</li>
+      </ul>
+
+      <h5>What Not to Say</h5>
+      <ul>
+        <li>Do not say: "Content is always the problem." This sounds like you are blaming the client before the project has started. Instead say: "Content is where I want to protect you. In my experience, it is the area that catches most businesses off guard, and I would rather we plan for it now than be surprised later."</li>
+      </ul>
+    </div>
+
+    <!-- PRICING -->
+    <div class="q-card">
+      <h4>Pricing Conversation</h4>
+
+      <h5>Primary Questions</h5>
+      <ul>
+        <li>"Have you set aside a budget for this project, or are you looking for me to guide you on what an appropriate investment looks like?"</li>
+        <li>"When you think about investing in this digital presence, are you thinking in terms of a one-time project cost or an ongoing relationship?"</li>
+      </ul>
+
+      <h5>Follow-Up Probes</h5>
+      <ul>
+        <li>"Is this the kind of investment you would need to discuss with a partner or board, or is this your decision to make?"</li>
+        <li>"What would make this investment feel worthwhile to you? What outcome would make you say it was money well spent?"</li>
+        <li>"Have you received quotes from other providers? I ask because it helps me understand where your expectations are."</li>
+      </ul>
+
+      <h5>What You Are Listening For</h5>
+      <ul>
+        <li><strong>Good sign:</strong> "We have a budget in mind and we want to do this properly." They are ready to invest. Present your pricing with confidence.</li>
+        <li><strong>Good sign:</strong> "Guide me. I do not know what this costs." They trust you. This is the best possible setup for your pricing conversation.</li>
+        <li><strong>Caution sign:</strong> "We need to keep costs low." Budget-conscious is fine. But if their definition of "low" is fifty or a hundred thousand naira, there is a gap to address.</li>
+        <li><strong>Red flag:</strong> "How much do you charge per page?" They are commoditizing the work. They do not yet understand what you do.</li>
+        <li><strong>Red flag:</strong> "Someone quoted us [very low number]." They are comparing you to a template installer. See Objection Handling in Section 9.</li>
+      </ul>
+
+      <h5>What Not to Say</h5>
+      <ul>
+        <li>Do not say: "My prices are very reasonable." You are not reasonable. You are professional. Reasonable sounds like an apology.</li>
+        <li>Do not say: "I can give you a discount." Not in this call. Not ever as a first move. Discounts come in exchange for something (faster payment, reduced scope, testimonial rights), never as a concession.</li>
+        <li>Do not say: "It depends." Everything depends on something. But your Stage 1 price is fixed. Lead with that certainty.</li>
+      </ul>
+    </div>
+
+    <!-- NEXT STEPS -->
+    <div class="q-card">
+      <h4>Next Steps and Close</h4>
+
+      <h5>Primary Questions</h5>
+      <ul>
+        <li>"Based on everything we have discussed, are you ready to move forward with Stage 1?"</li>
+        <li>"Is there anything else you need from me before you can make a decision?"</li>
+        <li>"Who else, if anyone, needs to be involved in this decision?"</li>
+      </ul>
+
+      <h5>Follow-Up Probes</h5>
+      <ul>
+        <li>"If we started Stage 1 next week, would that work with your schedule?"</li>
+        <li>"What is the best way to send you the agreement and invoice?"</li>
+        <li>"Would it help if I put together a one-page summary of what we discussed today for you to share internally?"</li>
+      </ul>
+
+      <h5>What You Are Listening For</h5>
+      <ul>
+        <li><strong>Good sign:</strong> "Let us do it. Send me the invoice." Close the deal. Send the invoice within 24 hours, not 48.</li>
+        <li><strong>Good sign:</strong> "I need to talk to my partner, but I am personally on board." Ask when you can follow up and offer to join a brief call with the partner.</li>
+        <li><strong>Caution sign:</strong> "Let me think about it." Ask: "Of course. Is there a specific concern I can address right now, or do you just need time to process?"</li>
+        <li><strong>Red flag:</strong> "I will get back to you." With no timeframe. Pin it down: "Absolutely. When would be a good time for me to check in?"</li>
+      </ul>
+
+      <h5>What Not to Say</h5>
+      <ul>
+        <li>Do not say: "No pressure." There is pressure. Not artificial pressure, but the natural pressure of a project that loses momentum if it stalls. It is okay to communicate urgency without being pushy.</li>
+        <li>Do not say: "Whenever you are ready." This gives the client permission to disappear. Always set a follow-up date.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 4: THE 3-LAYER EXERCISE
+       ============================================================ -->
+  <div class="section">
+    <span class="section-number">Section 04</span>
+    <h2>The 3-Layer Exercise: Step by Step</h2>
+
+    <p>This is the most valuable part of the call. It is a genuine strategic exercise that delivers real insight to the client while simultaneously demonstrating your consulting value. If you execute this well, the client will feel like they got something useful just from the call itself, regardless of whether they hire you. That feeling is what closes deals.</p>
+
+    <h3>How to Introduce the Framework</h3>
+
+    <div class="script-block">
+      <span class="script-label">Introduction Script</span>
+      <p>"Before we talk about the website specifically, I want to do a quick exercise that will shape everything we build. It is something I use with every multi-division client, and it takes about 15 minutes."</p>
+      <p>"The idea is simple. Not all 7 of your divisions play the same role in your business. Some are the engine. Some are the support system. Some are the future. If we treat them all the same on the website, we end up with a flat, unfocused experience where nothing stands out."</p>
+      <p>"So what I want to do is walk through each division and place it into one of three layers."</p>
+    </div>
+
+    <h3>Present the Three Layers</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Layer</th>
+          <th>Definition</th>
+          <th>Website Implication</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Core</strong></td>
+          <td>The divisions that define who the company is. The revenue drivers. The identity. If someone asks "What does your company do?" these are the first words out of your mouth.</td>
+          <td>These get premium homepage real estate, dedicated landing pages, detailed content, case studies, and the strongest visual treatment.</td>
+        </tr>
+        <tr>
+          <td><strong>Supporting</strong></td>
+          <td>The divisions that make the core possible. They may generate revenue, but their primary role is to enable, supply, or complement the core divisions.</td>
+          <td>These get solid divisional pages with clear descriptions and contact paths, but they do not compete with the core for homepage attention.</td>
+        </tr>
+        <tr>
+          <td><strong>Vision</strong></td>
+          <td>The divisions that represent where the company is going. They may be new, still growing, or not yet fully operational. They are strategic bets on the future.</td>
+          <td>These get a professional presence that signals "we are in this space" without overpromising. Think a well-designed section page rather than a deep content hub.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-gold">
+      <div class="callout-title">Why This Framework Matters</div>
+      <p>Explain to the client: "This does not mean any division is less important. It means we are being strategic about how we present your company. A visitor who sees 7 divisions given equal weight on a homepage does not think 'what a big company.' They think 'I do not know what this company does.' The 3-Layer approach gives your website a clear narrative: this is who we are, this is how we operate, and this is where we are headed."</p>
+    </div>
+
+    <h3>Walk Through Each Division</h3>
+
+    <p>Go through each division one at a time. For each one, ask the following questions and then suggest a layer based on the client's answers. Let the client make the final call.</p>
+
+    <h4>Division 1: Crop Farming</h4>
+    <ul>
+      <li>"How long has Crop Farming been part of the business?"</li>
+      <li>"Is this a major revenue driver, or more of a foundation that feeds into other divisions like processing and commodity marketing?"</li>
+      <li>"When you introduce the company to a new contact, is farming one of the first things you mention?"</li>
+    </ul>
+    <p><em>Likely placement: Core (if the business was founded on agriculture) or Supporting (if it primarily feeds into processing and commodity marketing).</em></p>
+
+    <h4>Division 2: Animal Husbandry</h4>
+    <ul>
+      <li>"How does Animal Husbandry relate to Crop Farming? Are they tightly connected, or do they operate independently?"</li>
+      <li>"Is this division serving external customers directly, or does it primarily supply the Agro-Processing division?"</li>
+      <li>"What is the scale of this operation compared to the other divisions?"</li>
+    </ul>
+    <p><em>Likely placement: Core (if large-scale with direct customers) or Supporting (if primarily supplying the processing chain).</em></p>
+
+    <h4>Division 3: Agro-Processing</h4>
+    <ul>
+      <li>"This is where raw materials become products. Is this the value-creation engine of the business?"</li>
+      <li>"Who are the primary customers for your processed products? Local markets? Export markets? Both?"</li>
+      <li>"Does this division have its own brand presence in the market, or is it known primarily through the parent company?"</li>
+    </ul>
+    <p><em>Likely placement: Core (if this is where most of the value is created and most revenue is generated).</em></p>
+
+    <h4>Division 4: Commodity Marketing</h4>
+    <ul>
+      <li>"You mentioned turmeric, ginger, shea butter, cashew. Is this the public-facing, customer-facing arm of the agricultural side?"</li>
+      <li>"Is Commodity Marketing where the international opportunity is strongest?"</li>
+      <li>"If an international buyer found your website, would this be the division they are most interested in?"</li>
+    </ul>
+    <p><em>Likely placement: Core (if international trade is a priority) or Supporting (if it primarily serves as the sales channel for internal production).</em></p>
+
+    <h4>Division 5: Real Estate</h4>
+    <ul>
+      <li>"Real estate feels like a different world from agriculture. Is there a connection, or is this a separate business line?"</li>
+      <li>"Is real estate a significant revenue contributor, or is it a newer area?"</li>
+      <li>"Do your real estate customers know about the agricultural side of the business, or are these completely separate markets?"</li>
+    </ul>
+    <p><em>Likely placement: Core (if a major revenue driver with its own customer base), Supporting (if it serves the infrastructure needs of other divisions), or Vision (if still building out).</em></p>
+
+    <h4>Division 6: Import &amp; Export</h4>
+    <ul>
+      <li>"Is Import and Export primarily about agricultural equipment, or does it cover a wider range of goods?"</li>
+      <li>"Does this division serve the other divisions internally, or does it have its own external customer base?"</li>
+      <li>"When you think about the growth potential of this division, where does it rank?"</li>
+    </ul>
+    <p><em>Likely placement: Supporting (if primarily enabling other divisions) or Core (if it has a significant independent customer base and revenue).</em></p>
+
+    <h4>Division 7: Oil &amp; Gas</h4>
+    <ul>
+      <li>"Oil and Gas is quite different from the agricultural core. What led you into this space?"</li>
+      <li>"Is this division fully operational and generating revenue, or is it in build-out phase?"</li>
+      <li>"Where do you see this division in 3 to 5 years? Is it a major growth priority?"</li>
+    </ul>
+    <p><em>Likely placement: Vision (if still in early stages) or Core (if already a significant revenue contributor). Given the information from the initial call, Vision is most likely.</em></p>
+
+    <h3>Handling "Everything is Core"</h3>
+
+    <p>This will likely happen. The client has built all 7 divisions. Every one of them matters to them personally. Telling them to rank their children is uncomfortable. Here is how to handle it.</p>
+
+    <div class="script-block">
+      <span class="script-label">Response Script</span>
+      <p>"I hear you. Every division matters and I would never suggest otherwise. But let me share what happens when a website treats 7 divisions as equally important: the visitor lands on the homepage, sees 7 equal boxes, and their brain does not know where to start. Research shows that when people are given too many equal choices, they choose nothing. They leave."</p>
+      <p>"What we are doing here is not deciding which divisions matter. We are deciding which divisions lead the story. Think of it like a newspaper front page. Every article in the paper is important. But the editor puts one story above the fold. That does not diminish the others. It gives the reader an entry point."</p>
+      <p>"So let me ask it differently. If I had to write a one-sentence description of your company, which divisions would be in that sentence?"</p>
+    </div>
+
+    <h3>Template Table to Fill During the Call</h3>
+
+    <p>Have this table ready to fill in real time. Share your screen if possible so the client can see the exercise taking shape.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Division</th>
+          <th>Layer</th>
+          <th>Rationale (Client's Words)</th>
+          <th>Website Treatment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Crop Farming</td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Animal Husbandry</td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Agro-Processing</td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Commodity Marketing</td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Real Estate</td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Import &amp; Export</td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Oil &amp; Gas</td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-blue">
+      <div class="callout-title">Pro Tip: Use the Client's Own Words</div>
+      <p>In the "Rationale" column, write exactly what the client says. When you send the post-call summary, seeing their own words reflected back builds trust and shows you were listening. It also prevents them from re-litigating decisions later, because the reasoning is captured in their language, not yours.</p>
+    </div>
+
+    <h3>How to Close the Exercise</h3>
+
+    <div class="script-block">
+      <span class="script-label">Closing Script</span>
+      <p>"Excellent. So what we have now is a strategic hierarchy for your divisions. This is going to guide every decision we make about the website, from the homepage layout to the navigation structure to how much content we develop for each division. And the best part is, this is not permanent. As your business evolves, if Oil and Gas moves from Vision to Core, the website structure can evolve with it. We are building for where you are today and designing for flexibility."</p>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 5: REVENUE ROLE FRAMEWORK
+       ============================================================ -->
+  <div class="section">
+    <span class="section-number">Section 05</span>
+    <h2>Revenue Role Framework</h2>
+
+    <p>Before talking price, you need to establish why the website matters to the business in concrete, measurable terms. A website is not a brochure. It is a business tool. If the client cannot articulate the business role the website will play, the investment may not make sense right now. This framework protects both you and the client from building something that collects dust.</p>
+
+    <div class="callout callout-dark">
+      <div class="callout-title">The 5 Revenue Roles a Website Can Play</div>
+      <p><strong>1. Direct Revenue:</strong> The website generates leads, bookings, sales, or enquiries that convert directly into income.</p>
+      <p><strong>2. Credibility Engine:</strong> The website exists to impress investors, partners, government bodies, or tender evaluation panels. It does not sell directly, but it makes selling easier because people check you online before they commit.</p>
+      <p><strong>3. Cost Reduction:</strong> The website replaces manual processes. Customer onboarding, FAQ handling, document distribution, appointment scheduling. Things that currently consume staff time or require physical materials.</p>
+      <p><strong>4. Market Positioning:</strong> The website differentiates the business from competitors. In a crowded market, the company that looks most professional and organized online wins trust first.</p>
+      <p><strong>5. Talent Acquisition:</strong> The website helps recruit quality staff. In competitive hiring markets, candidates research employers online. A strong web presence attracts better applicants.</p>
+    </div>
+
+    <h3>How to Run the Revenue Role Assessment</h3>
+
+    <div class="script-block">
+      <span class="script-label">Introduction Script</span>
+      <p>"Before we talk about investment, I want to make sure we are both clear on what this website needs to do for your business. I have seen too many companies spend money on a website that looks great but does not actually work for them. So let me walk you through five roles a website can play, and I want you to tell me which ones apply to you."</p>
+    </div>
+
+    <p><strong>Walk through each role:</strong></p>
+    <ol>
+      <li><strong>Direct Revenue:</strong> "Will this website generate leads, bookings, or sales directly? Will customers find you here and take action?"</li>
+      <li><strong>Credibility Engine:</strong> "Do you have investors, partners, or government bodies who will look you up online before making decisions? Is your web presence part of how you win trust in those relationships?"</li>
+      <li><strong>Cost Reduction:</strong> "Are there processes you are currently handling manually, such as customer enquiries, document sharing, onboarding, that a website could automate or streamline?"</li>
+      <li><strong>Market Positioning:</strong> "In your industries, do your competitors have strong web presences? Would a professional website give you an edge, or are you playing catch-up?"</li>
+      <li><strong>Talent Acquisition:</strong> "When you are hiring, do candidates look you up online? Would a strong website help you attract better talent?"</li>
+    </ol>
+
+    <h3>Reading the Results</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Result</th>
+          <th>What It Means</th>
+          <th>Your Move</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Client identifies 3 or more roles with conviction</td>
+          <td>Strong business case. The website is clearly a strategic asset.</td>
+          <td>Proceed to pricing with confidence. Reference the roles when presenting the investment.</td>
+        </tr>
+        <tr>
+          <td>Client identifies 2 roles with conviction</td>
+          <td>Solid business case. The website has clear purpose.</td>
+          <td>Proceed to pricing. Use the two roles as the anchor for the value conversation.</td>
+        </tr>
+        <tr>
+          <td>Client identifies 1 role or is uncertain</td>
+          <td>Weak business case. The client may not have thought deeply about why they need a website.</td>
+          <td>Pause. Explore further. Ask: "What prompted you to start thinking about a website right now?" The answer may reveal a role they have not articulated yet.</td>
+        </tr>
+        <tr>
+          <td>Client cannot identify any role with conviction</td>
+          <td>No clear business case. The website is a "nice to have," not a strategic tool.</td>
+          <td>This is where the "Maybe You Do Not Need a Website" conversation comes in. See Section 10.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Using Revenue Roles in the Pricing Conversation</h3>
+
+    <div class="script-block">
+      <span class="script-label">Bridging Script (From Revenue Roles to Pricing)</span>
+      <p>"So you have identified [Credibility Engine] and [Direct Revenue] as the two primary roles for this website. That tells me something important: this is not just a digital brochure. This is a business tool that needs to win trust with investors and drive customer enquiries across multiple divisions. That is the lens through which I have designed the approach, and it is why Stage 1 focuses so heavily on strategy before design. We need to get the foundation right because the website has real work to do."</p>
+    </div>
+
+    <div class="callout callout-gold">
+      <div class="callout-title">Why This Matters for You</div>
+      <p>The Revenue Role Framework does two things at once. First, it gives the client a structured way to think about why they need a website, which builds their commitment. Second, it gives you the language to justify the investment. When the client says "500,000 naira is a lot," you can respond: "You told me this website needs to win investor confidence and drive customer leads across 7 divisions. That is not a brochure. That is a revenue tool. And 500,000 naira to get the strategy right for a revenue tool is not an expense. It is an investment with a clear return."</p>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 6: PRICING CONVERSATION SCRIPT
+       ============================================================ -->
+  <div class="section">
+    <span class="section-number">Section 06</span>
+    <h2>Pricing Conversation Script</h2>
+
+    <p>This section is critical. You deliberately removed pricing from the alignment document to create space for a live conversation. That was the right move. Pricing in a document becomes a number to react to. Pricing in a conversation becomes a discussion you can shape.</p>
+
+    <div class="callout callout-dark">
+      <div class="callout-title">Your Pricing Position</div>
+      <p><strong>Stage 1 (Foundation):</strong> 500,000 NGN (approximately &#x20A6;500k), fixed price. This covers discovery, brand identity system, brand architecture decision, information architecture, content strategy, and project roadmap.</p>
+      <p><strong>Stages 2 and 3:</strong> Quoted after Stage 1 discovery is complete. Estimated range is 1,500,000 to 2,500,000 NGN for the full project. This is intentional. You cannot accurately scope the build until discovery reveals the true requirements.</p>
+      <p><strong>Total estimated project value:</strong> You have a sense of this internally (&#x20A6;1.5M to &#x20A6;2.5M for the full project), but do not share the total figure yet. Let Stage 1 prove your value first.</p>
+    </div>
+
+    <h3>How to Transition into Pricing Naturally</h3>
+
+    <p>Do not introduce pricing out of nowhere. It should flow from the content conversation or the 3-Layer exercise. Here are two natural bridges.</p>
+
+    <div class="script-block">
+      <span class="script-label">Transition Option A (After 3-Layer Exercise)</span>
+      <p>"Now that we have mapped the divisions and you can see the complexity of what we are dealing with, let me talk about how we actually get started. You will have noticed that the alignment document laid out the approach and the stages but did not include pricing. That was intentional. I wanted us to have this conversation live so I could walk you through the reasoning rather than have you react to a number in isolation."</p>
+    </div>
+
+    <div class="script-block">
+      <span class="script-label">Transition Option B (After Content Discussion)</span>
+      <p>"So we have 7 divisions, multiple audience segments, content needs to be created or gathered, and branding needs to come first. This is a significant project. Let me walk you through what the investment looks like and how I have structured it to make it manageable and low-risk for you."</p>
+    </div>
+
+    <h3>The Pricing Presentation</h3>
+
+    <div class="script-block">
+      <span class="script-label">Core Pricing Script</span>
+      <p>"Here is how I have structured this. The project is in three stages, and the first stage is where we lay the foundation for everything that follows."</p>
+      <p>"Stage 1 is priced at 500,000 naira. That is a fixed fee. No surprises, no hourly billing, no scope creep charges. For that investment, you receive a full discovery workshop, a complete brand identity system, the brand architecture decision, information architecture for the entire website, a content strategy, and a detailed project roadmap for the remaining stages."</p>
+      <p>"Now here is what makes this low-risk for you. Everything produced in Stage 1 has standalone value. The brand identity system alone is something you will use across every touchpoint of your business, not just the website. Business cards, presentations, signage, everything. If at the end of Stage 1 you decide not to proceed to Stage 2 for any reason, you still own all the deliverables. Nothing is held hostage."</p>
+      <p>"Stages 2 and 3 will be quoted separately, after Stage 1 is complete. The reason is simple: until we have done the discovery work, I do not want to give you a number that is either too high or too low. I would rather give you an accurate quote based on real scope than a guess that either overcharges you or undervalues the work."</p>
+    </div>
+
+    <h3>Reading Client Reactions</h3>
+
+    <h4>Scenario 1: Client is Enthusiastic</h4>
+    <p><strong>Signs:</strong> They nod, they smile, they say things like "That makes sense," "That is reasonable," "When can we start?"</p>
+
+    <div class="script-block">
+      <span class="script-label">Response Script</span>
+      <p>"Great. I am glad that resonates. Here is what I will do: within the next 48 hours, I will send you a project brief that summarizes everything we discussed today, a simple one-page agreement for Stage 1, and an invoice. Once the agreement is signed and the payment is received, we are officially in motion. I would suggest we aim to start the discovery workshop within two weeks of commencement. Does that timeline work for you?"</p>
+    </div>
+
+    <div class="callout callout-green">
+      <div class="callout-title">When They Say Yes</div>
+      <p>Move quickly. Do not keep selling after the client has already bought. Confirm, outline next steps, and close the call with warmth and confidence. Send the invoice the same day if possible. Momentum matters.</p>
+    </div>
+
+    <h4>Scenario 2: Client Hesitates</h4>
+    <p><strong>Signs:</strong> They go quiet, they say "Hmm," they look away from the camera, they say "That is more than I expected," they ask "Is there flexibility?"</p>
+
+    <div class="script-block">
+      <span class="script-label">Response Script</span>
+      <p>"I understand. Let me put this in context. You have a business that operates across 7 divisions in multiple industries serving audiences from local farmers to international commodity buyers. A brand identity system for a business of this complexity, done properly, would typically cost 700,000 to 1,000,000 naira on its own. What I am offering in Stage 1 is not just branding. It is branding plus strategic planning plus the architecture for the entire digital presence. The 500,000 naira reflects the fact that I see this as the beginning of a longer partnership, not a one-off transaction."</p>
+      <p>"And remember, everything from Stage 1 is yours to keep regardless of what happens next. If you use the brand identity system across your business materials for the next five years and never build the website, that system alone was worth the investment."</p>
+    </div>
+
+    <p><strong>If they are still hesitant, ask:</strong> "Is it the amount itself, or is it the timing? Sometimes it is not that the investment is wrong, but that the timing is not ideal. I would rather know that now so we can plan accordingly."</p>
+
+    <h4>Scenario 3: Client is Evasive</h4>
+    <p><strong>Signs:</strong> They change the subject, they say "Let me think about it" without engagement, they ask about timelines or details as a deflection from the price, they become vague about decision-making authority.</p>
+
+    <div class="script-block">
+      <span class="script-label">Response Script</span>
+      <p>"I get the sense you might need more time to consider this, and that is completely fine. But let me ask you a direct question so I can serve you better: is the investment the concern, or is it something else about the project that is giving you pause? I would rather address it now than have it become an obstacle later."</p>
+    </div>
+
+    <p><strong>If they remain evasive:</strong> Do not chase. Say: "Tell you what. I will send you a summary of everything we discussed today. Take the time you need to review it. I will follow up on [specific date]. If you have questions in the meantime, I am here."</p>
+
+    <div class="callout callout-red">
+      <div class="callout-title">Warning: Evasion is Information</div>
+      <p>An evasive client is not necessarily a lost client. But they are telling you something. Either they are not the sole decision-maker, or they are comparing you with cheaper options, or they are not yet convinced the project is a priority. Your follow-up strategy should address all three possibilities. See Section 8 for post-call actions.</p>
+    </div>
+
+    <h4>Scenario 4: Client Tries to Negotiate Down</h4>
+    <p><strong>Signs:</strong> "Can you do it for less?" "What if we skip some of the deliverables?" "Is that your best price?"</p>
+
+    <div class="script-block">
+      <span class="script-label">Response Script</span>
+      <p>"I appreciate you being direct. Here is my position on pricing: the 500,000 naira reflects the scope of work and the value of what you receive. I do not inflate my prices to leave room for negotiation, which means I also do not discount them. What I can do is adjust the scope. If 500k is outside your current budget, we can discuss a reduced Stage 1 that covers fewer deliverables. But I would be honest with you: cutting corners at the foundation stage is exactly what causes problems later. The brand identity alone justifies this investment."</p>
+    </div>
+
+    <p><strong>If they push further:</strong> "I understand budget is a factor. Let me ask: what number would be comfortable for you? I am not promising I can match it, but if I understand your constraint, I can see if there is a way to structure the engagement differently."</p>
+
+    <div class="callout callout-gold">
+      <div class="callout-title">When to Walk Away</div>
+      <p>If the client is trying to get Stage 1 for 150,000 NGN or less, or if they are insisting on skipping the foundation stage entirely and going straight to design, you have a decision to make. A client who does not value the foundation will not value your process at any stage. You can say: "I hear you. This approach may not be the right fit for what you are looking for right now, and I respect that. If you want to revisit this in the future, my door is open." Leave gracefully. Desperation is not a business strategy.</p>
+    </div>
+
+    <h4>Scenario 5: Client Compares to Cheaper Alternatives</h4>
+    <p><strong>Signs:</strong> "Someone told me I can get a website for 50,000 naira." "My friend builds websites and he said this should not cost that much." "I saw some freelancers on [platform] charging much less."</p>
+
+    <div class="script-block">
+      <span class="script-label">Response Script</span>
+      <p>"You are absolutely right that there are cheaper options available. And for a single-page website or a basic template setup, those options can work fine. But let me be direct with you: your business is not basic. You have 7 divisions across agriculture, real estate, and oil and gas. You have multiple audience segments ranging from local customers to international commodity buyers to potential investors. You want something that stands the test of time."</p>
+      <p>"A 50,000-naira website will give you a template with your logo on it. It will not give you a brand identity system. It will not give you a strategic information architecture. It will not differentiate your crop farming audience from your real estate audience. And in 6 months, when it does not represent your business accurately, you will be starting over."</p>
+      <p>"What I am offering is not a website. It is a digital strategy backed by a professional brand system. The website is one output of that strategy. The brand identity, the content strategy, the design system: those are business assets that serve you far beyond the website."</p>
+    </div>
+
+    <h3>The Closing Question</h3>
+
+    <p>After the pricing conversation, regardless of which scenario played out, you need a closing question that moves the conversation toward commitment. Do not let the pricing discussion just fade into silence.</p>
+
+    <div class="script-block">
+      <span class="script-label">The Closing Question</span>
+      <p>"So here is what I would like to propose. Based on everything we have discussed, I believe Stage 1 is the right starting point. It is low-risk, it delivers standalone value, and it gives us both the clarity we need before committing to the larger build. What would need to happen for us to get started?"</p>
+    </div>
+
+    <p>This question is powerful because it does not ask for a yes or no. It asks the client to identify the remaining obstacles, if any. Their answer tells you exactly what to address next.</p>
+
+    <div class="callout callout-blue">
+      <div class="callout-title">Common Answers to the Closing Question</div>
+      <p><strong>"Nothing. Let us go."</strong> Close the deal. Send the invoice.</p>
+      <p><strong>"I need to discuss with my partner."</strong> Offer: "Would it help if I joined a brief call with both of you?"</p>
+      <p><strong>"I need to see the agreement first."</strong> Say: "I will have it to you within 48 hours."</p>
+      <p><strong>"I need more time."</strong> Say: "Understood. Can we set a check-in for [date]?"</p>
+      <p><strong>"I am not sure yet."</strong> Ask: "What specifically is holding you back? I would rather address it now."</p>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 7: RED FLAG DETECTION GUIDE
+       ============================================================ -->
+  <div class="section">
+    <span class="section-number">Section 07</span>
+    <h2>Red Flag Detection Guide</h2>
+
+    <p>Every discovery call gives you signals about the client's true intentions and readiness. Learning to read these signals early saves you from projects that drain your energy, pay late, and scope-creep into oblivion. Here are the four profiles you are watching for.</p>
+
+    <div class="signal-grid">
+      <!-- GREEN: READY -->
+      <div class="signal-card green">
+        <h5>The Client is Serious and Ready</h5>
+        <p><strong>Signals during the call:</strong></p>
+        <ul>
+          <li>They read the alignment document thoroughly and can reference specific sections</li>
+          <li>They ask detailed questions about timelines and deliverables, not just price</li>
+          <li>They have already discussed the project internally and have organizational buy-in</li>
+          <li>They volunteer information about their budget or budgeting process</li>
+          <li>They respond to the 3-Layer exercise with genuine engagement and thoughtful answers</li>
+          <li>They ask about next steps before you bring it up</li>
+          <li>They share the names of other decision-makers and their positions (transparency)</li>
+          <li>They mention a timeline or deadline that makes starting soon important</li>
+        </ul>
+        <div class="divider"></div>
+        <p><strong>What to do:</strong> Close on the call. Do not oversell. Confirm the agreement, send the invoice the same day, and set the first workshop date. These clients reward speed and decisiveness. Match their energy.</p>
+      </div>
+
+      <!-- YELLOW: INTERESTED NOT COMMITTED -->
+      <div class="signal-card yellow">
+        <h5>Interested but Not Yet Committed</h5>
+        <p><strong>Signals during the call:</strong></p>
+        <ul>
+          <li>They express genuine interest but use phrases like "I need to think about it" or "Let me discuss with my team"</li>
+          <li>They ask good questions but seem to be comparing options</li>
+          <li>They engage with the exercise but do not commit to decisions</li>
+          <li>They mention budget constraints but do not shut down the conversation</li>
+          <li>They bring up a partner, board, or committee who needs to approve</li>
+          <li>They seem impressed by the work but hesitant about timing</li>
+        </ul>
+        <div class="divider"></div>
+        <p><strong>What to do:</strong> Send a post-call summary within 24 hours. Include the 3-Layer table with their input and a one-page overview of Stage 1 deliverables and pricing. Offer to join a call with other decision-makers. Set a specific follow-up date (5 to 7 days). Do not chase more than twice. After two follow-ups with no clear direction, move on and leave the door open.</p>
+      </div>
+
+      <!-- ORANGE: FISHING -->
+      <div class="signal-card orange">
+        <h5>Fishing for Free Advice</h5>
+        <p><strong>Signals during the call:</strong></p>
+        <ul>
+          <li>They steer the conversation toward specific tactical advice ("What platform should I use?" "Can you just tell me what pages I need?")</li>
+          <li>They ask for deliverable examples or templates they can use independently</li>
+          <li>They take lots of notes but avoid discussing engagement or pricing</li>
+          <li>They keep asking "What would you recommend?" on specific implementation details</li>
+          <li>They downplay the project scope: "It is really not that complicated"</li>
+          <li>They mention they "know someone who could build it" and are just exploring</li>
+          <li>They ask you to send over your "process" or "methodology" in writing</li>
+        </ul>
+        <div class="divider"></div>
+        <p><strong>What to do:</strong> Redirect every tactical question back to the engagement. "That is exactly the kind of thing we resolve in Stage 1. It is difficult to give a useful answer without the full discovery context." Do not provide free consulting. If they persist, be direct: "I am happy to go deeper on all of this. That is what Stage 1 is designed for. Shall we discuss getting that started?" If they decline or deflect, wrap the call politely. Do not send a detailed follow-up. Send a brief, professional email thanking them for their time and restating the Stage 1 offer. If they do not respond within 7 days, let it go.</p>
+      </div>
+
+      <!-- RED: WILL NEVER PAY -->
+      <div class="signal-card red">
+        <h5>Will Never Pay Professional Rates</h5>
+        <p><strong>Signals during the call:</strong></p>
+        <ul>
+          <li>They lead with price: "How much does this cost?" before understanding the scope</li>
+          <li>They compare you to Fiverr, cheap freelancers, or a friend who "does websites"</li>
+          <li>They say "I just need a simple website" despite having 7 business divisions</li>
+          <li>They react to 500,000 NGN as if you said 50,000,000 NGN</li>
+          <li>They ask if you can do a "basic version" for a fraction of the cost</li>
+          <li>They suggest paying you after the website "makes money"</li>
+          <li>They dismiss the brand identity work as unnecessary</li>
+          <li>They say something like "It should not cost that much, it is just a website"</li>
+        </ul>
+        <div class="divider"></div>
+        <p><strong>What to do:</strong> Do not try to convince them. You cannot educate someone out of a value gap on a single call. Be gracious, be professional, and be clear: "I understand. It sounds like what you are looking for might be different from what I specialize in. I focus on strategic brand development and design systems for complex businesses. If that aligns with where you want to take this in the future, I would be happy to reconnect. In the meantime, I wish you the best with the project." End the call warmly. Do not follow up. If they come back later with a changed perspective, welcome them. But do not chase a client who fundamentally does not value what you do.</p>
+      </div>
+    </div>
+
+    <h3>Quick Reference: Signal Summary Table</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Signal</th>
+          <th>What It Means</th>
+          <th>Your Move</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>"When can we start?"</td>
+          <td>Ready to commit</td>
+          <td>Close now. Send invoice same day.</td>
+        </tr>
+        <tr>
+          <td>"I need to talk to my partner."</td>
+          <td>Second decision-maker exists</td>
+          <td>Offer to join a three-way call.</td>
+        </tr>
+        <tr>
+          <td>"Can you send me a proposal?"</td>
+          <td>Wants documentation before deciding</td>
+          <td>Send summary + agreement within 48 hours.</td>
+        </tr>
+        <tr>
+          <td>"That is a lot of money."</td>
+          <td>Price shock, but not necessarily a no</td>
+          <td>Reframe value. Emphasize standalone worth of Stage 1.</td>
+        </tr>
+        <tr>
+          <td>"What platform do you use?"</td>
+          <td>Possibly fishing for DIY information</td>
+          <td>Redirect: "We resolve that in discovery."</td>
+        </tr>
+        <tr>
+          <td>"My nephew can do this."</td>
+          <td>Does not value professional work</td>
+          <td>Do not compete. Wish them well.</td>
+        </tr>
+        <tr>
+          <td>"How long will this take?"</td>
+          <td>Timeline-conscious (could be good or bad)</td>
+          <td>Emphasize structured timeline vs. open-ended risk.</td>
+        </tr>
+        <tr>
+          <td>"Can we skip branding?"</td>
+          <td>Wants shortcuts</td>
+          <td>Explain that skipping branding costs more long-term.</td>
+        </tr>
+        <tr>
+          <td>Client takes detailed notes</td>
+          <td>Engaged (good) or collecting free advice (bad)</td>
+          <td>Watch whether questions are about the project or implementation.</td>
+        </tr>
+        <tr>
+          <td>Client mentions competitors' websites</td>
+          <td>Has a visual benchmark in mind</td>
+          <td>Ask what they like and dislike. Use this as design input.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ============================================================
+       SECTION 8: POST-CALL ACTIONS
+       ============================================================ -->
+  <div class="section">
+    <span class="section-number">Section 08</span>
+    <h2>Post-Call Actions</h2>
+
+    <p>What happens in the 24 to 48 hours after the call is just as important as the call itself. Speed and professionalism here are what separate you from every other freelancer the client has ever spoken to. The client is forming their final impression right now. Make it count.</p>
+
+    <h3>Outcome A: Client Says Yes</h3>
+
+    <div class="callout callout-green">
+      <div class="callout-title">They Committed on the Call</div>
+      <p>This is the best outcome. Move fast. Do not let the enthusiasm cool.</p>
+    </div>
+
+    <p><strong>Within 2 hours of the call:</strong></p>
+    <ul>
+      <li>Send a brief thank-you message (WhatsApp or email, whichever is your primary channel): "Thank you for today's session. I am excited to get started. I will have the project brief and agreement to you within 48 hours."</li>
+    </ul>
+
+    <p><strong>Within 24 hours:</strong></p>
+    <ul>
+      <li>Prepare the post-call summary document. Include:
+        <ul>
+          <li>The 3-Layer Business Model table (filled in with the client's input from the call)</li>
+          <li>Brand architecture direction (the client's initial preference)</li>
+          <li>Audience prioritization (who the homepage is primarily for)</li>
+          <li>Content status assessment (what exists, what needs to be created)</li>
+          <li>Any decisions or preferences expressed during the call</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p><strong>Within 48 hours:</strong></p>
+    <ul>
+      <li>Send the post-call summary, Stage 1 agreement, and invoice as a single professional package.</li>
+      <li>Include a clear call to action: "To get started, please review and sign the agreement and process the invoice. Once both are received, I will schedule our Discovery Workshop within two weeks."</li>
+      <li>Set a payment deadline: "Payment is due within 7 days of invoice date."</li>
+    </ul>
+
+    <p><strong>If payment is received:</strong></p>
+    <ul>
+      <li>Confirm receipt immediately.</li>
+      <li>Send a welcome message with the Discovery Workshop scheduling options.</li>
+      <li>Begin your internal prep for Stage 1 (competitive research, brand audit, content inventory template).</li>
+    </ul>
+
+    <p><strong>If payment is not received within 7 days:</strong></p>
+    <ul>
+      <li>Send a gentle reminder: "Just checking in on the agreement and invoice. I want to make sure we stay on track. Is there anything you need from me?"</li>
+      <li>If no response after 3 more days, send one final follow-up: "I want to respect your time. I will keep the Stage 1 offer open for [date, 7 days from now]. If the timing is not right, no problem at all. We can revisit whenever you are ready."</li>
+      <li>After that, stop following up. If they want to proceed, they will reach out.</li>
+    </ul>
+
+    <h3>Outcome B: Client Says "Let Me Think About It"</h3>
+
+    <div class="callout callout-gold">
+      <div class="callout-title">They Are Interested but Need Time</div>
+      <p>This is the most common outcome and it is not a rejection. Your job is to stay top of mind without becoming a nuisance.</p>
+    </div>
+
+    <p><strong>Within 2 hours of the call:</strong></p>
+    <ul>
+      <li>Send a warm message: "Great conversation today. I know it is a lot to process. I will put together a summary of everything we discussed so you have it in writing. Take the time you need."</li>
+    </ul>
+
+    <p><strong>Within 24 hours:</strong></p>
+    <ul>
+      <li>Send the post-call summary (same format as Outcome A). This is important: the summary gives the client something tangible to share with a partner, board, or internal team. It does the selling for you when you are not in the room.</li>
+      <li>Include Stage 1 pricing and deliverables in the summary, clearly stated.</li>
+      <li>Do NOT send the full agreement and invoice yet. That feels like pressure. Instead, close the summary with: "When you are ready to move forward, I will send over the agreement and invoice. In the meantime, I am here for any questions."</li>
+    </ul>
+
+    <p><strong>Follow-up schedule:</strong></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Day</th>
+          <th>Action</th>
+          <th>Message</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Day 5-7</td>
+          <td>First follow-up</td>
+          <td>"Hi [Name], just checking in. Have you had a chance to review the summary I sent? Happy to jump on a quick call if you have any questions."</td>
+        </tr>
+        <tr>
+          <td>Day 12-14</td>
+          <td>Second follow-up</td>
+          <td>"Hi [Name], I wanted to circle back one more time. I know things get busy. If the timing is not right, just let me know and we can revisit when it makes sense. No pressure."</td>
+        </tr>
+        <tr>
+          <td>Day 21</td>
+          <td>Final follow-up</td>
+          <td>"Hi [Name], I hope all is well. I will leave this with you. If you want to pick up the conversation in the future, my door is always open. Wishing you and the business all the best."</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p><strong>After 3 follow-ups with no response:</strong> Stop. Move on. You cannot want the project more than the client does. If they come back in 3 months, welcome them warmly. But do not hold a slot for a ghost.</p>
+
+    <h3>Outcome C: Client Says No or Goes Silent</h3>
+
+    <div class="callout callout-red">
+      <div class="callout-title">The Deal is Not Happening</div>
+      <p>This is not a failure. Not every lead converts. Your goal is to exit with grace and professionalism so that if circumstances change, they remember you as the one who handled it well.</p>
+    </div>
+
+    <p><strong>If they say no on the call:</strong></p>
+    <ul>
+      <li>Ask: "I appreciate your honesty. Can I ask what led to that decision? It helps me improve how I present these engagements." (This gives you valuable feedback and sometimes reveals objections you can still address.)</li>
+      <li>If the reason is budget: "I completely understand. If your situation changes or if you want to explore a smaller starting point in the future, I am here."</li>
+      <li>If the reason is fit: "I respect that. It is important that both sides feel right about the partnership. I wish you the best with the project."</li>
+      <li>Send a brief, professional follow-up email the same day: "Thank you for your time today. I enjoyed learning about your business. If the project becomes a priority in the future, I would welcome the conversation. All the best."</li>
+    </ul>
+
+    <p><strong>If they go silent after the call:</strong></p>
+    <ul>
+      <li>Follow the same follow-up schedule as Outcome B (Day 5-7, Day 12-14, Day 21).</li>
+      <li>Keep messages warm and short. Do not send long emails re-pitching the project.</li>
+      <li>After 3 attempts with no response, send the graceful close: "I will leave this with you. Door is always open."</li>
+      <li>Do not take it personally. Silence usually means the project was not a priority, not that you did something wrong.</li>
+    </ul>
+
+    <h3>Regardless of Outcome: Internal Actions</h3>
+
+    <p>After every discovery call, complete these internal tasks:</p>
+
+    <ul class="checklist">
+      <li>Write up your call notes while the conversation is fresh (within 1 hour)</li>
+      <li>Record the outcome in your project pipeline (CRM, spreadsheet, or whatever you use)</li>
+      <li>Note any red flags, positive signals, or information that affects future conversations</li>
+      <li>If the client mentioned other decision-makers, note their names and roles</li>
+      <li>If the client mentioned competitors or reference websites, save those links for future use</li>
+      <li>Reflect: What went well? What could you do better next time? Did you stick to the time blocks? Did you ask all the key questions?</li>
+    </ul>
+  </div>
+
+  <!-- ============================================================
+       SECTION 9: OBJECTION HANDLING REFERENCE
+       ============================================================ -->
+  <div class="section">
+    <span class="section-number">Section 09</span>
+    <h2>Objection Handling Reference</h2>
+
+    <p>Objections are not rejections. They are requests for more information, reassurance, or reframing. The worst thing you can do with an objection is get defensive. The best thing you can do is validate the concern, then provide a perspective the client has not considered.</p>
+
+    <!-- OBJECTION 1 -->
+    <div class="objection-block">
+      <div class="objection-header">"That's too expensive."</div>
+      <div class="objection-body">
+        <h5>What They Are Really Saying</h5>
+        <p>Either they do not yet see the value, they have a smaller budget than expected, or they are comparing you to a different type of provider. This objection is almost never about the literal number. It is about perceived value relative to expectation.</p>
+
+        <h5>Your Response</h5>
+        <div class="script-block">
+          <span class="script-label">Script</span>
+          <p>"I hear you. Let me make sure we are comparing like for like. The 500,000 naira covers discovery, a complete brand identity system, brand architecture strategy, full information architecture, content strategy, and a project roadmap. The brand identity alone, the logo system, colour palette, typography, visual language, and guidelines document, is something you will use across every touchpoint of your business for years. Business cards, presentations, vehicle wraps, signage, social media, everything. That system, done by a branding agency, would typically start at 700,000 to 1,000,000 naira."</p>
+          <p>"So what you are getting in Stage 1 is not just the foundation for a website. It is a foundational business asset. Does that help put the number in context?"</p>
+        </div>
+
+        <h5>If They Push Back Further</h5>
+        <p>"What number would feel comfortable for you? I ask because if there is a genuine budget constraint, I would rather understand it and see if there is a way to structure this differently than lose the opportunity to work together."</p>
+
+        <h5>The Line You Do Not Cross</h5>
+        <p>Do not go below 400,000 NGN for Stage 1. If you do, you are signaling that your original price was inflated. If they genuinely cannot afford 500,000 naira, the project may not be at the right stage. Better to wait than to start a relationship where you are undervalued from day one.</p>
+      </div>
+    </div>
+
+    <!-- OBJECTION 2 -->
+    <div class="objection-block">
+      <div class="objection-header">"My cousin/friend can do it cheaper."</div>
+      <div class="objection-body">
+        <h5>What They Are Really Saying</h5>
+        <p>They have someone in their network who builds websites, probably using templates or basic tools, and they cannot understand why your price is higher. This is a value education moment, not a competition.</p>
+
+        <h5>Your Response</h5>
+        <div class="script-block">
+          <span class="script-label">Script</span>
+          <p>"I do not doubt that. And for a straightforward personal website or a simple business page, that could be a perfectly good option. But let me be honest with you: what your business needs is not a website. Your business needs a brand system and a digital strategy. You have 7 divisions, multiple industries, audiences ranging from local farmers to international commodity buyers. The question is not 'can someone build you a website?' Anyone with a laptop can do that. The question is: will that website accurately represent a multi-vertical conglomerate in a way that builds credibility with investors, attracts customers across different industries, and scales as the business grows?"</p>
+          <p>"If your cousin or friend can deliver a brand identity system, information architecture for 7 divisions, audience-segmented user experience design, and a scalable content management system, then absolutely, go with them. But if what they can offer is a template with your content dropped in, you will outgrow it in 6 months and we will be having this conversation again."</p>
+        </div>
+
+        <h5>Important</h5>
+        <p>Never insult the cousin or friend. Never say "they cannot do what I do." Let the scope speak for itself. The client needs to arrive at the conclusion, not have it argued at them.</p>
+      </div>
+    </div>
+
+    <!-- OBJECTION 3 -->
+    <div class="objection-block">
+      <div class="objection-header">"I just need a simple website."</div>
+      <div class="objection-body">
+        <h5>What They Are Really Saying</h5>
+        <p>They are underestimating the complexity of their own business. A company with 7 divisions in different industries does not have a "simple" digital story to tell. They may also be trying to reduce cost by reducing perceived scope.</p>
+
+        <h5>Your Response</h5>
+        <div class="script-block">
+          <span class="script-label">Script</span>
+          <p>"I understand the impulse to keep things simple. And I agree that the experience should feel simple to the visitor. But here is the distinction: simple to use and simple to build are very different things. Making 7 divisions feel coherent, making the right information easy to find for an investor versus a customer versus a partner, that is actually the hardest design challenge there is. It is like asking an architect to design a building that looks simple. The simpler it looks, the more skill it took to achieve."</p>
+          <p>"What I am proposing is not complexity for the sake of complexity. It is the strategic work needed to make something that feels effortless to the person visiting. Does that make sense?"</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- OBJECTION 4 -->
+    <div class="objection-block">
+      <div class="objection-header">"Can we skip the branding phase?"</div>
+      <div class="objection-body">
+        <h5>What They Are Really Saying</h5>
+        <p>They want to get to the visible part (the website) faster. Branding feels abstract to them. They do not yet understand that branding is the foundation that determines what the website looks and feels like.</p>
+
+        <h5>Your Response</h5>
+        <div class="script-block">
+          <span class="script-label">Script</span>
+          <p>"I understand wanting to get to the website quickly. But let me paint a picture of what happens when we skip branding. I sit down to design your homepage. What colours do I use? What fonts? What visual style? Without a brand identity, I am guessing. I might create something I think looks great, but it does not feel like your company. You send it back with 'this is not quite right.' I redesign. Still not right. We go back and forth three, four, five times. We have now spent more time and money than if we had invested two weeks in branding upfront."</p>
+          <p>"The brand identity gives us both a shared language. When I show you the website design, you are not reacting based on personal taste. You are evaluating it against an agreed-upon brand system. It removes the guesswork from both sides. It is actually the fastest path to a website you love."</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- OBJECTION 5 -->
+    <div class="objection-block">
+      <div class="objection-header">"I want all 7 divisions featured equally."</div>
+      <div class="objection-body">
+        <h5>What They Are Really Saying</h5>
+        <p>Every division is their baby. They are emotionally invested in all of them. They fear that prioritizing some means neglecting others. This is natural and understandable.</p>
+
+        <h5>Your Response</h5>
+        <div class="script-block">
+          <span class="script-label">Script</span>
+          <p>"I respect that. Every division matters. And I promise you, every division will have a professional, well-designed presence on the website. But here is what research tells us about how people interact with websites: when a visitor sees 7 things given equal weight, they process none of them. Their brain literally cannot decide where to focus, so they skim or leave."</p>
+          <p>"What I am suggesting is not that some divisions are less important. I am suggesting that the homepage tells a clear story, and that story leads with your strongest divisions. The other divisions are right there, one click away, with their own dedicated pages that give them the full attention they deserve. Think of it like a company introduction at a conference. You do not list all 7 divisions in the first sentence. You lead with the headline, and then you tell the full story."</p>
+          <p>"We covered this in the 3-Layer exercise earlier. The 'Core' divisions lead the homepage. The 'Supporting' and 'Vision' divisions have their own strong sections. Nothing is hidden. Nothing is diminished. It is just organized to be effective."</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- OBJECTION 6 -->
+    <div class="objection-block">
+      <div class="objection-header">"How long will this take?"</div>
+      <div class="objection-body">
+        <h5>What They Are Really Saying</h5>
+        <p>They are eager to see results and may be worried about a long, drawn-out process. They may also be comparing your timeline to someone who quoted "two weeks."</p>
+
+        <h5>Your Response</h5>
+        <div class="script-block">
+          <span class="script-label">Script</span>
+          <p>"Stage 1 typically takes 3 to 4 weeks from commencement. That includes the discovery workshop, brand identity development with two rounds of revisions, and all the strategic planning deliverables. The full project, through design, build, and launch, is usually 14 to 18 weeks depending on scope and, crucially, how quickly content is provided."</p>
+          <p>"I know that might sound like a long time compared to someone who says they can build you a website in two weeks. But think about it this way: what they are building in two weeks is a template with your content dropped in. No brand strategy. No audience segmentation. No design system. No content management structure for 7 divisions. What we are building is a digital presence that represents a multi-vertical conglomerate with the professionalism and strategic depth that matches the business itself."</p>
+          <p>"The good news is, you will see tangible progress throughout. Stage 1 delivers a complete brand identity and strategy. That is not just prep work. It is a finished product you can use immediately across your entire business."</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- OBJECTION 7 -->
+    <div class="objection-block">
+      <div class="objection-header">"Can you just show me some designs first?"</div>
+      <div class="objection-body">
+        <h5>What They Are Really Saying</h5>
+        <p>They want visual proof before committing money. This is understandable but it is also a trap. If you design for free, you have set the precedent that your work does not need to be paid for.</p>
+
+        <h5>Your Response</h5>
+        <div class="script-block">
+          <span class="script-label">Script</span>
+          <p>"I appreciate you wanting to see what the end result might look like. Here is my honest perspective: if I designed something for you right now, before we have done the brand identity work, before we have agreed on the audience priorities, before we have resolved the brand architecture question, it would be a guess. A pretty guess, maybe, but a guess. And what happens with guesses is that we both invest time reacting to something that was never grounded in strategy."</p>
+          <p>"What I can show you is examples of the kind of work I produce, the quality level and the strategic thinking behind it. And I can walk you through the creative concepts I outlined in the alignment document, the Story-First Homepage and the Audience-Guided Entry. But actual design for your business starts in Stage 2, after we have built the strategic foundation."</p>
+          <p>"Think of it this way: a doctor does not prescribe before diagnosing. And a good designer does not design before discovering."</p>
+        </div>
+
+        <h5>If They Insist</h5>
+        <p>Do not do free design work. Ever. If this is a hard requirement for the client, this client values visuals over strategy and you will face this tension throughout the project. You can offer: "I can put together a mood board or visual direction document as part of Stage 1. That way, you see the creative direction early and can give input before full design begins." This is a compromise that keeps the work within a paid engagement.</p>
+      </div>
+    </div>
+
+    <!-- OBJECTION 8 -->
+    <div class="objection-block">
+      <div class="objection-header">"I'll get back to you."</div>
+      <div class="objection-body">
+        <h5>What They Are Really Saying</h5>
+        <p>This can mean many things: they genuinely need time, they need to consult someone else, they are not sure, or they are politely saying no. Your job is to find out which one.</p>
+
+        <h5>Your Response</h5>
+        <div class="script-block">
+          <span class="script-label">Script</span>
+          <p>"Absolutely. I want you to feel completely confident before committing. Can I ask, is there a specific part of the proposal you want to reflect on, or is it more about finding the right timing?"</p>
+        </div>
+
+        <p><strong>Based on their answer:</strong></p>
+        <ul>
+          <li><strong>If they mention a specific concern:</strong> Address it directly. "If it is the pricing, let me walk through the value one more time." or "If it is the timeline, here is how we can adjust."</li>
+          <li><strong>If they mention another decision-maker:</strong> "Would it help if I prepared a one-page summary you could share with them? Or I would be happy to join a brief call with both of you."</li>
+          <li><strong>If they are vague:</strong> "No problem at all. Let me send you a summary of today's call. Can we set a date for me to follow up? I want to make sure this does not fall through the cracks."</li>
+        </ul>
+
+        <h5>The Key Move</h5>
+        <p>Always pin down a follow-up date. "I will get back to you" without a date is a slow fade. "I will get back to you by Thursday" is a commitment. If they refuse to set a date, they are likely not going to proceed. Adjust your expectations and follow the Outcome B protocol from Section 8.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 10: MAYBE YOU DO NOT NEED A WEBSITE
+       ============================================================ -->
+  <div class="section">
+    <span class="section-number">Section 10</span>
+    <h2>Maybe You Do Not Need a Website</h2>
+
+    <p>This is your most powerful positioning tool. Most web designers will never tell a client to walk away. You will. And that honesty is exactly what builds trust, earns referrals, and positions you as a strategic advisor rather than someone who just wants to close a deal.</p>
+
+    <div class="callout callout-dark">
+      <div class="callout-title">When to Use This</div>
+      <p>Use this conversation when the Revenue Role Framework (Section 5) reveals that the client cannot identify at least 2 revenue roles with conviction. If the website has no clear business purpose, spending 500,000 naira or more on a professional build is not the right move. Saying that out loud is what separates you from everyone else.</p>
+    </div>
+
+    <h3>The Honest Conversation</h3>
+
+    <div class="script-block">
+      <span class="script-label">Opening Script</span>
+      <p>"I want to be straightforward with you, and I hope you will appreciate this. Based on what we have discussed, I am not convinced a full website is the right investment for your business right now. And I would rather tell you that honestly than take your money and build something that does not serve you."</p>
+    </div>
+
+    <div class="script-block">
+      <span class="script-label">Explanation Script</span>
+      <p>"Here is why I say that. When we walked through the revenue roles, we could not clearly identify how the website would generate leads, build credibility, reduce costs, or differentiate you in the market. That does not mean your business does not need a digital presence. It means a full custom website with brand strategy and multi-division architecture may not be where your money works hardest right now."</p>
+    </div>
+
+    <h3>The Alternatives to Propose</h3>
+
+    <p>When the full website does not make sense yet, offer practical alternatives that still move the client forward. This shows you care about their success, not just your invoice.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Alternative</th>
+          <th>Best For</th>
+          <th>Approximate Cost</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Simple Landing Page</strong></td>
+          <td>Businesses that just need a digital business card. One page with contact details, a brief overview, and a professional look.</td>
+          <td>50,000 to 100,000 NGN</td>
+        </tr>
+        <tr>
+          <td><strong>LinkedIn Company Presence</strong></td>
+          <td>Businesses focused on B2B relationships, partnerships, or investor visibility. LinkedIn is free and already where decision-makers spend time.</td>
+          <td>Free (your time to set up)</td>
+        </tr>
+        <tr>
+          <td><strong>Google Business Profile</strong></td>
+          <td>Businesses that serve local customers. A Google Business Profile puts you on Maps, lets customers leave reviews, and shows up in local search results.</td>
+          <td>Free (your time to set up)</td>
+        </tr>
+        <tr>
+          <td><strong>Social Media First Strategy</strong></td>
+          <td>Businesses where the audience is already active on Instagram, Facebook, or WhatsApp. Build the audience first, then build the website when there is traffic to send it to.</td>
+          <td>Variable, but lower than a full website build</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>The Exact Language to Use</h3>
+
+    <div class="script-block">
+      <span class="script-label">Recommendation Script</span>
+      <p>"What I would suggest instead is this. Start with a simple landing page that costs a fraction of the full project. Get your Google Business Profile set up so you show up when people search for you. Build your LinkedIn presence to establish credibility with the partners and investors you mentioned. Do that for 6 months. If during that time you find that people are visiting your page and wanting more, that customers are asking where your full website is, that investors are expecting a more robust online presence, then we revisit the full project. At that point, you will have real data on what the website needs to do, and we can build something that is grounded in actual business needs, not assumptions."</p>
+    </div>
+
+    <div class="script-block">
+      <span class="script-label">Closing Script</span>
+      <p>"I know this is probably not what you expected to hear from someone who builds websites. But I would rather earn your trust today and build your website in 6 months when it makes strategic sense, than take your money now and deliver something that does not move your business forward. That is not how I work."</p>
+    </div>
+
+    <h3>Why This Works in Your Favour</h3>
+
+    <div class="callout callout-green">
+      <div class="callout-title">The Long Game</div>
+      <p>Telling a client they do not need a website right now does three things:</p>
+      <p><strong>1. It builds trust.</strong> The client will remember that you put their interests ahead of your own revenue. When they are ready, you are the first person they call.</p>
+      <p><strong>2. It earns referrals.</strong> "I spoke to this web designer and he actually told me I did not need a website yet. He suggested alternatives instead." That story gets retold. People refer honest professionals, not pushy salespeople.</p>
+      <p><strong>3. It protects your reputation.</strong> A website built for a client who did not need one will underperform. The client will blame you, not the lack of business case. By walking away, you avoid a project that was set up to disappoint.</p>
+    </div>
+
+    <h3>Offering to Help with the Alternatives</h3>
+
+    <div class="script-block">
+      <span class="script-label">Transition Script</span>
+      <p>"If it would be helpful, I can set up the landing page and the Google Business Profile for you as a smaller engagement. It would be a fraction of the cost, and it gets you a professional digital presence while you focus on growing the business. When the time is right for the full website, we will have a much clearer picture of what to build."</p>
+    </div>
+
+    <div class="callout callout-gold">
+      <div class="callout-title">Do Not Offer This as a Discount</div>
+      <p>The landing page alternative is not a consolation prize or a cheaper version of the real project. It is a different solution for a different problem. Frame it that way. The client should feel that you are recommending the right tool for where they are today, not that you are downgrading them because they could not afford the full project.</p>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <div class="section" style="background: var(--color-primary); color: var(--color-white); text-align: center; padding: 2rem 3rem;">
+    <div style="width: 40px; height: 2px; background: var(--color-accent); margin: 0 auto var(--space-lg);"></div>
+    <p style="font-family: var(--font-heading); font-size: 1.1rem; font-style: italic; color: var(--color-accent-light); margin-bottom: var(--space-md);">
+      "Preparation is the greatest expression of respect. For the client. For the work. For yourself."
+    </p>
+    <p style="font-size: 0.8rem; color: var(--color-text-muted); margin-bottom: var(--space-xs);">
+      Discovery Call Guide &bull; Internal Playbook &bull; Confidential
+    </p>
+    <p style="font-size: 0.75rem; color: var(--color-text-muted);">
+      Prepared for Awwal's personal use. Not for client distribution.
+    </p>
+  </div>
+
+</div><!-- end .page -->
+
+</body>
+</html>

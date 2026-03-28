@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quick Presence Website - Scope of Work</title>
+<style>
+  @page {
+    size: A4;
+    margin: 12mm 14mm;
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 9.5pt;
+    line-height: 1.35;
+    color: #1a1a1a;
+    background: #f5f5f0;
+    padding: 20px;
+  }
+
+  .page {
+    max-width: 210mm;
+    margin: 0 auto;
+    background: #fff;
+    padding: 28px 32px 20px;
+    border: 1px solid #ddd;
+  }
+
+  /* Header */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 2.5px solid #0f1b2d;
+    padding-bottom: 8px;
+    margin-bottom: 10px;
+  }
+
+  .header-left h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 15pt;
+    color: #0f1b2d;
+    letter-spacing: 0.3px;
+    margin-bottom: 1px;
+  }
+
+  .header-left .subtitle {
+    font-size: 8.5pt;
+    color: #b8924a;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .header-right {
+    text-align: right;
+    font-size: 8pt;
+    color: #555;
+    line-height: 1.4;
+  }
+
+  /* Parties */
+  .parties {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 8px;
+    background: #fafaf7;
+    padding: 6px 10px;
+    border-left: 3px solid #b8924a;
+  }
+
+  .party {
+    flex: 1;
+  }
+
+  .party-label {
+    font-size: 7pt;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: #b8924a;
+    font-weight: 700;
+    margin-bottom: 1px;
+  }
+
+  .party-name {
+    font-weight: 700;
+    font-size: 9pt;
+    color: #0f1b2d;
+  }
+
+  .party-detail {
+    font-size: 8pt;
+    color: #555;
+  }
+
+  .field-blank {
+    border-bottom: 1px dashed #999;
+    display: inline-block;
+    min-width: 140px;
+    height: 14px;
+    vertical-align: bottom;
+  }
+
+  .date-row {
+    text-align: right;
+    font-size: 8pt;
+    margin-bottom: 8px;
+    color: #555;
+  }
+
+  /* Section headings */
+  h2 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 10pt;
+    color: #0f1b2d;
+    margin-top: 8px;
+    margin-bottom: 3px;
+    padding-bottom: 1px;
+    border-bottom: 1px solid #e0d8c8;
+  }
+
+  /* Deliverable summary */
+  .deliverable {
+    background: #0f1b2d;
+    color: #fff;
+    padding: 6px 10px;
+    margin-bottom: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .deliverable-desc {
+    font-size: 9pt;
+    font-weight: 600;
+  }
+
+  .deliverable-price {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 13pt;
+    color: #b8924a;
+    font-weight: 700;
+  }
+
+  /* Lists */
+  .two-col {
+    display: flex;
+    gap: 16px;
+  }
+
+  .two-col > div {
+    flex: 1;
+  }
+
+  ul {
+    padding-left: 14px;
+    margin-bottom: 4px;
+  }
+
+  li {
+    font-size: 8.5pt;
+    margin-bottom: 1px;
+    line-height: 1.3;
+  }
+
+  li::marker {
+    color: #b8924a;
+  }
+
+  .add-on {
+    color: #777;
+    font-style: italic;
+    font-size: 7.5pt;
+  }
+
+  /* Terms */
+  .terms {
+    margin-top: 6px;
+  }
+
+  .term-row {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 2px;
+    font-size: 8.5pt;
+    line-height: 1.3;
+  }
+
+  .term-label {
+    font-weight: 700;
+    color: #0f1b2d;
+    white-space: nowrap;
+    min-width: 70px;
+  }
+
+  .term-value {
+    color: #333;
+  }
+
+  /* Signatures */
+  .signatures {
+    display: flex;
+    gap: 30px;
+    margin-top: 10px;
+    padding-top: 6px;
+    border-top: 2px solid #0f1b2d;
+  }
+
+  .sig-block {
+    flex: 1;
+  }
+
+  .sig-label {
+    font-size: 7pt;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: #b8924a;
+    font-weight: 700;
+    margin-bottom: 1px;
+  }
+
+  .sig-name {
+    font-weight: 700;
+    font-size: 8.5pt;
+    color: #0f1b2d;
+  }
+
+  .sig-line {
+    border-bottom: 1px solid #333;
+    height: 22px;
+    margin-top: 4px;
+    margin-bottom: 1px;
+  }
+
+  .sig-date-label {
+    font-size: 7.5pt;
+    color: #777;
+  }
+
+  .sig-date-line {
+    border-bottom: 1px solid #999;
+    height: 16px;
+    width: 120px;
+  }
+
+  /* Print */
+  @media print {
+    body {
+      background: #fff;
+      padding: 0;
+      font-size: 9.5pt;
+    }
+
+    .page {
+      border: none;
+      padding: 0;
+      max-width: none;
+      box-shadow: none;
+    }
+
+    .deliverable {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-left">
+      <h1>Quick Presence Website</h1>
+      <div class="subtitle">Scope of Work Agreement</div>
+    </div>
+    <div class="header-right">
+      <strong>Lawal Awwal</strong><br>
+      awwallawal@gmail.com<br>
+      +234 805 302 3862
+    </div>
+  </div>
+
+  <!-- Parties -->
+  <div class="parties">
+    <div class="party">
+      <div class="party-label">Provider</div>
+      <div class="party-name">Lawal Awwal</div>
+      <div class="party-detail">Freelance Web Designer/Developer</div>
+    </div>
+    <div class="party">
+      <div class="party-label">Client</div>
+      <div class="party-name"><span class="field-blank"></span></div>
+      <div class="party-detail">Company: <span class="field-blank"></span></div>
+    </div>
+  </div>
+
+  <div class="date-row">Agreement Date: <span class="field-blank" style="min-width:100px;"></span></div>
+
+  <!-- Deliverable -->
+  <div class="deliverable">
+    <div class="deliverable-desc">3-Page Responsive Website (Homepage, About, Contact) for a Multi-Division Business</div>
+    <div class="deliverable-price">&#8358;200,000</div>
+  </div>
+
+  <!-- Included / Not Included -->
+  <div class="two-col">
+    <div>
+      <h2>What Is Included</h2>
+      <ul>
+        <li>3-page responsive website (Homepage, About, Contact)</li>
+        <li>Mobile-responsive design</li>
+        <li>Basic SEO (meta titles and descriptions)</li>
+        <li>SSL certificate setup assistance</li>
+        <li>One contact form</li>
+        <li>Social media links in footer</li>
+        <li>Up to 7 division listings on homepage with short descriptions</li>
+        <li>1 round of revisions</li>
+        <li>Delivery within 5 business days of receiving complete content and payment</li>
+      </ul>
+    </div>
+    <div>
+      <h2>What Is Not Included</h2>
+      <ul>
+        <li>Logo design or brand identity <span class="add-on">(&#8358;80,000 - &#8358;150,000)</span></li>
+        <li>Individual division pages beyond homepage listing <span class="add-on">(&#8358;30,000/page)</span></li>
+        <li>Photography or image sourcing <span class="add-on">(client provides all images)</span></li>
+        <li>Content writing <span class="add-on">(client provides all text)</span></li>
+        <li>CMS / admin panel for self-editing <span class="add-on">(&#8358;50,000)</span></li>
+        <li>E-commerce or booking functionality <span class="add-on">(out of scope)</span></li>
+        <li>Social media setup <span class="add-on">(&#8358;30,000/platform)</span></li>
+        <li>Email setup <span class="add-on">(&#8358;20,000)</span></li>
+        <li>Ongoing maintenance <span class="add-on">(&#8358;30,000/month)</span></li>
+        <li>Additional revision rounds <span class="add-on">(&#8358;20,000/round)</span></li>
+        <li>Domain registration and annual hosting fees <span class="add-on">(client pays directly, provider assists with setup)</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Terms -->
+  <div class="terms">
+    <h2>Terms</h2>
+    <div class="term-row">
+      <div class="term-label">Content:</div>
+      <div class="term-value">Client must provide all text content and images BEFORE work begins. Work starts within 2 business days of receiving complete content AND payment. If content is not provided within 14 days of payment, the project pauses until content is received.</div>
+    </div>
+    <div class="term-row">
+      <div class="term-label">Payment:</div>
+      <div class="term-value">&#8358;200,000 paid in full before work begins via bank transfer.</div>
+    </div>
+    <div class="term-row">
+      <div class="term-label">Timeline:</div>
+      <div class="term-value">5 business days from start date.</div>
+    </div>
+    <div class="term-row">
+      <div class="term-label">Revisions:</div>
+      <div class="term-value">1 round of consolidated feedback. Additional rounds quoted separately.</div>
+    </div>
+    <div class="term-row">
+      <div class="term-label">Ownership:</div>
+      <div class="term-value">All website files transfer to client upon completion and full payment.</div>
+    </div>
+    <div class="term-row">
+      <div class="term-label">Portfolio:</div>
+      <div class="term-value">Provider retains the right to showcase the project in their portfolio.</div>
+    </div>
+  </div>
+
+  <!-- Signatures -->
+  <div class="signatures">
+    <div class="sig-block">
+      <div class="sig-label">Provider</div>
+      <div class="sig-name">Lawal Awwal</div>
+      <div class="sig-line"></div>
+      <div class="sig-date-label">Signature</div>
+      <div style="margin-top:4px;">
+        <div class="sig-date-label">Date:</div>
+        <div class="sig-date-line"></div>
+      </div>
+    </div>
+    <div class="sig-block">
+      <div class="sig-label">Client</div>
+      <div class="sig-name"><span class="field-blank"></span></div>
+      <div class="sig-line"></div>
+      <div class="sig-date-label">Signature</div>
+      <div style="margin-top:4px;">
+        <div class="sig-date-label">Date:</div>
+        <div class="sig-date-line"></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

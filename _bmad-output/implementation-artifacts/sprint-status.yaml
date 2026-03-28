@@ -1,0 +1,109 @@
+# generated: 2026-03-28
+# last_updated: 2026-03-28
+# project: UK_Web_Design
+# project_key: NOKEY
+# tracking_system: file-system
+# story_location: _bmad-output/implementation-artifacts
+
+# STATUS DEFINITIONS:
+# ==================
+# Epic Status:
+#   - backlog: Epic not yet started
+#   - in-progress: Epic actively being worked on
+#   - done: All stories in epic completed
+#
+# Epic Status Transitions:
+#   - backlog → in-progress: Automatically when first story is created (via create-story)
+#   - in-progress → done: Manually when all stories reach 'done' status
+#
+# Story Status:
+#   - backlog: Story only exists in epic file
+#   - ready-for-dev: Story file created in stories folder
+#   - in-progress: Developer actively working on implementation
+#   - review: Ready for code review (via Dev's code-review workflow)
+#   - done: Story completed
+#
+# Retrospective Status:
+#   - optional: Can be completed but not required
+#   - done: Retrospective has been completed
+#
+# WORKFLOW NOTES:
+# ===============
+# - Epic transitions to 'in-progress' automatically when first story is created
+# - Stories can be worked in parallel if team capacity allows
+# - SM typically creates next story after previous one is 'done' to incorporate learnings
+# - Dev moves story to 'review', then runs code-review (fresh context, different LLM recommended)
+
+generated: 2026-03-28
+last_updated: 2026-03-28
+project: UK_Web_Design
+last_story_created: 2-4-latest-insights-contact-cta-sections
+project_key: NOKEY
+tracking_system: file-system
+story_location: _bmad-output/implementation-artifacts
+
+development_status:
+  # --- Epic 1: Brand Identity & Navigation Experience ---
+  epic-1: in-progress
+  1-1-project-initialization-toolchain-setup: review
+  1-2-design-token-system-typography: ready-for-dev
+  1-3-content-collections-seed-data: ready-for-dev
+  1-4-base-layouts-core-ui-components: ready-for-dev
+  1-5-header-navigation-division-dropdown: ready-for-dev
+  1-6-mobile-navigation: ready-for-dev
+  1-7-footer-navigation: ready-for-dev
+  1-8-breadcrumb-navigation: ready-for-dev
+  epic-1-retrospective: optional
+
+  # --- Epic 2: Homepage & Corporate Narrative ---
+  epic-2: in-progress
+  2-1-homepage-hero-business-overview-sections: ready-for-dev
+  2-2-divisions-bento-grid: ready-for-dev
+  2-3-credibility-signals-stats-section: ready-for-dev
+  2-4-latest-insights-contact-cta-sections: ready-for-dev
+  epic-2-retrospective: optional
+
+  # --- Epic 3: Division Discovery & Detail Pages ---
+  epic-3: backlog
+  3-1-divisions-hub-page: backlog
+  3-2-division-cluster-pages: backlog
+  3-3-division-detail-pages-layout-content-structure: backlog
+  epic-3-retrospective: optional
+
+  # --- Epic 4: Inquiry & Contact Architecture ---
+  epic-4: backlog
+  4-1-contact-hub-inquiry-routing: backlog
+  4-2-contact-by-division-directory-division-inquiry-forms: backlog
+  4-3-general-strategic-inquiry-forms: backlog
+  4-4-form-submission-validation-email-processing: backlog
+  4-5-locations-page: backlog
+  epic-4-retrospective: optional
+
+  # --- Epic 5: Corporate Trust & Investor Experience ---
+  epic-5: backlog
+  5-1-about-the-group-page-overview-mission-vision: backlog
+  5-2-about-the-group-page-leadership-structure-credentials: backlog
+  5-3-investors-partners-page: backlog
+  epic-5-retrospective: optional
+
+  # --- Epic 6: Publishing & Thought Leadership ---
+  epic-6: backlog
+  6-1-insights-hub-category-listing-pages: backlog
+  6-2-article-detail-page: backlog
+  6-3-seed-content-publishing-workflow: backlog
+  epic-6-retrospective: optional
+
+  # --- Epic 7: Search, Discovery & Supporting Pages ---
+  epic-7: backlog
+  7-1-search-page-functionality: backlog
+  7-2-legal-pages-sitemap-custom-404: backlog
+  7-3-internal-cross-linking-discovery-pathways: backlog
+  epic-7-retrospective: optional
+
+  # --- Epic 8: Accessible, Fast, Production-Ready Platform ---
+  epic-8: backlog
+  8-1-unit-component-testing: backlog
+  8-2-e2e-testing-accessibility-audit: backlog
+  8-3-performance-optimization-lighthouse-audit: backlog
+  8-4-cicd-pipeline-production-deployment: backlog
+  epic-8-retrospective: optional

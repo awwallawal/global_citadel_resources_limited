@@ -1,0 +1,44 @@
+# build output
+dist/
+
+# dependencies
+node_modules/
+
+# environment variables
+.env
+.env.local
+.env.production
+
+# Astro
+.astro/
+
+# Vercel
+.vercel/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Debug
+npm-debug.log*
+
+# AI tool configs
+.agents/
+.claude/
+.cursor/
+.gemini/
+
+# BMad module (installed tooling, like node_modules)
+_bmad/
+
+# Scratch / personal notes
+alt_thinking.md
+call.txt
+codex_dump.txt
+command.txt
+dump.txt
+design-artifacts/

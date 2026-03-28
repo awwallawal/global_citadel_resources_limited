@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invoice INV-2026-001 - Lawal Awwal</title>
+<style>
+  @page {
+    size: A4;
+    margin: 16mm 18mm;
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 10pt;
+    line-height: 1.5;
+    color: #1a1a1a;
+    background: #f5f5f0;
+    padding: 20px;
+  }
+
+  .page {
+    max-width: 210mm;
+    margin: 0 auto;
+    background: #fff;
+    padding: 36px 40px;
+    border: 1px solid #ddd;
+  }
+
+  /* Header */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 28px;
+  }
+
+  .header-left .invoice-title {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 32pt;
+    color: #0f1b2d;
+    letter-spacing: 3px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .header-left .invoice-accent {
+    width: 60px;
+    height: 3px;
+    background: #b8924a;
+  }
+
+  .header-right {
+    text-align: right;
+    line-height: 1.6;
+  }
+
+  .header-right .provider-name {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 14pt;
+    color: #0f1b2d;
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+
+  .header-right .provider-detail {
+    font-size: 9pt;
+    color: #555;
+  }
+
+  /* Invoice meta */
+  .meta-bar {
+    display: flex;
+    justify-content: space-between;
+    background: #0f1b2d;
+    color: #fff;
+    padding: 14px 20px;
+    margin-bottom: 28px;
+  }
+
+  .meta-item {
+    text-align: center;
+  }
+
+  .meta-label {
+    font-size: 7pt;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #b8924a;
+    margin-bottom: 2px;
+  }
+
+  .meta-value {
+    font-size: 11pt;
+    font-weight: 700;
+  }
+
+  /* Bill To */
+  .bill-to-section {
+    margin-bottom: 28px;
+  }
+
+  .bill-to-label {
+    font-size: 7.5pt;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #b8924a;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .bill-to-name {
+    font-size: 13pt;
+    font-weight: 700;
+    color: #0f1b2d;
+    font-family: Georgia, 'Times New Roman', serif;
+  }
+
+  .bill-to-detail {
+    font-size: 9.5pt;
+    color: #555;
+    line-height: 1.5;
+  }
+
+  .field-blank {
+    border-bottom: 1px dashed #999;
+    display: inline-block;
+    min-width: 200px;
+    height: 16px;
+    vertical-align: bottom;
+  }
+
+  .field-blank.short {
+    min-width: 120px;
+  }
+
+  /* Table */
+  .invoice-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 0;
+  }
+
+  .invoice-table thead th {
+    background: #fafaf7;
+    font-size: 8pt;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #0f1b2d;
+    font-weight: 700;
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 2px solid #0f1b2d;
+  }
+
+  .invoice-table thead th:last-child {
+    text-align: right;
+  }
+
+  .invoice-table thead th.center {
+    text-align: center;
+  }
+
+  .invoice-table tbody td {
+    padding: 14px;
+    font-size: 10pt;
+    border-bottom: 1px solid #eee;
+    vertical-align: top;
+  }
+
+  .invoice-table tbody td:last-child {
+    text-align: right;
+    font-weight: 600;
+  }
+
+  .invoice-table tbody td.center {
+    text-align: center;
+  }
+
+  .item-description {
+    font-weight: 600;
+    color: #0f1b2d;
+    margin-bottom: 2px;
+  }
+
+  .item-detail {
+    font-size: 8.5pt;
+    color: #777;
+    line-height: 1.4;
+  }
+
+  /* Total */
+  .total-section {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 32px;
+  }
+
+  .total-box {
+    width: 260px;
+  }
+
+  .total-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 14px;
+    font-size: 10pt;
+  }
+
+  .total-row.subtotal {
+    border-bottom: 1px solid #eee;
+    color: #555;
+  }
+
+  .total-row.grand-total {
+    background: #0f1b2d;
+    color: #fff;
+    font-weight: 700;
+    font-size: 14pt;
+    padding: 12px 14px;
+    font-family: Georgia, 'Times New Roman', serif;
+  }
+
+  .total-row.grand-total .amount {
+    color: #b8924a;
+  }
+
+  .currency-note {
+    text-align: right;
+    font-size: 8pt;
+    color: #999;
+    margin-top: 4px;
+    margin-bottom: 28px;
+  }
+
+  /* Payment info */
+  .payment-section {
+    display: flex;
+    gap: 28px;
+    margin-bottom: 28px;
+  }
+
+  .payment-method {
+    flex: 1;
+    background: #fafaf7;
+    border-left: 4px solid #b8924a;
+    padding: 14px 18px;
+  }
+
+  .payment-terms {
+    flex: 1;
+    padding: 14px 18px;
+    border: 1.5px solid #e5e0d5;
+    border-radius: 3px;
+  }
+
+  .payment-heading {
+    font-size: 8pt;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: #b8924a;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .payment-detail {
+    font-size: 9.5pt;
+    color: #333;
+    line-height: 1.6;
+  }
+
+  .payment-detail strong {
+    color: #0f1b2d;
+  }
+
+  /* Note */
+  .note-section {
+    background: #0f1b2d;
+    color: #ccc;
+    padding: 12px 18px;
+    font-size: 9pt;
+    margin-bottom: 28px;
+    line-height: 1.5;
+  }
+
+  .note-section strong {
+    color: #b8924a;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding-top: 16px;
+    border-top: 2px solid #0f1b2d;
+  }
+
+  .footer .thank-you {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 16pt;
+    color: #0f1b2d;
+    margin-bottom: 4px;
+  }
+
+  .footer .contact-line {
+    font-size: 9pt;
+    color: #777;
+  }
+
+  .footer .contact-line a {
+    color: #b8924a;
+    text-decoration: none;
+  }
+
+  /* Print */
+  @media print {
+    body {
+      background: #fff;
+      padding: 0;
+    }
+
+    .page {
+      border: none;
+      padding: 0;
+      max-width: none;
+      box-shadow: none;
+    }
+
+    .meta-bar,
+    .total-row.grand-total,
+    .note-section {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .invoice-table thead th {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-left">
+      <div class="invoice-title">INVOICE</div>
+      <div class="invoice-accent"></div>
+    </div>
+    <div class="header-right">
+      <div class="provider-name">Lawal Awwal</div>
+      <div class="provider-detail">Freelance Web Designer / Developer</div>
+      <div class="provider-detail">awwallawal@gmail.com</div>
+      <div class="provider-detail">+234 805 302 3862</div>
+      <div class="provider-detail">Nigeria</div>
+    </div>
+  </div>
+
+  <!-- Meta Bar -->
+  <div class="meta-bar">
+    <div class="meta-item">
+      <div class="meta-label">Invoice Number</div>
+      <div class="meta-value">INV-2026-001</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Invoice Date</div>
+      <div class="meta-value">[DATE]</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Due Date</div>
+      <div class="meta-value">Upon Receipt</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Status</div>
+      <div class="meta-value">Unpaid</div>
+    </div>
+  </div>
+
+  <!-- Bill To -->
+  <div class="bill-to-section">
+    <div class="bill-to-label">Bill To</div>
+    <div class="bill-to-name"><span class="field-blank"></span></div>
+    <div class="bill-to-detail"><span class="field-blank"></span></div>
+    <div class="bill-to-detail"><span class="field-blank"></span></div>
+  </div>
+
+  <!-- Line Items -->
+  <table class="invoice-table">
+    <thead>
+      <tr>
+        <th style="width:55%;">Description</th>
+        <th class="center" style="width:15%;">Qty</th>
+        <th style="width:15%; text-align:right;">Unit Price</th>
+        <th style="width:15%;">Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <div class="item-description">Quick Presence Website</div>
+          <div class="item-detail">
+            3-page responsive website: Homepage, About, Contact.<br>
+            Includes mobile-responsive design, basic SEO, SSL setup assistance,
+            contact form, social media links, up to 7 division listings,
+            and 1 round of revisions. Delivery within 5 business days.
+          </div>
+        </td>
+        <td class="center">1</td>
+        <td style="text-align:right;">&#8358;200,000</td>
+        <td>&#8358;200,000</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Total -->
+  <div class="total-section">
+    <div class="total-box">
+      <div class="total-row subtotal">
+        <span>Subtotal</span>
+        <span>&#8358;200,000</span>
+      </div>
+      <div class="total-row subtotal">
+        <span>Tax</span>
+        <span>&#8358;0</span>
+      </div>
+      <div class="total-row grand-total">
+        <span>Total Due</span>
+        <span class="amount">&#8358;200,000</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="currency-note">All amounts in Nigerian Naira (&#8358;)</div>
+
+  <!-- Payment Info -->
+  <div class="payment-section">
+    <div class="payment-method">
+      <div class="payment-heading">Payment Method</div>
+      <div class="payment-detail">
+        <strong>Nigerian Bank Transfer</strong><br>
+        Bank Name: <strong>[YOUR BANK]</strong><br>
+        Account Name: <strong>Lawal Awwal</strong><br>
+        Account Number: <strong>[YOUR ACCOUNT NUMBER]</strong>
+      </div>
+    </div>
+    <div class="payment-terms">
+      <div class="payment-heading">Payment Terms</div>
+      <div class="payment-detail">
+        Payment is required in full before work begins. Work commences within 2 business days of receiving payment and completed content form.
+      </div>
+    </div>
+  </div>
+
+  <!-- Note -->
+  <div class="note-section">
+    <strong>Note:</strong> This invoice covers the Quick Presence Website package as defined in the signed Scope of Work agreement. Please ensure the Content Collection Form is completed and returned alongside payment.
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="thank-you">Thank You</div>
+    <div class="contact-line">
+      Lawal Awwal &nbsp;|&nbsp; <a href="mailto:awwallawal@gmail.com">awwallawal@gmail.com</a> &nbsp;|&nbsp; +234 805 302 3862
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

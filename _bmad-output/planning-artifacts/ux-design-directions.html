@@ -1,0 +1,1504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Global Resources Citadel Limited — Design Direction Showcase</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ================================================================
+   RESET & BASE
+   ================================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body { font-family: 'Inter', sans-serif; font-weight: 400; color: #1F2937; background: #fff; line-height: 1.6; }
+h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; line-height: 1.2; }
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; display: block; }
+ul { list-style: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+/* ================================================================
+   COLOUR TOKENS
+   ================================================================ */
+:root {
+  --primary-900: #14532D;
+  --primary-800: #166534;
+  --primary-700: #15803D;
+  --primary-600: #16A34A;
+  --primary-500: #22C55E;
+  --primary-400: #4ADE80;
+  --primary-300: #86EFAC;
+  --primary-200: #BBF7D0;
+  --primary-100: #DCFCE7;
+  --primary-50:  #F0FDF4;
+  --gold:        #B48A3E;
+  --gold-light:  #D4AB5E;
+  --gold-dark:   #8C6B2E;
+  --neutral-900: #1F2937;
+  --neutral-800: #374151;
+  --neutral-700: #4B5563;
+  --neutral-600: #6B7280;
+  --neutral-500: #9CA3AF;
+  --neutral-400: #D1D5DB;
+  --neutral-300: #E5E7EB;
+  --neutral-200: #F3F4F6;
+  --neutral-100: #F9FAFB;
+  --white:       #FFFFFF;
+}
+
+/* ================================================================
+   DIRECTION SELECTOR (sticky top bar)
+   ================================================================ */
+.dir-selector {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 10000;
+  background: rgba(31,41,55,0.97); backdrop-filter: blur(12px);
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 10px 16px; border-bottom: 1px solid rgba(255,255,255,0.1);
+  flex-wrap: wrap;
+}
+.dir-selector-label {
+  font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 13px;
+  color: var(--gold); margin-right: 12px; letter-spacing: 0.05em; text-transform: uppercase;
+}
+.dir-btn {
+  font-family: 'Inter', sans-serif; font-weight: 500; font-size: 13px;
+  color: #fff; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+  padding: 6px 16px; border-radius: 6px; transition: all 0.2s;
+  white-space: nowrap;
+}
+.dir-btn:hover { background: var(--primary-700); border-color: var(--primary-700); }
+
+/* ================================================================
+   DIRECTION DIVIDER
+   ================================================================ */
+.direction-divider {
+  background: var(--neutral-900); padding: 80px 24px; text-align: center;
+}
+.direction-divider h2 {
+  font-size: clamp(28px, 5vw, 48px); color: #fff; font-weight: 700; margin-bottom: 8px;
+}
+.direction-divider .dir-subtitle {
+  font-size: clamp(14px, 2vw, 18px); color: var(--gold); font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+}
+.direction-divider .dir-desc {
+  font-size: 15px; color: var(--neutral-500); max-width: 600px; margin: 16px auto 0;
+}
+
+/* ================================================================
+   WORDMARK HIERARCHY
+   ================================================================ */
+.descriptor {
+  display: block; font-size: 10px; font-weight: 400; letter-spacing: 0.15em;
+  color: var(--neutral-400); text-transform: uppercase; line-height: 1.4;
+}
+.qualifier {
+  display: block; font-size: 9px; font-weight: 400; letter-spacing: 0.18em;
+  color: var(--neutral-500); text-transform: uppercase; line-height: 1.4;
+}
+
+/* ================================================================
+   SHARED UTILITIES
+   ================================================================ */
+.container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+@media (min-width: 640px) { .container { padding: 0 32px; } }
+
+/* Bento Grid shared structure */
+.bento-grid {
+  display: grid; gap: 16px;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 768px) {
+  .bento-grid {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto auto auto auto;
+  }
+  .bento-crop    { grid-column: 1 / 3; grid-row: 1 / 3; }
+  .bento-agro    { grid-column: 3 / 5; grid-row: 1 / 3; }
+  .bento-animal  { grid-column: 1 / 2; grid-row: 3 / 4; }
+  .bento-comm    { grid-column: 2 / 3; grid-row: 3 / 4; }
+  .bento-import  { grid-column: 3 / 5; grid-row: 3 / 4; }
+  .bento-restate { grid-column: 1 / 3; grid-row: 4 / 5; }
+  .bento-oil     { grid-column: 3 / 5; grid-row: 4 / 5; }
+}
+
+/* Division icon circles */
+.div-icon {
+  width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center;
+  justify-content: center; font-size: 20px; font-weight: 600; flex-shrink: 0;
+}
+.div-icon-lg { width: 56px; height: 56px; font-size: 24px; }
+
+/* ================================================================
+   MOBILE HAMBURGER (visual indicator, all directions)
+   ================================================================ */
+.mobile-menu-btn {
+  display: none; width: 32px; height: 32px; flex-direction: column;
+  align-items: center; justify-content: center; gap: 5px;
+}
+.mobile-menu-btn span { display: block; width: 20px; height: 2px; border-radius: 1px; }
+@media (max-width: 767px) { .mobile-menu-btn { display: flex; } }
+
+
+/* ================================================================
+   ================================================================
+   DIRECTION 1 — CORPORATE MINIMAL
+   ================================================================
+   ================================================================ */
+.d1-header {
+  position: sticky; top: 52px; z-index: 100;
+  background: rgba(255,255,255,0.92); backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--neutral-300); padding: 0 24px;
+}
+.d1-header-inner {
+  max-width: 1280px; margin: 0 auto; display: flex; align-items: center;
+  justify-content: space-between; height: 64px;
+}
+.d1-logo { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 20px; color: var(--primary-900); }
+.d1-logo span { color: var(--gold); font-weight: 400; }
+.d1-nav { display: flex; gap: 32px; align-items: center; }
+.d1-nav a { font-size: 14px; font-weight: 500; color: var(--neutral-700); transition: color 0.2s; }
+.d1-nav a:hover { color: var(--primary-700); }
+.d1-nav-cta {
+  font-size: 13px; font-weight: 600; background: var(--primary-700); color: #fff;
+  padding: 8px 20px; border-radius: 8px; transition: background 0.2s;
+}
+.d1-nav-cta:hover { background: var(--primary-800); }
+@media (max-width: 767px) { .d1-nav { display: none; } }
+.d1-header .mobile-menu-btn span { background: var(--neutral-700); }
+
+/* D1 Hero */
+.d1-hero {
+  padding: 120px 24px 100px; text-align: center; background: var(--white);
+}
+.d1-hero h1 {
+  font-size: clamp(32px, 5vw, 56px); font-weight: 600; color: var(--neutral-900);
+  max-width: 700px; margin: 0 auto 16px; letter-spacing: -0.02em;
+}
+.d1-hero p {
+  font-size: clamp(16px, 2vw, 19px); color: var(--neutral-600); max-width: 520px;
+  margin: 0 auto 36px; line-height: 1.7;
+}
+.d1-hero-btn {
+  display: inline-block; padding: 12px 32px; background: var(--primary-700); color: #fff;
+  border-radius: 8px; font-weight: 600; font-size: 15px; transition: background 0.2s;
+}
+.d1-hero-btn:hover { background: var(--primary-800); }
+
+/* D1 Overview */
+.d1-overview { padding: 96px 24px; background: var(--neutral-100); }
+.d1-overview .container { text-align: center; }
+.d1-overview h2 { font-size: clamp(24px, 3vw, 36px); font-weight: 600; color: var(--neutral-900); margin-bottom: 12px; }
+.d1-overview > .container > p { font-size: 16px; color: var(--neutral-600); max-width: 640px; margin: 0 auto 48px; line-height: 1.7; }
+.d1-overview-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; max-width: 900px; margin: 0 auto; text-align: left; }
+.d1-overview-item h3 { font-size: 15px; font-weight: 600; color: var(--primary-800); margin-bottom: 6px; }
+.d1-overview-item p { font-size: 14px; color: var(--neutral-600); line-height: 1.6; margin: 0; }
+
+/* D1 Bento */
+.d1-bento { padding: 96px 24px; background: var(--white); }
+.d1-bento h2 { font-size: clamp(24px, 3vw, 36px); font-weight: 600; color: var(--neutral-900); text-align: center; margin-bottom: 12px; }
+.d1-bento > .container > p { font-size: 16px; color: var(--neutral-600); text-align: center; max-width: 560px; margin: 0 auto 48px; }
+.d1-card {
+  border: 1px solid var(--neutral-300); border-radius: 16px; padding: 32px;
+  background: var(--white); transition: all 0.3s ease; display: flex; flex-direction: column;
+}
+.d1-card:hover { border-color: var(--primary-400); box-shadow: 0 1px 8px rgba(21,128,61,0.06); }
+.d1-card .div-icon { background: var(--primary-50); color: var(--primary-700); margin-bottom: 16px; }
+.d1-card h3 { font-size: 18px; font-weight: 600; color: var(--neutral-900); margin-bottom: 8px; }
+.d1-card p { font-size: 14px; color: var(--neutral-600); flex: 1; line-height: 1.6; }
+.d1-card .card-link { font-size: 13px; font-weight: 600; color: var(--primary-700); margin-top: 16px; display: inline-flex; align-items: center; gap: 4px; transition: gap 0.2s; }
+.d1-card .card-link:hover { gap: 8px; }
+.d1-card .card-link::after { content: '\2192'; }
+.d1-card-lg { min-height: 280px; }
+
+/* D1 Credibility */
+.d1-cred { padding: 80px 24px; background: var(--neutral-100); }
+.d1-cred-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 40px; text-align: center; max-width: 900px; margin: 0 auto; }
+.d1-cred-item .num { font-family: 'Poppins', sans-serif; font-size: 40px; font-weight: 700; color: var(--neutral-900); }
+.d1-cred-item .label { font-size: 14px; color: var(--neutral-600); margin-top: 4px; }
+
+/* D1 Insights */
+.d1-insights { padding: 96px 24px; background: var(--white); }
+.d1-insights h2 { font-size: clamp(24px, 3vw, 36px); font-weight: 600; text-align: center; margin-bottom: 48px; }
+.d1-insights-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+.d1-insight-card { border: 1px solid var(--neutral-300); border-radius: 12px; padding: 28px; transition: border-color 0.3s; }
+.d1-insight-card:hover { border-color: var(--primary-400); }
+.d1-insight-card .tag { font-size: 12px; font-weight: 600; color: var(--primary-700); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px; }
+.d1-insight-card h3 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+.d1-insight-card p { font-size: 14px; color: var(--neutral-600); line-height: 1.6; }
+
+/* D1 CTA */
+.d1-cta { padding: 96px 24px; background: var(--neutral-900); text-align: center; }
+.d1-cta h2 { font-size: clamp(24px, 3vw, 36px); font-weight: 600; color: #fff; margin-bottom: 12px; }
+.d1-cta p { font-size: 16px; color: var(--neutral-500); max-width: 500px; margin: 0 auto 32px; line-height: 1.7; }
+.d1-cta-btn {
+  display: inline-block; padding: 14px 36px; background: var(--primary-600); color: #fff;
+  border-radius: 8px; font-weight: 600; font-size: 15px; transition: background 0.2s;
+}
+.d1-cta-btn:hover { background: var(--primary-500); }
+
+/* D1 Footer */
+.d1-footer { padding: 64px 24px 32px; background: var(--neutral-900); border-top: 1px solid rgba(255,255,255,0.08); }
+.d1-footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 32px; margin-bottom: 48px; }
+.d1-footer-col h4 { font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 600; color: var(--neutral-400); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 16px; }
+.d1-footer-col a { display: block; font-size: 14px; color: var(--neutral-500); margin-bottom: 8px; transition: color 0.2s; }
+.d1-footer-col a:hover { color: #fff; }
+.d1-footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; text-align: center; font-size: 13px; color: var(--neutral-600); }
+
+
+/* ================================================================
+   ================================================================
+   DIRECTION 2 — NARRATIVE BOLD
+   ================================================================
+   ================================================================ */
+.d2-header {
+  position: sticky; top: 52px; z-index: 100;
+  background: rgba(20,83,45,0.95); backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255,255,255,0.1); padding: 0 24px;
+}
+.d2-header-inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 68px; }
+.d2-logo { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 22px; color: #fff; }
+.d2-logo span { color: var(--gold); }
+.d2-nav { display: flex; gap: 28px; align-items: center; }
+.d2-nav a { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.8); transition: color 0.2s; }
+.d2-nav a:hover { color: #fff; }
+.d2-nav-cta { font-size: 13px; font-weight: 600; background: var(--gold); color: var(--primary-900); padding: 8px 20px; border-radius: 8px; transition: background 0.2s; }
+.d2-nav-cta:hover { background: var(--gold-light); }
+@media (max-width: 767px) { .d2-nav { display: none; } }
+.d2-header .mobile-menu-btn span { background: rgba(255,255,255,0.8); }
+
+/* D2 Hero */
+.d2-hero {
+  padding: 140px 24px 120px; text-align: center;
+  background: linear-gradient(135deg, var(--primary-900) 0%, var(--primary-700) 100%);
+  position: relative; overflow: hidden;
+}
+.d2-hero::before {
+  content: ''; position: absolute; top: -50%; right: -20%; width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(180,138,62,0.15) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.d2-hero::after {
+  content: ''; position: absolute; bottom: -30%; left: -10%; width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(34,197,94,0.1) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.d2-hero h1 {
+  font-size: clamp(36px, 6vw, 64px); font-weight: 700; color: #fff;
+  max-width: 800px; margin: 0 auto 20px; position: relative; z-index: 1;
+}
+.d2-hero p {
+  font-size: clamp(16px, 2vw, 20px); color: rgba(255,255,255,0.8);
+  max-width: 560px; margin: 0 auto 36px; line-height: 1.7; position: relative; z-index: 1;
+}
+.d2-hero-btn {
+  display: inline-block; padding: 14px 36px; background: var(--gold); color: var(--primary-900);
+  border-radius: 8px; font-weight: 700; font-size: 15px; transition: all 0.2s; position: relative; z-index: 1;
+}
+.d2-hero-btn:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+/* D2 Overview */
+.d2-overview { padding: 96px 24px; background: var(--white); }
+.d2-overview h2 { font-size: clamp(24px, 3vw, 40px); font-weight: 700; color: var(--primary-900); text-align: center; margin-bottom: 12px; }
+.d2-overview > .container > p { font-size: 17px; color: var(--neutral-600); text-align: center; max-width: 640px; margin: 0 auto 48px; line-height: 1.7; }
+.d2-cluster { margin-bottom: 32px; }
+.d2-cluster-label {
+  font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 600;
+  color: var(--primary-700); text-transform: uppercase; letter-spacing: 0.08em;
+  margin-bottom: 16px; padding-left: 16px; border-left: 3px solid var(--primary-500);
+}
+.d2-cluster-items { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+.d2-cluster-item { padding: 16px 20px; background: var(--primary-50); border-radius: 10px; }
+.d2-cluster-item h4 { font-size: 15px; font-weight: 600; color: var(--primary-800); margin-bottom: 2px; }
+.d2-cluster-item p { font-size: 13px; color: var(--neutral-600); line-height: 1.5; }
+
+/* D2 Bento */
+.d2-bento { padding: 96px 24px; background: var(--neutral-100); }
+.d2-bento h2 { font-size: clamp(24px, 3vw, 40px); font-weight: 700; color: var(--primary-900); text-align: center; margin-bottom: 12px; }
+.d2-bento > .container > p { font-size: 16px; color: var(--neutral-600); text-align: center; max-width: 560px; margin: 0 auto 48px; }
+.d2-card {
+  border-radius: 16px; padding: 32px; background: var(--white);
+  border: 2px solid transparent; transition: all 0.3s ease; display: flex; flex-direction: column;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.d2-card:hover { border-color: var(--primary-500); box-shadow: 0 4px 20px rgba(21,128,61,0.1); transform: translateY(-2px); }
+.d2-card .div-icon { background: var(--primary-700); color: #fff; margin-bottom: 20px; }
+.d2-card h3 { font-size: 20px; font-weight: 700; color: var(--primary-900); margin-bottom: 8px; }
+.d2-card p { font-size: 14px; color: var(--neutral-600); flex: 1; line-height: 1.6; }
+.d2-card .card-link { font-size: 14px; font-weight: 600; color: var(--primary-700); margin-top: 16px; display: inline-flex; align-items: center; gap: 6px; transition: gap 0.2s; }
+.d2-card .card-link:hover { gap: 10px; }
+.d2-card .card-link::after { content: '\2192'; }
+.d2-card-lg { min-height: 300px; }
+
+/* D2 Credibility */
+.d2-cred {
+  padding: 96px 24px; background: linear-gradient(135deg, var(--primary-800) 0%, var(--primary-900) 100%);
+  position: relative; overflow: hidden;
+}
+.d2-cred::before {
+  content: ''; position: absolute; top: -40%; right: -15%; width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(180,138,62,0.1) 0%, transparent 70%); border-radius: 50%;
+}
+.d2-cred h2 { font-size: clamp(24px, 3vw, 36px); font-weight: 700; color: #fff; text-align: center; margin-bottom: 48px; position: relative; z-index: 1; }
+.d2-cred-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 40px; text-align: center; max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
+.d2-cred-item .num { font-family: 'Poppins', sans-serif; font-size: 48px; font-weight: 700; color: var(--gold); }
+.d2-cred-item .label { font-size: 15px; color: rgba(255,255,255,0.8); margin-top: 4px; }
+
+/* D2 Insights */
+.d2-insights { padding: 96px 24px; background: var(--white); }
+.d2-insights h2 { font-size: clamp(24px, 3vw, 40px); font-weight: 700; color: var(--primary-900); text-align: center; margin-bottom: 48px; }
+.d2-insights-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+.d2-insight-card {
+  border-radius: 16px; padding: 28px; background: var(--neutral-100);
+  border-left: 4px solid var(--primary-500); transition: all 0.3s;
+}
+.d2-insight-card:hover { background: var(--primary-50); }
+.d2-insight-card .tag { font-size: 12px; font-weight: 600; color: var(--gold-dark); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px; }
+.d2-insight-card h3 { font-size: 17px; font-weight: 700; color: var(--primary-900); margin-bottom: 8px; }
+.d2-insight-card p { font-size: 14px; color: var(--neutral-600); line-height: 1.6; }
+
+/* D2 CTA */
+.d2-cta { padding: 96px 24px; background: var(--primary-900); text-align: center; position: relative; overflow: hidden; }
+.d2-cta::before {
+  content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 800px; height: 400px;
+  background: radial-gradient(ellipse, rgba(22,163,74,0.15) 0%, transparent 70%);
+}
+.d2-cta h2 { font-size: clamp(24px, 3vw, 40px); font-weight: 700; color: #fff; margin-bottom: 12px; position: relative; z-index: 1; }
+.d2-cta p { font-size: 17px; color: rgba(255,255,255,0.7); max-width: 520px; margin: 0 auto 36px; position: relative; z-index: 1; line-height: 1.7; }
+.d2-cta-btn {
+  display: inline-block; padding: 16px 40px; background: var(--gold); color: var(--primary-900);
+  border-radius: 8px; font-weight: 700; font-size: 16px; transition: all 0.2s; position: relative; z-index: 1;
+}
+.d2-cta-btn:hover { background: var(--gold-light); }
+
+/* D2 Footer */
+.d2-footer { padding: 64px 24px 32px; background: #0F1F15; }
+.d2-footer-brand { text-align: center; margin-bottom: 40px; }
+.d2-footer-brand .logo { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 24px; color: #fff; }
+.d2-footer-brand .logo span { color: var(--gold); }
+.d2-footer-brand p { font-size: 14px; color: var(--neutral-600); margin-top: 8px; }
+.d2-footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 32px; margin-bottom: 48px; }
+.d2-footer-col h4 { font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 600; color: var(--gold); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 16px; }
+.d2-footer-col a { display: block; font-size: 14px; color: var(--neutral-500); margin-bottom: 8px; transition: color 0.2s; }
+.d2-footer-col a:hover { color: #fff; }
+.d2-footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 24px; text-align: center; font-size: 13px; color: var(--neutral-700); }
+
+
+/* ================================================================
+   ================================================================
+   DIRECTION 3 — STRUCTURED GRID
+   ================================================================
+   ================================================================ */
+.d3-header {
+  position: sticky; top: 52px; z-index: 100;
+  background: rgba(255,255,255,0.96); backdrop-filter: blur(16px);
+  border-bottom: 2px solid var(--neutral-300); padding: 0 24px;
+}
+.d3-header-inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 60px; }
+.d3-logo { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 18px; color: var(--neutral-900); letter-spacing: 0.02em; }
+.d3-logo span { font-weight: 500; color: var(--neutral-500); font-size: 13px; margin-left: 6px; letter-spacing: 0; }
+.d3-nav { display: flex; gap: 24px; align-items: center; }
+.d3-nav a { font-size: 13px; font-weight: 600; color: var(--neutral-700); text-transform: uppercase; letter-spacing: 0.04em; transition: color 0.2s; }
+.d3-nav a:hover { color: var(--primary-700); }
+.d3-nav-cta { font-size: 12px; font-weight: 700; background: var(--neutral-900); color: #fff; padding: 8px 18px; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.04em; transition: background 0.2s; }
+.d3-nav-cta:hover { background: var(--primary-800); }
+@media (max-width: 767px) { .d3-nav { display: none; } }
+.d3-header .mobile-menu-btn span { background: var(--neutral-700); }
+
+/* D3 Hero — compact split */
+.d3-hero { padding: 80px 24px 64px; background: var(--white); border-bottom: 1px solid var(--neutral-300); }
+.d3-hero-inner { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center; }
+@media (min-width: 768px) { .d3-hero-inner { grid-template-columns: 1fr 1fr; } }
+.d3-hero-text h1 { font-size: clamp(28px, 4vw, 44px); font-weight: 700; color: var(--neutral-900); margin-bottom: 12px; }
+.d3-hero-text p { font-size: 16px; color: var(--neutral-600); margin-bottom: 24px; max-width: 480px; line-height: 1.6; }
+.d3-hero-btn { display: inline-block; padding: 10px 24px; background: var(--primary-700); color: #fff; border-radius: 6px; font-weight: 600; font-size: 14px; transition: background 0.2s; }
+.d3-hero-btn:hover { background: var(--primary-800); }
+.d3-hero-mini { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.d3-hero-mini-item {
+  background: var(--neutral-100); border: 1px solid var(--neutral-300); border-radius: 8px;
+  padding: 12px 8px; text-align: center; transition: border-color 0.2s;
+}
+.d3-hero-mini-item:hover { border-color: var(--primary-400); }
+.d3-hero-mini-item .mini-icon { font-size: 18px; margin-bottom: 4px; }
+.d3-hero-mini-item span { font-size: 11px; font-weight: 600; color: var(--neutral-700); display: block; line-height: 1.3; }
+
+/* D3 Overview — dark metrics strip */
+.d3-overview { padding: 48px 24px; background: var(--neutral-900); }
+.d3-overview-inner { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 24px; text-align: center; }
+.d3-overview-stat .num { font-family: 'Poppins', sans-serif; font-size: 32px; font-weight: 700; color: var(--primary-400); }
+.d3-overview-stat .label { font-size: 13px; color: var(--neutral-400); margin-top: 2px; }
+
+/* D3 Bento — the centrepiece */
+.d3-bento { padding: 64px 24px; background: var(--neutral-100); }
+.d3-bento h2 {
+  font-size: clamp(20px, 3vw, 28px); font-weight: 700; color: var(--neutral-900);
+  margin-bottom: 8px; display: flex; align-items: center; gap: 12px;
+}
+.d3-bento h2::before {
+  content: ''; width: 4px; height: 24px; background: var(--primary-600); border-radius: 2px; flex-shrink: 0;
+}
+.d3-bento > .container > p { font-size: 14px; color: var(--neutral-600); margin-bottom: 32px; max-width: 500px; }
+.d3-card {
+  border: 1px solid var(--neutral-300); border-radius: 10px; padding: 24px;
+  background: var(--white); transition: all 0.2s ease; display: flex; flex-direction: column;
+}
+.d3-card:hover { border-color: var(--primary-600); box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+.d3-card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.d3-card .div-icon { background: var(--neutral-200); color: var(--primary-700); width: 40px; height: 40px; font-size: 16px; }
+.d3-card h3 { font-size: 16px; font-weight: 700; color: var(--neutral-900); }
+.d3-card p { font-size: 13px; color: var(--neutral-600); flex: 1; line-height: 1.5; }
+.d3-card-stat { display: flex; align-items: baseline; gap: 6px; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--neutral-200); }
+.d3-card-stat .stat-num { font-family: 'Poppins', sans-serif; font-size: 20px; font-weight: 700; color: var(--primary-700); }
+.d3-card-stat .stat-label { font-size: 12px; color: var(--neutral-500); }
+.d3-card .card-link { font-size: 12px; font-weight: 700; color: var(--primary-700); margin-top: 12px; display: inline-flex; align-items: center; gap: 4px; text-transform: uppercase; letter-spacing: 0.04em; transition: gap 0.2s; }
+.d3-card .card-link:hover { gap: 8px; }
+.d3-card .card-link::after { content: '\2192'; }
+.d3-card-lg { min-height: 260px; }
+
+/* D3 Credibility — horizontal band */
+.d3-cred { padding: 48px 24px; background: var(--white); border-top: 1px solid var(--neutral-300); border-bottom: 1px solid var(--neutral-300); }
+.d3-cred-inner { max-width: 1280px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 32px; align-items: center; justify-content: space-between; }
+.d3-cred-text { flex: 1; min-width: 240px; }
+.d3-cred-text h3 { font-size: 20px; font-weight: 700; color: var(--neutral-900); margin-bottom: 4px; }
+.d3-cred-text p { font-size: 14px; color: var(--neutral-600); line-height: 1.6; }
+.d3-cred-nums { display: flex; gap: 40px; flex-wrap: wrap; }
+.d3-cred-num .num { font-family: 'Poppins', sans-serif; font-size: 28px; font-weight: 700; color: var(--primary-700); }
+.d3-cred-num .label { font-size: 12px; color: var(--neutral-500); text-transform: uppercase; letter-spacing: 0.04em; }
+
+/* D3 Insights */
+.d3-insights { padding: 64px 24px; background: var(--neutral-100); }
+.d3-insights h2 {
+  font-size: 22px; font-weight: 700; margin-bottom: 24px;
+  display: flex; align-items: center; gap: 12px;
+}
+.d3-insights h2::before { content: ''; width: 4px; height: 20px; background: var(--primary-600); border-radius: 2px; flex-shrink: 0; }
+.d3-insights-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+.d3-insight-card { padding: 20px; background: var(--white); border: 1px solid var(--neutral-300); border-radius: 8px; transition: border-color 0.2s; }
+.d3-insight-card:hover { border-color: var(--primary-500); }
+.d3-insight-card .tag { font-size: 11px; font-weight: 700; color: var(--primary-700); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+.d3-insight-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+.d3-insight-card p { font-size: 13px; color: var(--neutral-600); line-height: 1.5; }
+
+/* D3 CTA */
+.d3-cta { padding: 64px 24px; background: var(--neutral-900); text-align: center; }
+.d3-cta h2 { font-size: clamp(20px, 3vw, 32px); font-weight: 700; color: #fff; margin-bottom: 12px; }
+.d3-cta p { font-size: 15px; color: var(--neutral-400); max-width: 480px; margin: 0 auto 28px; line-height: 1.6; }
+.d3-cta-btn { display: inline-block; padding: 12px 28px; background: var(--primary-600); color: #fff; border-radius: 6px; font-weight: 700; font-size: 14px; transition: background 0.2s; }
+.d3-cta-btn:hover { background: var(--primary-500); }
+
+/* D3 Footer */
+.d3-footer { padding: 48px 24px 24px; background: var(--neutral-900); border-top: 1px solid rgba(255,255,255,0.06); }
+.d3-footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 24px; margin-bottom: 32px; }
+.d3-footer-col h4 { font-size: 12px; font-weight: 700; color: var(--neutral-400); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; }
+.d3-footer-col a { display: block; font-size: 13px; color: var(--neutral-600); margin-bottom: 6px; transition: color 0.2s; }
+.d3-footer-col a:hover { color: var(--neutral-300); }
+.d3-footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 16px; font-size: 12px; color: var(--neutral-700); text-align: center; }
+
+
+/* ================================================================
+   ================================================================
+   DIRECTION 4 — EDITORIAL PREMIUM
+   ================================================================
+   ================================================================ */
+.d4-header {
+  position: sticky; top: 52px; z-index: 100;
+  background: rgba(255,255,255,0.95); backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--neutral-300); padding: 0 24px;
+}
+.d4-header-inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 68px; }
+.d4-logo { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 22px; color: var(--neutral-900); letter-spacing: -0.02em; }
+.d4-logo span { color: var(--gold); }
+.d4-nav { display: flex; gap: 28px; align-items: center; }
+.d4-nav a { font-size: 14px; font-weight: 500; color: var(--neutral-600); transition: color 0.2s; }
+.d4-nav a:hover { color: var(--neutral-900); }
+.d4-nav-cta { font-size: 13px; font-weight: 600; background: var(--neutral-900); color: #fff; padding: 8px 22px; border-radius: 6px; transition: background 0.2s; }
+.d4-nav-cta:hover { background: var(--primary-800); }
+@media (max-width: 767px) { .d4-nav { display: none; } }
+.d4-header .mobile-menu-btn span { background: var(--neutral-700); }
+
+/* D4 Hero — editorial */
+.d4-hero { padding: 120px 24px 100px; background: var(--white); text-align: center; }
+.d4-hero-eyebrow {
+  font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 600;
+  color: var(--gold); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 24px;
+}
+.d4-hero h1 {
+  font-size: clamp(36px, 6vw, 68px); font-weight: 700; color: var(--neutral-900);
+  max-width: 800px; margin: 0 auto 0; letter-spacing: -0.03em; line-height: 1.08;
+}
+.d4-hero-gold { width: 80px; height: 3px; background: var(--gold); margin: 28px auto; }
+.d4-hero p {
+  font-size: clamp(16px, 2vw, 20px); color: var(--neutral-600); max-width: 540px;
+  margin: 0 auto 40px; line-height: 1.7; font-weight: 400;
+}
+.d4-hero-btn {
+  display: inline-block; padding: 14px 36px; background: var(--neutral-900); color: #fff;
+  border-radius: 8px; font-weight: 600; font-size: 15px; transition: all 0.2s;
+}
+.d4-hero-btn:hover { background: var(--primary-800); }
+
+/* D4 Overview — editorial layout */
+.d4-overview { padding: 96px 24px; background: var(--neutral-100); }
+.d4-overview .container { max-width: 960px; }
+.d4-overview-eyebrow {
+  font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 600;
+  color: var(--gold); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 16px;
+}
+.d4-overview h2 { font-size: clamp(24px, 3vw, 40px); font-weight: 700; color: var(--neutral-900); margin-bottom: 16px; line-height: 1.15; }
+.d4-overview > .container > p {
+  font-size: 17px; color: var(--neutral-600); max-width: 600px; margin-bottom: 48px; line-height: 1.8;
+}
+.d4-overview-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 32px; }
+.d4-overview-col { border-left: 2px solid var(--gold); padding-left: 20px; }
+.d4-overview-col h3 { font-size: 16px; font-weight: 700; color: var(--neutral-900); margin-bottom: 8px; }
+.d4-overview-col p { font-size: 14px; color: var(--neutral-600); line-height: 1.7; }
+
+/* D4 Bento */
+.d4-bento { padding: 96px 24px; background: var(--white); }
+.d4-bento-eyebrow {
+  font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 600;
+  color: var(--gold); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 12px;
+  text-align: center;
+}
+.d4-bento h2 { font-size: clamp(24px, 3vw, 40px); font-weight: 700; text-align: center; margin-bottom: 12px; line-height: 1.15; }
+.d4-bento > .container > p { font-size: 16px; color: var(--neutral-600); text-align: center; max-width: 560px; margin: 0 auto 48px; line-height: 1.7; }
+.d4-card {
+  border-radius: 16px; padding: 32px; transition: all 0.3s ease; display: flex; flex-direction: column;
+  position: relative; overflow: hidden;
+}
+/* Four card variants for visual texture */
+.d4-card-filled { background: var(--primary-50); border: 1px solid var(--primary-200); }
+.d4-card-filled:hover { background: var(--primary-100); border-color: var(--primary-300); }
+.d4-card-outline { background: var(--white); border: 1px solid var(--neutral-300); }
+.d4-card-outline:hover { border-color: var(--gold); }
+.d4-card-dark { background: var(--neutral-900); color: #fff; border: 1px solid transparent; }
+.d4-card-dark h3 { color: #fff; }
+.d4-card-dark p { color: rgba(255,255,255,0.7); }
+.d4-card-dark:hover { background: var(--primary-900); }
+.d4-card-accent { background: linear-gradient(135deg, var(--primary-800), var(--primary-700)); color: #fff; border: 1px solid transparent; }
+.d4-card-accent h3 { color: #fff; }
+.d4-card-accent p { color: rgba(255,255,255,0.8); }
+.d4-card-accent:hover { opacity: 0.92; }
+.d4-card .div-icon { margin-bottom: 16px; }
+.d4-card-filled .div-icon { background: var(--primary-700); color: #fff; }
+.d4-card-outline .div-icon { background: var(--neutral-100); color: var(--gold); border: 1px solid var(--neutral-300); }
+.d4-card-dark .div-icon { background: rgba(255,255,255,0.1); color: var(--gold); }
+.d4-card-accent .div-icon { background: rgba(255,255,255,0.15); color: #fff; }
+.d4-card h3 { font-size: 20px; font-weight: 700; color: var(--neutral-900); margin-bottom: 8px; }
+.d4-card p { font-size: 14px; color: var(--neutral-600); flex: 1; line-height: 1.6; }
+.d4-card .card-link { font-size: 13px; font-weight: 600; color: var(--gold); margin-top: 16px; display: inline-flex; align-items: center; gap: 6px; transition: gap 0.2s; }
+.d4-card .card-link:hover { gap: 10px; }
+.d4-card .card-link::after { content: '\2192'; }
+.d4-card-dark .card-link, .d4-card-accent .card-link { color: var(--gold-light); }
+.d4-card-lg { min-height: 300px; }
+
+/* D4 Credibility */
+.d4-cred { padding: 96px 24px; background: var(--neutral-100); }
+.d4-cred .container { max-width: 960px; text-align: center; }
+.d4-cred-eyebrow {
+  font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 600;
+  color: var(--gold); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 12px;
+}
+.d4-cred h2 { font-size: clamp(24px, 3vw, 36px); font-weight: 700; margin-bottom: 48px; }
+.d4-cred-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 40px; }
+.d4-cred-item .num { font-family: 'Poppins', sans-serif; font-size: 44px; font-weight: 700; color: var(--gold); }
+.d4-cred-item .label { font-size: 14px; color: var(--neutral-600); margin-top: 4px; }
+.d4-cred-item .divider { width: 32px; height: 2px; background: var(--gold); margin: 12px auto 0; }
+
+/* D4 Insights — magazine spread */
+.d4-insights { padding: 96px 24px; background: var(--white); }
+.d4-insights-eyebrow {
+  font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 600;
+  color: var(--gold); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 12px;
+}
+.d4-insights h2 { font-size: clamp(24px, 3vw, 36px); font-weight: 700; margin-bottom: 48px; }
+.d4-insights-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
+@media (min-width: 768px) {
+  .d4-insights-grid { grid-template-columns: 1.4fr 1fr; }
+  .d4-insight-featured { grid-row: 1 / 3; }
+}
+.d4-insight-featured {
+  background: var(--neutral-100); border: 1px solid var(--neutral-300); border-radius: 16px;
+  padding: 40px; display: flex; flex-direction: column; justify-content: flex-end; transition: border-color 0.3s;
+}
+.d4-insight-featured:hover { border-color: var(--gold); }
+.d4-insight-featured .tag { font-size: 12px; font-weight: 600; color: var(--gold-dark); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 20px; }
+.d4-insight-featured h3 { font-size: 24px; font-weight: 700; line-height: 1.3; margin-bottom: 12px; }
+.d4-insight-featured p { font-size: 15px; color: var(--neutral-600); line-height: 1.7; }
+.d4-insight-sm { background: var(--neutral-100); border: 1px solid var(--neutral-300); border-radius: 16px; padding: 28px; transition: border-color 0.3s; }
+.d4-insight-sm:hover { border-color: var(--gold); }
+.d4-insight-sm .tag { font-size: 11px; font-weight: 600; color: var(--gold-dark); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px; }
+.d4-insight-sm h3 { font-size: 16px; font-weight: 700; margin-bottom: 6px; line-height: 1.3; }
+.d4-insight-sm p { font-size: 14px; color: var(--neutral-600); line-height: 1.6; }
+
+/* D4 CTA */
+.d4-cta { padding: 96px 24px; background: var(--neutral-900); text-align: center; }
+.d4-cta-gold { width: 60px; height: 3px; background: var(--gold); margin: 0 auto 28px; }
+.d4-cta h2 { font-size: clamp(24px, 3vw, 40px); font-weight: 700; color: #fff; margin-bottom: 12px; line-height: 1.15; }
+.d4-cta p { font-size: 17px; color: var(--neutral-500); max-width: 520px; margin: 0 auto 36px; line-height: 1.7; }
+.d4-cta-btn { display: inline-block; padding: 14px 36px; background: var(--gold); color: var(--primary-900); border-radius: 8px; font-weight: 700; font-size: 15px; transition: all 0.2s; }
+.d4-cta-btn:hover { background: var(--gold-light); }
+
+/* D4 Footer — richer treatment */
+.d4-footer { padding: 72px 24px 32px; background: var(--neutral-900); }
+.d4-footer-top { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 48px; margin-bottom: 48px; }
+@media (min-width: 768px) { .d4-footer-top { grid-template-columns: 1.5fr 1fr; } }
+.d4-footer-story .logo { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 24px; color: #fff; margin-bottom: 16px; }
+.d4-footer-story .logo span { color: var(--gold); }
+.d4-footer-story p { font-size: 15px; color: var(--neutral-500); line-height: 1.7; max-width: 420px; }
+.d4-footer-links { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.d4-footer-col h4 { font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 600; color: var(--gold); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px; }
+.d4-footer-col a { display: block; font-size: 14px; color: var(--neutral-500); margin-bottom: 8px; transition: color 0.2s; }
+.d4-footer-col a:hover { color: #fff; }
+.d4-footer-bottom { max-width: 1280px; margin: 0 auto; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 24px; text-align: center; font-size: 13px; color: var(--neutral-700); }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     DIRECTION SELECTOR BAR
+     ============================================================ -->
+<nav class="dir-selector">
+  <span class="dir-selector-label">Directions</span>
+  <a href="#dir1" class="dir-btn">1 &middot; Corporate Minimal</a>
+  <a href="#dir2" class="dir-btn">2 &middot; Narrative Bold</a>
+  <a href="#dir3" class="dir-btn">3 &middot; Structured Grid</a>
+  <a href="#dir4" class="dir-btn">4 &middot; Editorial Premium</a>
+</nav>
+
+
+<!-- ============================================================
+     ============================================================
+     DIRECTION 1 — CORPORATE MINIMAL
+     ============================================================
+     ============================================================ -->
+<div class="direction-divider" id="dir1" style="margin-top:52px;">
+  <h2>Direction 1</h2>
+  <div class="dir-subtitle">Corporate Minimal</div>
+  <p class="dir-desc">Swiss design precision meets Nigerian corporate elegance. Maximum whitespace, restrained colour, and quiet authority. What is NOT there matters as much as what is.</p>
+</div>
+
+<!-- D1 Header -->
+<header class="d1-header">
+  <div class="d1-header-inner">
+    <div class="d1-logo">GRCL</div>
+    <nav class="d1-nav">
+      <a href="#">About</a>
+      <a href="#">Divisions</a>
+      <a href="#">News</a>
+      <a href="#">Careers</a>
+      <a href="#" class="d1-nav-cta">Contact</a>
+    </nav>
+    <button class="mobile-menu-btn" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- D1 Hero -->
+<section class="d1-hero">
+  <h1>Building Across Sectors</h1>
+  <p>A diversified Nigerian conglomerate delivering impact across agriculture, trade, real estate, and energy.</p>
+  <a href="#" class="d1-hero-btn">Explore Our Divisions</a>
+</section>
+
+<!-- D1 Business Overview -->
+<section class="d1-overview">
+  <div class="container">
+    <h2>One Group, Seven Verticals</h2>
+    <p>Global Resources Citadel Limited operates across interconnected sectors, building value chains that strengthen Nigeria's economic foundations.</p>
+    <div class="d1-overview-grid">
+      <div class="d1-overview-item">
+        <h3>Agriculture &amp; Processing</h3>
+        <p>From field to finished product &mdash; crop farming, animal husbandry, and agro-processing working as one integrated system.</p>
+      </div>
+      <div class="d1-overview-item">
+        <h3>Trade &amp; Markets</h3>
+        <p>Connecting commodities to markets and facilitating cross-border trade that drives economic growth.</p>
+      </div>
+      <div class="d1-overview-item">
+        <h3>Built Environment &amp; Energy</h3>
+        <p>Developing real estate assets and participating in Nigeria's energy sector for long-term infrastructure impact.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- D1 Bento Grid -->
+<section class="d1-bento">
+  <div class="container">
+    <h2>Our Divisions</h2>
+    <p>Seven business units operating with shared values and a unified vision for growth.</p>
+    <div class="bento-grid">
+      <div class="d1-card d1-card-lg bento-crop">
+        <div class="div-icon div-icon-lg">&#x1F33E;</div>
+        <h3>Crop Farming</h3>
+        <p>Large-scale cultivation across key crops, integrating modern agricultural techniques with deep local expertise. Our farming operations form the foundation of the group's value chain.</p>
+        <span class="card-link">Explore Division</span>
+      </div>
+      <div class="d1-card d1-card-lg bento-agro">
+        <div class="div-icon div-icon-lg">&#9881;</div>
+        <h3>Agro-Processing</h3>
+        <p>Transforming raw agricultural output into market-ready products. Our processing facilities bridge the gap between harvest and consumer, adding value at every stage.</p>
+        <span class="card-link">Explore Division</span>
+      </div>
+      <div class="d1-card bento-animal">
+        <div class="div-icon">&#x1F404;</div>
+        <h3>Animal Husbandry</h3>
+        <p>Sustainable livestock management producing quality protein for growing markets.</p>
+        <span class="card-link">Explore Division</span>
+      </div>
+      <div class="d1-card bento-comm">
+        <div class="div-icon">&#x1F4CA;</div>
+        <h3>Commodity Marketing</h3>
+        <p>Connecting producers to buyers across domestic and international commodity markets.</p>
+        <span class="card-link">Explore Division</span>
+      </div>
+      <div class="d1-card bento-import">
+        <div class="div-icon">&#x1F30D;</div>
+        <h3>Import &amp; Export</h3>
+        <p>Facilitating cross-border trade with established logistics networks and regulatory expertise across West Africa.</p>
+        <span class="card-link">Explore Division</span>
+      </div>
+      <div class="d1-card bento-restate">
+        <div class="div-icon">&#x1F3D7;</div>
+        <h3>Real Estate</h3>
+        <p>Developing commercial and residential properties that contribute to Nigeria's growing built environment.</p>
+        <span class="card-link">Explore Division</span>
+      </div>
+      <div class="d1-card bento-oil">
+        <div class="div-icon">&#x26FD;</div>
+        <h3>Oil &amp; Gas</h3>
+        <p>Participating in Nigeria's energy sector through strategic investments and operational partnerships.</p>
+        <span class="card-link">Explore Division</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- D1 Credibility -->
+<section class="d1-cred">
+  <div class="container">
+    <div class="d1-cred-grid">
+      <div class="d1-cred-item"><div class="num">15+</div><div class="label">Years of Operations</div></div>
+      <div class="d1-cred-item"><div class="num">7</div><div class="label">Business Divisions</div></div>
+      <div class="d1-cred-item"><div class="num">200+</div><div class="label">Projects Delivered</div></div>
+      <div class="d1-cred-item"><div class="num">12</div><div class="label">States Active</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- D1 Insights -->
+<section class="d1-insights">
+  <div class="container">
+    <h2>Latest Insights</h2>
+    <div class="d1-insights-grid">
+      <div class="d1-insight-card">
+        <div class="tag">Agriculture</div>
+        <h3>Scaling Sustainable Farming Practices in Northern Nigeria</h3>
+        <p>How our crop farming division is implementing precision agriculture across 5,000 hectares of cultivated land.</p>
+      </div>
+      <div class="d1-insight-card">
+        <div class="tag">Trade</div>
+        <h3>Navigating Cross-Border Commodity Markets in West Africa</h3>
+        <p>Insights from our commodity marketing and export teams on emerging trade corridors and market access.</p>
+      </div>
+      <div class="d1-insight-card">
+        <div class="tag">Corporate</div>
+        <h3>GRCL Expands Real Estate Portfolio in Abuja</h3>
+        <p>Announcing three new commercial developments as part of our built environment growth strategy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- D1 CTA -->
+<section class="d1-cta">
+  <h2>Let's Build Together</h2>
+  <p>Whether you are an investor, partner, or customer, we would welcome a conversation about how Global Resources Citadel can create value with you.</p>
+  <a href="#" class="d1-cta-btn">Get in Touch</a>
+</section>
+
+<!-- D1 Footer -->
+<footer class="d1-footer">
+  <div class="container">
+    <div class="d1-footer-grid">
+      <div class="d1-footer-col">
+        <h4>Company</h4>
+        <a href="#">About Us</a>
+        <a href="#">Leadership</a>
+        <a href="#">Careers</a>
+        <a href="#">Contact</a>
+      </div>
+      <div class="d1-footer-col">
+        <h4>Divisions</h4>
+        <a href="#">Crop Farming</a>
+        <a href="#">Animal Husbandry</a>
+        <a href="#">Agro-Processing</a>
+        <a href="#">Commodity Marketing</a>
+      </div>
+      <div class="d1-footer-col">
+        <h4>More Divisions</h4>
+        <a href="#">Import &amp; Export</a>
+        <a href="#">Real Estate</a>
+        <a href="#">Oil &amp; Gas</a>
+      </div>
+      <div class="d1-footer-col">
+        <h4>Resources</h4>
+        <a href="#">News</a>
+        <a href="#">Insights</a>
+        <a href="#">Media</a>
+      </div>
+      <div class="d1-footer-col">
+        <h4>Legal</h4>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+      </div>
+    </div>
+    <div class="d1-footer-bottom">&copy; 2026 Global Resources Citadel Limited. All rights reserved.</div>
+  </div>
+</footer>
+
+
+<!-- ============================================================
+     ============================================================
+     DIRECTION 2 — NARRATIVE BOLD
+     ============================================================
+     ============================================================ -->
+<div class="direction-divider" id="dir2">
+  <h2>Direction 2</h2>
+  <div class="dir-subtitle">Narrative Bold</div>
+  <p class="dir-desc">Confident authority with strong visual presence. The business announces itself through bold greens, gradient hero treatments, and decisive typography. Dangote-level ambition, modern execution.</p>
+</div>
+
+<!-- D2 Header -->
+<header class="d2-header">
+  <div class="d2-header-inner">
+    <div class="d2-logo">GRCL</div>
+    <nav class="d2-nav">
+      <a href="#">About</a>
+      <a href="#">Divisions</a>
+      <a href="#">News</a>
+      <a href="#">Careers</a>
+      <a href="#" class="d2-nav-cta">Partner With Us</a>
+    </nav>
+    <button class="mobile-menu-btn" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- D2 Hero -->
+<section class="d2-hero">
+  <h1>Building Nigeria's Future Across Seven Sectors</h1>
+  <p>From agriculture to energy, Global Resources Citadel is creating integrated value chains that drive economic growth and opportunity.</p>
+  <a href="#" class="d2-hero-btn">Discover Our Impact</a>
+</section>
+
+<!-- D2 Business Overview -->
+<section class="d2-overview">
+  <div class="container">
+    <h2>A Platform for National Growth</h2>
+    <p>Global Resources Citadel's divisions are not isolated businesses. They are interconnected pillars of an integrated strategy, each strengthening the others.</p>
+    <div class="d2-cluster">
+      <div class="d2-cluster-label">Agriculture &amp; Processing</div>
+      <div class="d2-cluster-items">
+        <div class="d2-cluster-item"><h4>Crop Farming</h4><p>Large-scale cultivation across staple and cash crops</p></div>
+        <div class="d2-cluster-item"><h4>Animal Husbandry</h4><p>Sustainable livestock operations and protein production</p></div>
+        <div class="d2-cluster-item"><h4>Agro-Processing</h4><p>Value-addition from raw materials to finished goods</p></div>
+      </div>
+    </div>
+    <div class="d2-cluster">
+      <div class="d2-cluster-label">Trade &amp; Markets</div>
+      <div class="d2-cluster-items">
+        <div class="d2-cluster-item"><h4>Commodity Marketing</h4><p>Market access and price optimisation for producers</p></div>
+        <div class="d2-cluster-item"><h4>Import &amp; Export</h4><p>Cross-border trade facilitation and logistics</p></div>
+      </div>
+    </div>
+    <div class="d2-cluster">
+      <div class="d2-cluster-label">Built Environment &amp; Energy</div>
+      <div class="d2-cluster-items">
+        <div class="d2-cluster-item"><h4>Real Estate</h4><p>Commercial and residential property development</p></div>
+        <div class="d2-cluster-item"><h4>Oil &amp; Gas</h4><p>Strategic energy sector participation</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- D2 Bento Grid -->
+<section class="d2-bento">
+  <div class="container">
+    <h2>Our Business Divisions</h2>
+    <p>Seven verticals united by a single vision: building value chains that strengthen Nigeria's economy.</p>
+    <div class="bento-grid">
+      <div class="d2-card d2-card-lg bento-crop">
+        <div class="div-icon div-icon-lg">&#x1F33E;</div>
+        <h3>Crop Farming</h3>
+        <p>Large-scale cultivation across key food and cash crops. Our farming operations span thousands of hectares, deploying modern techniques alongside deep agronomic knowledge to maximise yield and sustainability.</p>
+        <span class="card-link">Explore Division</span>
+      </div>
+      <div class="d2-card d2-card-lg bento-agro">
+        <div class="div-icon div-icon-lg">&#9881;</div>
+        <h3>Agro-Processing</h3>
+        <p>Converting harvests into market-ready products through modern processing infrastructure. From grain milling to packaging, our facilities add value at every stage of the agricultural supply chain.</p>
+        <span class="card-link">Explore Division</span>
+      </div>
+      <div class="d2-card bento-animal">
+        <div class="div-icon">&#x1F404;</div>
+        <h3>Animal Husbandry</h3>
+        <p>Sustainable livestock management and quality protein production for domestic markets.</p>
+        <span class="card-link">Explore Division</span>
+      </div>
+      <div class="d2-card bento-comm">
+        <div class="div-icon">&#x1F4CA;</div>
+        <h3>Commodity Marketing</h3>
+        <p>Connecting producers to buyers across Nigeria's commodity trading landscape.</p>
+        <span class="card-link">Explore Division</span>
+      </div>
+      <div class="d2-card bento-import">
+        <div class="div-icon">&#x1F30D;</div>
+        <h3>Import &amp; Export</h3>
+        <p>Facilitating cross-border commerce with established logistics networks and deep regulatory knowledge across West African trade corridors.</p>
+        <span class="card-link">Explore Division</span>
+      </div>
+      <div class="d2-card bento-restate">
+        <div class="div-icon">&#x1F3D7;</div>
+        <h3>Real Estate</h3>
+        <p>Developing commercial and residential properties that contribute to Nigeria's urban infrastructure growth.</p>
+        <span class="card-link">Explore Division</span>
+      </div>
+      <div class="d2-card bento-oil">
+        <div class="div-icon">&#x26FD;</div>
+        <h3>Oil &amp; Gas</h3>
+        <p>Strategic participation in Nigeria's energy sector through investments and operational partnerships.</p>
+        <span class="card-link">Explore Division</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- D2 Credibility -->
+<section class="d2-cred">
+  <h2>Our Track Record</h2>
+  <div class="d2-cred-grid">
+    <div class="d2-cred-item"><div class="num">15+</div><div class="label">Years of Operations</div></div>
+    <div class="d2-cred-item"><div class="num">7</div><div class="label">Business Divisions</div></div>
+    <div class="d2-cred-item"><div class="num">200+</div><div class="label">Projects Delivered</div></div>
+    <div class="d2-cred-item"><div class="num">12</div><div class="label">States Active</div></div>
+  </div>
+</section>
+
+<!-- D2 Insights -->
+<section class="d2-insights">
+  <div class="container">
+    <h2>News &amp; Insights</h2>
+    <div class="d2-insights-grid">
+      <div class="d2-insight-card">
+        <div class="tag">Agriculture</div>
+        <h3>Scaling Sustainable Farming Practices in Northern Nigeria</h3>
+        <p>How our crop farming division is implementing precision agriculture across 5,000 hectares of cultivated land.</p>
+      </div>
+      <div class="d2-insight-card">
+        <div class="tag">Trade</div>
+        <h3>Navigating Cross-Border Commodity Markets in West Africa</h3>
+        <p>Insights from our commodity marketing and export teams on emerging trade corridors and market access strategies.</p>
+      </div>
+      <div class="d2-insight-card">
+        <div class="tag">Corporate</div>
+        <h3>GRCL Expands Real Estate Portfolio in Abuja</h3>
+        <p>Announcing three new commercial developments as part of our built environment growth strategy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- D2 CTA -->
+<section class="d2-cta">
+  <h2>Ready to Partner With Us?</h2>
+  <p>Join the businesses and investors who are building Nigeria's future alongside Global Resources Citadel.</p>
+  <a href="#" class="d2-cta-btn">Start a Conversation</a>
+</section>
+
+<!-- D2 Footer -->
+<footer class="d2-footer">
+  <div class="container">
+    <div class="d2-footer-brand">
+      <div class="logo"><span class="descriptor" style="display:block;font-size:10px;font-weight:400;letter-spacing:0.15em;color:var(--neutral-400);">GLOBAL RESOURCES</span><span style="display:block;">CITADEL</span><span class="qualifier" style="display:block;font-size:9px;font-weight:400;letter-spacing:0.18em;color:var(--neutral-500);">LIMITED</span></div>
+      <p>Building Across Sectors</p>
+    </div>
+    <div class="d2-footer-grid">
+      <div class="d2-footer-col">
+        <h4>Company</h4>
+        <a href="#">About Us</a>
+        <a href="#">Leadership</a>
+        <a href="#">Careers</a>
+        <a href="#">Contact</a>
+      </div>
+      <div class="d2-footer-col">
+        <h4>Divisions</h4>
+        <a href="#">Crop Farming</a>
+        <a href="#">Animal Husbandry</a>
+        <a href="#">Agro-Processing</a>
+        <a href="#">Commodity Marketing</a>
+      </div>
+      <div class="d2-footer-col">
+        <h4>More</h4>
+        <a href="#">Import &amp; Export</a>
+        <a href="#">Real Estate</a>
+        <a href="#">Oil &amp; Gas</a>
+      </div>
+      <div class="d2-footer-col">
+        <h4>Resources</h4>
+        <a href="#">News</a>
+        <a href="#">Insights</a>
+        <a href="#">Media</a>
+      </div>
+      <div class="d2-footer-col">
+        <h4>Legal</h4>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+      </div>
+    </div>
+    <div class="d2-footer-bottom">&copy; 2026 Global Resources Citadel Limited. All rights reserved.</div>
+  </div>
+</footer>
+
+
+<!-- ============================================================
+     ============================================================
+     DIRECTION 3 — STRUCTURED GRID
+     ============================================================
+     ============================================================ -->
+<div class="direction-divider" id="dir3">
+  <h2>Direction 3</h2>
+  <div class="dir-subtitle">Structured Grid</div>
+  <p class="dir-desc">Information-dense, card-forward design. Everything is visible, structured, and data-forward. Bloomberg-quality information architecture made beautiful.</p>
+</div>
+
+<!-- D3 Header -->
+<header class="d3-header">
+  <div class="d3-header-inner">
+    <div class="d3-logo">GRCL<span>| Conglomerate</span></div>
+    <nav class="d3-nav">
+      <a href="#">About</a>
+      <a href="#">Divisions</a>
+      <a href="#">News</a>
+      <a href="#">Careers</a>
+      <a href="#" class="d3-nav-cta">Contact</a>
+    </nav>
+    <button class="mobile-menu-btn" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- D3 Hero — compact split -->
+<section class="d3-hero">
+  <div class="d3-hero-inner">
+    <div class="d3-hero-text">
+      <h1>Building Across Sectors</h1>
+      <p>A diversified Nigerian conglomerate operating seven business divisions across agriculture, trade, real estate, and energy.</p>
+      <a href="#" class="d3-hero-btn">View All Divisions</a>
+    </div>
+    <div class="d3-hero-mini">
+      <div class="d3-hero-mini-item"><div class="mini-icon">&#x1F33E;</div><span>Crop Farming</span></div>
+      <div class="d3-hero-mini-item"><div class="mini-icon">&#x1F404;</div><span>Animal Husbandry</span></div>
+      <div class="d3-hero-mini-item"><div class="mini-icon">&#9881;</div><span>Agro-Processing</span></div>
+      <div class="d3-hero-mini-item"><div class="mini-icon">&#x1F4CA;</div><span>Commodity Mktg</span></div>
+      <div class="d3-hero-mini-item"><div class="mini-icon">&#x1F30D;</div><span>Import &amp; Export</span></div>
+      <div class="d3-hero-mini-item"><div class="mini-icon">&#x1F3D7;</div><span>Real Estate</span></div>
+      <div class="d3-hero-mini-item" style="grid-column: 2;"><div class="mini-icon">&#x26FD;</div><span>Oil &amp; Gas</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- D3 Overview — metrics strip -->
+<section class="d3-overview">
+  <div class="d3-overview-inner">
+    <div class="d3-overview-stat"><div class="num">15+</div><div class="label">Years Active</div></div>
+    <div class="d3-overview-stat"><div class="num">7</div><div class="label">Divisions</div></div>
+    <div class="d3-overview-stat"><div class="num">200+</div><div class="label">Projects</div></div>
+    <div class="d3-overview-stat"><div class="num">12</div><div class="label">States</div></div>
+    <div class="d3-overview-stat"><div class="num">3</div><div class="label">Sector Clusters</div></div>
+  </div>
+</section>
+
+<!-- D3 Bento Grid — the centrepiece -->
+<section class="d3-bento">
+  <div class="container">
+    <h2>Business Divisions</h2>
+    <p>Seven integrated verticals driving growth across Nigeria's key economic sectors.</p>
+    <div class="bento-grid">
+      <div class="d3-card d3-card-lg bento-crop">
+        <div class="d3-card-header">
+          <div class="div-icon">&#x1F33E;</div>
+          <h3>Crop Farming</h3>
+        </div>
+        <p>Large-scale cultivation across staple and cash crops, integrating precision agriculture with local expertise. Our farming operations form the foundation of the group's agricultural value chain.</p>
+        <div class="d3-card-stat"><span class="stat-num">5,000+</span><span class="stat-label">Hectares cultivated</span></div>
+        <span class="card-link">Explore Division</span>
+      </div>
+      <div class="d3-card d3-card-lg bento-agro">
+        <div class="d3-card-header">
+          <div class="div-icon">&#9881;</div>
+          <h3>Agro-Processing</h3>
+        </div>
+        <p>Converting raw agricultural output into market-ready products. Modern processing facilities bridge the gap between harvest and consumer, adding value at every stage of the supply chain.</p>
+        <div class="d3-card-stat"><span class="stat-num">4</span><span class="stat-label">Processing facilities</span></div>
+        <span class="card-link">Explore Division</span>
+      </div>
+      <div class="d3-card bento-animal">
+        <div class="d3-card-header">
+          <div class="div-icon">&#x1F404;</div>
+          <h3>Animal Husbandry</h3>
+        </div>
+        <p>Sustainable livestock management and protein production.</p>
+        <div class="d3-card-stat"><span class="stat-num">800+</span><span class="stat-label">Head of cattle</span></div>
+        <span class="card-link">Explore</span>
+      </div>
+      <div class="d3-card bento-comm">
+        <div class="d3-card-header">
+          <div class="div-icon">&#x1F4CA;</div>
+          <h3>Commodity Marketing</h3>
+        </div>
+        <p>Connecting producers to domestic and international buyers.</p>
+        <div class="d3-card-stat"><span class="stat-num">20+</span><span class="stat-label">Commodities traded</span></div>
+        <span class="card-link">Explore</span>
+      </div>
+      <div class="d3-card bento-import">
+        <div class="d3-card-header">
+          <div class="div-icon">&#x1F30D;</div>
+          <h3>Import &amp; Export</h3>
+        </div>
+        <p>Cross-border trade facilitation with established logistics networks and regulatory expertise across West Africa.</p>
+        <div class="d3-card-stat"><span class="stat-num">6</span><span class="stat-label">Trade corridors</span></div>
+        <span class="card-link">Explore</span>
+      </div>
+      <div class="d3-card bento-restate">
+        <div class="d3-card-header">
+          <div class="div-icon">&#x1F3D7;</div>
+          <h3>Real Estate</h3>
+        </div>
+        <p>Commercial and residential property development across key Nigerian urban markets.</p>
+        <div class="d3-card-stat"><span class="stat-num">15</span><span class="stat-label">Active projects</span></div>
+        <span class="card-link">Explore</span>
+      </div>
+      <div class="d3-card bento-oil">
+        <div class="d3-card-header">
+          <div class="div-icon">&#x26FD;</div>
+          <h3>Oil &amp; Gas</h3>
+        </div>
+        <p>Strategic participation in Nigeria's energy sector through investments and partnerships.</p>
+        <div class="d3-card-stat"><span class="stat-num">3</span><span class="stat-label">Active partnerships</span></div>
+        <span class="card-link">Explore</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- D3 Credibility — horizontal band -->
+<section class="d3-cred">
+  <div class="d3-cred-inner">
+    <div class="d3-cred-text">
+      <h3>Proven Track Record</h3>
+      <p>Over a decade of consistent growth across agriculture, trade, and infrastructure development.</p>
+    </div>
+    <div class="d3-cred-nums">
+      <div class="d3-cred-num"><div class="num">15+</div><div class="label">Years</div></div>
+      <div class="d3-cred-num"><div class="num">200+</div><div class="label">Projects</div></div>
+      <div class="d3-cred-num"><div class="num">50+</div><div class="label">Partners</div></div>
+      <div class="d3-cred-num"><div class="num">12</div><div class="label">States</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- D3 Insights -->
+<section class="d3-insights">
+  <div class="container">
+    <h2>Latest Updates</h2>
+    <div class="d3-insights-grid">
+      <div class="d3-insight-card">
+        <div class="tag">Agriculture</div>
+        <h3>Scaling Sustainable Farming Practices in Northern Nigeria</h3>
+        <p>How our crop farming division is implementing precision agriculture across 5,000 hectares.</p>
+      </div>
+      <div class="d3-insight-card">
+        <div class="tag">Trade</div>
+        <h3>Navigating Cross-Border Commodity Markets in West Africa</h3>
+        <p>Emerging trade corridors and market access strategies from our trade divisions.</p>
+      </div>
+      <div class="d3-insight-card">
+        <div class="tag">Real Estate</div>
+        <h3>GRCL Expands Real Estate Portfolio in Abuja</h3>
+        <p>Three new commercial developments as part of our built environment growth strategy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- D3 CTA -->
+<section class="d3-cta">
+  <h2>Start a Conversation</h2>
+  <p>Investors, partners, and customers &mdash; we are ready to discuss how Global Resources Citadel can create value with you.</p>
+  <a href="#" class="d3-cta-btn">Contact Us</a>
+</section>
+
+<!-- D3 Footer -->
+<footer class="d3-footer">
+  <div class="container">
+    <div class="d3-footer-grid">
+      <div class="d3-footer-col">
+        <h4>Company</h4>
+        <a href="#">About Us</a>
+        <a href="#">Leadership</a>
+        <a href="#">Careers</a>
+      </div>
+      <div class="d3-footer-col">
+        <h4>Agriculture</h4>
+        <a href="#">Crop Farming</a>
+        <a href="#">Animal Husbandry</a>
+        <a href="#">Agro-Processing</a>
+      </div>
+      <div class="d3-footer-col">
+        <h4>Trade</h4>
+        <a href="#">Commodity Marketing</a>
+        <a href="#">Import &amp; Export</a>
+      </div>
+      <div class="d3-footer-col">
+        <h4>Infrastructure</h4>
+        <a href="#">Real Estate</a>
+        <a href="#">Oil &amp; Gas</a>
+      </div>
+      <div class="d3-footer-col">
+        <h4>Resources</h4>
+        <a href="#">News</a>
+        <a href="#">Insights</a>
+        <a href="#">Contact</a>
+      </div>
+      <div class="d3-footer-col">
+        <h4>Legal</h4>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+    <div class="d3-footer-bottom">&copy; 2026 Global Resources Citadel Limited. All rights reserved.</div>
+  </div>
+</footer>
+
+
+<!-- ============================================================
+     ============================================================
+     DIRECTION 4 — EDITORIAL PREMIUM
+     ============================================================
+     ============================================================ -->
+<div class="direction-divider" id="dir4">
+  <h2>Direction 4</h2>
+  <div class="dir-subtitle">Editorial Premium</div>
+  <p class="dir-desc">Magazine-influenced, asymmetric layouts with gold accent lines, editorial spacing, and premium publication quality. The business as a story, told with the authority of Monocle or The Economist.</p>
+</div>
+
+<!-- D4 Header -->
+<header class="d4-header">
+  <div class="d4-header-inner">
+    <div class="d4-logo">Citadel<span>.</span></div>
+    <nav class="d4-nav">
+      <a href="#">About</a>
+      <a href="#">Divisions</a>
+      <a href="#">Insights</a>
+      <a href="#">Careers</a>
+      <a href="#" class="d4-nav-cta">Contact</a>
+    </nav>
+    <button class="mobile-menu-btn" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- D4 Hero — editorial -->
+<section class="d4-hero">
+  <div class="d4-hero-eyebrow">Global Resources Citadel</div>
+  <h1>Building Across Sectors</h1>
+  <div class="d4-hero-gold"></div>
+  <p>A diversified Nigerian conglomerate creating integrated value chains across agriculture, trade, real estate, and energy.</p>
+  <a href="#" class="d4-hero-btn">Explore Our Story</a>
+</section>
+
+<!-- D4 Business Overview — editorial layout -->
+<section class="d4-overview">
+  <div class="container">
+    <div class="d4-overview-eyebrow">Our Business</div>
+    <h2>Seven Divisions.<br>One Vision.</h2>
+    <p>Global Resources Citadel operates across interconnected sectors, each strengthening the others. Our agricultural foundation feeds our processing capacity. Our trade networks connect our products to markets. Our infrastructure investments build the platforms for future growth.</p>
+    <div class="d4-overview-cols">
+      <div class="d4-overview-col">
+        <h3>Agriculture &amp; Processing</h3>
+        <p>Crop farming, animal husbandry, and agro-processing operating as one integrated agricultural system from field to finished product.</p>
+      </div>
+      <div class="d4-overview-col">
+        <h3>Trade &amp; Markets</h3>
+        <p>Commodity marketing and import/export operations connecting Nigerian producers to domestic and international buyers.</p>
+      </div>
+      <div class="d4-overview-col">
+        <h3>Built Environment &amp; Energy</h3>
+        <p>Real estate development and oil and gas participation building the physical and energy infrastructure Nigeria needs.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- D4 Bento Grid — mixed media feel -->
+<section class="d4-bento">
+  <div class="container">
+    <div class="d4-bento-eyebrow">Divisions</div>
+    <h2>Where We Operate</h2>
+    <p>Seven business units, each with distinct capabilities, unified by shared values and a common vision.</p>
+    <div class="bento-grid">
+      <div class="d4-card d4-card-filled d4-card-lg bento-crop">
+        <div class="div-icon div-icon-lg">&#x1F33E;</div>
+        <h3>Crop Farming</h3>
+        <p>Large-scale cultivation across staple and cash crops. Our farming operations integrate precision agriculture with deep local agronomic expertise, forming the foundation of the group's value chain.</p>
+        <span class="card-link">Explore Division</span>
+      </div>
+      <div class="d4-card d4-card-accent d4-card-lg bento-agro">
+        <div class="div-icon div-icon-lg">&#9881;</div>
+        <h3>Agro-Processing</h3>
+        <p>Transforming raw agricultural output into market-ready products. Our processing facilities bridge harvest and consumer, adding value and creating employment at every stage.</p>
+        <span class="card-link">Explore Division</span>
+      </div>
+      <div class="d4-card d4-card-outline bento-animal">
+        <div class="div-icon">&#x1F404;</div>
+        <h3>Animal Husbandry</h3>
+        <p>Sustainable livestock management and quality protein production.</p>
+        <span class="card-link">Explore Division</span>
+      </div>
+      <div class="d4-card d4-card-outline bento-comm">
+        <div class="div-icon">&#x1F4CA;</div>
+        <h3>Commodity Marketing</h3>
+        <p>Connecting producers to buyers across commodity markets.</p>
+        <span class="card-link">Explore Division</span>
+      </div>
+      <div class="d4-card d4-card-filled bento-import">
+        <div class="div-icon">&#x1F30D;</div>
+        <h3>Import &amp; Export</h3>
+        <p>Cross-border trade facilitation with established logistics and regulatory expertise across West Africa.</p>
+        <span class="card-link">Explore Division</span>
+      </div>
+      <div class="d4-card d4-card-dark bento-restate">
+        <div class="div-icon">&#x1F3D7;</div>
+        <h3>Real Estate</h3>
+        <p>Developing commercial and residential properties across key Nigerian urban markets.</p>
+        <span class="card-link">Explore Division</span>
+      </div>
+      <div class="d4-card d4-card-outline bento-oil">
+        <div class="div-icon">&#x26FD;</div>
+        <h3>Oil &amp; Gas</h3>
+        <p>Strategic participation in Nigeria's energy sector through investments and partnerships.</p>
+        <span class="card-link">Explore Division</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- D4 Credibility -->
+<section class="d4-cred">
+  <div class="container">
+    <div class="d4-cred-eyebrow">Track Record</div>
+    <h2>The Numbers That Matter</h2>
+    <div class="d4-cred-grid">
+      <div class="d4-cred-item">
+        <div class="num">15+</div>
+        <div class="label">Years of Operations</div>
+        <div class="divider"></div>
+      </div>
+      <div class="d4-cred-item">
+        <div class="num">7</div>
+        <div class="label">Business Divisions</div>
+        <div class="divider"></div>
+      </div>
+      <div class="d4-cred-item">
+        <div class="num">200+</div>
+        <div class="label">Projects Delivered</div>
+        <div class="divider"></div>
+      </div>
+      <div class="d4-cred-item">
+        <div class="num">12</div>
+        <div class="label">States Active</div>
+        <div class="divider"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- D4 Insights — magazine spread -->
+<section class="d4-insights">
+  <div class="container">
+    <div class="d4-insights-eyebrow">Insights</div>
+    <h2>Stories From the Field</h2>
+    <div class="d4-insights-grid">
+      <div class="d4-insight-featured">
+        <div class="tag">Featured</div>
+        <h3>Scaling Sustainable Farming Practices Across Northern Nigeria</h3>
+        <p>An in-depth look at how our crop farming division is implementing precision agriculture across 5,000 hectares of cultivated land, transforming yields while reducing environmental impact. This initiative represents a blueprint for modern Nigerian agriculture.</p>
+      </div>
+      <div class="d4-insight-sm">
+        <div class="tag">Trade</div>
+        <h3>Navigating Cross-Border Commodity Markets in West Africa</h3>
+        <p>Emerging trade corridors and market access strategies from our trade divisions.</p>
+      </div>
+      <div class="d4-insight-sm">
+        <div class="tag">Corporate</div>
+        <h3>GRCL Expands Real Estate Portfolio in Abuja</h3>
+        <p>Three new commercial developments announced as part of our growth strategy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- D4 CTA -->
+<section class="d4-cta">
+  <div class="d4-cta-gold"></div>
+  <h2>Let's Write the Next Chapter Together</h2>
+  <p>Whether you are an investor evaluating opportunity, a partner seeking collaboration, or a customer looking for capability, we welcome the conversation.</p>
+  <a href="#" class="d4-cta-btn">Get in Touch</a>
+</section>
+
+<!-- D4 Footer — richer treatment -->
+<footer class="d4-footer">
+  <div class="d4-footer-top">
+    <div class="d4-footer-story">
+      <div class="logo">Citadel<span>.</span></div>
+      <p>Global Resources Citadel Limited is a diversified Nigerian conglomerate building integrated value chains across agriculture, trade, real estate, and energy. Founded with a vision to create sustainable economic impact, we operate seven business divisions that work together to strengthen Nigeria's economic foundations.</p>
+    </div>
+    <div class="d4-footer-links">
+      <div class="d4-footer-col">
+        <h4>Company</h4>
+        <a href="#">About Us</a>
+        <a href="#">Leadership</a>
+        <a href="#">Careers</a>
+        <a href="#">Contact</a>
+      </div>
+      <div class="d4-footer-col">
+        <h4>Divisions</h4>
+        <a href="#">Crop Farming</a>
+        <a href="#">Animal Husbandry</a>
+        <a href="#">Agro-Processing</a>
+        <a href="#">Commodity Marketing</a>
+        <a href="#">Import &amp; Export</a>
+        <a href="#">Real Estate</a>
+        <a href="#">Oil &amp; Gas</a>
+      </div>
+      <div class="d4-footer-col">
+        <h4>Resources</h4>
+        <a href="#">News</a>
+        <a href="#">Insights</a>
+        <a href="#">Media Kit</a>
+      </div>
+      <div class="d4-footer-col">
+        <h4>Legal</h4>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="#">Compliance</a>
+      </div>
+    </div>
+  </div>
+  <div class="d4-footer-bottom">&copy; 2026 Global Resources Citadel Limited. All rights reserved.</div>
+</footer>
+
+</body>
+</html>

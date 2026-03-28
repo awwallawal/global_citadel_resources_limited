@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 120" width="480" height="120">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&amp;display=swap');
+    </style>
+  </defs>
+
+  <!-- GRC Monogram — reversed: white on gold ring -->
+  <circle cx="52" cy="60" r="42" fill="#FFFFFF" stroke="#B48A3E" stroke-width="2.5"/>
+  <text x="52" y="70" text-anchor="middle" fill="#14532D" font-family="Poppins, sans-serif" font-weight="700" font-size="24" letter-spacing="2">GRC</text>
+
+  <!-- Stacked Wordmark — white/gold for dark backgrounds -->
+  <text x="118" y="34" fill="#D4AF6A" font-family="Poppins, sans-serif" font-weight="500" font-size="13" letter-spacing="4">GLOBAL RESOURCES</text>
+  <text x="118" y="74" fill="#FFFFFF" font-family="Poppins, sans-serif" font-weight="700" font-size="38" letter-spacing="7">CITADEL</text>
+  <text x="118" y="98" fill="rgba(255,255,255,0.6)" font-family="Poppins, sans-serif" font-weight="300" font-size="9" letter-spacing="5">LIMITED</text>
+</svg>
