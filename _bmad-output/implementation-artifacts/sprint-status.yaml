@@ -51,6 +51,7 @@ development_status:
   1-4-base-layouts-core-ui-components: done
   1-5-header-navigation-division-dropdown: done
   1-6-mobile-navigation: done
+  1-6b-faq-content-collection-component: done # FAQ infra: schema, seed data, FAQSection + FAQAccordion components
   1-7-footer-navigation: ready-for-dev
   1-8-breadcrumb-navigation: ready-for-dev
   epic-1-retrospective: optional
