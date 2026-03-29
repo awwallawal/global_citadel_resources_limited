@@ -111,6 +111,8 @@ No real map embed for MVP (Google Maps API requires billing setup and key manage
 
 ```astro
 ---
+import { cn } from '@/lib/utils';
+
 interface Props {
   name: string;
   type: 'head-office' | 'operational-site';
@@ -120,14 +122,13 @@ interface Props {
 }
 
 const { name, type, address, phone, hours } = Astro.props;
-const borderClass = type === 'head-office' ? 'border-primary-600' : 'border-neutral-300';
 ---
 
-<div class={`border-l-2 ${borderClass} pl-5 py-2`}>
+<div class={cn('border-l-2 pl-5 py-2', type === 'head-office' ? 'border-primary-600' : 'border-neutral-300')}>
   <h3 class="font-heading text-base font-semibold text-neutral-900">{name}</h3>
   <p class="mt-1 text-sm leading-relaxed text-neutral-600">{address}</p>
   {phone && (
-    <a href={`tel:${phone.replace(/\s/g, '')}`} class="mt-1 block text-sm text-neutral-600 hover:text-primary-600">
+    <a href={`tel:${phone.replace(/\s/g, '')}`} class="mt-1 block text-sm text-neutral-600 hover:text-primary-600 focus-visible:rounded focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2">
       {phone}
     </a>
   )}

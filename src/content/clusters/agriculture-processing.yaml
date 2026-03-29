@@ -1,0 +1,17 @@
+name: Agriculture & Processing
+slug: agriculture-processing
+tagline: "From field to finished product — integrated agricultural operations powering Nigeria's food value chain."
+overview: |
+  The Agriculture & Processing cluster is the foundation of Global Resources Citadel's business portfolio. Spanning crop farming, animal husbandry, and agro-processing, this cluster delivers a vertically integrated agricultural value chain that takes raw farm output and transforms it into market-ready products.
+
+  Nigeria's agricultural sector employs over 35% of the workforce and contributes significantly to GDP, yet productivity gaps and post-harvest losses remain persistent challenges. GRCL's Agriculture & Processing cluster addresses these gaps with modern farming techniques, controlled-environment livestock production, and industrial processing capacity — creating a reliable supply chain from farmland to consumer.
+
+  By operating across the full agricultural value chain, the cluster captures margin at every stage while reducing the inefficiencies that plague fragmented supply chains. This integrated approach also ensures quality control and traceability from the point of production through to the finished product.
+divisionSlugs:
+  - crop-farming
+  - animal-husbandry
+  - agro-processing
+seoTitle: "Agriculture & Processing — Global Resources Citadel"
+seoDescription: "Explore GRCL's Agriculture & Processing cluster. Integrated crop farming, animal husbandry, and agro-processing operations across Nigeria."
+accentColor: amber
+sortOrder: 1

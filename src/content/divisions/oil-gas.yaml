@@ -1,0 +1,33 @@
+name: Oil & Gas
+slug: oil-gas
+clusterSlug: built-environment-energy
+tier: aspirational
+tagline: "Positioning for Nigeria's evolving energy landscape through strategic partnerships"
+overview: |
+  The Oil & Gas division represents GRCL's entry into Nigeria's energy sector, focusing on downstream petroleum distribution and emerging opportunities in gas infrastructure. The division operates through strategic partnerships with established industry players, providing fuel distribution services and exploring investments in liquefied petroleum gas (LPG) distribution networks.
+
+  Nigeria's energy sector remains one of Africa's largest, and GRCL's approach prioritises low-risk entry points that leverage the Group's existing logistics capabilities and commercial relationships. The division's operations complement the Group's agricultural and trading activities by securing reliable energy supply for internal operations while generating independent revenue.
+
+  As an aspirational vertical, the Oil & Gas division is building its operational track record and regulatory credentials with a view to expanding into upstream service provision and renewable energy as the Nigerian market evolves.
+capabilities:
+  - icon: fuel
+    name: Fuel Distribution
+    description: "Downstream petroleum distribution serving commercial and retail customers across select Nigerian states."
+  - icon: flame
+    name: LPG Operations
+    description: "Liquefied petroleum gas sourcing and distribution targeting Nigeria's growing clean cooking fuel market."
+  - icon: users
+    name: Strategic Partnerships
+    description: "Joint ventures and operational partnerships with established Nigerian energy companies and international operators."
+stats:
+  - label: Distribution Points
+    value: 8
+  - label: Monthly Volume
+    value: 500000
+    unit: litres
+  - label: Partner Companies
+    value: 3
+contactEmail: oil-gas@globalresourcescitadel.com
+seoTitle: "Oil & Gas — Global Resources Citadel | Built Environment & Energy"
+seoDescription: "Explore Global Resources Citadel's Oil & Gas division. Fuel distribution, LPG operations, and energy sector partnerships across Nigeria."
+sortOrder: 2

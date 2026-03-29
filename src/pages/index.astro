@@ -1,19 +1,43 @@
 ---
-import '@/styles/globals.css';
+import PageLayout from '@/layouts/PageLayout.astro';
+import SectionWrapper from '@/components/layout/SectionWrapper.astro';
+import SectionHeading from '@/components/layout/SectionHeading.astro';
+import CTABanner from '@/components/shared/CTABanner.astro';
+import { generateMetadata, generateOrganizationJsonLd } from '@/lib/seo';
+import { validateContentIntegrity } from '@/lib/content-validation';
+
+await validateContentIntegrity();
+
+const seo = {
+  ...generateMetadata({
+    title: 'Home',
+    description:
+      'Global Resources Citadel Limited — a Nigerian conglomerate operating across agriculture, trade, real estate, and energy.',
+    path: '/',
+  }),
+  jsonLd: generateOrganizationJsonLd(),
+};
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>Global Resources Citadel</title>
-  </head>
-  <body>
-    <main>
-      <h1 class="font-heading text-2xl font-semibold">Global Resources Citadel</h1>
-      <p class="font-body">Platform initialization successful.</p>
-    </main>
-  </body>
-</html>
+<PageLayout seo={seo}>
+  <SectionWrapper variant="hero">
+    <h1 class="font-heading text-4xl font-semibold leading-tight text-white lg:text-6xl">
+      Building Nigeria's Future
+    </h1>
+    <p class="mt-6 max-w-2xl text-lg text-primary-100">
+      A diversified conglomerate delivering value across agriculture, trade, real estate, and energy.
+    </p>
+  </SectionWrapper>
+
+  <SectionWrapper variant="light">
+    <SectionHeading eyebrow="Our Business" subtitle="Driving growth across seven strategic divisions." centered>
+      The GRCL Advantage
+    </SectionHeading>
+  </SectionWrapper>
+
+  <CTABanner
+    heading="Ready to Partner With Us?"
+    body="Explore opportunities with one of Nigeria's most diversified conglomerates."
+    primaryCta={{ label: 'Get in Touch', href: '/contact' }}
+  />
+</PageLayout>

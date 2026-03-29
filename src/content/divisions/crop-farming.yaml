@@ -1,0 +1,36 @@
+name: Crop Farming
+slug: crop-farming
+clusterSlug: agriculture-processing
+tier: core
+tagline: "Feeding Nigeria's future through sustainable, large-scale crop production"
+overview: |
+  Global Resources Citadel's Crop Farming division anchors the Group's agricultural operations. With thousands of hectares under active cultivation across Nigeria's fertile middle belt, the division produces staple crops including maize, rice, soybeans, and cassava at commercial scale. Our farming operations integrate modern agronomic practices with deep local knowledge to deliver consistent yields that serve both domestic food security and export markets.
+
+  Backed by investment in mechanised farming equipment, precision irrigation, and post-harvest storage infrastructure, the Crop Farming division operates year-round cropping cycles that maximise land utilisation. Strategic partnerships with research institutions and seed companies ensure access to improved crop varieties suited to Nigeria's diverse agro-ecological zones.
+
+  The division's vertically integrated approach — from land preparation through harvest, storage, and primary processing — positions GRCL as a reliable upstream supplier to food manufacturers, commodity traders, and government food procurement programmes across West Africa.
+capabilities:
+  - icon: wheat
+    name: Large-Scale Cultivation
+    description: "Multi-crop farming operations spanning thousands of hectares across Nigeria's most productive agricultural belts."
+  - icon: warehouse
+    name: Post-Harvest Management
+    description: "Modern storage silos and preservation facilities that reduce post-harvest losses and maintain grain quality year-round."
+  - icon: sprout
+    name: Seed Technology
+    description: "Research-backed seed selection and breeding programmes delivering high-yield, disease-resistant crop varieties."
+  - icon: droplets
+    name: Irrigation Systems
+    description: "Precision irrigation infrastructure enabling year-round cultivation independent of seasonal rainfall patterns."
+stats:
+  - label: Hectares Under Cultivation
+    value: 5000
+  - label: Annual Yield
+    value: 12000
+    unit: tonnes
+  - label: Years of Operation
+    value: 15
+contactEmail: crop-farming@globalresourcescitadel.com
+seoTitle: "Crop Farming — Global Resources Citadel | Agriculture & Processing"
+seoDescription: "Explore Global Resources Citadel's Crop Farming division. Large-scale cultivation, post-harvest management, and seed technology across Nigeria."
+sortOrder: 1

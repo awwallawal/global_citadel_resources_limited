@@ -1,0 +1,32 @@
+name: Import & Export
+slug: import-export
+clusterSlug: trade-markets
+tier: supporting
+tagline: "Facilitating cross-border trade that strengthens Nigeria's global commerce position"
+overview: |
+  The Import & Export division manages GRCL's international trade operations, handling the movement of goods across Nigeria's borders with efficiency and regulatory compliance. The division imports industrial equipment, agricultural inputs, and specialised materials that support the Group's operational divisions, while exporting Nigerian commodities and processed goods to markets across Africa and beyond.
+
+  With expertise in customs clearance, trade finance, and international logistics, the division navigates the complexities of cross-border commerce on behalf of both GRCL entities and third-party clients. Our team maintains relationships with shipping lines, freight forwarders, and port authorities to ensure smooth cargo movement through Nigeria's major ports.
+
+  The Import & Export division plays a critical role in GRCL's vertical integration strategy, ensuring that the Group's farming and processing operations have reliable access to the equipment, inputs, and export channels they need to compete at scale.
+capabilities:
+  - icon: ship
+    name: International Logistics
+    description: "Full-service freight management including ocean, air, and overland transport coordination across multiple trade corridors."
+  - icon: file-text
+    name: Customs & Compliance
+    description: "Expert customs brokerage and regulatory compliance services ensuring smooth clearance at Nigerian ports."
+  - icon: credit-card
+    name: Trade Finance
+    description: "Letters of credit, trade insurance, and financing arrangements that facilitate large-scale cross-border transactions."
+stats:
+  - label: Countries Traded With
+    value: 15
+  - label: Annual Shipments
+    value: 350
+  - label: Years in Trade
+    value: 12
+contactEmail: import-export@globalresourcescitadel.com
+seoTitle: "Import & Export — Global Resources Citadel | Trade & Markets"
+seoDescription: "Discover Global Resources Citadel's Import & Export division. International logistics, customs brokerage, and cross-border trade services."
+sortOrder: 2

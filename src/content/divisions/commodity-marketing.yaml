@@ -1,0 +1,36 @@
+name: Commodity Marketing
+slug: commodity-marketing
+clusterSlug: trade-markets
+tier: core
+tagline: "Connecting Nigerian commodities to domestic and international markets"
+overview: |
+  Global Resources Citadel's Commodity Marketing division serves as the commercial engine of the Group's trade operations, managing the sourcing, aggregation, and sale of agricultural commodities across domestic and international markets. The division handles high-volume transactions in grains, oilseeds, and cash crops, leveraging deep market intelligence and established buyer relationships.
+
+  Operating from strategically located trading offices, the division provides price discovery, logistics coordination, and risk management services that help Nigerian producers access premium markets. Our trading desks maintain relationships with food manufacturers, export houses, and institutional buyers across West Africa, the Middle East, and Europe.
+
+  The Commodity Marketing division's strength lies in its ability to aggregate supply from multiple sources — including GRCL's own farming operations — and deliver consistent quality and volume to buyers who require reliability above all else.
+capabilities:
+  - icon: bar-chart-3
+    name: Market Intelligence
+    description: "Real-time commodity price tracking and market analysis informing strategic buying and selling decisions."
+  - icon: truck
+    name: Logistics Coordination
+    description: "End-to-end supply chain management from farm-gate aggregation through port delivery and export documentation."
+  - icon: handshake
+    name: Buyer Relationships
+    description: "Established networks with domestic manufacturers, regional traders, and international commodity houses."
+  - icon: shield
+    name: Quality Assurance
+    description: "Standardised grading, sampling, and quality certification for all traded commodities."
+stats:
+  - label: Annual Trade Volume
+    value: 45000
+    unit: tonnes
+  - label: Active Trade Partners
+    value: 120
+  - label: Markets Served
+    value: 8
+contactEmail: commodity-marketing@globalresourcescitadel.com
+seoTitle: "Commodity Marketing — Global Resources Citadel | Trade & Markets"
+seoDescription: "Explore Global Resources Citadel's Commodity Marketing division. Agricultural commodity trading, market intelligence, and logistics across Africa."
+sortOrder: 1

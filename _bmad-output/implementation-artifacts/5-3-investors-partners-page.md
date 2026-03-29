@@ -19,7 +19,7 @@ So that I can evaluate whether GRCL is worth a partnership or investment convers
 7. Section 7 (Strategic Inquiry CTA): gold accent CTABanner with "Start a Conversation" heading and dual buttons linking to `/contact/strategic/`
 8. Breadcrumbs: Home > Investors & Partners
 9. SEO: WebPage + Organization structured data
-10. Content sourced from pages/investors-partners.mdx content collection entry
+10. Content sourced from pages/investors-partners.mdx content collection entry. **Prerequisite:** Story 5.1's `pageSchema` extension must also include `whyPartner: z.string().optional()` for this page's frontmatter field — Zod strips unknown keys by default.
 
 ## Tasks / Subtasks
 
@@ -33,11 +33,11 @@ So that I can evaluate whether GRCL is worth a partnership or investment convers
   - [ ] 1.7 Fetch clusters, divisions, leaders (featured), credentials, articles
 
 - [ ] Task 2: Build Page Hero (AC: #1)
-  - [ ] 2.1 SectionWrapper variant="hero" or primary gradient background
+  - [ ] 2.1 SectionWrapper `variant="hero"` (gradient primary-900→700, white text). This is the investor credibility page — the premium dark gradient hero is appropriate per the epics' "premium background." Unlike hub pages (3.1, 4.1, 5.1) which use the light `variant="primary"`, this page warrants the full dark hero treatment.
   - [ ] 2.2 Gold eyebrow: "Investors & Partners"
   - [ ] 2.3 H1: "Partner With a Group Built for Scale"
   - [ ] 2.4 Sub-heading: 1-2 sentences framing the investment case
-  - [ ] 2.5 White text on dark/gradient background
+  - [ ] 2.5 Centered text layout, constrained max-width (`max-w-3xl`)
 
 - [ ] Task 3: Build Why Partner section (AC: #2)
   - [ ] 3.1 SectionWrapper variant="default" (white)
@@ -143,7 +143,7 @@ Reuse LeaderCard from Story 5.2 but in a compact variant (no bio expand, just ph
     </div>
   </div>
 ))}
-<a href="/about/#leadership" class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary-600 hover:text-primary-700">
+<a href="/about/#leadership" class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary-600 hover:text-primary-700 focus-visible:rounded focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2">
   View Full Team <span>→</span>
 </a>
 ```
@@ -162,7 +162,7 @@ Reuse LeaderCard from Story 5.2 but in a compact variant (no bio expand, just ph
     </div>
   </div>
 ))}
-<a href="/about/#credentials" class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary-600 hover:text-primary-700">
+<a href="/about/#credentials" class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary-600 hover:text-primary-700 focus-visible:rounded focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2">
   View All Credentials <span>→</span>
 </a>
 ```

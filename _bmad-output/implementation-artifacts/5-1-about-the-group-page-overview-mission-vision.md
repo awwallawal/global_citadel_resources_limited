@@ -17,7 +17,7 @@ So that I can assess the company's legitimacy and values before engaging further
 5. AnchorNav horizontally scrollable on mobile with fade indicators
 6. Breadcrumbs: Home > About the Group
 7. SEO metadata: Organization + AboutPage structured data
-8. Content sourced from pages/about.mdx content collection entry
+8. Content sourced from pages/about.mdx content collection entry. **Prerequisite:** Story 1.3's `pageSchema` must be extended with optional About-specific fields (`mission`, `vision`, `values` array) — Zod strips unknown keys by default, so these frontmatter fields will be silently dropped without schema changes.
 
 ## Tasks / Subtasks
 
@@ -30,11 +30,12 @@ So that I can assess the company's legitimacy and values before engaging further
   - [ ] 1.6 Breadcrumb JSON-LD
   - [ ] 1.7 Fetch content from pages/about.mdx collection entry
 
-- [ ] Task 2: Build PageHero (AC: #1)
-  - [ ] 2.1 Gold eyebrow: "About the Group"
-  - [ ] 2.2 H1: "Who We Are"
-  - [ ] 2.3 Sub-heading: positioning statement (max 30 words)
-  - [ ] 2.4 Subtle background (primary-50 or light gradient — differentiate from homepage hero)
+- [ ] Task 2: Build page hero inline (AC: #1)
+  - [ ] 2.1 Build inline with SectionWrapper `variant="primary"` (primary-50 bg) — same pattern as Stories 3.1 and 4.1. Do NOT use the dark-gradient PageHero component.
+  - [ ] 2.2 Gold eyebrow: "About the Group"
+  - [ ] 2.3 H1: "Who We Are"
+  - [ ] 2.4 Sub-heading: positioning statement (max 30 words)
+  - [ ] 2.5 Centered text layout, constrained max-width (`max-w-3xl`)
 
 - [ ] Task 3: Create AnchorNav.astro component (AC: #2, #5)
   - [ ] 3.1 Create `src/components/shared/AnchorNav.astro` (static shell)
@@ -45,8 +46,9 @@ So that I can assess the company's legitimacy and values before engaging further
   - [ ] 3.6 Horizontal scrollable on mobile: `overflow-x-auto` with `scrollbar-hide`
   - [ ] 3.7 Active state: `text-primary-600 border-b-2 border-primary-600` on current section
   - [ ] 3.8 IntersectionObserver scroll-spy: observe all `#section-id` elements, highlight matching nav item
-  - [ ] 3.9 Smooth scroll on click: `scroll-behavior: smooth` or `element.scrollIntoView({ behavior: 'smooth' })`
-  - [ ] 3.10 Mobile fade indicators at scroll edges (CSS gradient overlays)
+  - [ ] 3.9 Smooth scroll on click: `element.scrollIntoView({ behavior: 'smooth' })` — BUT respect reduced motion: check `window.matchMedia('(prefers-reduced-motion: reduce)').matches` and use `behavior: 'auto'` (instant) if true
+  - [ ] 3.10 Focus-visible on all nav links: `focus-visible:rounded focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2`
+  - [ ] 3.11 Mobile fade indicators at scroll edges (CSS gradient overlays)
 
 - [ ] Task 4: Build Overview section (#overview) (AC: #3)
   - [ ] 4.1 SectionWrapper variant="default", `id="overview"`
@@ -123,6 +125,7 @@ AnchorNav needs scroll-spy (IntersectionObserver) which requires client-side JS.
 
 ```tsx
 import { useState, useEffect } from 'react';
+import { cn } from '@/lib/utils';
 
 interface AnchorNavClientProps {
   items: Array<{ label: string; href: string }>;
@@ -130,6 +133,9 @@ interface AnchorNavClientProps {
 
 export default function AnchorNavClient({ items }: AnchorNavClientProps) {
   const [activeId, setActiveId] = useState(items[0]?.href.slice(1) || '');
+
+  const prefersReducedMotion = typeof window !== 'undefined'
+    && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -150,6 +156,14 @@ export default function AnchorNavClient({ items }: AnchorNavClientProps) {
     return () => observer.disconnect();
   }, [items]);
 
+  function handleClick(e: React.MouseEvent<HTMLAnchorElement>, href: string) {
+    e.preventDefault();
+    const el = document.getElementById(href.slice(1));
+    if (el) {
+      el.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+    }
+  }
+
   return (
     <nav
       aria-label="Page sections"
@@ -160,8 +174,9 @@ export default function AnchorNavClient({ items }: AnchorNavClientProps) {
           <a
             key={item.href}
             href={item.href}
+            onClick={(e) => handleClick(e, item.href)}
             className={cn(
-              'whitespace-nowrap border-b-2 px-4 py-3 text-sm font-medium transition-colors',
+              'whitespace-nowrap border-b-2 px-4 py-3 text-sm font-medium transition-colors focus-visible:rounded focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2',
               activeId === item.href.slice(1)
                 ? 'border-primary-600 text-primary-600'
                 : 'border-transparent text-neutral-500 hover:text-neutral-900'
@@ -227,6 +242,26 @@ Values are placeholders — exact founding year and HQ city from client.
 ### Content from MDX Collection
 
 Story 1.3 creates `src/content/pages/about.mdx` as a placeholder. This story populates it with realistic content for the Overview, Mission, and Vision sections. The MDX body can include frontmatter fields for structured data (mission statement, vision statement, values array) plus prose body for the overview paragraphs.
+
+**IMPORTANT: Schema extension required.** Story 1.3's `pageSchema` only has `title`, `seoTitle`, `seoDescription`, `lastUpdated`. The About-specific frontmatter fields (`mission`, `vision`, `values`) must be added as optional fields to the schema, otherwise Zod will strip them at build time:
+
+```typescript
+// Extend pageSchema in src/content/config.ts
+const pageSchema = z.object({
+  title: z.string(),
+  seoTitle: z.string(),
+  seoDescription: z.string().max(160),
+  lastUpdated: z.string().optional(),
+  // About page extensions (optional — only used by about.mdx)
+  mission: z.string().optional(),
+  vision: z.string().optional(),
+  values: z.array(z.object({
+    icon: z.string(),
+    title: z.string(),
+    description: z.string(),
+  })).optional(),
+});
+```
 
 ```yaml
 ---

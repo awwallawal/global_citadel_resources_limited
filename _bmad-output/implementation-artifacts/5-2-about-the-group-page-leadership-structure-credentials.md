@@ -85,8 +85,8 @@ So that I can evaluate the governance and legitimacy of the business.
   - [ ] 7.5 Fetch credentials from credentials collection
   - [ ] 7.6 Show first 6 by default; "Show All" toggle if >6 (use `<details>`/`<summary>`)
 
-- [ ] Task 8: Add CTA Band and Values section (AC: #5)
-  - [ ] 8.1 Replace #values placeholder with values content (if not already in Story 5.1's Mission section)
+- [ ] Task 8: Add CTA Band and resolve Values section (AC: #5)
+  - [ ] 8.1 **Values section resolution:** Story 5.1's Mission & Vision section (AC #4) includes "optional row of 3-4 value cards." If those ARE populated in Story 5.1, remove the empty #values placeholder section and update AnchorNav to point the "Values" link at `#mission-vision` instead. If Story 5.1 omits value cards, populate #values as a standalone section (SectionWrapper variant="light", `id="values"`) with the value cards (icon + title + description) from the `about.mdx` frontmatter `values` array.
   - [ ] 8.2 CTABanner dark variant: "Interested in Working With Us?"
   - [ ] 8.3 Dual CTAs: "Contact Us" → `/contact/`, "Explore Divisions" → `/divisions/`
 
@@ -165,7 +165,7 @@ Styled HTML tree using CSS flexbox + borders for connecting lines. No SVG needed
           <!-- Level 3: Divisions -->
           <div class="flex flex-col gap-2">
             {cluster.divisions.map(div => (
-              <a href={`/divisions/${div.slug}/`} class="rounded border border-neutral-200 px-3 py-1.5 text-xs text-neutral-700 hover:border-primary-300 hover:text-primary-600">
+              <a href={`/divisions/${div.slug}/`} class="rounded border border-neutral-200 px-3 py-1.5 text-xs text-neutral-700 hover:border-primary-300 hover:text-primary-600 focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2">
                 {div.name}
               </a>
             ))}
@@ -188,7 +188,7 @@ Styled HTML tree using CSS flexbox + borders for connecting lines. No SVG needed
           {cluster.name}
         </div>
         {cluster.divisions.map(div => (
-          <a href={`/divisions/${div.slug}/`} class="mt-1 ml-4 block text-xs text-neutral-600 hover:text-primary-600">
+          <a href={`/divisions/${div.slug}/`} class="mt-1 ml-4 block rounded text-xs text-neutral-600 hover:text-primary-600 focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2">
             {div.name}
           </a>
         ))}
@@ -214,7 +214,7 @@ const hiddenCredentials = credentials.slice(6);
 
 {hiddenCredentials.length > 0 && (
   <details class="mt-6">
-    <summary class="cursor-pointer text-sm font-semibold text-primary-600 hover:text-primary-700">
+    <summary class="cursor-pointer text-sm font-semibold text-primary-600 hover:text-primary-700 focus-visible:rounded focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2">
       Show All ({credentials.length} total)
     </summary>
     <div class="mt-4 grid grid-cols-2 md:grid-cols-3 gap-6">

@@ -1,0 +1,34 @@
+---
+import { cn } from '@/lib/utils';
+
+interface Props {
+  variant?: 'default' | 'light' | 'dark' | 'primary' | 'hero';
+  id?: string;
+  class?: string;
+  as?: 'section' | 'div' | 'aside';
+}
+
+const {
+  variant = 'default',
+  id,
+  class: className,
+  as: Element = 'section',
+} = Astro.props;
+
+const variantClasses = {
+  default: 'bg-white text-neutral-900',
+  light: 'bg-neutral-50 text-neutral-900',
+  dark: 'bg-neutral-900 text-white',
+  primary: 'bg-primary-50 text-neutral-900',
+  hero: 'bg-gradient-to-br from-primary-900 to-primary-700 text-white',
+};
+---
+
+<Element
+  id={id}
+  class={cn('py-16 lg:py-24', variantClasses[variant], className)}
+>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <slot />
+  </div>
+</Element>

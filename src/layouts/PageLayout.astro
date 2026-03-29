@@ -1,0 +1,21 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/layout/Header.astro';
+import type { SeoMetadata } from '@/lib/seo';
+
+interface Props {
+  seo: SeoMetadata;
+  headerVariant?: 'solid' | 'transparent';
+}
+
+const { seo, headerVariant = 'solid' } = Astro.props;
+---
+
+<BaseLayout {...seo}>
+  <Header currentPath={Astro.url.pathname} headerVariant={headerVariant} />
+  <slot name="breadcrumb" />
+  <main id="main">
+    <slot />
+  </main>
+  <slot name="footer" />
+</BaseLayout>

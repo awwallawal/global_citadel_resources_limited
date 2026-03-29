@@ -1,6 +1,6 @@
 # Story 1.3: Content Collections & Seed Data
 
-Status: ready-for-dev
+Status: done
 
 ## Story
 
@@ -19,52 +19,52 @@ So that all pages can query structured, type-safe content for divisions, cluster
 
 ## Tasks / Subtasks
 
-- [ ] Task 1: Define Zod enums for controlled taxonomy (AC: #6)
-  - [ ] 1.1 Define `divisionSlugEnum` — 7 division slugs
-  - [ ] 1.2 Define `clusterSlugEnum` — 3 cluster slugs
-  - [ ] 1.3 Define `sectionEnum` — home, about, divisions, insights, investors-partners, contact, search
-  - [ ] 1.4 Define `audienceEnum` — investor-partner, prospect-customer, general-public, internal-editor
-  - [ ] 1.5 Define `insightStreamEnum` — company-news, announcements, operational-updates, thought-leadership, industry-commentary, division-insight
-  - [ ] 1.6 Define `contactRouteEnum` — general-corporate, division-business, strategic-partnership, investor-institutional
-  - [ ] 1.7 Define `divisionTierEnum` — core, supporting, aspirational
+- [x] Task 1: Define Zod enums for controlled taxonomy (AC: #6)
+  - [x] 1.1 Define `divisionSlugEnum` — 7 division slugs
+  - [x] 1.2 Define `clusterSlugEnum` — 3 cluster slugs
+  - [x] 1.3 Define `sectionEnum` — home, about, divisions, insights, investors-partners, contact, search
+  - [x] 1.4 Define `audienceEnum` — investor-partner, prospect-customer, general-public, internal-editor
+  - [x] 1.5 Define `insightStreamEnum` — company-news, announcements, operational-updates, thought-leadership, industry-commentary, division-insight
+  - [x] 1.6 Define `contactRouteEnum` — general-corporate, division-business, strategic-partnership, investor-institutional
+  - [x] 1.7 Define `divisionTierEnum` — core, supporting, aspirational
 
-- [ ] Task 2: Create division collection schema and seed data (AC: #1, #2)
-  - [ ] 2.1 Define `divisionSchema` with all required and optional fields
-  - [ ] 2.2 Create seed YAML for all 7 divisions with complete data
-  - [ ] 2.3 Verify build succeeds with all division data
+- [x] Task 2: Create division collection schema and seed data (AC: #1, #2)
+  - [x] 2.1 Define `divisionSchema` with all required and optional fields
+  - [x] 2.2 Create seed YAML for all 7 divisions with complete data
+  - [x] 2.3 Verify build succeeds with all division data
 
-- [ ] Task 3: Create cluster collection schema and seed data (AC: #1, #3)
-  - [ ] 3.1 Define `clusterSchema` with fields and division membership array
-  - [ ] 3.2 Create seed YAML for all 3 clusters
-  - [ ] 3.3 Verify cluster-division relationships are correct
+- [x] Task 3: Create cluster collection schema and seed data (AC: #1, #3)
+  - [x] 3.1 Define `clusterSchema` with fields and division membership array
+  - [x] 3.2 Create seed YAML for all 3 clusters
+  - [x] 3.3 Verify cluster-division relationships are correct
 
-- [ ] Task 4: Create article collection schema (AC: #1)
-  - [ ] 4.1 Define `articleSchema` with frontmatter fields (MDX collection)
-  - [ ] 4.2 Create 1-2 placeholder seed articles to validate schema
-  - [ ] 4.3 Verify MDX body content renders
+- [x] Task 4: Create article collection schema (AC: #1)
+  - [x] 4.1 Define `articleSchema` with frontmatter fields (MDX collection)
+  - [x] 4.2 Create 1-2 placeholder seed articles to validate schema
+  - [x] 4.3 Verify MDX body content renders
 
-- [ ] Task 5: Create team collection schema (AC: #1)
-  - [ ] 5.1 Define `teamSchema` with leadership fields
-  - [ ] 5.2 Create 2-3 placeholder team entries to validate schema
+- [x] Task 5: Create team collection schema (AC: #1)
+  - [x] 5.1 Define `teamSchema` with leadership fields
+  - [x] 5.2 Create 2-3 placeholder team entries to validate schema
 
-- [ ] Task 6: Create credentials collection schema (AC: #1)
-  - [ ] 6.1 Define `credentialSchema` with certification fields
-  - [ ] 6.2 Configure credentials collection with `file()` loader (single YAML file with array of entries, NOT directory-based — see architecture.md line 629)
-  - [ ] 6.3 Create `src/content/credentials/credentials.yaml` with 2-3 placeholder entries as a YAML array
+- [x] Task 6: Create credentials collection schema (AC: #1)
+  - [x] 6.1 Define `credentialSchema` with certification fields
+  - [x] 6.2 Configure credentials collection with `file()` loader (single YAML file with array of entries, NOT directory-based — see architecture.md line 629)
+  - [x] 6.3 Create `src/content/credentials/credentials.yaml` with 2-3 placeholder entries as a YAML array
 
-- [ ] Task 7: Create pages collection schema (AC: #1)
-  - [ ] 7.1 Define `pageSchema` for static prose pages (MDX)
-  - [ ] 7.2 Create placeholder about.mdx and investors-partners.mdx
+- [x] Task 7: Create pages collection schema (AC: #1)
+  - [x] 7.1 Define `pageSchema` for static prose pages (MDX)
+  - [x] 7.2 Create placeholder about.mdx and investors-partners.mdx
 
-- [ ] Task 8: Export types and verify build (AC: #4, #5)
-  - [ ] 8.1 Export all collection types from config.ts
-  - [ ] 8.2 Verify `astro build` fails on missing required fields (test by temporarily removing one)
-  - [ ] 8.3 Verify TypeScript types are importable via `import type { ... } from '@/content/config'`
+- [x] Task 8: Export types and verify build (AC: #4, #5)
+  - [x] 8.1 Export all collection types from config.ts
+  - [x] 8.2 Verify `astro build` fails on missing required fields (test by temporarily removing one)
+  - [x] 8.3 Verify TypeScript types are importable via `import type { ... } from '@/content/config'`
 
-- [ ] Task 9: Create division helper utilities in `src/lib/divisions.ts` (AC: #5)
-  - [ ] 9.1 Implement `getDivisionBySlug()`
-  - [ ] 9.2 Implement `getClusterDivisions()`
-  - [ ] 9.3 Implement `getDivisionsByCluster()`
+- [x] Task 9: Create division helper utilities in `src/lib/divisions.ts` (AC: #5)
+  - [x] 9.1 Implement `getDivisionBySlug()`
+  - [x] 9.2 Implement `getClusterDivisions()`
+  - [x] 9.3 Implement `getDivisionsByCluster()`
 
 ## Dev Notes
 
@@ -489,8 +489,68 @@ Files this story creates or modifies:
 
 ### Agent Model Used
 
+Claude Opus 4.6 (1M context)
+
 ### Debug Log References
+
+- Astro 6 Content Layer API requires config at `src/content.config.ts` (not `src/content/config.ts`). Generated types reference `"./../src/content.config.js"`.
+- MDX collections require `@astrojs/mdx` integration — installed and added to `astro.config.mjs`.
+- Schema validation confirmed working: `astro sync` rejects entries with missing required fields or constraint violations (e.g., seoDescription > 160 chars).
+- `tsc --noEmit` fails on `astro:content` virtual module outside Astro pipeline — this is expected. `astro build` handles type validation correctly.
 
 ### Completion Notes List
 
+- All 7 Zod taxonomy enums defined in `src/content.config.ts`: divisionSlugEnum, clusterSlugEnum, divisionTierEnum, sectionEnum, audienceEnum, insightStreamEnum, contactRouteEnum
+- 6 collection schemas defined: divisionSchema, clusterSchema, articleSchema, teamSchema, credentialSchema, pageSchema
+- 6 collections registered with correct loaders: glob() for divisions/clusters/articles/team/pages, file() for credentials
+- 7 division seed YAML files with realistic Nigerian business content (taglines, overviews, capabilities, stats)
+- 3 cluster seed YAML files with accent colours and division membership arrays
+- 2 article seed MDX files: 1 company-news (no division tag), 1 division-insight (tagged crop-farming)
+- 3 team seed YAML files with realistic Nigerian executive profiles
+- 1 credentials YAML file with 3 entries (ISO 9001, ISO 14001, NAFDAC)
+- 2 page seed MDX files: about.mdx, investors-partners.mdx
+- Division helper utilities implemented: getDivisionBySlug(), getClusterDivisions(), getDivisionsByCluster()
+- Type re-export barrel at `src/content/config.ts` enables `@/content/config` imports
+- 13 inferred types exported: Division, Cluster, Article, TeamMember, Credential, Page, DivisionSlug, ClusterSlug, DivisionTier, Section, Audience, InsightStream, ContactRoute
+- `@astrojs/mdx` added as dependency and integrated in astro.config.mjs
+- Full build passes with zero errors/warnings
+
 ### File List
+
+- `src/content.config.ts` — NEW: Main content config with Zod schemas, enums, collection definitions, type exports
+- `src/content/config.ts` — NEW: Re-export barrel for `@/content/config` import path
+- `src/content/divisions/crop-farming.yaml` — NEW: Crop Farming seed data
+- `src/content/divisions/animal-husbandry.yaml` — NEW: Animal Husbandry seed data
+- `src/content/divisions/agro-processing.yaml` — NEW: Agro-Processing seed data
+- `src/content/divisions/commodity-marketing.yaml` — NEW: Commodity Marketing seed data
+- `src/content/divisions/import-export.yaml` — NEW: Import & Export seed data
+- `src/content/divisions/real-estate.yaml` — NEW: Real Estate seed data
+- `src/content/divisions/oil-gas.yaml` — NEW: Oil & Gas seed data
+- `src/content/clusters/agriculture-processing.yaml` — NEW: Agriculture & Processing cluster
+- `src/content/clusters/trade-markets.yaml` — NEW: Trade & Markets cluster
+- `src/content/clusters/built-environment-energy.yaml` — NEW: Built Environment & Energy cluster
+- `src/content/articles/grcl-launches-corporate-platform.mdx` — NEW: Company news seed article
+- `src/content/articles/crop-farming-expansion-middle-belt.mdx` — NEW: Division insight seed article
+- `src/content/team/adebayo-okonkwo.yaml` — NEW: Group MD profile
+- `src/content/team/ngozi-eze.yaml` — NEW: CFO profile
+- `src/content/team/emeka-nwosu.yaml` — NEW: Director of Operations profile
+- `src/content/credentials/credentials.yaml` — NEW: 3 credential entries (ISO 9001, ISO 14001, NAFDAC)
+- `src/content/pages/about.mdx` — NEW: About page placeholder
+- `src/content/pages/investors-partners.mdx` — NEW: Investors & Partners page placeholder
+- `src/lib/divisions.ts` — MODIFIED: Implemented helper utilities
+- `astro.config.mjs` — MODIFIED: Added @astrojs/mdx integration
+- `package.json` — MODIFIED: @astrojs/mdx dependency added
+
+### Change Log
+
+- 2026-03-28: Story 1.3 implemented — all 6 content collections with Zod schemas, 7 division + 3 cluster seed data, MDX articles/pages, team/credential entries, division helper utilities, type exports. Installed @astrojs/mdx integration. Build passes.
+
+### Review Findings
+
+- [x] [Review][Patch] P1: `publishedAt` regex accepts invalid calendar dates — added `.refine()` for calendar validity ✓
+- [x] [Review][Patch] P2: `articleSchema.excerpt` has no max length — added `.max(300)` ✓
+- [x] [Review][Patch] P3: `clusterSchema.divisionSlugs` allows empty array — added `.min(1)` ✓
+- [x] [Review][Patch] P4: Helper functions accept `string` instead of typed enums — tightened to `DivisionSlug`/`ClusterSlug` ✓
+- [x] [Review][Patch] D1: Bi-directional cluster↔division cross-validation — added `validateContentIntegrity()` build-time check ✓
+- [x] [Review][Patch] D2: `divisionSchema.slug` vs filename mismatch — enforced via `validateContentIntegrity()` ✓
+- [x] [Review][Patch] D3: `pageSchema.lastUpdated` no date format validation — added regex + refine ✓

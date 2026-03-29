@@ -1,0 +1,76 @@
+---
+import '@/styles/globals.css';
+
+import poppins600Url from '@fontsource/poppins/files/poppins-latin-600-normal.woff2?url';
+import interUrl from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+  ogType?: string;
+  twitterCard?: string;
+  jsonLd?: Record<string, unknown>;
+}
+
+const {
+  title,
+  description,
+  canonical,
+  ogImage = '/og-default.png',
+  ogType = 'website',
+  twitterCard = 'summary_large_image',
+  jsonLd,
+} = Astro.props;
+
+const siteUrl = Astro.site?.href.replace(/\/$/, '') || 'https://globalresourcescitadel.com';
+const siteName = 'Global Resources Citadel';
+const canonicalUrl = canonical || new URL(Astro.url.pathname, siteUrl).href;
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO -->
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalUrl} />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:site_name" content={siteName} />
+  <meta property="og:type" content={ogType} />
+  <meta property="og:image" content={new URL(ogImage, siteUrl).href} />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content={twitterCard} />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={new URL(ogImage, siteUrl).href} />
+
+  <!-- Font Preloads -->
+  <link rel="preload" href={poppins600Url} as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href={interUrl} as="font" type="font/woff2" crossorigin />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- JSON-LD -->
+  {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd).replace(/</g, '\\u003c')} />}
+</head>
+<body class="font-body text-neutral-900 antialiased">
+  <a
+    href="#main"
+    class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-lg focus:bg-primary-600 focus:px-4 focus:py-3 focus:text-white focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+  >
+    Skip to main content
+  </a>
+  <slot />
+</body>
+</html>

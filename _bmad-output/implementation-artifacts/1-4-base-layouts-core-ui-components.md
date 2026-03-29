@@ -1,6 +1,6 @@
 # Story 1.4: Base Layouts & Core UI Components
 
-Status: ready-for-dev
+Status: done
 
 ## Story
 
@@ -23,78 +23,78 @@ So that I can use the platform comfortably on any device with any assistive tech
 
 ## Tasks / Subtasks
 
-- [ ] Task 1: Create BaseLayout.astro (AC: #1, #2)
-  - [ ] 1.1 HTML shell with `lang="en"`, charset, viewport meta
-  - [ ] 1.2 Import globals.css (fonts + Tailwind tokens from Story 1.2)
-  - [ ] 1.3 SEO head tags via props: title, description, canonical, OG, Twitter Card
-  - [ ] 1.4 Skip-to-main-content link as first focusable element (sr-only, visible on focus)
-  - [ ] 1.5 Font preload hints: `<link rel="preload" as="font" type="font/woff2" crossorigin>` for Poppins 600 and Inter 400 woff2 files (resolve paths from @fontsource output in node_modules). Critical for FCP on low-bandwidth Nigerian mobile connections.
-  - [ ] 1.6 Favicon link: `<link rel="icon" type="image/svg+xml" href="/favicon.svg" />`
-  - [ ] 1.7 `<slot />` for page content
+- [x] Task 1: Create BaseLayout.astro (AC: #1, #2)
+  - [x] 1.1 HTML shell with `lang="en"`, charset, viewport meta
+  - [x] 1.2 Import globals.css (fonts + Tailwind tokens from Story 1.2)
+  - [x] 1.3 SEO head tags via props: title, description, canonical, OG, Twitter Card
+  - [x] 1.4 Skip-to-main-content link as first focusable element (sr-only, visible on focus)
+  - [x] 1.5 Font preload hints: `<link rel="preload" as="font" type="font/woff2" crossorigin>` for Poppins 600 and Inter 400 woff2 files (resolve paths from @fontsource output in node_modules). Critical for FCP on low-bandwidth Nigerian mobile connections.
+  - [x] 1.6 Favicon link: `<link rel="icon" type="image/svg+xml" href="/favicon.svg" />`
+  - [x] 1.7 `<slot />` for page content
 
-- [ ] Task 2: Create PageLayout.astro (AC: #3)
-  - [ ] 2.1 Wraps BaseLayout with SEO props pass-through
-  - [ ] 2.2 Header slot (empty until Story 1.5)
-  - [ ] 2.3 Breadcrumb slot (empty until Story 1.8)
-  - [ ] 2.4 `<main id="main">` landmark wrapping `<slot />`
-  - [ ] 2.5 Footer slot (empty until Story 1.7)
+- [x] Task 2: Create PageLayout.astro (AC: #3)
+  - [x] 2.1 Wraps BaseLayout with SEO props pass-through
+  - [x] 2.2 Header slot (empty until Story 1.5)
+  - [x] 2.3 Breadcrumb slot (empty until Story 1.8)
+  - [x] 2.4 `<main id="main">` landmark wrapping `<slot />`
+  - [x] 2.5 Footer slot (empty until Story 1.7)
 
-- [ ] Task 3: Create SectionWrapper.astro (AC: #4)
-  - [ ] 3.1 Props: `variant`, `id`, `class`, `as` (HTML element tag)
-  - [ ] 3.2 Implement 5 background variants with cn() utility
-  - [ ] 3.3 Consistent padding: `py-16 lg:py-24`
-  - [ ] 3.4 Container: `max-w-7xl mx-auto px-4 sm:px-6 lg:px-8`
-  - [ ] 3.5 `<slot />` for section content
+- [x] Task 3: Create SectionWrapper.astro (AC: #4)
+  - [x] 3.1 Props: `variant`, `id`, `class`, `as` (HTML element tag)
+  - [x] 3.2 Implement 5 background variants with cn() utility
+  - [x] 3.3 Consistent padding: `py-16 lg:py-24`
+  - [x] 3.4 Container: `max-w-7xl mx-auto px-4 sm:px-6 lg:px-8`
+  - [x] 3.5 `<slot />` for section content
 
-- [ ] Task 4: Create SectionHeading.astro (AC: #5)
-  - [ ] 4.1 Props: heading text, `eyebrow`, `subtitle`, `centered`
-  - [ ] 4.2 Optional gold eyebrow: `text-gold-600 uppercase text-xs tracking-widest font-semibold`
-  - [ ] 4.3 H2: `font-heading font-semibold text-3xl lg:text-4xl leading-tight`
-  - [ ] 4.4 Optional subtitle: `text-lg text-neutral-600`
-  - [ ] 4.5 Wrapper spacing: `mb-10 lg:mb-12`
+- [x] Task 4: Create SectionHeading.astro (AC: #5)
+  - [x] 4.1 Props: heading text, `eyebrow`, `subtitle`, `centered`
+  - [x] 4.2 Optional gold eyebrow: `text-gold-600 uppercase text-xs tracking-widest font-semibold`
+  - [x] 4.3 H2: `font-heading font-semibold text-3xl lg:text-4xl leading-tight`
+  - [x] 4.4 Optional subtitle: `text-lg text-neutral-600`
+  - [x] 4.5 Wrapper spacing: `mb-10 lg:mb-12`
 
-- [ ] Task 5: Customize Button component via shadcn/ui (AC: #6)
-  - [ ] 5.1 Add/configure button variants in `src/components/ui/button.tsx`
-  - [ ] 5.2 Primary: `bg-primary-600 text-white hover:bg-primary-700`
-  - [ ] 5.3 Secondary: `border border-neutral-300 text-neutral-700 hover:bg-neutral-50`
-  - [ ] 5.4 Tertiary: `text-primary-600 hover:text-primary-700` with arrow icon + group-hover gap
-  - [ ] 5.5 Gold accent: `bg-gold-600 text-primary-900 hover:bg-gold-400 hover:-translate-y-px` (dark text on gold per design reference; translateY lift on hover)
-  - [ ] 5.6 Disabled: `bg-neutral-300 text-neutral-500 cursor-not-allowed`
-  - [ ] 5.7 Focus ring on all: `focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2`
-  - [ ] 5.8 Touch target: minimum `px-8 py-4` padding (44x44px)
-  - [ ] 5.9 Size variants: default, sm, lg
+- [x] Task 5: Customize Button component via shadcn/ui (AC: #6)
+  - [x] 5.1 Add/configure button variants in `src/components/ui/button.tsx`
+  - [x] 5.2 Primary: `bg-primary-600 text-white hover:bg-primary-700`
+  - [x] 5.3 Secondary: `border border-neutral-300 text-neutral-700 hover:bg-neutral-50`
+  - [x] 5.4 Tertiary: `text-primary-600 hover:text-primary-700` with arrow icon + group-hover gap
+  - [x] 5.5 Gold accent: `bg-gold-600 text-primary-900 hover:bg-gold-400 hover:-translate-y-px` (dark text on gold per design reference; translateY lift on hover)
+  - [x] 5.6 Disabled: `bg-neutral-300 text-neutral-500 cursor-not-allowed`
+  - [x] 5.7 Focus ring on all: `focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2`
+  - [x] 5.8 Touch target: minimum `px-8 py-4` padding (44x44px)
+  - [x] 5.9 Size variants: default, sm, lg
 
-- [ ] Task 6: Create CTABanner.astro (AC: #7)
-  - [ ] 6.1 Props: heading, body, primaryCta (label + href), secondaryCta (optional). Dark variant only — this is the only variant in the design reference. Additional variants (gold, green) can be added in future stories when a page actually needs them.
-  - [ ] 6.2 Dark variant: `bg-neutral-900` with white text + gold accent divider
-  - [ ] 6.3 Centered layout with max-width constraint
-  - [ ] 6.4 1-2 CTA buttons (gold accent variant) with proper spacing
+- [x] Task 6: Create CTABanner.astro (AC: #7)
+  - [x] 6.1 Props: heading, body, primaryCta (label + href), secondaryCta (optional). Dark variant only — this is the only variant in the design reference. Additional variants (gold, green) can be added in future stories when a page actually needs them.
+  - [x] 6.2 Dark variant: `bg-neutral-900` with white text + gold accent divider
+  - [x] 6.3 Centered layout with max-width constraint
+  - [x] 6.4 1-2 CTA buttons (gold accent variant) with proper spacing
 
-- [ ] Task 7: Create SEO utilities in `src/lib/seo.ts` (AC: #3)
-  - [ ] 7.1 `generateMetadata()` — returns title, description, canonical, OG tags, Twitter Card
-  - [ ] 7.2 `generateJsonLd()` — Organization, WebSite schema markup
-  - [ ] 7.3 Export SEO types
+- [x] Task 7: Create SEO utilities in `src/lib/seo.ts` (AC: #3)
+  - [x] 7.1 `generateMetadata()` — returns title, description, canonical, OG tags, Twitter Card
+  - [x] 7.2 `generateJsonLd()` — Organization, WebSite schema markup
+  - [x] 7.3 Export SEO types
 
-- [ ] Task 8: Prepare brand logo SVGs (AC: #10)
-  - [ ] 8.1 Inspect SVG files in `src/assets/brand/` for Google Fonts @import
-  - [ ] 8.2 Remove any external font imports from SVG source
-  - [ ] 8.3 Convert text elements to paths OR ensure self-hosted Poppins renders them
-  - [ ] 8.4 Verify all 4 logo variants render correctly
+- [x] Task 8: Prepare brand logo SVGs (AC: #10)
+  - [x] 8.1 Inspect SVG files in `src/assets/brand/` for Google Fonts @import
+  - [x] 8.2 Remove any external font imports from SVG source
+  - [x] 8.3 Convert text elements to paths OR ensure self-hosted Poppins renders them
+  - [x] 8.4 Verify all 4 logo variants render correctly
 
-- [ ] Task 9: Create PageHero.astro (inner pages, not homepage) — No direct AC in this story; consumed by Epic 3 division pages, Epic 5 About/Investors pages. Created here as a shared layout primitive alongside other layout components.
-  - [ ] 9.1 Props: title (H1), subtitle, breadcrumbSlot
-  - [ ] 9.2 Constrained height, dark gradient or image background
-  - [ ] 9.3 White text, centered or left-aligned
+- [x] Task 9: Create PageHero.astro (inner pages, not homepage) — No direct AC in this story; consumed by Epic 3 division pages, Epic 5 About/Investors pages. Created here as a shared layout primitive alongside other layout components.
+  - [x] 9.1 Props: title (H1), subtitle, breadcrumbSlot
+  - [x] 9.2 Constrained height, dark gradient or image background
+  - [x] 9.3 White text, centered or left-aligned
 
-- [ ] Task 10: Create ViewAllLink.astro — No direct AC in this story; consumed by Epic 2 homepage sections (divisions, insights). Created here as a shared UI primitive.
-  - [ ] 10.1 Props: href, label
-  - [ ] 10.2 Text link with arrow icon, group-hover gap animation
+- [x] Task 10: Create ViewAllLink.astro — No direct AC in this story; consumed by Epic 2 homepage sections (divisions, insights). Created here as a shared UI primitive.
+  - [x] 10.1 Props: href, label
+  - [x] 10.2 Text link with arrow icon, group-hover gap animation
 
-- [ ] Task 11: Accessibility verification (AC: #8, #9)
-  - [ ] 11.1 Verify skip-link works (Tab from page load → visible → links to #main)
-  - [ ] 11.2 Verify focus-visible rings on all buttons
-  - [ ] 11.3 Verify prefers-reduced-motion wrapping on all transitions
-  - [ ] 11.4 Verify single H1 per test page, heading hierarchy correct
+- [x] Task 11: Accessibility verification (AC: #8, #9)
+  - [x] 11.1 Verify skip-link works (Tab from page load → visible → links to #main)
+  - [x] 11.2 Verify focus-visible rings on all buttons
+  - [x] 11.3 Verify prefers-reduced-motion wrapping on all transitions
+  - [x] 11.4 Verify single H1 per test page, heading hierarchy correct
 
 ## Dev Notes
 
@@ -506,8 +506,70 @@ The canonical visual target is `_bmad-output/planning-artifacts/design-reference
 
 ### Agent Model Used
 
+Claude Opus 4.6 (1M context)
+
 ### Debug Log References
+
+- No blocking issues encountered during implementation.
+- Pre-existing TS errors in content.config.ts (Story 1.3) — unrelated to this story.
+- @radix-ui/react-slot not installed; Button component implemented without asChild pattern using standard button element.
+- All 4 brand SVGs already had text converted to paths — no modifications needed (Task 8).
 
 ### Completion Notes List
 
+- **BaseLayout.astro**: Full HTML shell with lang="en", SEO meta tags, font preloads (Vite-resolved via `?url` imports from @fontsource woff2 files), skip-to-main link, favicon, JSON-LD slot. Uses `Astro.site` for canonical URL resolution.
+- **PageLayout.astro**: Wraps BaseLayout with SEO prop passthrough. Named slots for header/breadcrumb/footer (empty until Stories 1.5/1.7/1.8). Main landmark with id="main".
+- **SectionWrapper.astro**: 5 variants (default/light/dark/primary/hero) via cn() utility. Polymorphic `as` prop for section/div/aside. Consistent py-16/lg:py-24 padding with max-w-7xl container.
+- **SectionHeading.astro**: H2 with Poppins semibold, optional gold-600 eyebrow (uppercase, tracking-widest), optional subtitle, centered/left alignment. mb-10/lg:mb-12 spacing.
+- **Button (button.tsx)**: CVA-based with 5 variants (primary/secondary/tertiary/gold/ghost) and 4 sizes (default/sm/lg/icon). All variants have focus-visible rings. motion-safe: prefix on all transitions. Default size provides 44px+ touch targets.
+- **CTABanner.astro**: Dark variant with neutral-900 bg, gold divider bar, responsive heading, body text, 1-2 gold accent CTA links. No arbitrary Tailwind values.
+- **SEO utilities (seo.ts)**: generateMetadata() for page SEO, generateOrganizationJsonLd() and generateWebSiteJsonLd() for structured data. Exports SeoMetadata type.
+- **PageHero.astro**: Inner page hero with H1, optional subtitle, breadcrumb slot, gradient background.
+- **ViewAllLink.astro**: Tertiary-style link with arrow icon and group-hover translate animation.
+- **Logo SVGs**: All 4 variants verified clean — paths only, no Google Fonts imports.
+- **index.astro**: Updated to use PageLayout + SectionWrapper + SectionHeading + CTABanner with real SEO metadata.
+- **Accessibility**: Skip-to-main link verified, focus-visible rings on all interactives, prefers-reduced-motion global fallback + motion-safe: prefix, single H1, correct heading hierarchy.
+
+### Change Log
+
+- 2026-03-29: Story 1.4 implemented — all 11 tasks complete, all ACs satisfied.
+
+### Review Findings
+
+#### Decision Needed (all resolved)
+
+- [x] [Review][Decision] **Missing `/og-default.jpg` — OG image will 404 on social shares** — Resolved: created branded placeholder `public/og-default.png` (1200x630, brand green + gold bar), updated defaults to .png.
+- [x] [Review][Decision] **CTABanner body text contrast borderline WCAG AA** — Resolved: bumped to `text-neutral-400` (~5.5:1 contrast).
+- [x] [Review][Decision] **CTABanner H2 `font-bold` vs system-wide `font-semibold`** — Resolved: kept `font-bold` per design reference intent.
+- [x] [Review][Decision] **CTABanner gold divider height 2px vs spec 3px** — Resolved: added `--height-divider: 3px` design token in globals.css, CTABanner uses `h-[--height-divider]`.
+
+#### Patches (all fixed)
+
+- [x] [Review][Patch] **JSON-LD script injection risk via `set:html`** — Fixed: escapes `<` as `\u003c` in serialized JSON-LD output.
+- [x] [Review][Patch] **Duplicate SEO metadata sources — seo.ts hardcodes URL/name** — Fixed: `SITE_URL` now uses `import.meta.env.SITE` with fallback.
+- [x] [Review][Patch] **PageLayout seo prop type duplicates SeoMetadata interface** — Fixed: imports `SeoMetadata` from `@/lib/seo`. Added `twitterCard` to SeoMetadata interface.
+- [x] [Review][Patch] **CTABanner duplicates buttonVariants gold styling** — Fixed: imports and uses `buttonVariants({ variant: 'gold', size: 'default' })` for primary CTA.
+- [x] [Review][Patch] **Unused dependencies: tw-animate-css, @base-ui/react** — Fixed: removed from package.json.
+- [x] [Review][Patch] **CTABanner secondary CTA missing `motion-safe:ease-out`** — Fixed: added to secondary CTA class string.
+- [x] [Review][Patch] **CTABanner focus ring-offset white on dark background** — Fixed: added `focus-visible:ring-offset-neutral-900` to both CTAs.
+- [x] [Review][Patch] **Empty `sameAs: []` in Organization JSON-LD** — Fixed: removed empty array.
+
+#### Deferred (all resolved)
+
+- [x] [Review][Resolved] **validateContentIntegrity() per-page scaling** — Fixed: added singleton guard, runs once per build regardless of call count.
+- [x] [Review][Resolved] **PageHero breadcrumb slot convention** — Fixed: added JSDoc documenting which breadcrumb slot to use when PageHero is present.
+- [x] [Review][Resolved] **Cluster accentColor schema unconstrained** — Fixed: constrained to `z.enum(['amber', 'copper', 'slate'])`, exported `ClusterAccentColor` type.
+- [x] [Review][Resolved] **Font fallback stacks** — Already resolved: `system-ui, sans-serif` fallbacks exist on both font families in globals.css.
+
 ### File List
+
+- src/layouts/BaseLayout.astro (created)
+- src/layouts/PageLayout.astro (created)
+- src/components/layout/SectionWrapper.astro (created)
+- src/components/layout/SectionHeading.astro (created)
+- src/components/ui/button.tsx (created)
+- src/components/shared/CTABanner.astro (created)
+- src/components/shared/PageHero.astro (created)
+- src/components/shared/ViewAllLink.astro (created)
+- src/lib/seo.ts (modified)
+- src/pages/index.astro (modified)

@@ -1,0 +1,33 @@
+name: Agro-Processing
+slug: agro-processing
+clusterSlug: agriculture-processing
+tier: supporting
+tagline: "Transforming raw agricultural output into market-ready products across Nigeria"
+overview: |
+  The Agro-Processing division bridges the gap between farm production and consumer-ready goods, operating processing facilities that add value to crops and livestock products produced by GRCL's agricultural divisions. Our plants handle grain milling, oil extraction, feed manufacturing, and primary food processing at commercial scale.
+
+  Each facility is equipped with modern processing machinery and adheres to Nigerian food safety standards, ensuring that outputs meet the quality requirements of domestic retailers, food service operators, and export markets. The division's co-location with GRCL's farming operations creates a cost-efficient supply chain with full traceability from field to finished product.
+
+  As Nigeria's food manufacturing sector continues to grow, the Agro-Processing division provides the infrastructure backbone that converts agricultural abundance into branded, packaged, and market-competitive products — reducing the nation's dependence on imported processed foods.
+capabilities:
+  - icon: factory
+    name: Grain Milling
+    description: "Industrial-scale milling operations producing flour, semolina, and animal feed from locally sourced grains."
+  - icon: flask-conical
+    name: Oil Extraction
+    description: "Solvent and mechanical extraction of vegetable oils from soybeans, groundnuts, and palm kernel."
+  - icon: package
+    name: Food Packaging
+    description: "Automated packaging lines producing consumer-ready and bulk formats for domestic and regional distribution."
+stats:
+  - label: Processing Capacity
+    value: 200
+    unit: tonnes/day
+  - label: Product Lines
+    value: 12
+  - label: Quality Certifications
+    value: 4
+contactEmail: agro-processing@globalresourcescitadel.com
+seoTitle: "Agro-Processing — Global Resources Citadel | Agriculture & Processing"
+seoDescription: "Learn about Global Resources Citadel's Agro-Processing division. Grain milling, oil extraction, and food packaging operations across Nigeria."
+sortOrder: 3

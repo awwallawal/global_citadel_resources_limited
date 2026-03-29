@@ -35,9 +35,9 @@
 # - Dev moves story to 'review', then runs code-review (fresh context, different LLM recommended)
 
 generated: 2026-03-28
-last_updated: 2026-03-29
+last_updated: 2026-03-29T15:30
 project: UK_Web_Design
-last_story_created: 5-3-investors-partners-page
+last_story_created: 8-4-cicd-pipeline-production-deployment
 project_key: NOKEY
 tracking_system: file-system
 story_location: _bmad-output/implementation-artifacts
@@ -47,9 +47,9 @@ development_status:
   epic-1: in-progress
   1-1-project-initialization-toolchain-setup: done
   1-2-design-token-system-typography: done
-  1-3-content-collections-seed-data: ready-for-dev
-  1-4-base-layouts-core-ui-components: ready-for-dev
-  1-5-header-navigation-division-dropdown: ready-for-dev
+  1-3-content-collections-seed-data: done
+  1-4-base-layouts-core-ui-components: done
+  1-5-header-navigation-division-dropdown: done
   1-6-mobile-navigation: ready-for-dev
   1-7-footer-navigation: ready-for-dev
   1-8-breadcrumb-navigation: ready-for-dev
@@ -87,23 +87,23 @@ development_status:
   epic-5-retrospective: optional
 
   # --- Epic 6: Publishing & Thought Leadership ---
-  epic-6: backlog
-  6-1-insights-hub-category-listing-pages: backlog
-  6-2-article-detail-page: backlog
-  6-3-seed-content-publishing-workflow: backlog
+  epic-6: in-progress
+  6-1-insights-hub-category-listing-pages: ready-for-dev
+  6-2-article-detail-page: ready-for-dev
+  6-3-seed-content-publishing-workflow: ready-for-dev
   epic-6-retrospective: optional
 
   # --- Epic 7: Search, Discovery & Supporting Pages ---
-  epic-7: backlog
-  7-1-search-page-functionality: backlog
-  7-2-legal-pages-sitemap-custom-404: backlog
-  7-3-internal-cross-linking-discovery-pathways: backlog
+  epic-7: in-progress
+  7-1-search-page-functionality: ready-for-dev
+  7-2-legal-pages-sitemap-custom-404: ready-for-dev
+  7-3-internal-cross-linking-discovery-pathways: ready-for-dev
   epic-7-retrospective: optional
 
   # --- Epic 8: Accessible, Fast, Production-Ready Platform ---
-  epic-8: backlog
-  8-1-unit-component-testing: backlog
-  8-2-e2e-testing-accessibility-audit: backlog
-  8-3-performance-optimization-lighthouse-audit: backlog
-  8-4-cicd-pipeline-production-deployment: backlog
+  epic-8: in-progress
+  8-1-unit-component-testing: ready-for-dev
+  8-2-e2e-testing-accessibility-audit: ready-for-dev
+  8-3-performance-optimization-lighthouse-audit: ready-for-dev
+  8-4-cicd-pipeline-production-deployment: ready-for-dev
   epic-8-retrospective: optional

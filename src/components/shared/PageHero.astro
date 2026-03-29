@@ -1,0 +1,36 @@
+---
+import { cn } from '@/lib/utils';
+
+/**
+ * Inner-page hero with H1, optional subtitle, and breadcrumb slot.
+ * Use this component inside PageLayout's default slot (inside <main>).
+ * When using PageHero, place breadcrumbs in THIS component's breadcrumb slot —
+ * leave PageLayout's breadcrumb slot empty to avoid duplication.
+ */
+interface Props {
+  title: string;
+  subtitle?: string;
+  class?: string;
+}
+
+const { title, subtitle, class: className } = Astro.props;
+---
+
+<section
+  class={cn(
+    'bg-gradient-to-br from-primary-900 to-primary-700 py-16 text-white lg:py-20',
+    className,
+  )}
+>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <slot name="breadcrumb" />
+    <h1 class="font-heading text-3xl font-semibold leading-tight tracking-tight lg:text-5xl">
+      {title}
+    </h1>
+    {subtitle && (
+      <p class="mt-4 max-w-2xl text-lg text-primary-100">
+        {subtitle}
+      </p>
+    )}
+  </div>
+</section>
