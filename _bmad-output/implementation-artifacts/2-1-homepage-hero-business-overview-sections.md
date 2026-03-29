@@ -65,6 +65,11 @@ So that I understand this is a serious, multi-division business within 3 seconds
   - [ ] 4.3 Overview: cluster cards single column on mobile, 3 columns on md+
   - [ ] 4.4 Verify at 375px, 768px, 1024px, 1280px viewports
 
+- [ ] Task 5: FAQ Section (AC: FAQ)
+  - [ ] 5.1 Render `FAQSection.astro` component with `category="homepage"` filter
+  - [ ] 5.2 Place after the business overview / credibility sections, before the contact CTA
+  - [ ] 5.3 Pass `sectionTitle="Frequently Asked Questions"`
+
 ## Dev Notes
 
 ### Hero Section — CSS from Design Reference

@@ -1,0 +1,42 @@
+---
+import { getCollection } from 'astro:content';
+import SectionWrapper from '@/components/layout/SectionWrapper.astro';
+import SectionHeading from '@/components/layout/SectionHeading.astro';
+import FAQAccordion from '@/components/shared/FAQAccordion';
+
+interface Props {
+  category: 'homepage' | 'about' | 'general';
+  sectionTitle?: string;
+  eyebrow?: string;
+  variant?: 'default' | 'light' | 'primary';
+  id?: string;
+}
+
+const {
+  category,
+  sectionTitle = 'Frequently Asked Questions',
+  eyebrow,
+  variant = 'light',
+  id = 'faq',
+} = Astro.props;
+
+const allFaqs = await getCollection('faqs');
+const faqs = allFaqs
+  .filter((faq) => faq.data.category === category)
+  .sort((a, b) => a.data.sortOrder - b.data.sortOrder)
+  .map((faq) => ({
+    question: faq.data.question,
+    answer: faq.data.answer,
+  }));
+---
+
+{faqs.length > 0 && (
+  <SectionWrapper variant={variant} id={id}>
+    <SectionHeading centered eyebrow={eyebrow}>
+      {sectionTitle}
+    </SectionHeading>
+    <div class="mx-auto max-w-3xl">
+      <FAQAccordion client:visible items={faqs} />
+    </div>
+  </SectionWrapper>
+)}

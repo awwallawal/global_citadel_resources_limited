@@ -157,6 +157,15 @@ export const credentialSchema = z.object({
   sortOrder: z.number().default(0),
 });
 
+export const faqCategoryEnum = z.enum(['homepage', 'about', 'general']);
+
+export const faqSchema = z.object({
+  question: z.string().min(10).max(200),
+  answer: z.string().min(20).max(1000),
+  category: faqCategoryEnum,
+  sortOrder: z.number().int().nonnegative(),
+});
+
 export const pageSchema = z.object({
   title: z.string(),
   seoTitle: z.string(),
@@ -200,7 +209,12 @@ const pages = defineCollection({
   schema: pageSchema,
 });
 
-export const collections = { divisions, clusters, articles, team, credentials, pages };
+const faqs = defineCollection({
+  loader: file('./src/content/faqs/faqs.yaml'),
+  schema: faqSchema,
+});
+
+export const collections = { divisions, clusters, articles, team, credentials, pages, faqs };
 
 // ─── Inferred Types ─────────────────────────────────────────────────
 

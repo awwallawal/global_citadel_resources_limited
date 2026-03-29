@@ -77,6 +77,8 @@ Minimum clear space around the logo = the cap height of "C" in "CITADEL" on all 
 
 ### Primary Palette — Deep Forest Green
 
+> **Note:** The numbering below differs from the implemented design tokens in `src/styles/globals.css` and the UX spec (authoritative). In the codebase, Primary 600 = `#15803D` and Primary 500 = `#16A34A`. The UX spec is the source of truth for token numbering; this table preserves the original brand brief values for reference.
+
 | Token | Hex | Usage |
 |-------|-----|-------|
 | Primary 900 | `#14532D` | Deepest green — logo, headlines, high-emphasis text |

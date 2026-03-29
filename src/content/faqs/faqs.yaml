@@ -1,0 +1,65 @@
+- id: homepage-what-does-grcl-do
+  question: What does Global Resources Citadel Limited do?
+  answer: GRCL is a diversified Nigerian conglomerate operating across seven business divisions spanning agriculture, commodity trading, real estate, and energy. We create value through integrated operations that connect primary production to end markets.
+  category: homepage
+  sortOrder: 1
+
+- id: homepage-where-operates
+  question: Where does GRCL operate?
+  answer: Our operations are headquartered in Abuja with a growing presence across Nigeria's key economic corridors, including the Middle Belt agricultural zone, Lagos commercial hub, and the Niger Delta energy region.
+  category: homepage
+  sortOrder: 2
+
+- id: homepage-divisions-structure
+  question: How are GRCL's divisions structured?
+  answer: Our seven divisions are organized into three strategic clusters — Agriculture & Processing, Trade & Markets, and Built Environment & Energy — allowing us to capture value across entire supply chains.
+  category: homepage
+  sortOrder: 3
+
+- id: homepage-partnerships
+  question: Is GRCL open to partnerships and investment?
+  answer: Yes. We actively seek strategic partnerships, joint ventures, and investment relationships with aligned organizations. Visit our Investors & Partners page or contact us directly to explore opportunities.
+  category: homepage
+  sortOrder: 4
+
+- id: homepage-contact
+  question: How can I get in touch with GRCL?
+  answer: You can reach us through our Contact page, where you can direct your inquiry to the appropriate division or our corporate office. We aim to respond to all inquiries within two business days.
+  category: homepage
+  sortOrder: 5
+
+- id: about-founded
+  question: When was Global Resources Citadel Limited founded?
+  answer: GRCL was established to build an integrated conglomerate that bridges Nigeria's resource wealth with modern business infrastructure, combining deep local expertise with international standards of governance.
+  category: about
+  sortOrder: 1
+
+- id: about-governance
+  question: What is GRCL's corporate governance structure?
+  answer: GRCL operates under a holding company model with a Board of Directors providing strategic oversight. Each division has dedicated leadership while benefiting from shared corporate services, risk management, and compliance frameworks.
+  category: about
+  sortOrder: 2
+
+- id: about-differentiator
+  question: What sets GRCL apart from other Nigerian conglomerates?
+  answer: Our integrated cluster model means our divisions reinforce each other — agricultural output feeds into commodity marketing, real estate development supports operational infrastructure, and energy investments power our entire value chain. This vertical integration creates resilience and efficiency.
+  category: about
+  sortOrder: 3
+
+- id: about-credentials
+  question: Does GRCL have any industry certifications or credentials?
+  answer: GRCL and its divisions maintain relevant industry certifications and regulatory compliance across all operating sectors. Our credentials reflect our commitment to meeting both Nigerian regulatory standards and international best practices.
+  category: about
+  sortOrder: 4
+
+- id: about-sustainability
+  question: What is GRCL's approach to sustainability and community impact?
+  answer: Sustainable development is embedded in our operations. From responsible farming practices in our agricultural divisions to energy-efficient building standards in real estate, we prioritize long-term value creation that benefits both stakeholders and the communities where we operate.
+  category: about
+  sortOrder: 5
+
+- id: about-local-development
+  question: How does GRCL support local economic development?
+  answer: We create employment across Nigeria's economic zones, partner with local suppliers and smallholder farmers, invest in skill development, and contribute to infrastructure in the regions where we operate. Our growth strategy is intentionally tied to regional economic development.
+  category: about
+  sortOrder: 6

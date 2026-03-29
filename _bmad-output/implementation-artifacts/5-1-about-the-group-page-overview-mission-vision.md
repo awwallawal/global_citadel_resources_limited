@@ -72,6 +72,11 @@ So that I can assess the company's legitimacy and values before engaging further
   - [ ] 6.1 Add empty placeholder sections with correct IDs: `#leadership`, `#group-structure`, `#credentials`, `#values`
   - [ ] 6.2 These will be populated in Story 5.2 but AnchorNav links must not break
 
+- [ ] Task 7: FAQ Section (AC: FAQ)
+  - [ ] 7.1 Render `FAQSection.astro` component with `category="about"` filter
+  - [ ] 7.2 Place after the mission/vision section, before any closing CTA
+  - [ ] 7.3 Pass `sectionTitle="Common Questions"`
+
 ## Dev Notes
 
 ### Page Structure

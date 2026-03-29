@@ -708,7 +708,7 @@ uk-web-design/
 **Content Boundary:**
 - All content lives in `src/content/` and is accessed via `getCollection()` / `getEntry()` from Astro's Content Layer API
 - No component directly reads content files — content is always fetched in Astro page frontmatter and passed down as props
-- Content schemas in `src/content/config.ts` are the single source of truth for content shape
+- Content schemas in `src/content.config.ts` are the single source of truth for content shape
 
 **Component Boundary:**
 - `src/components/ui/` — shadcn/ui primitives. Modified only within their own files. Never import from one ui component to another.
@@ -765,7 +765,7 @@ InquiryForm.tsx → POST /api/contact → Zod validation → Resend API → Resp
 **FR31-37 (Publishing):**
 - `src/content/articles/` — MDX article content
 - `src/pages/insights/` — all insight listing and detail pages
-- `src/content/config.ts` — article schema with division tagging and categories
+- `src/content.config.ts` — article schema with division tagging and categories
 
 **FR38-42 (Inquiry & Contact):**
 - `src/pages/contact/` — all contact pages
@@ -775,14 +775,14 @@ InquiryForm.tsx → POST /api/contact → Zod validation → Resend API → Resp
 
 **FR43-53 (Content Admin & Quality):**
 - `src/content/` — all content collections (git-based authoring)
-- `src/content/config.ts` — Zod schemas enforce structure
+- `src/content.config.ts` — Zod schemas enforce structure
 - `src/layouts/` — template system ensuring consistent rendering
 
 ### Cross-Cutting Concerns Mapping
 
 | Concern | Files |
 |---|---|
-| Division data model | `src/content/config.ts`, `src/content/divisions/`, `src/content/clusters/`, `src/lib/divisions.ts` |
+| Division data model | `src/content.config.ts`, `src/content/divisions/`, `src/content/clusters/`, `src/lib/divisions.ts` |
 | SEO metadata | `src/lib/seo.ts`, `src/layouts/BaseLayout.astro` |
 | Accessibility | All components (focus rings, ARIA), `tests/e2e/accessibility.spec.ts` |
 | Performance | `astro.config.mjs` (image optimization), `src/layouts/BaseLayout.astro` (font loading), all components (hydration directives) |

@@ -463,6 +463,7 @@ So that I understand this is a serious, multi-division business within 3 seconds
 **And** below the hero, a "What We Do" business overview section renders on a light background with a gold eyebrow label, heading, 2-3 sentence body text, and 3 cluster cards (icon + cluster name + brief descriptor, each linking to the cluster page)
 **And** both sections are responsive: hero CTAs stack on mobile, cluster cards collapse to single column
 **And** the page uses the homepage-landing template with PageLayout and explicit SEO metadata (title, description, Organization + WebSite structured data, canonical URL)
+**And** a FAQ accordion section renders below the Latest Insights section, displaying homepage-category questions sourced from the faqs content collection, using the FAQSection component
 
 ### Story 2.2: Divisions Bento Grid
 
@@ -701,6 +702,7 @@ So that I can assess the company's legitimacy and values before engaging further
 **And** breadcrumbs render: Home > About the Group
 **And** SEO metadata includes Organization + AboutPage structured data
 **And** content is sourced from the pages/about.mdx content collection entry
+**And** a FAQ accordion section renders before the final CTA band, displaying about-category questions sourced from the faqs content collection, using the FAQSection component
 
 ### Story 5.2: About the Group Page — Leadership, Structure & Credentials
 

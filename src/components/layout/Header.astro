@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import DesktopNav from '@/components/navigation/DesktopNav';
+import MobileNav from '@/components/navigation/MobileNav';
 
 interface Props {
   currentPath: string;
@@ -37,7 +38,7 @@ const clusters = allClusters
     headerVariant={headerVariant}
   />
 
-  <!-- Mobile nav placeholder (Story 1.6) -->
+  <!-- Mobile header bar: [Logo] [Search] [Hamburger] -->
   <div class="flex md:hidden items-center justify-between px-4 h-16 bg-white/95 backdrop-blur-lg border-b border-neutral-300">
     <a
       href="/"
@@ -52,17 +53,27 @@ const clusters = allClusters
         <path d="M1.35-6.29L1.35-0.51L3.61-0.51L3.61 0L0.72 0L0.72-6.29L1.35-6.29ZM9.51-6.29L10.14-6.29L10.14 0L9.51 0L9.51-6.29ZM22.04-6.21L22.72-6.21L22.72 0L22.09 0L22.09-4.96L19.87 0L19.41 0L17.20-4.94L17.20 0L16.57 0L16.57-6.21L17.24-6.21L19.64-0.83L22.04-6.21ZM29.15-6.29L29.78-6.29L29.78 0L29.15 0L29.15-6.29ZM35.76-6.29L39.89-6.29L39.89-5.77L38.14-5.77L38.14 0L37.51 0L37.51-5.77L35.76-5.77L35.76-6.29ZM49.17-5.78L46.52-5.78L46.52-3.43L48.90-3.43L48.90-2.91L46.52-2.91L46.52-0.52L49.17-0.52L49.17 0L45.89 0L45.89-6.30L49.17-6.30L49.17-5.78ZM57.28-6.29Q58.32-6.29 59.07-5.91Q59.82-5.54 60.21-4.82Q60.61-4.11 60.61-3.13L60.61-3.13Q60.61-2.16 60.21-1.45Q59.82-0.75 59.07-0.37Q58.32 0 57.28 0L57.28 0L55.42 0L55.42-6.29L57.28-6.29ZM57.28-0.52Q58.59-0.52 59.28-1.21Q59.97-1.90 59.97-3.13L59.97-3.13Q59.97-4.37 59.28-5.07Q58.59-5.77 57.28-5.77L57.28-5.77L56.05-5.77L56.05-0.52L57.28-0.52Z" fill="#15803D" transform="translate(118, 98)"/>
       </svg>
     </a>
-    <button
-      type="button"
-      class="min-h-11 min-w-11 inline-flex items-center justify-center rounded-lg text-neutral-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
-      aria-label="Open menu"
-      aria-disabled="true"
-    >
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <line x1="4" x2="20" y1="12" y2="12"></line>
-        <line x1="4" x2="20" y1="6" y2="6"></line>
-        <line x1="4" x2="20" y1="18" y2="18"></line>
-      </svg>
-    </button>
+
+    <div class="flex items-center gap-1">
+      <!-- Standalone mobile search icon -->
+      <a
+        href="/search/"
+        class="min-h-11 min-w-11 inline-flex items-center justify-center rounded-lg text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+        aria-label="Search"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.3-4.3"></path>
+        </svg>
+      </a>
+
+      <!-- Hamburger trigger (MobileNav) -->
+      <MobileNav
+        client:load
+        divisions={divisions}
+        clusters={clusters}
+        currentPath={currentPath}
+      />
+    </div>
   </div>
 </header>

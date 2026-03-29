@@ -509,6 +509,22 @@ The homepage is the orientation layer. It must answer three questions in under 1
 - `ButtonPrimary` -- reuse
 - `ButtonSecondary` -- reuse
 
+#### Section 7: FAQ Section
+
+| Attribute | Value |
+|-----------|-------|
+| Purpose | Address common questions proactively and reduce friction for first-time visitors |
+| Layout | Accordion-style, single column, full-width within section container |
+| Question Count | 4-6 questions |
+| Content Source | `faqs` content collection, filtered by `category="homepage"` |
+| Behaviour | One item open at a time; closed by default on load |
+| Heading | "Frequently Asked Questions" or short section label |
+| Background | Light neutral (matches Section 2 / 5 alternating rhythm) |
+
+**Components Required:**
+- `FAQSection` -- accordion container with section heading
+- `FAQItem` -- individual question + answer accordion row
+
 ### 2.4 Homepage SEO
 
 | Meta Attribute | Value |
@@ -802,6 +818,22 @@ This is the corporate trust page. It answers: Who is this company? How is it str
 **Components Required:**
 - `CredentialCard` -- logo, name, issuer
 - `ExpandableGrid` -- grid with show more/less toggle
+
+#### Section 7: FAQ Section
+
+| Attribute | Value |
+|-----------|-------|
+| Purpose | Pre-empt investor, partner, and general visitor questions about the group's operations and governance |
+| Layout | Accordion-style, single column, full-width within section container |
+| Question Count | 6-8 questions |
+| Content Source | `faqs` content collection, filtered by `category="about"` |
+| Behaviour | One item open at a time; closed by default on load |
+| Heading | "Frequently Asked Questions" or short section label |
+| Background | Light neutral, positioned before the final CTA band |
+
+**Components Required:**
+- `FAQSection` -- accordion container with section heading
+- `FAQItem` -- individual question + answer accordion row
 
 ### 3.4 About Page SEO
 

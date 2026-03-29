@@ -159,7 +159,7 @@ export default function DesktopNav({ currentPath, divisions, clusters, headerVar
               </NavigationMenuTrigger>
               <NavigationMenuContent className="p-0">
                 <div className="grid grid-cols-3 gap-x-8 gap-y-5 p-5 min-w-xl">
-                  {groupedDivisions.map(({ cluster, divisions: clusterDivisions }) => (
+                  {groupedDivisions.filter(({ divisions: d }) => d.length > 0).map(({ cluster, divisions: clusterDivisions }) => (
                     <div key={cluster.slug}>
                       <p className="text-overline font-semibold uppercase tracking-widest text-gold-600 mb-2">
                         {cluster.name}
