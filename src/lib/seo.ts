@@ -5,7 +5,12 @@ export interface SeoMetadata {
   ogImage?: string;
   ogType?: string;
   twitterCard?: string;
-  jsonLd?: Record<string, unknown>;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+export interface BreadcrumbItem {
+  label: string;
+  href?: string;
 }
 
 const SITE_URL = (import.meta.env.SITE ?? 'https://globalresourcescitadel.com').replace(/\/$/, '');
@@ -45,5 +50,20 @@ export function generateWebSiteJsonLd(): Record<string, unknown> {
     '@type': 'WebSite',
     name: SITE_NAME,
     url: SITE_URL,
+  };
+}
+
+export function generateBreadcrumbJsonLd(
+  items: BreadcrumbItem[],
+): Record<string, unknown> {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.label,
+      ...(item.href ? { item: `${SITE_URL}${item.href}` } : {}),
+    })),
   };
 }

@@ -1,0 +1,93 @@
+---
+/**
+ * BreadcrumbNav.astro — Breadcrumb trail showing page hierarchy.
+ * Static Astro component, zero JS. Mobile truncation via CSS responsive classes.
+ */
+import { cn } from '@/lib/utils';
+import type { BreadcrumbItem } from '@/lib/seo';
+
+interface Props {
+  items: BreadcrumbItem[];
+  class?: string;
+}
+
+const { items, class: className } = Astro.props;
+
+const chevronSvg = `<svg class="h-3.5 w-3.5 shrink-0 text-neutral-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>`;
+
+const linkClasses =
+  'inline-flex min-h-11 items-center text-neutral-600 transition-colors hover:text-primary-600 focus-visible:rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2';
+
+const needsTruncation = items.length > 3;
+---
+
+{items.length >= 2 && (
+  <nav aria-label="Breadcrumb" class={cn('mx-auto max-w-7xl px-4 py-3 sm:px-6 lg:px-8', className)}>
+    {/* Desktop: full breadcrumb (sm+), always visible */}
+    <ol class={cn('flex flex-wrap items-center gap-1.5 text-sm', needsTruncation && 'hidden sm:flex')}>
+      {items.map((item, index) => {
+        const isLast = index === items.length - 1;
+        return (
+          <li class="flex items-center gap-1.5">
+            {index > 0 && <Fragment set:html={chevronSvg} />}
+            {isLast ? (
+              <span class="inline-flex min-h-11 items-center text-neutral-500" aria-current="page">
+                {item.label}
+              </span>
+            ) : (
+              <a
+                href={item.href}
+                class={linkClasses}
+              >
+                {item.label}
+              </a>
+            )}
+          </li>
+        );
+      })}
+    </ol>
+
+    {/* Mobile: truncated breadcrumb (below sm) — first + ... + last 2 */}
+    {needsTruncation && (
+      <ol class="flex flex-wrap items-center gap-1.5 text-sm sm:hidden">
+        {/* First item (Home) */}
+        <li class="flex items-center gap-1.5">
+          <a
+            href={items[0].href}
+            class={linkClasses}
+          >
+            {items[0].label}
+          </a>
+        </li>
+
+        {/* Ellipsis */}
+        <li class="flex items-center gap-1.5" aria-hidden="true">
+          <Fragment set:html={chevronSvg} />
+          <span class="text-neutral-400">&hellip;</span>
+        </li>
+
+        {/* Last 2 items */}
+        {items.slice(-2).map((item, i) => {
+          const isLast = i === 1;
+          return (
+            <li class="flex items-center gap-1.5">
+              <Fragment set:html={chevronSvg} />
+              {isLast ? (
+                <span class="inline-flex min-h-11 items-center text-neutral-500" aria-current="page">
+                  {item.label}
+                </span>
+              ) : (
+                <a
+                  href={item.href}
+                  class={linkClasses}
+                >
+                  {item.label}
+                </a>
+              )}
+            </li>
+          );
+        })}
+      </ol>
+    )}
+  </nav>
+)}

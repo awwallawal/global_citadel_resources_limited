@@ -47,3 +47,8 @@ All 4 deferred items were resolved during review:
 
 - `tracking-widest` (0.1em) vs spec's 0.08em — no standard Tailwind token matches exactly, visual difference negligible (~0.24px at 12px font). Accept tracking-widest or add custom token during Epic 8 polish.
 - No `aria-current="page"` on footer links — not in story AC, enhancement for future story or Epic 8 accessibility audit.
+
+## Deferred from: code review of 1-8-breadcrumb-navigation (2026-03-30)
+
+- Screen reader breadcrumb discontinuity on mobile truncation — ellipsis is aria-hidden, screen readers see gap with no cue. Standard truncation pattern; consider sr-only "skipped levels" text during Epic 8 a11y audit.
+- focus-visible:outline-none used without fallback — codebase-wide pattern across all components, not introduced by Story 1.8. Review during Epic 8 accessibility audit.
