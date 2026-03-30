@@ -1,6 +1,6 @@
 # Story 1.7: Footer Navigation
 
-Status: ready-for-dev
+Status: done
 
 ## Story
 
@@ -20,34 +20,34 @@ So that I can find any section and perceive the platform as complete and profess
 
 ## Tasks / Subtasks
 
-- [ ] Task 1: Create Footer.astro component (AC: #1, #2, #3)
-  - [ ] 1.1 Create `src/components/layout/Footer.astro`
-  - [ ] 1.2 Brand story row: inline logo-reversed.svg + tagline paragraph
-  - [ ] 1.3 5-column link grid with gold headings
-  - [ ] 1.4 All links with correct href destinations
+- [x] Task 1: Create Footer.astro component (AC: #1, #2, #3)
+  - [x] 1.1 Create `src/components/layout/Footer.astro`
+  - [x] 1.2 Brand story row: inline logo-reversed.svg + tagline paragraph
+  - [x] 1.3 5-column link grid with gold headings
+  - [x] 1.4 All links with correct href destinations
 
-- [ ] Task 2: Implement link columns (AC: #2)
-  - [ ] 2.1 Column 1 — THE GROUP: About the Group, Leadership, Group Structure, Credentials
-  - [ ] 2.2 Column 2 — DIVISIONS: Crop Farming, Animal Husbandry, Agro-Processing, Commodity Marketing
-  - [ ] 2.3 Column 3 — MORE DIVISIONS: Import & Export, Real Estate, Oil & Gas, View All Divisions
-  - [ ] 2.4 Column 4 — INSIGHTS: Latest, News & Updates, Thought Leadership
-  - [ ] 2.5 Column 5 — GET IN TOUCH: General Enquiries, Contact by Division, Partner / Investor, Locations
-  - [ ] 2.6 Column 6 — INVESTORS & PARTNERS: Why Partner With Us, Portfolio Strength, Strategic Inquiry
-  - [ ] 2.7 Column 7 — CONNECT: LinkedIn (placeholder #), Twitter / X (placeholder #), Email (mailto:info@globalresourcescitadel.com)
+- [x] Task 2: Implement link columns (AC: #2)
+  - [x] 2.1 Column 1 — THE GROUP: About the Group, Leadership, Group Structure, Credentials
+  - [x] 2.2 Column 2 — DIVISIONS: Crop Farming, Animal Husbandry, Agro-Processing, Commodity Marketing
+  - [x] 2.3 Column 3 — MORE DIVISIONS: Import & Export, Real Estate, Oil & Gas, View All Divisions
+  - [x] 2.4 Column 4 — INSIGHTS: Latest, News & Updates, Thought Leadership
+  - [x] 2.5 Column 5 — GET IN TOUCH: General Enquiries, Contact by Division, Partner / Investor, Locations
+  - [x] 2.6 Column 6 — INVESTORS & PARTNERS: Why Partner With Us, Portfolio Strength, Strategic Inquiry
+  - [x] 2.7 Column 7 — CONNECT: LinkedIn (placeholder #), Twitter / X (placeholder #), Email (mailto:info@globalresourcescitadel.com)
 
-- [ ] Task 3: Implement copyright bar (AC: #4)
-  - [ ] 3.1 Top border separator
-  - [ ] 3.2 Copyright text with dynamic year
-  - [ ] 3.3 Legal links: Privacy Policy, Terms of Use, Sitemap
+- [x] Task 3: Implement copyright bar (AC: #4)
+  - [x] 3.1 Top border separator
+  - [x] 3.2 Copyright text with dynamic year
+  - [x] 3.3 Legal links: Privacy Policy, Terms of Use, Sitemap
 
-- [ ] Task 4: Responsive layout (AC: #5, #6)
-  - [ ] 4.1 Desktop: `grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7` with `gap-8` (32px). The `auto-fit` pattern from the design reference CSS also works but explicit breakpoint columns give more control over the 7-column layout.
-  - [ ] 4.2 Mobile: accordion pattern using `<details>`/`<summary>` elements (no JS required)
-  - [ ] 4.3 Verify at mobile (375px), tablet (768px), desktop (1024px+)
+- [x] Task 4: Responsive layout (AC: #5, #6)
+  - [x] 4.1 Desktop: `grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7` with `gap-8` (32px). The `auto-fit` pattern from the design reference CSS also works but explicit breakpoint columns give more control over the 7-column layout.
+  - [x] 4.2 Mobile: accordion pattern using `<details>`/`<summary>` elements (no JS required)
+  - [x] 4.3 Verify at mobile (375px), tablet (768px), desktop (1024px+)
 
-- [ ] Task 5: Integrate into PageLayout (AC: #7)
-  - [ ] 5.1 Import Footer.astro into PageLayout's footer slot
-  - [ ] 5.2 Verify footer appears on all pages
+- [x] Task 5: Integrate into PageLayout (AC: #7)
+  - [x] 5.1 Import Footer.astro into PageLayout's footer slot
+  - [x] 5.2 Verify footer appears on all pages
 
 ## Dev Notes
 
@@ -385,8 +385,48 @@ Files this story creates or modifies:
 
 ### Agent Model Used
 
+Claude Opus 4.6 (1M context)
+
 ### Debug Log References
+
+- Build verified: `astro build` completes successfully with 2 pages, zero errors
+- TypeScript check: `tsc --noEmit` passes clean
+- Footer renders in HTML output confirmed via grep on dist/index.html
 
 ### Completion Notes List
 
+- Created Footer.astro as a pure Astro component with zero client-side JavaScript
+- 3-row structure: brand story (logo-reversed.svg + tagline), 7-column link grid, copyright bar
+- All 7 link columns implemented with exact routes per story link map
+- Column headings use gold-600 uppercase eyebrow style with Poppins font
+- Desktop layout: hidden below lg, 7-column CSS grid with gap-8
+- Mobile layout: native `<details>`/`<summary>` accordion with chevron rotation via `group-open:rotate-180`
+- Copyright bar with dynamic year via `new Date().getFullYear()`
+- Legal links (Privacy Policy, Terms of Use, Sitemap) in copyright bar
+- All links have focus-visible rings with ring-offset-neutral-900 for dark background
+- External links (Connect column) have `rel="noopener noreferrer"` where applicable
+- Footer integrated directly into PageLayout.astro (replaced named footer slot)
+- No arbitrary Tailwind values used — all values reference design tokens
+- Color mapping adjusted from design reference to match actual token system: neutral-400 for link text, neutral-600 for copyright text (correct hex values for dark bg readability)
+
 ### File List
+
+- `src/components/layout/Footer.astro` — Created (new)
+- `src/layouts/PageLayout.astro` — Modified (added Footer import, replaced slot with direct component)
+
+### Review Findings
+
+- [x] [Review][Patch] Heading level skip — changed `<h4>` to `<h2>` in desktop footer grid [Footer.astro:132] ✓ Fixed
+- [x] [Review][Accepted] Tablet breakpoint gap — binary accordion/grid split accepted as better UX for sub-desktop screens
+- [x] [Review][Patch] Duplicate `aria-label` — differentiated mobile nav label to "Footer navigation — mobile" [Footer.astro:151] ✓ Fixed
+- [x] [Review][Patch] External links missing `target="_blank"` — added target + rel for all external links [Footer.astro] ✓ Fixed
+- [x] [Review][Patch] Safari `<summary>` marker — added `summary::-webkit-details-marker` rule to globals.css ✓ Fixed
+- [x] [Review][Patch] Copyright bar contrast + legal link touch targets — upgraded to text-neutral-400, added min-h-11 + inline-flex on legal links [Footer.astro] ✓ Fixed
+- [x] [Review][Patch] Link grid touch targets — increased from py-2 to py-3 for 44px minimum [Footer.astro:91] ✓ Fixed
+- [x] [Review][Defer] `tracking-widest` (0.1em) vs spec's 0.08em — no standard Tailwind token matches exactly, visual difference negligible (~0.24px at 12px font) — deferred, minor design fidelity
+- [x] [Review][Defer] No `aria-current="page"` on footer links — not in story AC, enhancement for future story — deferred, pre-existing
+
+### Change Log
+
+- 2026-03-30: Implemented Story 1.7 Footer Navigation — all 5 tasks complete, build verified
+- 2026-03-30: Code review completed — 2 decisions, 5 patches, 2 deferred, 5 dismissed

@@ -42,3 +42,8 @@ All 4 deferred items were resolved during review:
 - ~~Empty cluster groups render silently in mobile accordion~~ — RESOLVED: added .filter() guard in MobileNav (2026-03-29)
 - prefers-reduced-motion only enforced via global CSS !important — pre-existing, no per-component motion-safe wrapping on Sheet/Accordion
 - Division active state trailing-slash exact match depends on Astro trailingSlash config — Astro default handles it
+
+## Deferred from: code review of 1-7-footer-navigation (2026-03-30)
+
+- `tracking-widest` (0.1em) vs spec's 0.08em — no standard Tailwind token matches exactly, visual difference negligible (~0.24px at 12px font). Accept tracking-widest or add custom token during Epic 8 polish.
+- No `aria-current="page"` on footer links — not in story AC, enhancement for future story or Epic 8 accessibility audit.

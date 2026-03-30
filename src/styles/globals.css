@@ -227,6 +227,11 @@
   --animate-accordion-up: accordion-up 200ms ease-out;
 }
 
+/* Suppress native disclosure triangle in WebKit/Safari */
+summary::-webkit-details-marker {
+  display: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
