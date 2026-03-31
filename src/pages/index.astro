@@ -4,6 +4,7 @@ import PageLayout from '@/layouts/PageLayout.astro';
 import SectionWrapper from '@/components/layout/SectionWrapper.astro';
 import SectionHeading from '@/components/layout/SectionHeading.astro';
 import DivisionBentoGrid from '@/components/divisions/DivisionBentoGrid.astro';
+import CredibilityBar from '@/components/shared/CredibilityBar.astro';
 import FAQSection from '@/components/shared/FAQSection.astro';
 import CTABanner from '@/components/shared/CTABanner.astro';
 import {
@@ -121,6 +122,16 @@ const clusterIcons: Record<string, string> = {
     </SectionHeading>
     <DivisionBentoGrid divisions={divisions} />
   </SectionWrapper>
+
+  {/* ── Credibility Stats ── */}
+  <CredibilityBar
+    stats={[
+      { value: 7, label: 'Divisions Active' },
+      { value: 15, label: 'Years in Business', suffix: '+' },
+      { value: 6, label: 'Nigerian States' },
+      { value: 40, label: 'Business Partners', suffix: '+' },
+    ]}
+  />
 
   {/* ── FAQ Section ── */}
   <FAQSection category="homepage" sectionTitle="Frequently Asked Questions" variant="default" />
