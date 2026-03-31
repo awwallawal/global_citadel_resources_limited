@@ -15,7 +15,7 @@ export default function StatCounter({
 }: StatCounterProps) {
   const [count, setCount] = useState<number | null>(null);
   const hasAnimatedRef = useRef(false);
-  const rafRef = useRef<number>();
+  const rafRef = useRef<number>(0);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

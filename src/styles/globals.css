@@ -94,6 +94,7 @@
   --radius-md: 6px;
   --radius-lg: 8px;
   --radius-xl: 12px;
+  --radius-2xl: 16px;
 
   /* Custom component tokens */
   --height-divider: 3px;

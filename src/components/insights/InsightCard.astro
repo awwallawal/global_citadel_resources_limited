@@ -1,0 +1,58 @@
+---
+/**
+ * InsightCard.astro — Article preview card matching design-reference-final.html.
+ * Featured: tall card, content at bottom (justify-end), larger type.
+ * Standard: compact card, tight spacing.
+ */
+import { cn } from '@/lib/utils';
+
+interface Props {
+  title: string;
+  excerpt: string;
+  category: string;
+  href: string;
+  variant?: 'standard' | 'featured';
+  class?: string;
+}
+
+const {
+  title,
+  excerpt,
+  category,
+  href,
+  variant = 'standard',
+  class: className,
+} = Astro.props;
+
+const isFeatured = variant === 'featured';
+---
+
+<a
+  href={href}
+  class={cn(
+    'group flex flex-col rounded-2xl border border-neutral-300 bg-neutral-100 transition-shadow duration-300 hover:shadow-md motion-safe:transition-colors hover:border-gold-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2',
+    isFeatured ? 'justify-end p-10' : 'p-7',
+    className,
+  )}
+>
+  <span class={cn(
+    'font-semibold uppercase tracking-wide text-gold-600',
+    isFeatured ? 'mb-5 text-xs' : 'mb-2.5 text-xs',
+  )}>
+    {category}
+  </span>
+
+  <h3 class={cn(
+    'font-heading font-bold leading-snug text-neutral-900 motion-safe:transition-colors group-hover:text-primary-600',
+    isFeatured ? 'mb-3 text-2xl' : 'mb-1.5 text-base',
+  )}>
+    {title}
+  </h3>
+
+  <p class={cn(
+    'leading-relaxed text-neutral-600',
+    isFeatured ? 'text-sm line-clamp-3' : 'text-sm line-clamp-2',
+  )}>
+    {excerpt}
+  </p>
+</a>

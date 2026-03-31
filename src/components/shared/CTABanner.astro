@@ -7,32 +7,62 @@ interface Props {
   body: string;
   primaryCta: { label: string; href: string };
   secondaryCta?: { label: string; href: string };
+  variant?: 'dark' | 'gold';
   class?: string;
 }
 
-const { heading, body, primaryCta, secondaryCta, class: className } = Astro.props;
+const { heading, body, primaryCta, secondaryCta, variant = 'dark', class: className } = Astro.props;
+
+const isGold = variant === 'gold';
 ---
 
-<section class={cn('bg-neutral-900 py-16 text-center lg:py-24', className)}>
+<section class={cn(
+  'py-16 text-center lg:py-24',
+  isGold ? 'bg-gradient-to-r from-gold-600 to-gold-400' : 'bg-neutral-900',
+  className,
+)}>
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="mx-auto mb-7 h-[--height-divider] w-15 bg-gold-600" aria-hidden="true"></div>
-    <h2 class="font-heading text-2xl font-bold leading-tight text-white lg:text-4xl">
+    <div class={cn(
+      'mx-auto mb-7 h-[--height-divider] w-15',
+      isGold ? 'bg-primary-900' : 'bg-gold-600',
+    )} aria-hidden="true"></div>
+    <h2 class={cn(
+      'font-heading text-2xl font-bold leading-tight lg:text-4xl',
+      isGold ? 'text-primary-900' : 'text-white',
+    )}>
       {heading}
     </h2>
-    <p class="mx-auto mb-9 mt-4 max-w-lg text-lg leading-relaxed text-neutral-400">
+    <p class={cn(
+      'mx-auto mb-9 mt-4 max-w-lg text-lg leading-relaxed',
+      isGold ? 'text-primary-900/80' : 'text-neutral-400',
+    )}>
       {body}
     </p>
     <div class="flex flex-wrap items-center justify-center gap-4">
-      <a
-        href={primaryCta.href}
-        class={cn(buttonVariants({ variant: 'gold', size: 'default' }), 'focus-visible:ring-offset-neutral-900')}
-      >
-        {primaryCta.label}
-      </a>
+      {isGold ? (
+        <a
+          href={primaryCta.href}
+          class="inline-flex min-h-11 items-center justify-center rounded-lg bg-primary-900 px-8 py-4 font-semibold text-white motion-safe:transition-all motion-safe:duration-200 hover:bg-primary-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-900 focus-visible:ring-offset-2 focus-visible:ring-offset-gold-600"
+        >
+          {primaryCta.label}
+        </a>
+      ) : (
+        <a
+          href={primaryCta.href}
+          class={cn(buttonVariants({ variant: 'gold', size: 'default' }), 'focus-visible:ring-offset-neutral-900')}
+        >
+          {primaryCta.label}
+        </a>
+      )}
       {secondaryCta && (
         <a
           href={secondaryCta.href}
-          class="inline-flex items-center justify-center rounded-lg border border-neutral-600 px-8 py-4 font-semibold text-white motion-safe:transition-all motion-safe:duration-200 motion-safe:ease-out hover:bg-neutral-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900"
+          class={cn(
+            'inline-flex min-h-11 items-center justify-center rounded-lg border px-8 py-4 font-semibold motion-safe:transition-all motion-safe:duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
+            isGold
+              ? 'border-primary-900 text-primary-900 hover:bg-primary-900/10 focus-visible:ring-primary-900 focus-visible:ring-offset-gold-600'
+              : 'border-neutral-600 text-white hover:bg-neutral-800 focus-visible:ring-primary-500 focus-visible:ring-offset-neutral-900',
+          )}
         >
           {secondaryCta.label}
         </a>

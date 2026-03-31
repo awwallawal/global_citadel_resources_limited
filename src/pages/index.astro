@@ -5,6 +5,7 @@ import SectionWrapper from '@/components/layout/SectionWrapper.astro';
 import SectionHeading from '@/components/layout/SectionHeading.astro';
 import DivisionBentoGrid from '@/components/divisions/DivisionBentoGrid.astro';
 import CredibilityBar from '@/components/shared/CredibilityBar.astro';
+import InsightCard from '@/components/insights/InsightCard.astro';
 import FAQSection from '@/components/shared/FAQSection.astro';
 import CTABanner from '@/components/shared/CTABanner.astro';
 import {
@@ -21,6 +22,19 @@ const clusters = (await getCollection('clusters')).sort(
 );
 
 const divisions = await getCollection('divisions');
+
+const articles = (await getCollection('articles'))
+  .sort((a, b) => new Date(b.data.publishedAt).getTime() - new Date(a.data.publishedAt).getTime())
+  .slice(0, 3);
+
+const streamLabels: Record<string, string> = {
+  'company-news': 'News & Updates',
+  'announcements': 'News & Updates',
+  'operational-updates': 'News & Updates',
+  'thought-leadership': 'Thought Leadership',
+  'industry-commentary': 'Industry Analysis',
+  'division-insight': 'Division Insight',
+};
 
 const seo = {
   ...generateMetadata({
@@ -133,18 +147,72 @@ const clusterIcons: Record<string, string> = {
     ]}
   />
 
+  {/* ── Latest Insights ── */}
+  <SectionWrapper variant="default">
+    <SectionHeading eyebrow="Insights" centered>
+      Latest Thinking
+    </SectionHeading>
+
+    {articles.length === 0 ? (
+      <p class="text-center text-lg text-neutral-500">
+        Stay tuned for insights from across our divisions.
+      </p>
+    ) : (
+      <>
+        <div class="insights-grid">
+          {articles.map((article, i) => (
+            <InsightCard
+              title={article.data.title}
+              excerpt={article.data.excerpt}
+              category={streamLabels[article.data.stream] ?? article.data.stream}
+              href={`/insights/${article.id}/`}
+              variant={i === 0 ? 'featured' : 'standard'}
+              class={i === 0 ? 'insight-featured' : ''}
+            />
+          ))}
+        </div>
+
+        <div class="mt-10 text-center">
+          <a
+            href="/insights/"
+            class="inline-flex items-center gap-1.5 text-sm font-semibold text-gold-600 hover:text-gold-400 focus-visible:rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+          >
+            View All Insights <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </>
+    )}
+  </SectionWrapper>
+
   {/* ── FAQ Section ── */}
   <FAQSection category="homepage" sectionTitle="Frequently Asked Questions" variant="default" />
 
   {/* ── Contact CTA ── */}
   <CTABanner
-    heading="Ready to Partner With Us?"
-    body="Explore opportunities with one of Nigeria's most diversified conglomerates."
-    primaryCta={{ label: 'Get in Touch', href: '/contact/' }}
+    heading="Ready to Work With Us?"
+    body="Whether you're an investor, partner, or potential collaborator, we'd welcome the opportunity to explore how we can create mutual value."
+    primaryCta={{ label: 'Contact Us', href: '/contact/' }}
+    secondaryCta={{ label: 'Partner With Us', href: '/contact/strategic/' }}
+    variant="gold"
   />
 </PageLayout>
 
 <style>
+  .insights-grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 768px) {
+    .insights-grid {
+      grid-template-columns: 1.4fr 1fr;
+    }
+    .insights-grid :global(.insight-featured) {
+      grid-row: 1 / 3;
+    }
+  }
+
   .hero-section::before {
     content: '';
     position: absolute;

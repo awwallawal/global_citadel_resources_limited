@@ -63,3 +63,10 @@ All 4 deferred items were resolved during review:
 - Emoji icons in bento grid render inconsistently across platforms — swap to inline SVG icons when design assets available
 - Card accessible name too verbose (full tagline concatenated into link name) — add aria-label during Epic 8 a11y audit
 - "Explore Division" link text differs from some spec sources saying "Learn More" — UX spec says "Explore", accept current text
+
+## Deferred from: code review of 2-4-latest-insights-contact-cta (2026-03-31)
+
+- Featured InsightCard justify-end has no visible effect without min-height/background image — post-MVP enhancement when editorial assets available
+- streamLabels raw slug fallback displays kebab-case to users — add title-case transform when more streams are added
+- No visited state differentiation on InsightCards — content hub UX enhancement for Epic 8
+- Date parsing timezone consistency — Zod schema enforces format, low risk for current data
