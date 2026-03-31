@@ -1,0 +1,170 @@
+---
+/**
+ * DivisionBentoGrid.astro — Asymmetric CSS Grid for 7 divisions.
+ *
+ * Layout (md+):
+ *   Row 1-2: [Crop Farming - large filled] [Commodity Marketing - large accent]
+ *   Row 3:   [Animal Husbandry] [Agro-Processing] [Import & Export (wide)]
+ *   Row 4:   [Real Estate (wide, dark)]            [Oil & Gas (wide)]
+ */
+import type { CollectionEntry } from 'astro:content';
+import DivisionCard from '@/components/divisions/DivisionCard.astro';
+import type { CardSize, CardVariant } from '@/components/divisions/DivisionCard.astro';
+
+interface Props {
+  divisions: CollectionEntry<'divisions'>[];
+}
+
+const { divisions } = Astro.props;
+
+interface GridConfig {
+  size: CardSize;
+  variant: CardVariant;
+  gridClass: string;
+  icon: string;
+}
+
+const gridMap: Record<string, GridConfig> = {
+  'crop-farming': {
+    size: 'large',
+    variant: 'filled',
+    gridClass: 'bento-crop',
+    icon: '\u{1F33E}',
+  },
+  'commodity-marketing': {
+    size: 'large',
+    variant: 'accent',
+    gridClass: 'bento-comm',
+    icon: '\u{1F4CA}',
+  },
+  'animal-husbandry': {
+    size: 'standard',
+    variant: 'outline',
+    gridClass: 'bento-animal',
+    icon: '\u{1F404}',
+  },
+  'agro-processing': {
+    size: 'standard',
+    variant: 'outline',
+    gridClass: 'bento-agro',
+    icon: '\u{2699}',
+  },
+  'import-export': {
+    size: 'wide',
+    variant: 'outline',
+    gridClass: 'bento-import',
+    icon: '\u{1F30D}',
+  },
+  'real-estate': {
+    size: 'compact',
+    variant: 'dark',
+    gridClass: 'bento-restate',
+    icon: '\u{1F3D7}',
+  },
+  'oil-gas': {
+    size: 'compact',
+    variant: 'outline',
+    gridClass: 'bento-oil',
+    icon: '\u{26FD}',
+  },
+};
+
+// DOM order: core tier → supporting → aspirational (matches mobile reading order)
+const order = [
+  'crop-farming',
+  'commodity-marketing',
+  'animal-husbandry',
+  'agro-processing',
+  'import-export',
+  'real-estate',
+  'oil-gas',
+];
+
+const divisionMap = new Map(divisions.map((d) => [d.data.slug, d]));
+---
+
+<div class="bento-grid" role="list">
+  {order.map((slug) => {
+    const div = divisionMap.get(slug);
+    const config = gridMap[slug];
+    if (!div || !config) return null;
+
+    return (
+      <div role="listitem" class={config.gridClass}>
+        <DivisionCard
+          name={div.data.name}
+          slug={div.data.slug}
+          tagline={div.data.tagline}
+          size={config.size}
+          variant={config.variant}
+          icon={config.icon}
+        />
+      </div>
+    );
+  })}
+</div>
+
+<style>
+  .bento-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr;
+  }
+
+  /* Tablet: 2-column grid */
+  @media (min-width: 640px) {
+    .bento-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+  }
+
+  /* Desktop: 4-column asymmetric grid */
+  @media (min-width: 768px) {
+    .bento-grid {
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: auto auto auto auto;
+      gap: 1.5rem;
+    }
+
+    .bento-grid :global(.bento-crop) {
+      grid-column: 1 / 3;
+      grid-row: 1 / 3;
+    }
+    .bento-grid :global(.bento-comm) {
+      grid-column: 3 / 5;
+      grid-row: 1 / 3;
+    }
+    .bento-grid :global(.bento-animal) {
+      grid-column: 1 / 2;
+      grid-row: 3 / 4;
+    }
+    .bento-grid :global(.bento-agro) {
+      grid-column: 2 / 3;
+      grid-row: 3 / 4;
+    }
+    .bento-grid :global(.bento-import) {
+      grid-column: 3 / 5;
+      grid-row: 3 / 4;
+    }
+    .bento-grid :global(.bento-restate) {
+      grid-column: 1 / 3;
+      grid-row: 4 / 5;
+    }
+    .bento-grid :global(.bento-oil) {
+      grid-column: 3 / 5;
+      grid-row: 4 / 5;
+    }
+  }
+
+  /* Cards fill their grid cell */
+  .bento-grid :global(.bento-crop > a),
+  .bento-grid :global(.bento-comm > a),
+  .bento-grid :global(.bento-animal > a),
+  .bento-grid :global(.bento-agro > a),
+  .bento-grid :global(.bento-import > a),
+  .bento-grid :global(.bento-restate > a),
+  .bento-grid :global(.bento-oil > a) {
+    height: 100%;
+  }
+</style>

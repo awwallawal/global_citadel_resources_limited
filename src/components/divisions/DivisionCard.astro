@@ -1,0 +1,103 @@
+---
+/**
+ * DivisionCard.astro — Bento grid card for a single division.
+ * Sizes: large (2-col, 2-row), standard (1-col), wide (2-col), compact (minimal).
+ * Variants: filled (primary-900 dark), accent (primary-50 light), dark (neutral-900), outline (white+border).
+ */
+import { cn } from '@/lib/utils';
+
+export type CardSize = 'large' | 'standard' | 'wide' | 'compact';
+export type CardVariant = 'filled' | 'accent' | 'dark' | 'outline';
+
+interface Props {
+  name: string;
+  slug: string;
+  tagline: string;
+  size: CardSize;
+  variant: CardVariant;
+  icon?: string;
+  class?: string;
+}
+
+const { name, slug, tagline, size, variant, icon, class: className } = Astro.props;
+
+const isDark = variant === 'filled' || variant === 'dark';
+const showDescription = size !== 'compact';
+
+const baseClasses =
+  'group relative flex flex-col rounded-2xl p-8 transition-shadow duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2';
+
+const variantClasses: Record<CardVariant, string> = {
+  filled:
+    'bg-primary-900 text-white border border-primary-800 hover:border-primary-700 focus-visible:ring-white focus-visible:ring-offset-primary-900',
+  accent:
+    'bg-primary-50 border border-primary-200 hover:bg-primary-100 hover:border-primary-300 focus-visible:ring-primary-500',
+  dark:
+    'bg-neutral-900 text-white border border-transparent hover:bg-primary-900 focus-visible:ring-white focus-visible:ring-offset-neutral-900',
+  outline:
+    'bg-white border border-neutral-300 hover:border-gold-600 focus-visible:ring-primary-500',
+};
+
+const sizeClasses: Record<CardSize, string> = {
+  large: 'min-h-72',
+  standard: '',
+  wide: '',
+  compact: '',
+};
+
+const iconBgClasses: Record<CardVariant, string> = {
+  filled: 'bg-white/15 text-white',
+  accent: 'bg-primary-700 text-white',
+  dark: 'bg-white/10 text-gold-600',
+  outline: 'bg-neutral-100 text-gold-600 border border-neutral-300',
+};
+
+const headingClasses = isDark ? 'text-white' : 'text-neutral-900';
+const descClasses = isDark ? 'text-white/80' : 'text-neutral-600';
+const arrowClasses = isDark ? 'text-gold-400' : 'text-gold-600';
+const iconSize = size === 'large' ? 'h-14 w-14' : 'h-12 w-12';
+---
+
+<a
+  href={`/divisions/${slug}/`}
+  class={cn(baseClasses, variantClasses[variant], sizeClasses[size], 'motion-safe:hover:shadow-md', className)}
+>
+  {/* Icon circle */}
+  <div class={cn('mb-4 flex shrink-0 items-center justify-center rounded-full', iconSize, iconBgClasses[variant])}>
+    {icon ? (
+      <span class={size === 'large' ? 'text-2xl' : 'text-xl'} aria-hidden="true">{icon}</span>
+    ) : (
+      <svg
+        class={size === 'large' ? 'h-7 w-7' : 'h-6 w-6'}
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <circle cx="12" cy="12" r="10" />
+        <path d="M12 6v6l4 2" />
+      </svg>
+    )}
+  </div>
+
+  {/* Content */}
+  <h3 class={cn('text-xl font-bold', headingClasses)}>
+    {name}
+  </h3>
+
+  {showDescription && (
+    <p class={cn('mt-2 flex-1 text-sm leading-relaxed', descClasses)}>
+      {tagline}
+    </p>
+  )}
+
+  {/* Arrow link */}
+  <div class={cn('mt-4 inline-flex items-center gap-1.5 text-caption font-semibold motion-safe:transition-[gap] motion-safe:duration-200 group-hover:gap-2.5', arrowClasses)}>
+    Explore Division
+    <span aria-hidden="true">&rarr;</span>
+  </div>
+</a>

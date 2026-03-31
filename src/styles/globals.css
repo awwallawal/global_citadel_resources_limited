@@ -18,10 +18,12 @@
   /* Primary green scale */
   --color-primary-50: #F0FDF4;
   --color-primary-100: #DCFCE7;
+  --color-primary-200: #BBF7D0;
   --color-primary-300: #86EFAC;
   --color-primary-500: #16A34A;
   --color-primary-600: #15803D;
   --color-primary-700: #166534;
+  --color-primary-800: #155E31;
   --color-primary-900: #14532D;
 
   /* Gold accent scale */

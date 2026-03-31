@@ -57,3 +57,9 @@ All 4 deferred items were resolved during review:
 
 - Hero `<section>` missing `aria-label` — unnamed landmark for assistive tech. Add during Epic 8 a11y audit.
 - DesktopNav focus-visible ring offset color doesn't adapt for transparent mode (white gap on dark background). Cosmetic polish for Epic 8.
+
+## Deferred from: code review of 2-2-divisions-bento-grid (2026-03-31)
+
+- Emoji icons in bento grid render inconsistently across platforms — swap to inline SVG icons when design assets available
+- Card accessible name too verbose (full tagline concatenated into link name) — add aria-label during Epic 8 a11y audit
+- "Explore Division" link text differs from some spec sources saying "Learn More" — UX spec says "Explore", accept current text

@@ -1,43 +1,167 @@
 ---
+import { getCollection } from 'astro:content';
 import PageLayout from '@/layouts/PageLayout.astro';
 import SectionWrapper from '@/components/layout/SectionWrapper.astro';
 import SectionHeading from '@/components/layout/SectionHeading.astro';
+import DivisionBentoGrid from '@/components/divisions/DivisionBentoGrid.astro';
+import FAQSection from '@/components/shared/FAQSection.astro';
 import CTABanner from '@/components/shared/CTABanner.astro';
-import { generateMetadata, generateOrganizationJsonLd } from '@/lib/seo';
+import {
+  generateMetadata,
+  generateOrganizationJsonLd,
+  generateWebSiteJsonLd,
+} from '@/lib/seo';
 import { validateContentIntegrity } from '@/lib/content-validation';
 
 await validateContentIntegrity();
 
+const clusters = (await getCollection('clusters')).sort(
+  (a, b) => a.data.sortOrder - b.data.sortOrder,
+);
+
+const divisions = await getCollection('divisions');
+
 const seo = {
   ...generateMetadata({
-    title: 'Home',
+    title: "Building Nigeria's Future Across Seven Sectors",
     description:
-      'Global Resources Citadel Limited — a Nigerian conglomerate operating across agriculture, trade, real estate, and energy.',
+      'Global Resources Citadel Limited is a diversified Nigerian conglomerate operating across agriculture, trade, real estate, and energy. Seven divisions driving economic growth.',
     path: '/',
   }),
-  jsonLd: generateOrganizationJsonLd(),
+  jsonLd: [generateOrganizationJsonLd(), generateWebSiteJsonLd()],
+};
+
+/**
+ * Inline SVG icons for cluster cards — avoids shipping lucide-react client JS.
+ * Paths sourced from lucide icon set: Wheat, TrendingUp, Building2.
+ */
+const clusterIcons: Record<string, string> = {
+  'agriculture-processing': '<path d="M2 22 16 8"/><path d="M3.47 12.53 5 11l1.53 1.53a3.5 3.5 0 0 1 0 4.94L5 19l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M7.47 8.53 9 7l1.53 1.53a3.5 3.5 0 0 1 0 4.94L9 15l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M11.47 4.53 13 3l1.53 1.53a3.5 3.5 0 0 1 0 4.94L13 11l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M20 2h2v2a4 4 0 0 1-4 4h-2V6a4 4 0 0 1 4-4Z"/><path d="M11.47 17.47 13 19l-1.53 1.53a3.5 3.5 0 0 1-4.94 0L5 19l1.53-1.53a3.5 3.5 0 0 1 4.94 0Z"/><path d="M15.47 13.47 17 15l-1.53 1.53a3.5 3.5 0 0 1-4.94 0L9 15l1.53-1.53a3.5 3.5 0 0 1 4.94 0Z"/><path d="M19.47 9.47 21 11l-1.53 1.53a3.5 3.5 0 0 1-4.94 0L13 11l1.53-1.53a3.5 3.5 0 0 1 4.94 0Z"/>',
+  'trade-markets': '<polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>',
+  'built-environment-energy': '<path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/>',
 };
 ---
 
-<PageLayout seo={seo}>
-  <SectionWrapper variant="hero">
-    <h1 class="font-heading text-4xl font-semibold leading-tight text-white lg:text-6xl">
-      Building Nigeria's Future
-    </h1>
-    <p class="mt-6 max-w-2xl text-lg text-primary-100">
-      A diversified conglomerate delivering value across agriculture, trade, real estate, and energy.
-    </p>
-  </SectionWrapper>
+<PageLayout seo={seo} headerVariant="transparent">
 
+  {/* ── Hero Section ── */}
+  <section class="hero-section relative flex min-h-hero-mobile items-center justify-center overflow-hidden bg-gradient-to-br from-primary-900 to-primary-700 px-6 py-36 text-center lg:min-h-screen lg:py-40">
+    <div class="relative z-10 mx-auto max-w-4xl">
+      <h1 class="mx-auto max-w-hero font-heading text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
+        Building Nigeria's Future Across Seven Sectors
+      </h1>
+      <p class="mx-auto mt-5 max-w-hero-subtitle text-base leading-relaxed text-white/80 sm:text-lg lg:text-xl">
+        From agriculture to energy, Global Resources Citadel is creating integrated
+        value chains that drive economic growth and opportunity.
+      </p>
+      <div class="mt-9 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+        <a
+          href="/divisions/"
+          class="inline-flex min-h-11 items-center rounded-lg bg-gold-600 px-9 py-4 text-sm font-bold text-primary-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-primary-900 motion-safe:transition-all motion-safe:hover:-translate-y-px motion-safe:hover:bg-gold-400"
+        >
+          Explore Our Divisions
+        </a>
+        <a
+          href="/investors-partners/"
+          class="inline-flex min-h-11 items-center rounded-lg border border-white/30 px-9 py-4 text-sm font-bold text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-primary-900 motion-safe:transition-all motion-safe:hover:bg-white/10"
+        >
+          Partner With Us
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {/* ── Business Overview Section ── */}
   <SectionWrapper variant="light">
-    <SectionHeading eyebrow="Our Business" subtitle="Driving growth across seven strategic divisions." centered>
-      The GRCL Advantage
-    </SectionHeading>
+    <div class="mx-auto max-w-overview">
+      <SectionHeading
+        eyebrow="Our Business"
+        subtitle="Global Resources Citadel operates across interconnected sectors, each strengthening the others. Our agricultural foundation feeds our processing capacity. Our trade networks connect our products to markets. Our infrastructure investments build the platforms for future growth."
+      >
+        A Multi-Division Business Built for Scale
+      </SectionHeading>
+
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+        {clusters.map((cluster) => (
+          <a
+            href={`/divisions/${cluster.data.slug}/`}
+            class="group block border-l-2 border-gold-600 py-2 pl-5 focus-visible:rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 motion-safe:transition-colors motion-safe:hover:border-gold-400"
+          >
+            <svg
+              class="mb-2 h-6 w-6 text-gold-600"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+              set:html={clusterIcons[cluster.data.slug] ?? ''}
+            />
+            <h3 class="font-heading text-base font-bold text-neutral-900 motion-safe:transition-colors group-hover:text-primary-600">
+              {cluster.data.name}
+            </h3>
+            <p class="mt-2 text-sm leading-relaxed text-neutral-600">
+              {cluster.data.tagline}
+            </p>
+          </a>
+        ))}
+      </div>
+    </div>
   </SectionWrapper>
 
+  {/* ── Divisions Bento Grid ── */}
+  <SectionWrapper variant="default">
+    <SectionHeading
+      eyebrow="Our Divisions"
+      centered
+    >
+      Seven Verticals. One Vision.
+    </SectionHeading>
+    <DivisionBentoGrid divisions={divisions} />
+  </SectionWrapper>
+
+  {/* ── FAQ Section ── */}
+  <FAQSection category="homepage" sectionTitle="Frequently Asked Questions" variant="default" />
+
+  {/* ── Contact CTA ── */}
   <CTABanner
     heading="Ready to Partner With Us?"
     body="Explore opportunities with one of Nigeria's most diversified conglomerates."
-    primaryCta={{ label: 'Get in Touch', href: '/contact' }}
+    primaryCta={{ label: 'Get in Touch', href: '/contact/' }}
   />
 </PageLayout>
+
+<style>
+  .hero-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(180, 138, 62, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .hero-section::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(34, 197, 94, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-section::before,
+    .hero-section::after {
+      display: none;
+    }
+  }
+</style>
