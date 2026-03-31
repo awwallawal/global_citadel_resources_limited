@@ -96,6 +96,12 @@
   /* Custom component tokens */
   --height-divider: 3px;
 
+  /* Homepage hero tokens */
+  --container-hero: 800px;
+  --container-hero-subtitle: 560px;
+  --container-overview: 960px;
+  --min-h-hero-mobile: 75vh;
+
   /* Shadows */
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);

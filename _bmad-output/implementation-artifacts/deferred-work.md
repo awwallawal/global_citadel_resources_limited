@@ -52,3 +52,8 @@ All 4 deferred items were resolved during review:
 
 - Screen reader breadcrumb discontinuity on mobile truncation — ellipsis is aria-hidden, screen readers see gap with no cue. Standard truncation pattern; consider sr-only "skipped levels" text during Epic 8 a11y audit.
 - focus-visible:outline-none used without fallback — codebase-wide pattern across all components, not introduced by Story 1.8. Review during Epic 8 accessibility audit.
+
+## Deferred from: code review of 2-1-homepage-hero (2026-03-30)
+
+- Hero `<section>` missing `aria-label` — unnamed landmark for assistive tech. Add during Epic 8 a11y audit.
+- DesktopNav focus-visible ring offset color doesn't adapt for transparent mode (white gap on dark background). Cosmetic polish for Epic 8.

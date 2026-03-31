@@ -29,6 +29,7 @@ interface MobileNavProps {
   divisions: DivisionNavItem[];
   clusters: ClusterNavItem[];
   currentPath: string;
+  headerVariant?: 'solid' | 'transparent';
 }
 
 function isActive(href: string, currentPath: string): boolean {
@@ -47,7 +48,7 @@ const NAV_LINKS_AFTER = [
   { label: 'Contact', href: '/contact/' },
 ] as const;
 
-export default function MobileNav({ divisions, clusters, currentPath }: MobileNavProps) {
+export default function MobileNav({ divisions, clusters, currentPath, headerVariant = 'solid' }: MobileNavProps) {
   const [open, setOpen] = useState(false);
   const [divisionsExpanded, setDivisionsExpanded] = useState('');
   const [clustersExpanded, setClustersExpanded] = useState<string[]>([]);
@@ -68,7 +69,12 @@ export default function MobileNav({ divisions, clusters, currentPath }: MobileNa
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger
-        className="flex md:hidden items-center justify-center min-h-11 min-w-11 rounded-lg text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+        className={cn(
+          'flex md:hidden items-center justify-center min-h-11 min-w-11 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2',
+          headerVariant === 'transparent'
+            ? 'text-white hover:text-white/80'
+            : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100',
+        )}
         aria-label="Open navigation menu"
       >
         <svg
