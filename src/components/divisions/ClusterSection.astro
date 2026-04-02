@@ -1,0 +1,43 @@
+---
+/**
+ * ClusterSection.astro — A cluster grouping with heading, description, and division card grid.
+ * Used on the Divisions Hub page to group divisions by cluster.
+ */
+import SectionWrapper from '@/components/layout/SectionWrapper.astro';
+import SectionHeading from '@/components/layout/SectionHeading.astro';
+import DivisionPreviewCard from '@/components/divisions/DivisionPreviewCard.astro';
+
+interface DivisionData {
+  name: string;
+  slug: string;
+  tagline: string;
+  icon?: string;
+}
+
+interface Props {
+  clusterName: string;
+  clusterDescription: string;
+  accentColor: 'amber' | 'copper' | 'slate';
+  divisions: DivisionData[];
+  variant?: 'default' | 'light';
+}
+
+const { clusterName, clusterDescription, accentColor, divisions, variant = 'default' } = Astro.props;
+---
+
+<SectionWrapper variant={variant}>
+  <SectionHeading subtitle={clusterDescription}>
+    {clusterName}
+  </SectionHeading>
+  <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+    {divisions.map((div) => (
+      <DivisionPreviewCard
+        name={div.name}
+        slug={div.slug}
+        tagline={div.tagline}
+        icon={div.icon}
+        accentColor={accentColor}
+      />
+    ))}
+  </div>
+</SectionWrapper>

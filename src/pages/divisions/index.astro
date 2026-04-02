@@ -1,0 +1,112 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '@/layouts/PageLayout.astro';
+import SectionWrapper from '@/components/layout/SectionWrapper.astro';
+import BreadcrumbNav from '@/components/layout/BreadcrumbNav.astro';
+import ClusterSection from '@/components/divisions/ClusterSection.astro';
+import CTABanner from '@/components/shared/CTABanner.astro';
+import {
+  generateMetadata,
+  generateBreadcrumbJsonLd,
+  type BreadcrumbItem,
+} from '@/lib/seo';
+import { DIVISION_ICONS } from '@/lib/divisions';
+
+const divisions = await getCollection('divisions');
+const clusters = (await getCollection('clusters')).sort(
+  (a, b) => a.data.sortOrder - b.data.sortOrder,
+);
+
+const clusterGroups = clusters.map((cluster) => ({
+  cluster: cluster.data,
+  divisions: divisions
+    .filter((d) => d.data.clusterSlug === cluster.data.slug)
+    .sort((a, b) => a.data.sortOrder - b.data.sortOrder)
+    .map((d) => ({
+      name: d.data.name,
+      slug: d.data.slug,
+      tagline: d.data.tagline,
+      icon: DIVISION_ICONS[d.data.slug],
+    })),
+}));
+
+const breadcrumbs: BreadcrumbItem[] = [
+  { label: 'Home', href: '/' },
+  { label: 'Divisions' },
+];
+
+const SITE_URL = (import.meta.env.SITE ?? 'https://globalresourcescitadel.com').replace(/\/$/, '');
+
+const seo = {
+  ...generateMetadata({
+    title: 'Our Divisions',
+    description:
+      "Explore Global Resources Citadel's seven business divisions across agriculture, agro-processing, commodity marketing, real estate, import/export, and oil & gas.",
+    path: '/divisions/',
+  }),
+  jsonLd: [
+    generateBreadcrumbJsonLd(breadcrumbs),
+    {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: 'Our Divisions',
+      description: "Global Resources Citadel's seven business divisions",
+      url: `${SITE_URL}/divisions/`,
+      mainEntity: {
+        '@type': 'ItemList',
+        numberOfItems: divisions.length,
+        itemListElement: [...divisions]
+          .sort((a, b) => a.data.sortOrder - b.data.sortOrder)
+          .map((d, i) => ({
+            '@type': 'ListItem',
+            position: i + 1,
+            name: d.data.name,
+            url: `${SITE_URL}/divisions/${d.data.slug}/`,
+          })),
+      },
+    },
+  ],
+};
+
+const sectionVariants = ['default', 'light', 'default'] as const;
+---
+
+<PageLayout seo={seo}>
+  <BreadcrumbNav items={breadcrumbs} slot="breadcrumb" />
+
+  {/* ── Page Hero ── */}
+  <SectionWrapper variant="primary">
+    <div class="mx-auto max-w-3xl text-center">
+      <p class="mb-4 text-xs font-semibold uppercase tracking-widest text-gold-600">
+        Our Divisions
+      </p>
+      <h1 class="font-heading text-3xl font-bold leading-tight tracking-tight lg:text-5xl">
+        Built Across Sectors. United by Purpose.
+      </h1>
+      <p class="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-neutral-600">
+        Seven business divisions across agriculture, trade, infrastructure, and energy — each with
+        distinct capabilities, unified by shared values and a common vision for Nigeria's future.
+      </p>
+    </div>
+  </SectionWrapper>
+
+  {/* ── Cluster Sections ── */}
+  {clusterGroups.map((group, i) => (
+    <ClusterSection
+      clusterName={group.cluster.name}
+      clusterDescription={group.cluster.tagline}
+      accentColor={(group.cluster.accentColor ?? 'amber') as 'amber' | 'copper' | 'slate'}
+      divisions={group.divisions}
+      variant={sectionVariants[i % sectionVariants.length]}
+    />
+  ))}
+
+  {/* ── CTA ── */}
+  <CTABanner
+    heading="Looking for a specific capability?"
+    body="Explore our full portfolio or get in touch to discuss how we can work together."
+    primaryCta={{ label: 'Contact Us', href: '/contact/' }}
+    secondaryCta={{ label: 'Search the Site', href: '/search/' }}
+    variant="dark"
+  />
+</PageLayout>

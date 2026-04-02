@@ -70,3 +70,19 @@ All 4 deferred items were resolved during review:
 - streamLabels raw slug fallback displays kebab-case to users — add title-case transform when more streams are added
 - No visited state differentiation on InsightCards — content hub UX enhancement for Epic 8
 - Date parsing timezone consistency — Zod schema enforces format, low risk for current data
+
+## Deferred from: code review of 3-2-division-cluster-pages (2026-04-02)
+
+- Hardcoded SITE_URL fallback `'https://globalresourcescitadel.com'` in both page files — pre-existing pattern across codebase, not introduced by Story 3.2
+- Slug collision risk between cluster slugs and division slugs in shared `[slug].astro` route — both enum sets are non-overlapping by design; add build-time assertion when Story 3.3 merges division paths into the same file
+- Gold eyebrow `text-gold-600` contrast on dark gradient hero may be borderline WCAG AA (~3.7:1–4.2:1) — systemic pattern used across multiple pages, review during Epic 8 accessibility audit
+- `article.id` used as URL slug may include subdirectory paths if articles are ever reorganized into subdirectories — pre-existing pattern, currently safe with flat file structure
+- SeoMetadata type looseness (`Record<string, unknown>`) allows silent pass-through of extra keys to BaseLayout — pre-existing architectural pattern
+- JSON-LD itemListElement unstable sort for divisions sharing the same sortOrder value — pre-existing, minor structured data inconsistency
+
+## Deferred from: code review of 3-1-divisions-hub-page (2026-04-01)
+
+- Division detail links 404 until Story 3.3 — expected forward dependency
+- Emoji icons inconsistent across platforms/devices — swap to SVG icons when design assets available
+- Verbose card accessible name (full tagline in link) — add aria-label during Epic 8 a11y audit
+- 2-card clusters leave orphan column in 3-col desktop grid — design consideration, not a bug

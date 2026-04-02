@@ -1,0 +1,51 @@
+---
+/**
+ * DivisionPreviewCard.astro — Uniform division card for listing pages.
+ * Simpler than DivisionCard (bento grid). Icon circle with cluster-accent colour,
+ * division name, short overview, "Explore" arrow link.
+ */
+import { cn } from '@/lib/utils';
+
+interface Props {
+  name: string;
+  slug: string;
+  tagline: string;
+  icon?: string;
+  accentColor?: 'amber' | 'copper' | 'slate';
+  class?: string;
+}
+
+const { name, slug, tagline, icon, accentColor = 'amber', class: className } = Astro.props;
+
+const iconColors: Record<string, string> = {
+  amber: 'bg-cluster-amber-100',
+  copper: 'bg-cluster-copper-100',
+  slate: 'bg-cluster-slate-100',
+};
+
+const iconBg = iconColors[accentColor] ?? iconColors.amber;
+---
+
+<a
+  href={`/divisions/${slug}/`}
+  class={cn(
+    'group flex flex-col rounded-2xl border border-neutral-300 bg-white p-7 motion-safe:transition-shadow motion-safe:duration-300 hover:border-gold-600 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2',
+    className,
+  )}
+>
+  <div class={cn('mb-4 flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl', iconBg)} aria-hidden="true">
+    {icon ?? '●'}
+  </div>
+
+  <h3 class="font-heading text-lg font-bold text-neutral-900 motion-safe:transition-colors group-hover:text-primary-600">
+    {name}
+  </h3>
+
+  <p class="mt-2 flex-1 text-sm leading-relaxed text-neutral-600 line-clamp-3">
+    {tagline}
+  </p>
+
+  <div class="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold text-gold-600 motion-safe:transition-[gap] motion-safe:duration-200 group-hover:gap-2.5">
+    Explore <span aria-hidden="true">&rarr;</span>
+  </div>
+</a>

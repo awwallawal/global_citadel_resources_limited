@@ -35,7 +35,7 @@
 # - Dev moves story to 'review', then runs code-review (fresh context, different LLM recommended)
 
 generated: 2026-03-28
-last_updated: 2026-03-30
+last_updated: 2026-04-02
 project: UK_Web_Design
 last_story_created: 8-4-cicd-pipeline-production-deployment
 project_key: NOKEY
@@ -66,8 +66,8 @@ development_status:
 
   # --- Epic 3: Division Discovery & Detail Pages ---
   epic-3: in-progress
-  3-1-divisions-hub-page: ready-for-dev
-  3-2-division-cluster-pages: ready-for-dev
+  3-1-divisions-hub-page: done
+  3-2-division-cluster-pages: done
   3-3-division-detail-pages-layout-content-structure: ready-for-dev
   epic-3-retrospective: optional
 

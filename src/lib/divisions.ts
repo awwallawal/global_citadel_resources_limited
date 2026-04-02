@@ -1,6 +1,17 @@
 import { getCollection, getEntry } from 'astro:content';
 import type { DivisionSlug, ClusterSlug } from '@/content/config';
 
+/** Emoji icons keyed by division slug. Shared across hub and cluster pages. */
+export const DIVISION_ICONS: Record<string, string> = {
+  'crop-farming': '\u{1F33E}',
+  'animal-husbandry': '\u{1F404}',
+  'agro-processing': '\u{2699}\u{FE0F}',
+  'commodity-marketing': '\u{1F4CA}',
+  'import-export': '\u{1F30D}',
+  'real-estate': '\u{1F3D7}\u{FE0F}',
+  'oil-gas': '\u{26FD}',
+};
+
 export async function getDivisionBySlug(slug: DivisionSlug) {
   return await getEntry('divisions', slug);
 }

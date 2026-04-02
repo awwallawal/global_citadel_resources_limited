@@ -1,0 +1,108 @@
+---
+/**
+ * DivisionFeatureCard.astro — Large-format division card for cluster pages.
+ * Horizontal layout on desktop (icon left, content right), stacked on mobile.
+ * Shows overview text, 3 capability bullets, and "Explore Division" link.
+ */
+import { cn } from '@/lib/utils';
+import { DIVISION_ICONS } from '@/lib/divisions';
+
+interface Capability {
+  icon: string;
+  name: string;
+  description: string;
+}
+
+interface Props {
+  name: string;
+  slug: string;
+  overview: string;
+  capabilities: Capability[];
+  accentColor?: 'amber' | 'copper' | 'slate';
+  class?: string;
+}
+
+const { name, slug, overview, capabilities, accentColor = 'amber', class: className } = Astro.props;
+
+const iconBgColors: Record<string, string> = {
+  amber: 'bg-cluster-amber-100',
+  copper: 'bg-cluster-copper-100',
+  slate: 'bg-cluster-slate-100',
+};
+
+const iconTextColors: Record<string, string> = {
+  amber: 'text-cluster-amber-600',
+  copper: 'text-cluster-copper-600',
+  slate: 'text-cluster-slate-600',
+};
+
+const bulletColors: Record<string, string> = {
+  amber: 'bg-cluster-amber-600',
+  copper: 'bg-cluster-copper-600',
+  slate: 'bg-cluster-slate-600',
+};
+
+const iconBg = iconBgColors[accentColor] ?? iconBgColors.amber;
+const iconText = iconTextColors[accentColor] ?? iconTextColors.amber;
+const bulletColor = bulletColors[accentColor] ?? bulletColors.amber;
+
+const topCapabilities = capabilities.slice(0, 3);
+
+const icon = DIVISION_ICONS[slug] ?? '\u{25CF}';
+---
+
+<div
+  class={cn(
+    'group rounded-xl border border-neutral-200 p-6 motion-safe:transition-all motion-safe:duration-300 motion-safe:hover:shadow-md motion-safe:hover:border-neutral-300 lg:p-8',
+    className,
+  )}
+>
+  <div class="flex flex-col gap-6 lg:flex-row lg:gap-8">
+    {/* Icon circle */}
+    <div class="shrink-0">
+      <div
+        class={cn(
+          'flex h-16 w-16 items-center justify-center rounded-full text-2xl',
+          iconBg,
+          iconText,
+        )}
+        aria-hidden="true"
+      >
+        {icon}
+      </div>
+    </div>
+
+    {/* Content */}
+    <div class="flex-1">
+      <h3 class="font-heading text-xl font-bold text-neutral-900">
+        {name}
+      </h3>
+
+      <p class="mt-2 text-base leading-relaxed text-neutral-600 line-clamp-4">
+        {overview}
+      </p>
+
+      {topCapabilities.length > 0 && (
+        <ul class="mt-4 space-y-2">
+          {topCapabilities.map((cap) => (
+            <li class="flex items-start gap-2 text-sm text-neutral-700">
+              <span class={cn('mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full', bulletColor)} aria-hidden="true" />
+              <span><span class="font-medium">{cap.name}</span> — {cap.description}</span>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      <a
+        href={`/divisions/${slug}/`}
+        aria-label={`Explore ${name} Division`}
+        class="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-primary-600 motion-safe:transition-colors motion-safe:duration-200 hover:text-primary-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:rounded-sm focus-visible:ring-offset-2"
+      >
+        Explore Division
+        <span class="inline-block motion-safe:transition-transform motion-safe:duration-200 group-hover:translate-x-1" aria-hidden="true">
+          &rarr;
+        </span>
+      </a>
+    </div>
+  </div>
+</div>

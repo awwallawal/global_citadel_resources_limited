@@ -1,6 +1,6 @@
 # Story 3.1: Divisions Hub Page
 
-Status: ready-for-dev
+Status: done
 
 ## Story
 
@@ -21,48 +21,48 @@ So that I can browse the full portfolio and find the division relevant to my nee
 
 ## Tasks / Subtasks
 
-- [ ] Task 1: Create `src/pages/divisions/index.astro` (AC: #1, #6, #7)
-  - [ ] 1.1 PageLayout with SEO: title "Our Divisions — Global Resources Citadel | Business Portfolio", description, canonical `/divisions/`
-  - [ ] 1.2 CollectionPage JSON-LD structured data
-  - [ ] 1.3 BreadcrumbNav: Home > Divisions
-  - [ ] 1.4 Breadcrumb JSON-LD via `generateBreadcrumbJsonLd()`
-  - [ ] 1.5 Fetch all divisions and clusters from content collections
+- [x] Task 1: Create `src/pages/divisions/index.astro` (AC: #1, #6, #7)
+  - [x] 1.1 PageLayout with SEO: title "Our Divisions — Global Resources Citadel | Business Portfolio", description, canonical `/divisions/`
+  - [x] 1.2 CollectionPage JSON-LD structured data
+  - [x] 1.3 BreadcrumbNav: Home > Divisions
+  - [x] 1.4 Breadcrumb JSON-LD via `generateBreadcrumbJsonLd()`
+  - [x] 1.5 Fetch all divisions and clusters from content collections
 
-- [ ] Task 2: Create page hero for divisions hub (AC: #1)
-  - [ ] 2.1 Build inline with SectionWrapper `variant="primary"` (primary-50 bg). Do NOT use the PageHero component from Story 1.4 — PageHero is designed for dark gradient backgrounds, but the IA spec (line 944) calls for "centered text, subtle background" which is a light treatment.
-  - [ ] 2.2 Gold eyebrow: "Our Divisions"
-  - [ ] 2.3 H1 heading: "Built Across Sectors. United by Purpose."
-  - [ ] 2.4 Sub-heading: "Seven business divisions across agriculture, trade, infrastructure, and energy — each with distinct capabilities, unified by shared values and a common vision for Nigeria's future."
-  - [ ] 2.5 Centered text layout, constrained max-width (`max-w-3xl` for text readability)
+- [x] Task 2: Create page hero for divisions hub (AC: #1)
+  - [x] 2.1 Build inline with SectionWrapper `variant="primary"` (primary-50 bg). Do NOT use the PageHero component from Story 1.4 — PageHero is designed for dark gradient backgrounds, but the IA spec (line 944) calls for "centered text, subtle background" which is a light treatment.
+  - [x] 2.2 Gold eyebrow: "Our Divisions"
+  - [x] 2.3 H1 heading: "Built Across Sectors. United by Purpose."
+  - [x] 2.4 Sub-heading: "Seven business divisions across agriculture, trade, infrastructure, and energy — each with distinct capabilities, unified by shared values and a common vision for Nigeria's future."
+  - [x] 2.5 Centered text layout, constrained max-width (`max-w-3xl` for text readability)
 
-- [ ] Task 3: Create ClusterSection.astro component (AC: #2, #3)
-  - [ ] 3.1 Create `src/components/divisions/ClusterSection.astro`
-  - [ ] 3.2 Props: cluster data (name, tagline), divisions array, variant (default/light for alternation)
-  - [ ] 3.3 Cluster heading (H2) with cluster name
-  - [ ] 3.4 Description paragraph (1-2 sentences from cluster `tagline` or `overview`)
-  - [ ] 3.5 Responsive card grid: `grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8`
+- [x] Task 3: Create ClusterSection.astro component (AC: #2, #3)
+  - [x] 3.1 Create `src/components/divisions/ClusterSection.astro`
+  - [x] 3.2 Props: cluster data (name, tagline), divisions array, variant (default/light for alternation)
+  - [x] 3.3 Cluster heading (H2) with cluster name
+  - [x] 3.4 Description paragraph (1-2 sentences from cluster `tagline` or `overview`)
+  - [x] 3.5 Responsive card grid: `grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8`
 
-- [ ] Task 4: Create DivisionPreviewCard.astro (AC: #4)
-  - [ ] 4.1 Create — can reuse/adapt DivisionCard from Story 2.2 in a simpler form
-  - [ ] 4.2 Icon circle with cluster-accent colour (amber/copper/slate)
-  - [ ] 4.3 Division name (H3)
-  - [ ] 4.4 Overview text (2-3 lines, line-clamp-3)
-  - [ ] 4.5 "Explore" arrow link: text-gold-600, gap animation on hover
-  - [ ] 4.6 Card links to `/divisions/[slug]/`
-  - [ ] 4.7 Hover: border-color shift + shadow-md
-  - [ ] 4.8 Focus-visible ring on card link wrapper
+- [x] Task 4: Create DivisionPreviewCard.astro (AC: #4)
+  - [x] 4.1 Create — can reuse/adapt DivisionCard from Story 2.2 in a simpler form
+  - [x] 4.2 Icon circle with cluster-accent colour (amber/copper/slate)
+  - [x] 4.3 Division name (H3)
+  - [x] 4.4 Overview text (2-3 lines, line-clamp-3)
+  - [x] 4.5 "Explore" arrow link: text-gold-600, gap animation on hover
+  - [x] 4.6 Card links to `/divisions/[slug]/`
+  - [x] 4.7 Hover: border-color shift + shadow-md
+  - [x] 4.8 Focus-visible ring on card link wrapper
 
-- [ ] Task 5: Assemble page with 3 cluster sections (AC: #2, #8)
-  - [ ] 5.1 Agriculture & Processing section (3 division cards) — default bg
-  - [ ] 5.2 Trade & Markets section (2 division cards) — light bg
-  - [ ] 5.3 Built Environment & Energy section (2 division cards) — default bg
-  - [ ] 5.4 Group divisions by cluster using `getClusterDivisions()` or inline filtering
+- [x] Task 5: Assemble page with 3 cluster sections (AC: #2, #8)
+  - [x] 5.1 Agriculture & Processing section (3 division cards) — default bg
+  - [x] 5.2 Trade & Markets section (2 division cards) — light bg
+  - [x] 5.3 Built Environment & Energy section (2 division cards) — default bg
+  - [x] 5.4 Group divisions by cluster using `getClusterDivisions()` or inline filtering
 
-- [ ] Task 6: Add CTA at bottom (AC: #5)
-  - [ ] 6.1 CTABanner with `variant="dark"` (neutral-900 — reserve gold variant for homepage CTA)
-  - [ ] 6.2 Heading: "Looking for a specific capability?"
-  - [ ] 6.3 Body: "Explore our full portfolio or get in touch to discuss how we can work together."
-  - [ ] 6.4 Dual CTAs: "Contact Us" → `/contact/` (gold button), "Search the Site" → `/search/` (outline-white button)
+- [x] Task 6: Add CTA at bottom (AC: #5)
+  - [x] 6.1 CTABanner with `variant="dark"` (neutral-900 — reserve gold variant for homepage CTA)
+  - [x] 6.2 Heading: "Looking for a specific capability?"
+  - [x] 6.3 Body: "Explore our full portfolio or get in touch to discuss how we can work together."
+  - [x] 6.4 Dual CTAs: "Contact Us" → `/contact/` (gold button), "Search the Site" → `/search/` (outline-white button)
 
 ## Dev Notes
 
@@ -235,8 +235,44 @@ Files this story creates or modifies:
 
 ### Agent Model Used
 
+Claude Opus 4.6 (1M context)
+
 ### Debug Log References
+
+- Build verified: `astro build` — 3 pages, zero errors
+- TypeScript check: `tsc --noEmit` — clean
+- 3 cluster sections confirmed, breadcrumb present, CollectionPage JSON-LD rendered
 
 ### Completion Notes List
 
+- Created DivisionPreviewCard.astro — uniform card with cluster-accent icon circles (amber/copper/slate), name, tagline (line-clamp-3), "Explore →" arrow link, hover border-gold + shadow-md, focus-visible rings
+- Created ClusterSection.astro — SectionWrapper + SectionHeading + responsive card grid (1/2/3 cols), accepts variant for alternating backgrounds
+- Created divisions/index.astro hub page with: inline hero (SectionWrapper primary, centered text, gold eyebrow), 3 cluster sections with alternating white/light backgrounds, dark CTABanner with dual CTAs
+- Hero: H1 "Built Across Sectors. United by Purpose.", max-w-3xl centered
+- Divisions grouped by cluster, sorted by sortOrder, cluster accent colors passed to cards
+- Breadcrumb: Home > Divisions with JSON-LD
+- SEO: CollectionPage JSON-LD with ItemList of all 7 divisions + Breadcrumb JSON-LD (array)
+- CTABanner dark variant: "Looking for a specific capability?" with Contact Us + Search the Site
+
 ### File List
+
+- `src/pages/divisions/index.astro` — Created (new)
+- `src/components/divisions/ClusterSection.astro` — Created (new)
+- `src/components/divisions/DivisionPreviewCard.astro` — Created (new)
+
+### Review Findings
+
+- [x] [Review][Patch] CTABanner changed from variant="gold" to variant="dark" per AC #5 ✓ Fixed
+- [x] [Review][Patch] Added motion-safe: prefix to transition-shadow on DivisionPreviewCard ✓ Fixed
+- [x] [Review][Patch] Added ?? 'amber' fallback for optional accentColor ✓ Fixed
+- [x] [Review][Patch] Simplified iconColors map — removed unused text property ✓ Fixed
+- [x] [Review][Patch] ItemList uses [...divisions].sort() to avoid mutating shared array ✓ Fixed
+- [x] [Review][Defer] Division detail links 404 until Story 3.3
+- [x] [Review][Defer] Emoji icons inconsistent cross-platform — swap to SVG when assets available
+- [x] [Review][Defer] Verbose card accessible name — add aria-label in Epic 8 a11y audit
+- [x] [Review][Defer] 2-card clusters leave orphan grid column on desktop — design consideration
+
+### Change Log
+
+- 2026-03-31: Implemented Story 3.1 Divisions Hub Page — all 6 tasks complete, build verified
+- 2026-04-01: Code review completed — 0 decisions, 5 patches, 4 deferred, 1 dismissed
