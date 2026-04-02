@@ -1,0 +1,158 @@
+---
+/**
+ * Contact Hub — Routing page that directs visitors to the appropriate inquiry pathway.
+ * No forms on this page; each PathwayCard links to a dedicated form/page (Stories 4.2–4.5).
+ */
+import PageLayout from '@/layouts/PageLayout.astro';
+import BreadcrumbNav from '@/components/layout/BreadcrumbNav.astro';
+import SectionWrapper from '@/components/layout/SectionWrapper.astro';
+import SectionHeading from '@/components/layout/SectionHeading.astro';
+import PathwayCard from '@/components/contact/PathwayCard.astro';
+import ContactInfoCard from '@/components/contact/ContactInfoCard.astro';
+import {
+  generateMetadata,
+  generateBreadcrumbJsonLd,
+  type BreadcrumbItem,
+} from '@/lib/seo';
+
+const breadcrumbs: BreadcrumbItem[] = [
+  { label: 'Home', href: '/' },
+  { label: 'Contact' },
+];
+
+const SITE_URL = (import.meta.env.SITE ?? 'https://globalresourcescitadel.com').replace(/\/$/, '');
+
+const seo = {
+  ...generateMetadata({
+    title: 'Contact — Enquiries, Partnerships & Locations',
+    description: 'Get in touch with Global Resources Citadel Limited. Submit general enquiries, contact specific business divisions, or reach our strategic partnerships team.',
+    path: '/contact/',
+  }),
+  jsonLd: [
+    generateBreadcrumbJsonLd(breadcrumbs),
+    {
+      '@context': 'https://schema.org',
+      '@type': 'ContactPage',
+      name: 'Contact Global Resources Citadel',
+      description: 'Get in touch with Global Resources Citadel Limited.',
+      url: `${SITE_URL}/contact/`,
+      mainEntity: {
+        '@type': 'Organization',
+        name: 'Global Resources Citadel Limited',
+        email: 'info@globalresourcescitadel.com',
+      },
+    },
+  ],
+};
+---
+
+<PageLayout seo={seo}>
+  <BreadcrumbNav items={breadcrumbs} slot="breadcrumb" />
+
+  {/* ── Hero (AC #1) ── */}
+  <SectionWrapper variant="primary">
+    <div class="mx-auto max-w-3xl text-center">
+      <p class="mb-4 text-xs font-semibold uppercase tracking-widest text-gold-600">
+        Contact
+      </p>
+      <h1 class="font-heading text-3xl font-bold leading-tight tracking-tight lg:text-5xl">
+        Get In Touch
+      </h1>
+      <p class="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-neutral-600">
+        Choose the right pathway to reach the team you need.
+      </p>
+    </div>
+  </SectionWrapper>
+
+  {/* ── Inquiry Pathways (AC #2, #3, #7) ── */}
+  <SectionWrapper variant="default">
+    <SectionHeading centered subtitle="Select the option that best matches your inquiry.">
+      How Can We Help?
+    </SectionHeading>
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+      <PathwayCard
+        heading="General Enquiries"
+        description="For general questions about Global Resources Citadel."
+        linkLabel="Submit Enquiry"
+        href="/contact/general/"
+      >
+        <svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect width="20" height="16" x="2" y="4" rx="2" />
+          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+        </svg>
+      </PathwayCard>
+
+      <PathwayCard
+        heading="Contact by Division"
+        description="Reach the team in the division relevant to you."
+        linkLabel="Choose Division"
+        href="/contact/divisions/"
+      >
+        <svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
+          <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" />
+          <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" />
+          <path d="M10 6h4" /><path d="M10 10h4" /><path d="M10 14h4" /><path d="M10 18h4" />
+        </svg>
+      </PathwayCard>
+
+      <PathwayCard
+        heading="Partner / Investor Contact"
+        description="For investment, partnership, or strategic discussions."
+        linkLabel="Start Conversation"
+        href="/contact/strategic/"
+      >
+        <svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="m11 17 2 2a1 1 0 1 0 3-3" />
+          <path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4" />
+          <path d="m21 3 1 11h-2" />
+          <path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3" />
+          <path d="M3 4h8" />
+        </svg>
+      </PathwayCard>
+
+      <PathwayCard
+        heading="Locations"
+        description="Find our offices and operational locations."
+        linkLabel="View Locations"
+        href="/contact/locations/"
+      >
+        <svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
+          <circle cx="12" cy="10" r="3" />
+        </svg>
+      </PathwayCard>
+    </div>
+  </SectionWrapper>
+
+  {/* ── Quick Contact Info (AC #4) ── */}
+  <SectionWrapper variant="light">
+    <SectionHeading centered>
+      Quick Contact
+    </SectionHeading>
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+      <ContactInfoCard label="Phone" value="+234 XXX XXX XXXX" href="tel:+234XXXXXXXXX">
+        <svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+        </svg>
+      </ContactInfoCard>
+
+      <ContactInfoCard label="Email" value="info@globalresourcescitadel.com" href="mailto:info@globalresourcescitadel.com">
+        <svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect width="20" height="16" x="2" y="4" rx="2" />
+          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+        </svg>
+      </ContactInfoCard>
+
+      <ContactInfoCard label="Head Office">
+        <svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
+          <circle cx="12" cy="10" r="3" />
+        </svg>
+        <p>Victoria Island</p>
+        <p>Lagos, Nigeria</p>
+        <p class="mt-1 text-xs text-neutral-500">Mon–Fri, 8am–5pm WAT</p>
+      </ContactInfoCard>
+    </div>
+  </SectionWrapper>
+</PageLayout>

@@ -1,6 +1,6 @@
 # Story 4.1: Contact Hub & Inquiry Routing
 
-Status: ready-for-dev
+Status: done
 
 ## Story
 
@@ -20,51 +20,51 @@ So that I reach the appropriate team without guessing which form to use.
 
 ## Tasks / Subtasks
 
-- [ ] Task 1: Create `src/pages/contact/index.astro` (AC: #1, #5, #6)
-  - [ ] 1.1 PageLayout with SEO: title "Contact Global Resources Citadel — Enquiries, Partnerships & Locations"
-  - [ ] 1.2 Description: "Get in touch with Global Resources Citadel Limited. Submit general enquiries, contact specific business divisions, or reach our strategic partnerships team."
-  - [ ] 1.3 Canonical: `/contact/`
-  - [ ] 1.4 ContactPage JSON-LD structured data
-  - [ ] 1.5 BreadcrumbNav: Home > Contact
-  - [ ] 1.6 Breadcrumb JSON-LD
+- [x] Task 1: Create `src/pages/contact/index.astro` (AC: #1, #5, #6)
+  - [x] 1.1 PageLayout with SEO: title "Contact Global Resources Citadel — Enquiries, Partnerships & Locations"
+  - [x] 1.2 Description: "Get in touch with Global Resources Citadel Limited. Submit general enquiries, contact specific business divisions, or reach our strategic partnerships team."
+  - [x] 1.3 Canonical: `/contact/`
+  - [x] 1.4 ContactPage JSON-LD structured data
+  - [x] 1.5 BreadcrumbNav: Home > Contact
+  - [x] 1.6 Breadcrumb JSON-LD
 
-- [ ] Task 2: Build page hero section inline (AC: #1)
-  - [ ] 2.1 Build inline with SectionWrapper `variant="primary"` (primary-50 bg) — same pattern as Story 3.1. Do NOT use the dark-gradient PageHero component; the IA spec calls for "subtle background" on contact/hub pages.
-  - [ ] 2.2 Gold eyebrow: "Contact"
-  - [ ] 2.3 H1: "Get In Touch"
-  - [ ] 2.4 Sub-heading: "Choose the right pathway to reach the team you need."
-  - [ ] 2.5 Centered text layout, constrained max-width (`max-w-3xl`)
+- [x] Task 2: Build page hero section inline (AC: #1)
+  - [x] 2.1 Build inline with SectionWrapper `variant="primary"` (primary-50 bg) — same pattern as Story 3.1. Do NOT use the dark-gradient PageHero component; the IA spec calls for "subtle background" on contact/hub pages.
+  - [x] 2.2 Gold eyebrow: "Contact"
+  - [x] 2.3 H1: "Get In Touch"
+  - [x] 2.4 Sub-heading: "Choose the right pathway to reach the team you need."
+  - [x] 2.5 Centered text layout, constrained max-width (`max-w-3xl`)
 
-- [ ] Task 3: Create PathwayCard.astro component (AC: #2, #3)
-  - [ ] 3.1 Create `src/components/contact/PathwayCard.astro`
-  - [ ] 3.2 Props: icon (Lucide icon name), heading, description, linkLabel, href
-  - [ ] 3.3 Icon circle: primary-100 bg, primary-600 icon colour, 48px
-  - [ ] 3.4 Heading: H3, font-heading font-semibold text-lg
-  - [ ] 3.5 Description: text-sm text-neutral-600, 1-2 sentences
-  - [ ] 3.6 Action link: text-sm font-semibold text-primary-600 with arrow + group-hover gap animation
-  - [ ] 3.7 Card: `border border-neutral-200 rounded-xl p-6`, link wrapper (`<a>`)
-  - [ ] 3.8 Hover: `motion-safe:hover:shadow-md motion-safe:hover:border-neutral-300`
-  - [ ] 3.9 Focus-visible ring on card
+- [x] Task 3: Create PathwayCard.astro component (AC: #2, #3)
+  - [x] 3.1 Create `src/components/contact/PathwayCard.astro`
+  - [x] 3.2 Props: icon (Lucide icon name), heading, description, linkLabel, href
+  - [x] 3.3 Icon circle: primary-100 bg, primary-600 icon colour, 48px
+  - [x] 3.4 Heading: H3, font-heading font-semibold text-lg
+  - [x] 3.5 Description: text-sm text-neutral-600, 1-2 sentences
+  - [x] 3.6 Action link: text-sm font-semibold text-primary-600 with arrow + group-hover gap animation
+  - [x] 3.7 Card: `border border-neutral-200 rounded-xl p-6`, link wrapper (`<a>`)
+  - [x] 3.8 Hover: `motion-safe:hover:shadow-md motion-safe:hover:border-neutral-300`
+  - [x] 3.9 Focus-visible ring on card
 
-- [ ] Task 4: Build inquiry pathways grid (AC: #2, #7)
-  - [ ] 4.1 SectionWrapper variant="default" (white)
-  - [ ] 4.2 2x2 grid: `grid-cols-1 sm:grid-cols-2 gap-6`
-  - [ ] 4.3 Card 1: General Enquiries — Mail icon, "For general questions about Global Resources Citadel.", "Submit Enquiry →" → `/contact/general/`
-  - [ ] 4.4 Card 2: Contact by Division — Building2 icon, "Reach the team in the division relevant to you.", "Choose Division →" → `/contact/divisions/`
-  - [ ] 4.5 Card 3: Partner / Investor Contact — Handshake icon, "For investment, partnership, or strategic discussions.", "Start Conversation →" → `/contact/strategic/`
-  - [ ] 4.6 Card 4: Locations — MapPin icon, "Find our offices and operational locations.", "View Locations →" → `/contact/locations/`
+- [x] Task 4: Build inquiry pathways grid (AC: #2, #7)
+  - [x] 4.1 SectionWrapper variant="default" (white)
+  - [x] 4.2 2x2 grid: `grid-cols-1 sm:grid-cols-2 gap-6`
+  - [x] 4.3 Card 1: General Enquiries — Mail icon, "For general questions about Global Resources Citadel.", "Submit Enquiry →" → `/contact/general/`
+  - [x] 4.4 Card 2: Contact by Division — Building2 icon, "Reach the team in the division relevant to you.", "Choose Division →" → `/contact/divisions/`
+  - [x] 4.5 Card 3: Partner / Investor Contact — Handshake icon, "For investment, partnership, or strategic discussions.", "Start Conversation →" → `/contact/strategic/`
+  - [x] 4.6 Card 4: Locations — MapPin icon, "Find our offices and operational locations.", "View Locations →" → `/contact/locations/`
 
-- [ ] Task 5: Create ContactInfoCard.astro and Quick Contact section (AC: #4)
-  - [ ] 5.1 Create `src/components/contact/ContactInfoCard.astro`
-  - [ ] 5.2 Props: icon, label, value (string or slot for multi-line)
-  - [ ] 5.3 Icon: 40px circle, primary-50 bg, primary-600 icon
-  - [ ] 5.4 Label: text-sm font-semibold text-neutral-900
-  - [ ] 5.5 Value: text-sm text-neutral-600
-  - [ ] 5.6 SectionWrapper variant="light" (neutral-50)
-  - [ ] 5.7 3-column grid: `grid-cols-1 md:grid-cols-3 gap-6`
-  - [ ] 5.8 Phone: "+234 XXX XXX XXXX" (placeholder)
-  - [ ] 5.9 Email: "info@globalresourcescitadel.com"
-  - [ ] 5.10 Head Office: placeholder address, City, Nigeria
+- [x] Task 5: Create ContactInfoCard.astro and Quick Contact section (AC: #4)
+  - [x] 5.1 Create `src/components/contact/ContactInfoCard.astro`
+  - [x] 5.2 Props: icon, label, value (string or slot for multi-line)
+  - [x] 5.3 Icon: 40px circle, primary-50 bg, primary-600 icon
+  - [x] 5.4 Label: text-sm font-semibold text-neutral-900
+  - [x] 5.5 Value: text-sm text-neutral-600
+  - [x] 5.6 SectionWrapper variant="light" (neutral-50)
+  - [x] 5.7 3-column grid: `grid-cols-1 md:grid-cols-3 gap-6`
+  - [x] 5.8 Phone: "+234 XXX XXX XXXX" (placeholder)
+  - [x] 5.9 Email: "info@globalresourcescitadel.com"
+  - [x] 5.10 Head Office: placeholder address, City, Nigeria
 
 ## Dev Notes
 
@@ -190,9 +190,39 @@ Files this story creates or modifies:
 ## Dev Agent Record
 
 ### Agent Model Used
+Claude Opus 4.6 (1M context)
 
 ### Debug Log References
+- Build verified: 14 pages generated including `/contact/`
+- TypeScript check passed with no errors
+- Heading hierarchy validated: H1 → H2 ("How Can We Help?") → H3 × 4 pathway cards → H2 ("Quick Contact") — clean, no skipped levels
+- JSON-LD verified: BreadcrumbList + ContactPage structured data
+- 4 PathwayCards render with inline Lucide SVG icons (Mail, Building2, Handshake, MapPin)
+- 3 ContactInfoCards render with inline SVG icons (Phone, Mail, MapPin)
 
 ### Completion Notes List
+- Created `PathwayCard.astro` — link card with icon slot, heading H3, description, animated arrow link. Full `<a>` wrapper for click target with hover elevation and focus ring.
+- Created `ContactInfoCard.astro` — compact info display with icon slot, label, and value (prop or default slot for multi-line content like address).
+- Created `contact/index.astro` — routing hub with primary-50 hero (centered, same pattern as divisions hub), 2x2 pathway grid, and quick contact section.
+- Icons implemented as inline SVGs passed via named slots — no React dependency, no icon library needed. SVG paths sourced from Lucide icon set.
+- Added "How Can We Help?" H2 SectionHeading above pathway grid to maintain heading hierarchy (H1 → H2 → H3).
+- Contact info uses placeholder values for phone and address (client to provide).
 
 ### File List
+- `src/pages/contact/index.astro` — **Created** — contact routing hub page
+- `src/components/contact/PathwayCard.astro` — **Created** — inquiry pathway routing card
+- `src/components/contact/ContactInfoCard.astro` — **Created** — quick contact info card
+
+### Review Findings
+
+- [x] [Review][Decision] Placeholder phone/address visible to users — RESOLVED: kept as-is per user decision (client will provide before launch). Address polished from bracket-style `[Address Line 1]` to natural placeholder `Victoria Island, Lagos, Nigeria`.
+- [x] [Review][Patch] JSON-LD `telephone` field — FIXED: removed from ContactPage structured data until real number available
+- [x] [Review][Patch] Phone/email not actionable links — FIXED: added `href` prop to ContactInfoCard, phone uses `tel:`, email uses `mailto:`, with styled link treatment and focus-visible ring
+- [x] [Review][Defer] Gold eyebrow `text-gold-600` contrast on `bg-primary-50` may be borderline WCAG AA for small text — systemic pattern shared with divisions hub hero, review in Epic 8 a11y audit
+- [x] [Review][Defer] ContactInfoCard grid jumps 1→3 columns at `md` with no `sm` intermediate — minor responsive gap on tablets
+- [x] [Review][Defer] Long email address has no `overflow-wrap` protection — not triggered currently but no defensive guard
+- [x] [Review][Defer] Hours line uses `text-xs` while siblings inherit `text-sm` from parent — intentional visual hierarchy, not a bug
+
+### Change Log
+- 2026-04-02: Story 4.1 implemented — contact hub with 4 pathway cards, quick contact info, ContactPage JSON-LD
+- 2026-04-02: Code review — 3 patches applied (JSON-LD telephone removed, tel:/mailto: links added, placeholder address polished), 4 deferred

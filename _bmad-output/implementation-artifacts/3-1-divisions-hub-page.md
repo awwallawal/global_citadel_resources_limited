@@ -276,3 +276,4 @@ Claude Opus 4.6 (1M context)
 
 - 2026-03-31: Implemented Story 3.1 Divisions Hub Page — all 6 tasks complete, build verified
 - 2026-04-01: Code review completed — 0 decisions, 5 patches, 4 deferred, 1 dismissed
+- 2026-04-02: CTABanner variant changed from `dark` to `gold` for visual consistency across the divisions section (hub, cluster, and detail pages all use gold CTA). Change made during Story 3.3 implementation. See 3-3 story file "Post-Implementation UX Refinements" for rationale.

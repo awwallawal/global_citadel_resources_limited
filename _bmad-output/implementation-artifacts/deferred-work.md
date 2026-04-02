@@ -71,6 +71,23 @@ All 4 deferred items were resolved during review:
 - No visited state differentiation on InsightCards — content hub UX enhancement for Epic 8
 - Date parsing timezone consistency — Zod schema enforces format, low risk for current data
 
+## Deferred from: code review of 4-1-contact-hub-inquiry-routing (2026-04-02)
+
+- Gold eyebrow `text-gold-600` on `bg-primary-50` may be borderline WCAG AA for `text-xs` (12px) — systemic pattern shared across hub pages, review during Epic 8 accessibility audit
+- ContactInfoCard grid jumps from 1-col to 3-col at `md` (768px) — no `sm` intermediate; minor responsive gap on tablets
+- Long email address in ContactInfoCard has no `overflow-wrap: anywhere` — not triggered with current 33-char address but no defensive guard for longer values
+- Hours line in Head Office card uses `text-xs` while address lines inherit `text-sm` — intentional visual hierarchy for supplementary info
+
+## Deferred from: code review of 3-3-division-detail-pages (2026-04-02)
+
+- `parentCluster!` non-null assertion in getStaticPaths — safe due to Zod enum + `validateContentIntegrity()` build-time guard, but a `.find()` with graceful error would be more robust
+- Breadcrumbs computed in both `[slug].astro` (for JSON-LD) and `DivisionLayout.astro` (for rendered nav) — currently identical but can diverge silently. Consider passing breadcrumbs as a prop.
+- StatCounter visual flash — renders final value before hydration, then resets to 0 and animates up. Initialize `useState(0)` instead of `useState(null)` to fix. Pre-existing.
+- StatCounter layout shift with large numbers (e.g., 500,000) — `toLocaleString()` formatting causes width jumps as digits cross comma boundaries during animation. Pre-existing.
+- Import path inconsistency `@/content/config` vs `@/content.config` in `src/lib/divisions.ts` — pre-existing, could break if old re-export is removed
+- Stats grid orphan on mobile — all 7 divisions have 3 stats, 3rd item sits alone in 2nd row of 2-col grid. Design consideration, not a bug.
+- CapabilityCard icon fallback renders `●` for unmapped Lucide icon names — 24 of 1000+ Lucide icons mapped. Swap to SVG icons when design assets available.
+
 ## Deferred from: code review of 3-2-division-cluster-pages (2026-04-02)
 
 - Hardcoded SITE_URL fallback `'https://globalresourcescitadel.com'` in both page files — pre-existing pattern across codebase, not introduced by Story 3.2

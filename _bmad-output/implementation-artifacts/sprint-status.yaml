@@ -68,12 +68,12 @@ development_status:
   epic-3: in-progress
   3-1-divisions-hub-page: done
   3-2-division-cluster-pages: done
-  3-3-division-detail-pages-layout-content-structure: ready-for-dev
+  3-3-division-detail-pages-layout-content-structure: done
   epic-3-retrospective: optional
 
   # --- Epic 4: Inquiry & Contact Architecture ---
   epic-4: in-progress
-  4-1-contact-hub-inquiry-routing: ready-for-dev
+  4-1-contact-hub-inquiry-routing: done
   4-2-contact-by-division-directory-division-inquiry-forms: ready-for-dev
   4-3-general-strategic-inquiry-forms: ready-for-dev
   4-4-form-submission-validation-email-processing: ready-for-dev

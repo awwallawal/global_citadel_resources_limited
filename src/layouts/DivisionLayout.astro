@@ -1,0 +1,198 @@
+---
+/**
+ * DivisionLayout.astro — 5-section division detail page layout.
+ * Extends PageLayout with division-specific structure:
+ *   1. Overview hero + prose
+ *   2. Capabilities grid
+ *   3. Proof/Credentials (StatCounter)
+ *   4. Related Insights
+ *   5. Inquiry CTA
+ */
+import { cn } from '@/lib/utils';
+import PageLayout from '@/layouts/PageLayout.astro';
+import BreadcrumbNav from '@/components/layout/BreadcrumbNav.astro';
+import SectionWrapper from '@/components/layout/SectionWrapper.astro';
+import SectionHeading from '@/components/layout/SectionHeading.astro';
+import CapabilityCard from '@/components/divisions/CapabilityCard.astro';
+import StatCounter from '@/components/shared/StatCounter';
+import InsightCard from '@/components/insights/InsightCard.astro';
+import ViewAllLink from '@/components/shared/ViewAllLink.astro';
+import CTABanner from '@/components/shared/CTABanner.astro';
+import type { SeoMetadata, BreadcrumbItem } from '@/lib/seo';
+
+import { STREAM_LABELS } from '@/lib/divisions';
+import type { Division, Cluster, Article } from '@/content.config';
+
+interface Props {
+  division: Division;
+  cluster: Cluster;
+  articles: { id: string; data: Article }[];
+  isArticleFallback: boolean;
+  seo: SeoMetadata;
+  accentColor: 'amber' | 'copper' | 'slate';
+}
+
+const { division, cluster, articles, isArticleFallback, seo, accentColor } = Astro.props;
+
+// --- Breadcrumbs ---
+const breadcrumbs: BreadcrumbItem[] = [
+  { label: 'Home', href: '/' },
+  { label: 'Divisions', href: '/divisions/' },
+  { label: cluster.name, href: `/divisions/${cluster.slug}/` },
+  { label: division.name },
+];
+
+// --- Overview paragraphs ---
+const overviewParagraphs = division.overview
+  .split('\n\n')
+  .map((p) => p.trim())
+  .filter(Boolean);
+
+// --- Stats: map division schema (unit) to StatCounter (suffix) ---
+const stats = division.stats.map((s) => ({
+  value: s.value,
+  label: s.label,
+  prefix: s.prefix,
+  suffix: s.unit ? ` ${s.unit}` : undefined,
+}));
+
+// --- Insight stream labels ---
+const streamLabels = STREAM_LABELS;
+---
+
+<PageLayout seo={seo}>
+  <BreadcrumbNav items={breadcrumbs} slot="breadcrumb" />
+
+  {/* ── Section 1: Overview Hero (AC #1) ── */}
+  <SectionWrapper variant="hero">
+    <p class="mb-4 text-xs font-semibold uppercase tracking-widest text-gold-600">
+      {cluster.name}
+    </p>
+    <h1 class="font-heading text-3xl font-semibold leading-tight tracking-tight lg:text-5xl">
+      {division.name}
+    </h1>
+    <p class="mt-4 max-w-2xl text-lg text-primary-100">
+      {division.tagline}
+    </p>
+  </SectionWrapper>
+
+  {/* ── Section 1 continued: Overview Prose ── */}
+  {overviewParagraphs.length > 0 && (
+    <SectionWrapper variant="default">
+      <div class="mx-auto max-w-3xl">
+        {overviewParagraphs.map((paragraph) => (
+          <p class="mb-6 text-lg leading-relaxed text-neutral-600 last:mb-0">
+            {paragraph}
+          </p>
+        ))}
+      </div>
+    </SectionWrapper>
+  )}
+
+  {/* ── Section 2: Capabilities (AC #2, #7) ── */}
+  {division.capabilities.length > 0 && (
+    <SectionWrapper variant="light">
+      <SectionHeading>
+        What We Offer
+      </SectionHeading>
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+        {division.capabilities.map((cap) => (
+          <CapabilityCard
+            icon={cap.icon}
+            name={cap.name}
+            description={cap.description}
+            accentColor={accentColor}
+          />
+        ))}
+      </div>
+    </SectionWrapper>
+  )}
+
+  {/* ── Section 3: Proof/Credentials (AC #3) ── */}
+  {stats.length > 0 && (
+    <SectionWrapper variant="dark">
+      <div class="mx-auto max-w-4xl text-center">
+        <h2 class="mb-12 font-heading text-3xl font-bold text-white lg:text-4xl">
+          Our Track Record
+        </h2>
+        <div class={cn('grid grid-cols-2 gap-10', stats.length <= 3 ? 'md:grid-cols-3' : 'md:grid-cols-4')}>
+          {stats.map((stat) => (
+            <StatCounter
+              client:visible
+              value={stat.value}
+              label={stat.label}
+              prefix={stat.prefix}
+              suffix={stat.suffix}
+            />
+          ))}
+        </div>
+
+        {/* Optional certifications */}
+        {division.certifications && division.certifications.length > 0 && (
+          <div class="mt-12 border-t border-white/10 pt-8">
+            <p class="mb-4 text-xs font-semibold uppercase tracking-widest text-neutral-400">
+              Certifications & Accreditations
+            </p>
+            <div class="flex flex-wrap items-center justify-center gap-6">
+              {division.certifications.map((cert) => (
+                <span class="rounded-lg border border-white/10 px-4 py-2 text-sm text-neutral-300">
+                  {cert}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Optional testimonial */}
+        {division.testimonial && (
+          <blockquote class="mx-auto mt-12 max-w-2xl border-t border-white/10 pt-8">
+            <p class="text-lg italic leading-relaxed text-neutral-300">
+              &ldquo;{division.testimonial}&rdquo;
+            </p>
+          </blockquote>
+        )}
+      </div>
+    </SectionWrapper>
+  )}
+
+  {/* ── Section 4: Related Insights (AC #4) ── */}
+  {articles.length > 0 && (
+    <SectionWrapper variant="default">
+      <div class="flex items-end justify-between gap-4">
+        <SectionHeading class="mb-0 lg:mb-0">
+          {isArticleFallback ? 'Latest from Global Resources Citadel' : `Latest in ${division.name}`}
+        </SectionHeading>
+        <ViewAllLink
+          href={isArticleFallback ? '/insights/' : `/insights/divisions/${division.slug}/`}
+          label={isArticleFallback ? 'View All Insights' : `View All ${division.name} Insights`}
+          class="hidden shrink-0 sm:inline-flex"
+        />
+      </div>
+      <div class="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+        {articles.map((article) => (
+          <InsightCard
+            title={article.data.title}
+            excerpt={article.data.excerpt}
+            category={streamLabels[article.data.stream] ?? article.data.stream}
+            href={`/insights/${article.id}/`}
+            variant="standard"
+          />
+        ))}
+      </div>
+      <div class="mt-8 sm:hidden">
+        <ViewAllLink
+          href={isArticleFallback ? '/insights/' : `/insights/divisions/${division.slug}/`}
+          label={isArticleFallback ? 'View All Insights' : `View All ${division.name} Insights`}
+        />
+      </div>
+    </SectionWrapper>
+  )}
+
+  {/* ── Section 5: Inquiry CTA (AC #5) ── */}
+  <CTABanner
+    heading={`Interested in ${division.name}?`}
+    body={`Get in touch with our ${division.name} team to discuss your needs.`}
+    primaryCta={{ label: 'Contact Our Team', href: `/contact/divisions/${division.slug}/` }}
+    variant="gold"
+  />
+</PageLayout>

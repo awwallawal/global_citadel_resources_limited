@@ -1,11 +1,11 @@
 ---
 /**
  * [slug].astro — Shared dynamic route for cluster pages (Story 3.2) and division pages (Story 3.3).
- * Story 3.2: generates 3 cluster paths with type: 'cluster'
- * Story 3.3: will extend with division paths using type: 'division'
+ * Generates 3 cluster paths (type: 'cluster') + 7 division paths (type: 'division').
  */
 import { getCollection } from 'astro:content';
 import PageLayout from '@/layouts/PageLayout.astro';
+import DivisionLayout from '@/layouts/DivisionLayout.astro';
 import BreadcrumbNav from '@/components/layout/BreadcrumbNav.astro';
 import SectionWrapper from '@/components/layout/SectionWrapper.astro';
 import SectionHeading from '@/components/layout/SectionHeading.astro';
@@ -19,6 +19,7 @@ import {
   type BreadcrumbItem,
 } from '@/lib/seo';
 
+import { STREAM_LABELS } from '@/lib/divisions';
 import type { Cluster, Division, Article } from '@/content.config';
 
 interface ClusterProps {
@@ -29,9 +30,16 @@ interface ClusterProps {
   isArticleFallback: boolean;
 }
 
-// Story 3.3 will add: interface DivisionProps { type: 'division'; ... }
+interface DivisionProps {
+  type: 'division';
+  division: Division;
+  cluster: Cluster;
+  articles: { id: string; data: Article }[];
+  isArticleFallback: boolean;
+  accentColor: 'amber' | 'copper' | 'slate';
+}
 
-type Props = ClusterProps; // Story 3.3: Props = ClusterProps | DivisionProps
+type Props = ClusterProps | DivisionProps;
 
 export async function getStaticPaths() {
   const clusters = await getCollection('clusters');
@@ -51,7 +59,6 @@ export async function getStaticPaths() {
       .sort((a, b) => new Date(b.data.publishedAt).getTime() - new Date(a.data.publishedAt).getTime())
       .slice(0, 3);
 
-    // Fallback to latest company-wide if no cluster-specific articles
     const isArticleFallback = clusterArticles.length === 0;
     const resolvedArticles = isArticleFallback
       ? [...articles]
@@ -71,156 +78,231 @@ export async function getStaticPaths() {
     };
   });
 
-  // --- Division paths (Story 3.3 adds these) ---
-  // const divisionPaths = divisions.map(division => { ... });
+  // --- Division paths (Story 3.3) ---
+  const divisionPaths = divisions.map((division) => {
+    const parentCluster = clusters.find((c) => c.data.slug === division.data.clusterSlug);
 
-  return [...clusterPaths /* , ...divisionPaths */];
+    const divisionArticles = articles
+      .filter((a) => a.data.divisionSlug === division.data.slug)
+      .sort((a, b) => new Date(b.data.publishedAt).getTime() - new Date(a.data.publishedAt).getTime())
+      .slice(0, 3);
+
+    const isArticleFallback = divisionArticles.length === 0;
+    const resolvedArticles = isArticleFallback
+      ? [...articles]
+          .sort((a, b) => new Date(b.data.publishedAt).getTime() - new Date(a.data.publishedAt).getTime())
+          .slice(0, 3)
+      : divisionArticles;
+
+    return {
+      params: { slug: division.data.slug },
+      props: {
+        type: 'division' as const,
+        division: division.data,
+        cluster: parentCluster!.data,
+        articles: resolvedArticles,
+        isArticleFallback,
+        accentColor: (parentCluster!.data.accentColor ?? 'amber') as 'amber' | 'copper' | 'slate',
+      },
+    };
+  });
+
+  return [...clusterPaths, ...divisionPaths];
 }
 
 const props = Astro.props as Props;
 
-// Story 3.2: only cluster type exists
-// Story 3.3: adds conditional for division type
-const { cluster, divisions, articles, isArticleFallback } = props as ClusterProps;
-const accentColor = cluster.accentColor ?? 'amber';
-
-// --- Breadcrumbs ---
-const breadcrumbs: BreadcrumbItem[] = [
-  { label: 'Home', href: '/' },
-  { label: 'Divisions', href: '/divisions/' },
-  { label: cluster.name },
-];
-
-// --- SEO ---
+// --- Shared ---
 const SITE_URL = (import.meta.env.SITE ?? 'https://globalresourcescitadel.com').replace(/\/$/, '');
 
-const seo = {
-  ...generateMetadata({
-    title: `${cluster.name} | Division Group`,
-    description: cluster.seoDescription,
-    path: `/divisions/${cluster.slug}/`,
-  }),
-  jsonLd: [
-    generateBreadcrumbJsonLd(breadcrumbs),
-    {
-      '@context': 'https://schema.org',
-      '@type': 'CollectionPage',
-      name: cluster.name,
-      description: cluster.seoDescription,
-      url: `${SITE_URL}/divisions/${cluster.slug}/`,
-      mainEntity: {
-        '@type': 'ItemList',
-        numberOfItems: divisions.length,
-        itemListElement: divisions.map((d, i) => ({
-          '@type': 'ListItem',
-          position: i + 1,
-          name: d.data.name,
-          url: `${SITE_URL}/divisions/${d.data.slug}/`,
-        })),
-      },
-    },
-  ],
-};
+const streamLabels = STREAM_LABELS;
 
-// --- Insight stream label map ---
-const streamLabels: Record<string, string> = {
-  'company-news': 'Company News',
-  announcements: 'Announcements',
-  'operational-updates': 'Operational Updates',
-  'thought-leadership': 'Thought Leadership',
-  'industry-commentary': 'Industry Commentary',
-  'division-insight': 'Division Insight',
-};
+// --- Cluster page variables (only used when type === 'cluster') ---
+const isCluster = props.type === 'cluster';
 
-// --- Overview paragraphs ---
-const overviewParagraphs = cluster.overview
-  .split('\n\n')
-  .map((p) => p.trim())
-  .filter(Boolean);
+const clusterData = isCluster ? (props as ClusterProps) : null;
+const clusterObj = clusterData?.cluster;
+const clusterDivisions = clusterData?.divisions ?? [];
+const clusterAccent = clusterObj?.accentColor ?? 'amber';
+
+const clusterBreadcrumbs: BreadcrumbItem[] = isCluster
+  ? [
+      { label: 'Home', href: '/' },
+      { label: 'Divisions', href: '/divisions/' },
+      { label: clusterObj!.name },
+    ]
+  : [];
+
+const clusterSeo = isCluster
+  ? {
+      ...generateMetadata({
+        title: `${clusterObj!.name} | Division Group`,
+        description: clusterObj!.seoDescription,
+        path: `/divisions/${clusterObj!.slug}/`,
+      }),
+      jsonLd: [
+        generateBreadcrumbJsonLd(clusterBreadcrumbs),
+        {
+          '@context': 'https://schema.org',
+          '@type': 'CollectionPage',
+          name: clusterObj!.name,
+          description: clusterObj!.seoDescription,
+          url: `${SITE_URL}/divisions/${clusterObj!.slug}/`,
+          mainEntity: {
+            '@type': 'ItemList',
+            numberOfItems: clusterDivisions.length,
+            itemListElement: clusterDivisions.map((d, i) => ({
+              '@type': 'ListItem',
+              position: i + 1,
+              name: d.data.name,
+              url: `${SITE_URL}/divisions/${d.data.slug}/`,
+            })),
+          },
+        },
+      ],
+    }
+  : null;
+
+const clusterOverviewParagraphs = isCluster
+  ? clusterObj!.overview.split('\n\n').map((p) => p.trim()).filter(Boolean)
+  : [];
+
+// --- Division page variables (only used when type === 'division') ---
+const divisionData = !isCluster ? (props as DivisionProps) : null;
+
+const divisionBreadcrumbs: BreadcrumbItem[] = !isCluster
+  ? [
+      { label: 'Home', href: '/' },
+      { label: 'Divisions', href: '/divisions/' },
+      { label: divisionData!.cluster.name, href: `/divisions/${divisionData!.cluster.slug}/` },
+      { label: divisionData!.division.name },
+    ]
+  : [];
+
+const divisionSeo = !isCluster
+  ? {
+      ...generateMetadata({
+        title: `${divisionData!.division.name} | ${divisionData!.cluster.name}`,
+        description: divisionData!.division.seoDescription,
+        path: `/divisions/${divisionData!.division.slug}/`,
+      }),
+      jsonLd: [
+        generateBreadcrumbJsonLd(divisionBreadcrumbs),
+        {
+          '@context': 'https://schema.org',
+          '@type': 'Organization',
+          name: `Global Resources Citadel — ${divisionData!.division.name}`,
+          url: `${SITE_URL}/divisions/${divisionData!.division.slug}/`,
+          parentOrganization: {
+            '@type': 'Organization',
+            name: 'Global Resources Citadel Limited',
+          },
+        },
+        {
+          '@context': 'https://schema.org',
+          '@type': 'WebPage',
+          name: `${divisionData!.division.name} — Global Resources Citadel Limited`,
+          description: divisionData!.division.seoDescription,
+          url: `${SITE_URL}/divisions/${divisionData!.division.slug}/`,
+        },
+      ],
+    }
+  : null;
 ---
 
-<PageLayout seo={seo}>
-  <BreadcrumbNav items={breadcrumbs} slot="breadcrumb" />
+{isCluster ? (
+  <PageLayout seo={clusterSeo!}>
+    <BreadcrumbNav items={clusterBreadcrumbs} slot="breadcrumb" />
 
-  {/* ── Cluster Hero (AC #1) ── */}
-  <SectionWrapper variant="hero">
-    <p class="mb-4 text-xs font-semibold uppercase tracking-widest text-gold-600">
-      Division Group
-    </p>
-    <h1 class="font-heading text-3xl font-semibold leading-tight tracking-tight lg:text-5xl">
-      {cluster.name}
-    </h1>
-    <p class="mt-4 max-w-2xl text-lg text-primary-100">
-      {cluster.tagline}
-    </p>
-  </SectionWrapper>
-
-  {/* ── Cluster Overview (AC #2) ── */}
-  {overviewParagraphs.length > 0 && (
-    <SectionWrapper variant="default">
-      <div class="mx-auto max-w-3xl">
-        {overviewParagraphs.map((paragraph) => (
-          <p class="mb-6 text-lg leading-relaxed text-neutral-600 last:mb-0">
-            {paragraph}
-          </p>
-        ))}
-      </div>
+    {/* ── Cluster Hero (AC #1) ── */}
+    <SectionWrapper variant="hero">
+      <p class="mb-4 text-xs font-semibold uppercase tracking-widest text-gold-600">
+        Division Group
+      </p>
+      <h1 class="font-heading text-3xl font-semibold leading-tight tracking-tight lg:text-5xl">
+        {clusterObj!.name}
+      </h1>
+      <p class="mt-4 max-w-2xl text-lg text-primary-100">
+        {clusterObj!.tagline}
+      </p>
     </SectionWrapper>
-  )}
 
-  {/* ── Member Divisions (AC #3) ── */}
-  {divisions.length > 0 && (
-    <SectionWrapper variant="light">
-      <SectionHeading>
-        Divisions in {cluster.name}
-      </SectionHeading>
-      <ul class="space-y-6 lg:space-y-8" role="list">
-        {divisions.map((division) => (
-          <li>
-            <DivisionFeatureCard
-              name={division.data.name}
-              slug={division.data.slug}
-              overview={division.data.overview}
-              capabilities={division.data.capabilities}
-              accentColor={accentColor as 'amber' | 'copper' | 'slate'}
-            />
-          </li>
-        ))}
-      </ul>
-    </SectionWrapper>
-  )}
+    {/* ── Cluster Overview (AC #2) ── */}
+    {clusterOverviewParagraphs.length > 0 && (
+      <SectionWrapper variant="default">
+        <div class="mx-auto max-w-3xl">
+          {clusterOverviewParagraphs.map((paragraph) => (
+            <p class="mb-6 text-lg leading-relaxed text-neutral-600 last:mb-0">
+              {paragraph}
+            </p>
+          ))}
+        </div>
+      </SectionWrapper>
+    )}
 
-  {/* ── Related Insights (AC #4) ── */}
-  {articles.length > 0 && (
-    <SectionWrapper variant="default">
-      <div class="flex items-end justify-between gap-4">
-        <SectionHeading class="mb-0 lg:mb-0">
-          {isArticleFallback ? 'Latest from Global Resources Citadel' : `Latest from ${cluster.name}`}
+    {/* ── Member Divisions (AC #3) ── */}
+    {clusterDivisions.length > 0 && (
+      <SectionWrapper variant="light">
+        <SectionHeading>
+          Divisions in {clusterObj!.name}
         </SectionHeading>
-        <ViewAllLink href="/insights/" label="View All Insights" class="hidden shrink-0 sm:inline-flex" />
-      </div>
-      <div class="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
-        {articles.map((article) => (
-          <InsightCard
-            title={article.data.title}
-            excerpt={article.data.excerpt}
-            category={streamLabels[article.data.stream] ?? article.data.stream}
-            href={`/insights/${article.id}/`}
-            variant="standard"
-          />
-        ))}
-      </div>
-      <div class="mt-8 sm:hidden">
-        <ViewAllLink href="/insights/" label="View All Insights" />
-      </div>
-    </SectionWrapper>
-  )}
+        <ul class="space-y-6 lg:space-y-8" role="list">
+          {clusterDivisions.map((division) => (
+            <li>
+              <DivisionFeatureCard
+                name={division.data.name}
+                slug={division.data.slug}
+                overview={division.data.overview}
+                capabilities={division.data.capabilities}
+                accentColor={clusterAccent as 'amber' | 'copper' | 'slate'}
+              />
+            </li>
+          ))}
+        </ul>
+      </SectionWrapper>
+    )}
 
-  {/* ── CTA Banner (AC #5) ── */}
-  <CTABanner
-    heading={`Interested in ${cluster.name}?`}
-    body={`Learn how our ${cluster.name} divisions can support your business goals. Get in touch to start a conversation.`}
-    primaryCta={{ label: 'Get In Touch', href: '/contact/' }}
-    variant="dark"
+    {/* ── Related Insights (AC #4) ── */}
+    {clusterData!.articles.length > 0 && (
+      <SectionWrapper variant="default">
+        <div class="flex items-end justify-between gap-4">
+          <SectionHeading class="mb-0 lg:mb-0">
+            {clusterData!.isArticleFallback ? 'Latest from Global Resources Citadel' : `Latest from ${clusterObj!.name}`}
+          </SectionHeading>
+          <ViewAllLink href="/insights/" label="View All Insights" class="hidden shrink-0 sm:inline-flex" />
+        </div>
+        <div class="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+          {clusterData!.articles.map((article) => (
+            <InsightCard
+              title={article.data.title}
+              excerpt={article.data.excerpt}
+              category={streamLabels[article.data.stream] ?? article.data.stream}
+              href={`/insights/${article.id}/`}
+              variant="standard"
+            />
+          ))}
+        </div>
+        <div class="mt-8 sm:hidden">
+          <ViewAllLink href="/insights/" label="View All Insights" />
+        </div>
+      </SectionWrapper>
+    )}
+
+    {/* ── CTA Banner (AC #5) ── */}
+    <CTABanner
+      heading={`Interested in ${clusterObj!.name}?`}
+      body={`Learn how our ${clusterObj!.name} divisions can support your business goals. Get in touch to start a conversation.`}
+      primaryCta={{ label: 'Get In Touch', href: '/contact/' }}
+      variant="gold"
+    />
+  </PageLayout>
+) : (
+  <DivisionLayout
+    division={divisionData!.division}
+    cluster={divisionData!.cluster}
+    articles={divisionData!.articles}
+    isArticleFallback={divisionData!.isArticleFallback}
+    seo={divisionSeo!}
+    accentColor={divisionData!.accentColor}
   />
-</PageLayout>
+)}

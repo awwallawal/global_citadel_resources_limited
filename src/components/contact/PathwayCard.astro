@@ -1,0 +1,41 @@
+---
+/**
+ * PathwayCard.astro — Routing card for the contact hub page.
+ * Links visitors to the appropriate inquiry pathway.
+ */
+import { cn } from '@/lib/utils';
+
+interface Props {
+  heading: string;
+  description: string;
+  linkLabel: string;
+  href: string;
+  class?: string;
+}
+
+const { heading, description, linkLabel, href, class: className } = Astro.props;
+---
+
+<a
+  href={href}
+  class={cn(
+    'group flex flex-col rounded-xl border border-neutral-200 p-6 motion-safe:transition-all motion-safe:duration-300 motion-safe:hover:shadow-md motion-safe:hover:border-neutral-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2',
+    className,
+  )}
+>
+  <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary-100 text-primary-600" aria-hidden="true">
+    <slot name="icon" />
+  </div>
+
+  <h3 class="font-heading text-lg font-semibold text-neutral-900">
+    {heading}
+  </h3>
+
+  <p class="mt-2 flex-1 text-sm leading-relaxed text-neutral-600">
+    {description}
+  </p>
+
+  <span class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary-600 motion-safe:transition-[gap] motion-safe:duration-200 group-hover:gap-2.5">
+    {linkLabel} <span aria-hidden="true">&rarr;</span>
+  </span>
+</a>

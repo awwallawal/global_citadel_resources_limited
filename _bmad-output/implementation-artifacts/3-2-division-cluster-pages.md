@@ -299,3 +299,4 @@ Claude Opus 4.6 (1M context)
 ### Change Log
 - 2026-04-01: Story 3.2 implemented — cluster pages with hero, overview, member divisions, related insights, and CTA sections across all 3 cluster routes
 - 2026-04-02: Code review — 10 patches applied (overview prop, fallback heading, sort mutation, touch target, aria-label, emoji fix, shared icons module, empty guards, semantic list, modulo variants), 6 deferred to Epic 8/Story 3.3
+- 2026-04-02: CTABanner variant changed from `dark` to `gold` for visual consistency across the divisions section. Change made during Story 3.3 implementation. See 3-3 story file "Post-Implementation UX Refinements" for rationale.

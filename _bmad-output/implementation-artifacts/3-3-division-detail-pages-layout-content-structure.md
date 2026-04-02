@@ -1,6 +1,6 @@
 # Story 3.3: Division Detail Pages — Layout & Content Structure
 
-Status: ready-for-dev
+Status: done
 
 ## Story
 
@@ -22,71 +22,71 @@ So that I can evaluate whether this business unit can serve my needs before reac
 
 ## Tasks / Subtasks
 
-- [ ] Task 1: Create DivisionLayout.astro (AC: #1-#5)
-  - [ ] 1.1 Create `src/layouts/DivisionLayout.astro`
-  - [ ] 1.2 Extends PageLayout with division-specific structure
-  - [ ] 1.3 Props: division data, cluster data, articles, seo
-  - [ ] 1.4 Renders the 5-section template in order with alternating backgrounds
-  - [ ] 1.5 Passes cluster accent info for icon tinting
+- [x] Task 1: Create DivisionLayout.astro (AC: #1-#5)
+  - [x] 1.1 Create `src/layouts/DivisionLayout.astro`
+  - [x] 1.2 Extends PageLayout with division-specific structure
+  - [x] 1.3 Props: division data, cluster data, articles, seo
+  - [x] 1.4 Renders the 5-section template in order with alternating backgrounds
+  - [x] 1.5 Passes cluster accent info for icon tinting
 
-- [ ] Task 2: Extend `src/pages/divisions/[slug].astro` with division paths (AC: #9, #8, #6)
-  - [ ] 2.1 **CRITICAL: Do NOT create a new `[division].astro` file.** Extend the existing `[slug].astro` created in Story 3.2. Astro does not allow two dynamic route files in the same directory. Add division paths to the existing `getStaticPaths` with `type: 'division'` in props.
-  - [ ] 2.2 Add `divisionPaths` array to `getStaticPaths` — generates 7 paths from divisions collection, each with `type: 'division'` prop
-  - [ ] 2.3 Fetch division data + parent cluster + related articles + division stats per path
-  - [ ] 2.4 Add conditional rendering in the page component: `{props.type === 'cluster' ? <ClusterPage .../> : <DivisionPage .../>}` where ClusterPage is the Story 3.2 content and DivisionPage renders DivisionLayout
-  - [ ] 2.5 SEO: title "[Division Name] — Global Resources Citadel Limited | [Cluster Name]"
-  - [ ] 2.6 BreadcrumbNav: Home > Divisions > [Cluster Name] > [Division Name] (constructed from division + cluster props)
-  - [ ] 2.7 JSON-LD array: Breadcrumb + Organization (department) + WebPage structured data
+- [x] Task 2: Extend `src/pages/divisions/[slug].astro` with division paths (AC: #9, #8, #6)
+  - [x] 2.1 **CRITICAL: Do NOT create a new `[division].astro` file.** Extend the existing `[slug].astro` created in Story 3.2. Astro does not allow two dynamic route files in the same directory. Add division paths to the existing `getStaticPaths` with `type: 'division'` in props.
+  - [x] 2.2 Add `divisionPaths` array to `getStaticPaths` — generates 7 paths from divisions collection, each with `type: 'division'` prop
+  - [x] 2.3 Fetch division data + parent cluster + related articles + division stats per path
+  - [x] 2.4 Add conditional rendering in the page component: `{props.type === 'cluster' ? <ClusterPage .../> : <DivisionPage .../>}` where ClusterPage is the Story 3.2 content and DivisionPage renders DivisionLayout
+  - [x] 2.5 SEO: title "[Division Name] — Global Resources Citadel Limited | [Cluster Name]"
+  - [x] 2.6 BreadcrumbNav: Home > Divisions > [Cluster Name] > [Division Name] (constructed from division + cluster props)
+  - [x] 2.7 JSON-LD array: Breadcrumb + Organization (department) + WebPage structured data
 
-- [ ] Task 3: Build Section 1 — Division Overview & Positioning (AC: #1)
-  - [ ] 3.1 Hero section with gradient background (primary-900→700, same as homepage/cluster — no real images for MVP)
-  - [ ] 3.2 Gold eyebrow: cluster name (e.g., "Agriculture & Processing")
-  - [ ] 3.3 H1: division name
-  - [ ] 3.4 Sub-heading: `division.data.tagline` (max 30 words)
-  - [ ] 3.5 Below hero: prose section with `division.data.overview` (2-3 paragraphs)
-  - [ ] 3.6 Prose styling: `max-w-3xl text-lg leading-relaxed text-neutral-600`
+- [x] Task 3: Build Section 1 — Division Overview & Positioning (AC: #1)
+  - [x] 3.1 Hero section with gradient background (primary-900→700, same as homepage/cluster — no real images for MVP)
+  - [x] 3.2 Gold eyebrow: cluster name (e.g., "Agriculture & Processing")
+  - [x] 3.3 H1: division name
+  - [x] 3.4 Sub-heading: `division.data.tagline` (max 30 words)
+  - [x] 3.5 Below hero: prose section with `division.data.overview` (2-3 paragraphs)
+  - [x] 3.6 Prose styling: `max-w-3xl text-lg leading-relaxed text-neutral-600`
 
-- [ ] Task 4: Create CapabilityCard.astro and build Section 2 (AC: #2, #7)
-  - [ ] 4.1 Create `src/components/divisions/CapabilityCard.astro`
-  - [ ] 4.2 Props: icon (string identifier), name, description, accentColor (cluster accent)
-  - [ ] 4.3 Icon circle with cluster-accent bg: 48px, rounded-full
-  - [ ] 4.4 Name: H3, `font-heading font-semibold text-lg`
-  - [ ] 4.5 Description: `text-sm text-neutral-600 leading-relaxed` (2-3 lines)
-  - [ ] 4.6 Card: `rounded-xl p-6` no border (clean look on light bg)
-  - [ ] 4.7 Section: SectionWrapper variant="light", heading "What We Offer"
-  - [ ] 4.8 Grid: `grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8`
-  - [ ] 4.9 Render 3-6 cards from `division.data.capabilities`
+- [x] Task 4: Create CapabilityCard.astro and build Section 2 (AC: #2, #7)
+  - [x] 4.1 Create `src/components/divisions/CapabilityCard.astro`
+  - [x] 4.2 Props: icon (string identifier), name, description, accentColor (cluster accent)
+  - [x] 4.3 Icon circle with cluster-accent bg: 48px, rounded-full
+  - [x] 4.4 Name: H3, `font-heading font-semibold text-lg`
+  - [x] 4.5 Description: `text-sm text-neutral-600 leading-relaxed` (2-3 lines)
+  - [x] 4.6 Card: `rounded-xl p-6` no border (clean look on light bg)
+  - [x] 4.7 Section: SectionWrapper variant="light", heading "What We Offer"
+  - [x] 4.8 Grid: `grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8`
+  - [x] 4.9 Render 3-6 cards from `division.data.capabilities`
 
-- [ ] Task 5: Build Section 3 — Proof/Credentials (AC: #3)
-  - [ ] 5.1 Reuse CredibilityBar pattern from Story 2.3
-  - [ ] 5.2 SectionWrapper variant="dark" (neutral-900)
-  - [ ] 5.3 Heading: "Our Track Record" (white, centered)
-  - [ ] 5.4 StatCounter × 3-4 with `client:visible`, data from `division.data.stats`
-  - [ ] 5.5 Optional certification logos row (from `division.data.certifications`)
-  - [ ] 5.6 Optional testimonial quote (from `division.data.testimonial`)
-  - [ ] 5.7 Stats grid: `grid-cols-2 md:grid-cols-4 gap-10`
+- [x] Task 5: Build Section 3 — Proof/Credentials (AC: #3)
+  - [x] 5.1 Reuse CredibilityBar pattern from Story 2.3
+  - [x] 5.2 SectionWrapper variant="dark" (neutral-900)
+  - [x] 5.3 Heading: "Our Track Record" (white, centered)
+  - [x] 5.4 StatCounter × 3-4 with `client:visible`, data from `division.data.stats`
+  - [x] 5.5 Optional certification logos row (from `division.data.certifications`)
+  - [x] 5.6 Optional testimonial quote (from `division.data.testimonial`)
+  - [x] 5.7 Stats grid: `grid-cols-2 md:grid-cols-4 gap-10`
 
-- [ ] Task 6: Build Section 4 — Related Insights (AC: #4)
-  - [ ] 6.1 SectionWrapper variant="default" (white)
-  - [ ] 6.2 SectionHeading: "Latest in [Division Name]"
-  - [ ] 6.3 Filter articles where `divisionSlug === division.data.slug`
-  - [ ] 6.4 Fallback: latest 3 company-wide articles if none tagged
-  - [ ] 6.5 InsightCard × 3 in `grid-cols-1 md:grid-cols-3 gap-6`
-  - [ ] 6.6 ViewAllLink: "View All [Division Name] Insights" → `/insights/divisions/[slug]/`
-  - [ ] 6.7 If no articles at all (including fallback), omit the insights section entirely or show "Stay tuned for insights" message. Never show an empty grid.
+- [x] Task 6: Build Section 4 — Related Insights (AC: #4)
+  - [x] 6.1 SectionWrapper variant="default" (white)
+  - [x] 6.2 SectionHeading: "Latest in [Division Name]"
+  - [x] 6.3 Filter articles where `divisionSlug === division.data.slug`
+  - [x] 6.4 Fallback: latest 3 company-wide articles if none tagged
+  - [x] 6.5 InsightCard × 3 in `grid-cols-1 md:grid-cols-3 gap-6`
+  - [x] 6.6 ViewAllLink: "View All [Division Name] Insights" → `/insights/divisions/[slug]/`
+  - [x] 6.7 If no articles at all (including fallback), omit the insights section entirely or show "Stay tuned for insights" message. Never show an empty grid.
 
-- [ ] Task 7: Build Section 5 — Division-Specific Inquiry CTA (AC: #5)
-  - [ ] 7.1 CTABanner with gold variant (from Story 2.4 extension)
-  - [ ] 7.2 Heading: "Interested in [Division Name]?"
-  - [ ] 7.3 Body: "Get in touch with our [division name] team to discuss your needs."
-  - [ ] 7.4 CTA: "Contact Our Team" → `/contact/divisions/[slug]/`
-  - [ ] 7.5 NOT generic — heading, body, and link are all division-specific
+- [x] Task 7: Build Section 5 — Division-Specific Inquiry CTA (AC: #5)
+  - [x] 7.1 CTABanner with gold variant (from Story 2.4 extension)
+  - [x] 7.2 Heading: "Interested in [Division Name]?"
+  - [x] 7.3 Body: "Get in touch with our [division name] team to discuss your needs."
+  - [x] 7.4 CTA: "Contact Our Team" → `/contact/divisions/[slug]/`
+  - [x] 7.5 NOT generic — heading, body, and link are all division-specific
 
-- [ ] Task 8: Verify all 7 division pages (AC: #9)
-  - [ ] 8.1 Verify `npm run build` generates all 7 pages
-  - [ ] 8.2 Spot-check 2-3 division pages for correct data rendering
-  - [ ] 8.3 Verify breadcrumb trail accuracy (correct cluster parent)
-  - [ ] 8.4 Verify cluster accent tints applied correctly per division
+- [x] Task 8: Verify all 7 division pages (AC: #9)
+  - [x] 8.1 Verify `npm run build` generates all 7 pages
+  - [x] 8.2 Spot-check 2-3 division pages for correct data rendering
+  - [x] 8.3 Verify breadcrumb trail accuracy (correct cluster parent)
+  - [x] 8.4 Verify cluster accent tints applied correctly per division
 
 ## Dev Notes
 
@@ -394,9 +394,68 @@ Files this story creates or modifies:
 ## Dev Agent Record
 
 ### Agent Model Used
+Claude Opus 4.6 (1M context)
 
 ### Debug Log References
+- Build verified: all 10 routes generated (3 cluster + 7 division) — 13 pages total including hub, home, token-test
+- TypeScript check passed with no errors
+- Heading hierarchy validated on crop-farming: H1 → H2 (What We Offer) → H3 × 4 capabilities → H2 (Our Track Record) → H2 (Latest) → H3 insight → H2 CTA — clean, no skipped levels
+- JSON-LD verified: BreadcrumbList + Organization (department) + WebPage on all division pages
+- Cluster accent colours verified: amber on crop-farming, copper on commodity-marketing, slate on real-estate (8 class references per page = 4 CapabilityCards × 2 accent classes)
+- Breadcrumb trail verified: oil-gas page correctly shows "Built Environment & Energy" as parent cluster
+- Gold CTA variant confirmed via `from-gold-600 to-gold-400` class presence
+- StatCounter island present and hydrated via `client:visible`
 
 ### Completion Notes List
+- Created `CapabilityCard.astro` — icon circle with cluster accent bg/text, Lucide icon names mapped to emoji placeholders for MVP, H3 name + description
+- Created `DivisionLayout.astro` — 5-section layout extending PageLayout: hero+overview, capabilities grid, proof/credentials (StatCounter + optional certifications/testimonial), related insights, gold CTA
+- Extended `[slug].astro` — added `DivisionProps` interface, 7 division paths to `getStaticPaths`, conditional rendering (`isCluster ? cluster page : DivisionLayout`), division-specific SEO with Organization+WebPage JSON-LD, 4-level breadcrumbs
+- Division stats mapped from schema's `unit` field to StatCounter's `suffix` prop
+- Article fallback logic: division-tagged articles first, company-wide fallback, section omitted if zero articles
+- Insights heading adapts: "Latest in [Division]" for tagged articles, "Latest from Global Resources Citadel" for fallback
+- Division CTA links to `/contact/divisions/[slug]/` (Epic 4 forward link)
+- ViewAllLink points to `/insights/divisions/[slug]/` (Epic 6 forward link)
 
 ### File List
+- `src/components/divisions/CapabilityCard.astro` — **Created** — capability card with icon circle, cluster accent, and description
+- `src/layouts/DivisionLayout.astro` — **Created** — 5-section division detail page layout
+- `src/pages/divisions/[slug].astro` — **Modified** — added 7 division paths, DivisionProps, conditional rendering
+- `src/components/shared/StatCounter.tsx` — **Modified** — suffix/unit rendered at smaller font size to prevent line wrapping
+- `src/pages/divisions/index.astro` — **Modified** — CTA variant changed from dark to gold
+
+### Review Findings
+
+- [x] [Review][Patch] SEO title double-suffix — FIXED: pass `${division.name} | ${cluster.name}` to generateMetadata, letting it append the site name suffix once
+- [x] [Review][Patch] `streamLabels` duplicated — FIXED: extracted to `STREAM_LABELS` in `@/lib/divisions.ts`, both files now import from shared module
+- [x] [Review][Patch] ViewAllLink href/label not updated during article fallback — FIXED: changes to `/insights/` and "View All Insights" when `isArticleFallback` is true
+- [x] [Review][Patch] StatCounter lacks `aria-live` — FIXED: added `aria-live="polite"` on number container + sr-only span with final value for immediate screen reader access
+- [x] [Review][Patch] `accentMap` hardcoded — FIXED: replaced with `parentCluster!.data.accentColor ?? 'amber'`, single source of truth from cluster YAML
+- [x] [Review][Patch] Insights grid responsive breakpoints inconsistent — FIXED: aligned to `sm:grid-cols-2 lg:grid-cols-3` matching cluster page pattern
+- [x] [Review][Defer] `parentCluster!` non-null assertion in getStaticPaths — safe due to Zod enum + `validateContentIntegrity()` build-time guard, but a defensive check would be better
+- [x] [Review][Defer] Breadcrumbs computed in both `[slug].astro` (for JSON-LD) and `DivisionLayout.astro` (for rendered nav) — currently identical, but can diverge. Maintenance risk.
+- [x] [Review][Defer] StatCounter visual flash — renders final value before hydration, then resets to 0 and animates up. Pre-existing behavior, not introduced by this story.
+- [x] [Review][Defer] StatCounter layout shift with large numbers (`500,000`) — `toLocaleString()` formatting causes width jumps during animation. Pre-existing.
+- [x] [Review][Defer] Import path inconsistency `@/content/config` (in lib/divisions.ts) vs `@/content.config` (in pages/layouts) — pre-existing
+- [x] [Review][Defer] Stats grid 3-item orphan on mobile 2-col layout — all divisions have 3 stats, 3rd sits alone in 2nd row. Design consideration.
+- [x] [Review][Defer] CapabilityCard icon fallback renders `●` for unmapped Lucide names — MVP limitation, swap to SVG icons when design assets available
+
+### Change Log
+- 2026-04-02: Story 3.3 implemented — 7 division detail pages with 5-section template (overview, capabilities, proof, insights, CTA), completing Epic 3
+- 2026-04-02: UX fixes — StatCounter suffix rendering, stats grid columns, gold CTA consistency (details below)
+- 2026-04-02: Code review — 6 patches applied (SEO title, streamLabels shared module, ViewAllLink fallback, StatCounter aria-live, accentMap removal, grid breakpoints), 7 deferred
+
+### Post-Implementation UX Refinements (2026-04-02)
+
+**StatCounter suffix rendering** (`src/components/shared/StatCounter.tsx`)
+- **Problem:** Units like "tonnes", "tonnes/day" rendered at the same `text-5xl` size as the number, causing the stat to wrap to two lines and break visual alignment with unit-less stats.
+- **Fix:** Number stays `text-5xl`; suffix/unit now renders at `text-xl` with `opacity-80` — visually subordinate, stays on one line. Prefix gets the same treatment. This also improves the homepage "+" suffixes on CredibilityBar.
+- **Decision:** Intentional shared component change. Affects all StatCounter instances (homepage CredibilityBar + division detail pages). No regressions — homepage stats verified.
+
+**Stats grid columns** (`src/layouts/DivisionLayout.astro`)
+- **Problem:** Grid used `md:grid-cols-4` but all divisions have 3 stats, leaving an empty 4th column.
+- **Fix:** Grid dynamically uses `md:grid-cols-3` for 3 stats, `md:grid-cols-4` for 4. Unit suffix also gets a leading space (`" tonnes"` not `"tonnes"`).
+
+**Gold CTA consistency across divisions section** (`index.astro`, `[slug].astro`)
+- **Problem:** Division detail pages used gold CTA variant, but the hub page and cluster pages used dark variant — visual inconsistency within the same section.
+- **Fix:** Changed hub (`/divisions/`) and cluster pages (`/divisions/[cluster]/`) from `variant="dark"` to `variant="gold"`. All pages in the divisions section now share the gold CTA treatment.
+- **Decision:** Intentional deviation from Story 3.1/3.2 original dark variant. Gold unifies the divisions section visually and reinforces the premium brand accent. The dark variant is still used elsewhere (e.g. homepage CTA) for contrast variety across the site.

@@ -12,6 +12,16 @@ export const DIVISION_ICONS: Record<string, string> = {
   'oil-gas': '\u{26FD}',
 };
 
+/** Human-readable labels for insight stream slugs. Shared across cluster and division pages. */
+export const STREAM_LABELS: Record<string, string> = {
+  'company-news': 'Company News',
+  announcements: 'Announcements',
+  'operational-updates': 'Operational Updates',
+  'thought-leadership': 'Thought Leadership',
+  'industry-commentary': 'Industry Commentary',
+  'division-insight': 'Division Insight',
+};
+
 export async function getDivisionBySlug(slug: DivisionSlug) {
   return await getEntry('divisions', slug);
 }

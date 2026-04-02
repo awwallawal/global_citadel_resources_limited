@@ -67,12 +67,13 @@ export default function StatCounter({
 
   return (
     <div ref={ref} className="text-center">
-      <div className="font-heading text-5xl font-bold text-gold-600">
-        {prefix}
-        {display.toLocaleString()}
-        {suffix}
+      <div className="font-heading font-bold text-gold-600" aria-live="polite">
+        {prefix && <span className="text-5xl">{prefix}</span>}
+        <span className="text-5xl">{display.toLocaleString()}</span>
+        {suffix && <span className="ml-1 text-xl font-semibold opacity-80">{suffix}</span>}
       </div>
-      <div className="mt-1 text-sm text-neutral-400">{label}</div>
+      <span className="sr-only">{`${prefix}${value.toLocaleString()}${suffix} ${label}`}</span>
+      <div className="mt-1 text-sm text-neutral-400" aria-hidden="true">{label}</div>
       <div className="mx-auto mt-3 h-0.5 w-8 bg-gold-600" />
     </div>
   );

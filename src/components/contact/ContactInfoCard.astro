@@ -1,0 +1,37 @@
+---
+/**
+ * ContactInfoCard.astro — Quick contact info card (phone, email, address).
+ */
+import { cn } from '@/lib/utils';
+
+interface Props {
+  label: string;
+  value?: string;
+  href?: string;
+  class?: string;
+}
+
+const { label, value, href, class: className } = Astro.props;
+---
+
+<div class={cn('flex items-start gap-4', className)}>
+  <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary-50 text-primary-600" aria-hidden="true">
+    <slot name="icon" />
+  </div>
+  <div>
+    <p class="text-sm font-semibold text-neutral-900">{label}</p>
+    {value ? (
+      href ? (
+        <a href={href} class="mt-1 inline-flex min-h-11 items-center text-sm text-primary-600 underline decoration-primary-200 underline-offset-2 motion-safe:transition-colors hover:text-primary-700 hover:decoration-primary-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:rounded-sm focus-visible:ring-offset-2">
+          {value}
+        </a>
+      ) : (
+        <p class="mt-1 text-sm text-neutral-600">{value}</p>
+      )
+    ) : (
+      <div class="mt-1 text-sm text-neutral-600">
+        <slot />
+      </div>
+    )}
+  </div>
+</div>

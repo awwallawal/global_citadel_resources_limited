@@ -1,0 +1,73 @@
+---
+/**
+ * CapabilityCard.astro — Icon + name + description card for division capabilities grid.
+ * Uses cluster accent colours on icon circle. Icon values are Lucide names mapped to
+ * emoji placeholders for MVP; swap to Lucide SVGs post-MVP.
+ */
+import { cn } from '@/lib/utils';
+
+interface Props {
+  icon: string;
+  name: string;
+  description: string;
+  accentColor?: 'amber' | 'copper' | 'slate';
+}
+
+const { icon, name, description, accentColor = 'amber' } = Astro.props;
+
+const iconBgColors: Record<string, string> = {
+  amber: 'bg-cluster-amber-100',
+  copper: 'bg-cluster-copper-100',
+  slate: 'bg-cluster-slate-100',
+};
+
+const iconTextColors: Record<string, string> = {
+  amber: 'text-cluster-amber-600',
+  copper: 'text-cluster-copper-600',
+  slate: 'text-cluster-slate-600',
+};
+
+const iconBg = iconBgColors[accentColor] ?? iconBgColors.amber;
+const iconText = iconTextColors[accentColor] ?? iconTextColors.amber;
+
+/** Lucide icon name → emoji placeholder mapping for MVP */
+const iconEmojis: Record<string, string> = {
+  wheat: '\u{1F33E}',
+  warehouse: '\u{1F3ED}',
+  sprout: '\u{1F331}',
+  droplets: '\u{1F4A7}',
+  beef: '\u{1F404}',
+  egg: '\u{1F95A}',
+  fish: '\u{1F41F}',
+  'shield-check': '\u{1F6E1}\u{FE0F}',
+  shield: '\u{1F6E1}\u{FE0F}',
+  factory: '\u{1F3ED}',
+  'flask-conical': '\u{1F9EA}',
+  package: '\u{1F4E6}',
+  truck: '\u{1F69A}',
+  'bar-chart-3': '\u{1F4CA}',
+  handshake: '\u{1F91D}',
+  'file-text': '\u{1F4C4}',
+  ship: '\u{1F6A2}',
+  'credit-card': '\u{1F4B3}',
+  users: '\u{1F465}',
+  building: '\u{1F3E2}',
+  home: '\u{1F3E0}',
+  'hard-hat': '\u{1F477}',
+  flame: '\u{1F525}',
+  fuel: '\u{26FD}',
+};
+
+const emoji = iconEmojis[icon] ?? '\u{25CF}';
+---
+
+<div class="rounded-xl p-6">
+  <div
+    class={cn('mb-4 flex h-12 w-12 items-center justify-center rounded-full', iconBg)}
+    aria-hidden="true"
+  >
+    <span class={cn('text-xl', iconText)}>{emoji}</span>
+  </div>
+  <h3 class="font-heading text-lg font-semibold text-neutral-900">{name}</h3>
+  <p class="mt-2 text-sm leading-relaxed text-neutral-600">{description}</p>
+</div>
