@@ -1,6 +1,6 @@
 # Story 4.3: General & Strategic Inquiry Forms
 
-Status: ready-for-dev
+Status: done
 
 ## Story
 
@@ -20,44 +20,44 @@ So that I can submit enquiries with appropriate context for the team receiving t
 
 ## Tasks / Subtasks
 
-- [ ] Task 1: Create `/contact/general.astro` (AC: #1, #2, #3, #7)
-  - [ ] 1.1 PageLayout with SEO: title "General Enquiries — Contact Global Resources Citadel"
-  - [ ] 1.2 BreadcrumbNav: Home > Contact > General Enquiries
-  - [ ] 1.3 Heading: "General Enquiries"
-  - [ ] 1.4 Body: "Send us a general message about Global Resources Citadel."
-  - [ ] 1.5 2-column layout: `grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12` — form `lg:col-span-2` (left), sidebar `lg:col-span-1` (right). Same pattern as Story 4.2. Avoids arbitrary `grid-cols-[2fr_1fr]` per CLAUDE.md.
-  - [ ] 1.6 InquiryForm with `variant="general"` (`client:visible`)
-  - [ ] 1.7 Sidebar: phone, email, address, hours
-  - [ ] 1.8 Reassurance copy below form
+- [x] Task 1: Create `/contact/general.astro` (AC: #1, #2, #3, #7)
+  - [x] 1.1 PageLayout with SEO: title "General Enquiries — Contact Global Resources Citadel"
+  - [x] 1.2 BreadcrumbNav: Home > Contact > General Enquiries
+  - [x] 1.3 Heading: "General Enquiries"
+  - [x] 1.4 Body: "Send us a general message about Global Resources Citadel."
+  - [x] 1.5 2-column layout: `grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12` — form `lg:col-span-2` (left), sidebar `lg:col-span-1` (right). Same pattern as Story 4.2. Avoids arbitrary `grid-cols-[2fr_1fr]` per CLAUDE.md.
+  - [x] 1.6 InquiryForm with `variant="general"` (`client:visible`)
+  - [x] 1.7 Sidebar: phone, email, address, hours
+  - [x] 1.8 Reassurance copy below form
 
-- [ ] Task 2: Extend InquiryForm.tsx — general variant (AC: #1)
-  - [ ] 2.1 Add `variant="general"` to InquiryForm.tsx (from Story 4.2)
-  - [ ] 2.2 General fields: Full Name*, Email*, Phone, Subject*, Message*
-  - [ ] 2.3 No Enquiry Type dropdown (general uses Subject text input instead)
-  - [ ] 2.4 No Company field
-  - [ ] 2.5 Same validation, honeypot, and UI patterns as division variant
+- [x] Task 2: Extend InquiryForm.tsx — general variant (AC: #1)
+  - [x] 2.1 Add `variant="general"` to InquiryForm.tsx (from Story 4.2)
+  - [x] 2.2 General fields: Full Name*, Email*, Phone, Subject*, Message*
+  - [x] 2.3 No Enquiry Type dropdown (general uses Subject text input instead)
+  - [x] 2.4 No Company field
+  - [x] 2.5 Same validation, honeypot, and UI patterns as division variant
 
-- [ ] Task 3: Create `/contact/strategic.astro` (AC: #4, #5, #6, #7)
-  - [ ] 3.1 PageLayout with SEO: title "Partner & Investor Contact — Global Resources Citadel"
-  - [ ] 3.2 BreadcrumbNav: Home > Contact > Partner & Investor
-  - [ ] 3.3 Heading: "Partner & Investor Contact"
-  - [ ] 3.4 Body: "For strategic partnerships, investment discussions, or institutional engagement with Global Resources Citadel."
-  - [ ] 3.5 2-column layout: `grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12` — form `lg:col-span-2`, sidebar `lg:col-span-1`. Same grid pattern as general form (Task 1.5) and Story 4.2.
-  - [ ] 3.6 InquiryForm with `variant="strategic"` (`client:visible`)
-  - [ ] 3.7 Sidebar: "What to expect" checklist + "Back to Investors & Partners →" link to `/investors-partners/`
-  - [ ] 3.8 Reassurance copy below form
+- [x] Task 3: Create `/contact/strategic.astro` (AC: #4, #5, #6, #7)
+  - [x] 3.1 PageLayout with SEO: title "Partner & Investor Contact — Global Resources Citadel"
+  - [x] 3.2 BreadcrumbNav: Home > Contact > Partner & Investor
+  - [x] 3.3 Heading: "Partner & Investor Contact"
+  - [x] 3.4 Body: "For strategic partnerships, investment discussions, or institutional engagement with Global Resources Citadel."
+  - [x] 3.5 2-column layout: `grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12` — form `lg:col-span-2`, sidebar `lg:col-span-1`. Same grid pattern as general form (Task 1.5) and Story 4.2.
+  - [x] 3.6 InquiryForm with `variant="strategic"` (`client:visible`)
+  - [x] 3.7 Sidebar: "What to expect" checklist + "Back to Investors & Partners →" link to `/investors-partners/`
+  - [x] 3.8 Reassurance copy below form
 
-- [ ] Task 4: Extend InquiryForm.tsx — strategic variant (AC: #4)
-  - [ ] 4.1 Add `variant="strategic"` to InquiryForm.tsx
-  - [ ] 4.2 Strategic fields: Full Name*, Email*, Organization*, Title/Role*, Phone, Inquiry Type dropdown*, Brief Description*
-  - [ ] 4.3 Inquiry Type options: "Strategic Partnership", "Investment Discussion", "Institutional Enquiry", "Other"
-  - [ ] 4.4 Same validation, honeypot, and UI patterns
-  - [ ] 4.5 Form still does NOT submit — submission is Story 4.4
+- [x] Task 4: Extend InquiryForm.tsx — strategic variant (AC: #4)
+  - [x] 4.1 Add `variant="strategic"` to InquiryForm.tsx
+  - [x] 4.2 Strategic fields: Full Name*, Email*, Organization*, Title/Role*, Phone, Inquiry Type dropdown*, Brief Description*
+  - [x] 4.3 Inquiry Type options: "Strategic Partnership", "Investment Discussion", "Institutional Enquiry", "Other"
+  - [x] 4.4 Same validation, honeypot, and UI patterns
+  - [x] 4.5 Form still does NOT submit — submission is Story 4.4
 
-- [ ] Task 5: Create shared sidebar components (AC: #2, #5)
-  - [ ] 5.1 Create `src/components/contact/ContactSidebar.astro` — reusable sidebar wrapper
-  - [ ] 5.2 General sidebar content: icon + label + value for phone, email, address, hours
-  - [ ] 5.3 Strategic sidebar content: "What to expect" as checklist with check icons
+- [x] Task 5: Create shared sidebar components (AC: #2, #5)
+  - [x] 5.1 Create `src/components/contact/ContactSidebar.astro` — reusable sidebar wrapper
+  - [x] 5.2 General sidebar content: icon + label + value for phone, email, address, hours
+  - [x] 5.3 Strategic sidebar content: "What to expect" as checklist with check icons
 
 ## Dev Notes
 
@@ -268,8 +268,36 @@ Files this story creates or modifies:
 
 ### Agent Model Used
 
+Claude Opus 4.6 (1M context)
+
 ### Debug Log References
+
+- No issues encountered. TypeScript strict mode: zero errors. Build: 24 pages, zero errors.
 
 ### Completion Notes List
 
+- Created `/contact/general.astro` with general enquiry form (Full Name, Email, Phone, Subject, Message), contact info sidebar (phone, email, address, hours), breadcrumbs, SEO metadata, and reassurance copy
+- Created `/contact/strategic.astro` with strategic inquiry form (Full Name, Email, Organization, Title/Role, Phone, Inquiry Type dropdown, Brief Description), "What to expect" checklist sidebar with link to Investors & Partners, breadcrumbs, SEO metadata, and confidentiality reassurance copy
+- Refactored InquiryForm.tsx to support all 3 variants (general, division, strategic) with variant-specific Zod schemas, field configurations, and enquiry type dropdowns. Division variant preserved exactly as-is from Story 4.2 code review. Submit label adapts per variant ("Submit Enquiry" vs "Submit Inquiry").
+- Created ContactSidebar.astro with 2 variants: general (contact info with icons using dl/dt/dd semantics) and strategic ("What to expect" checklist with check icons)
+- All existing division contact pages verified working with refactored InquiryForm
+- Build: 24 pages generated successfully (2 new)
+
 ### File List
+
+- `src/pages/contact/general.astro` (created)
+- `src/pages/contact/strategic.astro` (created)
+- `src/components/contact/ContactSidebar.astro` (created)
+- `src/components/contact/InquiryForm.tsx` (modified — added general + strategic variants, variant-specific schemas)
+
+### Review Findings
+
+- [x] [Review][Patch] `result.data` (trimmed values) discarded after Zod validation — store for Story 4.4 submission [InquiryForm.tsx:150-171] — FIXED
+- [x] [Review][Defer] Phone field accepts any string with no format validation — Story 4.4 server-side concern
+- [x] [Review][Defer] `/investors-partners/` link in strategic sidebar will 404 — Epic 5 forward dependency
+- [x] [Review][Defer] Form state not reset after submission — Story 4.4 will add success/error flow
+
+### Change Log
+
+- 2026-04-03: Implemented Story 4.3 — general and strategic inquiry form pages, ContactSidebar component, extended InquiryForm.tsx with all 3 variant schemas and field configurations
+- 2026-04-03: Code review completed — 1 patch finding (fixed), 3 deferred, 20+ dismissed. Story status → done.

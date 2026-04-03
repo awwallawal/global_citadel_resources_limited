@@ -110,3 +110,9 @@ All 4 deferred items were resolved during review:
 - No CSRF protection on inquiry form — Story 4.4 will implement server-side submission with CSRF handling
 - No `.max()` / `maxLength` on text inputs — Story 4.4 server-side payload limits will address this
 - `accentColor` optional in cluster schema with silent amber fallback — pre-existing schema design, all 3 clusters currently define accentColor
+
+## Deferred from: code review of 4-3-general-strategic-inquiry-forms (2026-04-03)
+
+- Phone field accepts any string with no format validation — Story 4.4 server-side validation will address; consider regex or `.refine()` for client-side phone format
+- `/investors-partners/` link in strategic sidebar will 404 — expected forward dependency on Epic 5 (Story 5.3)
+- Form state not reset after submission — Story 4.4 will add success/error feedback and form reset

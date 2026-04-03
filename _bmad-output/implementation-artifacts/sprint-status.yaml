@@ -75,7 +75,7 @@ development_status:
   epic-4: in-progress
   4-1-contact-hub-inquiry-routing: done
   4-2-contact-by-division-directory-division-inquiry-forms: done
-  4-3-general-strategic-inquiry-forms: ready-for-dev
+  4-3-general-strategic-inquiry-forms: done
   4-4-form-submission-validation-email-processing: ready-for-dev
   4-5-locations-page: ready-for-dev
   epic-4-retrospective: optional

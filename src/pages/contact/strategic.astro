@@ -1,0 +1,58 @@
+---
+/**
+ * Partner & Investor Contact — Strategic inquiry form for partnerships,
+ * investment discussions, and institutional engagement.
+ */
+import PageLayout from '@/layouts/PageLayout.astro';
+import BreadcrumbNav from '@/components/layout/BreadcrumbNav.astro';
+import SectionWrapper from '@/components/layout/SectionWrapper.astro';
+import InquiryForm from '@/components/contact/InquiryForm.tsx';
+import ContactSidebar from '@/components/contact/ContactSidebar.astro';
+import {
+  generateMetadata,
+  generateBreadcrumbJsonLd,
+  type BreadcrumbItem,
+} from '@/lib/seo';
+
+const breadcrumbs: BreadcrumbItem[] = [
+  { label: 'Home', href: '/' },
+  { label: 'Contact', href: '/contact/' },
+  { label: 'Partner & Investor' },
+];
+
+const seo = {
+  ...generateMetadata({
+    title: 'Partner & Investor Contact',
+    description:
+      'Contact Global Resources Citadel for strategic partnerships, investment discussions, or institutional engagement. All enquiries handled confidentially.',
+    path: '/contact/strategic/',
+  }),
+  jsonLd: [generateBreadcrumbJsonLd(breadcrumbs)],
+};
+---
+
+<PageLayout seo={seo}>
+  <BreadcrumbNav items={breadcrumbs} slot="breadcrumb" />
+
+  <SectionWrapper variant="default">
+    <div class="mx-auto max-w-3xl">
+      <h1 class="font-heading text-3xl font-bold leading-tight tracking-tight lg:text-4xl">
+        Partner & Investor Contact
+      </h1>
+      <p class="mt-3 text-lg text-neutral-600">
+        For strategic partnerships, investment discussions, or institutional engagement with Global Resources Citadel.
+      </p>
+    </div>
+
+    <div class="mx-auto mt-10 grid max-w-3xl grid-cols-1 gap-8 lg:max-w-none lg:grid-cols-3 lg:gap-12">
+      <div class="lg:col-span-2">
+        <InquiryForm client:visible variant="strategic" />
+        <p class="mt-6 text-sm text-neutral-500">
+          All strategic enquiries are handled confidentially and reviewed by our leadership team.
+        </p>
+      </div>
+
+      <ContactSidebar variant="strategic" />
+    </div>
+  </SectionWrapper>
+</PageLayout>
