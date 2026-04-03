@@ -1,0 +1,47 @@
+---
+/**
+ * AnchorNav.astro — Static shell for sticky section navigation.
+ * Renders basic anchor links immediately; AnchorNavClient.tsx adds scroll-spy via client:idle.
+ */
+import AnchorNavClient from '@/components/shared/AnchorNavClient.tsx';
+
+interface AnchorNavItem {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  items: AnchorNavItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<AnchorNavClient client:idle items={items} />
+
+<style is:global>
+  .anchor-nav-wrapper::before,
+  .anchor-nav-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 24px;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .anchor-nav-wrapper::before {
+    left: 0;
+    background: linear-gradient(to right, white, transparent);
+  }
+  .anchor-nav-wrapper::after {
+    right: 0;
+    background: linear-gradient(to left, white, transparent);
+  }
+  @media (min-width: 1024px) {
+    .anchor-nav-wrapper::before,
+    .anchor-nav-wrapper::after {
+      display: none;
+    }
+  }
+</style>

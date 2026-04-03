@@ -1,0 +1,189 @@
+---
+/**
+ * About the Group — Corporate overview, mission, vision, and values.
+ * Story 5.2 adds Leadership, Group Structure, Credentials sections.
+ */
+import { getEntry, render } from 'astro:content';
+import PageLayout from '@/layouts/PageLayout.astro';
+import BreadcrumbNav from '@/components/layout/BreadcrumbNav.astro';
+import SectionWrapper from '@/components/layout/SectionWrapper.astro';
+import SectionHeading from '@/components/layout/SectionHeading.astro';
+import AnchorNav from '@/components/shared/AnchorNav.astro';
+import FAQSection from '@/components/shared/FAQSection.astro';
+import {
+  generateMetadata,
+  generateBreadcrumbJsonLd,
+  generateOrganizationJsonLd,
+  type BreadcrumbItem,
+} from '@/lib/seo';
+
+const page = await getEntry('pages', 'about');
+if (!page) throw new Error('Missing content: pages/about.mdx');
+
+const { Content } = await render(page);
+const { mission, vision, values } = page.data;
+
+const breadcrumbs: BreadcrumbItem[] = [
+  { label: 'Home', href: '/' },
+  { label: 'About the Group' },
+];
+
+const SITE_URL = (import.meta.env.SITE ?? 'https://globalresourcescitadel.com').replace(/\/$/, '');
+
+const seo = {
+  ...generateMetadata({
+    title: 'About Us — Our Story, Mission & Leadership',
+    description: page.data.seoDescription,
+    path: '/about/',
+  }),
+  jsonLd: [
+    generateBreadcrumbJsonLd(breadcrumbs),
+    generateOrganizationJsonLd(),
+    {
+      '@context': 'https://schema.org',
+      '@type': 'AboutPage',
+      name: 'About Global Resources Citadel',
+      url: `${SITE_URL}/about/`,
+    },
+  ],
+};
+
+const anchorItems = [
+  { label: 'Overview', href: '#overview' },
+  { label: 'Mission & Vision', href: '#mission-vision' },
+];
+
+const VALUE_ICONS: Record<string, string> = {
+  shield: '🛡️',
+  target: '🎯',
+  users: '🤝',
+  sprout: '🌱',
+};
+---
+
+<PageLayout seo={seo}>
+  <BreadcrumbNav items={breadcrumbs} slot="breadcrumb" />
+
+  {/* Hero */}
+  <SectionWrapper variant="primary">
+    <div class="mx-auto max-w-3xl text-center">
+      <p class="mb-4 text-xs font-semibold uppercase tracking-widest text-gold-600">
+        About the Group
+      </p>
+      <h1 class="font-heading text-3xl font-bold leading-tight tracking-tight lg:text-5xl">
+        Who We Are
+      </h1>
+      <p class="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-neutral-600">
+        A diversified Nigerian conglomerate building integrated value chains across agriculture, trade, real estate, and energy.
+      </p>
+    </div>
+  </SectionWrapper>
+
+  {/* Anchor navigation */}
+  <AnchorNav items={anchorItems} />
+
+  {/* Overview section */}
+  <SectionWrapper variant="default" id="overview">
+    <div class="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
+      {/* Image placeholder */}
+      <div class="flex aspect-video items-center justify-center rounded-xl bg-neutral-100" aria-hidden="true">
+        <div class="text-center">
+          <svg
+            class="mx-auto h-12 w-12 text-neutral-400"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
+            <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" />
+            <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" />
+            <path d="M10 6h4" /><path d="M10 10h4" /><path d="M10 14h4" /><path d="M10 18h4" />
+          </svg>
+        </div>
+      </div>
+
+      {/* Overview prose */}
+      <div>
+        <SectionHeading>Our Story</SectionHeading>
+        <div class="prose prose-lg max-w-none text-neutral-600">
+          <Content />
+        </div>
+        <div class="mt-6 flex flex-wrap gap-4">
+          <div class="rounded-full bg-primary-50 px-4 py-1.5 text-sm font-medium text-primary-700">
+            Founded 2011
+          </div>
+          <div class="rounded-full bg-primary-50 px-4 py-1.5 text-sm font-medium text-primary-700">
+            Headquarters: Lagos, Nigeria
+          </div>
+          <div class="rounded-full bg-primary-50 px-4 py-1.5 text-sm font-medium text-primary-700">
+            7 Business Divisions
+          </div>
+        </div>
+      </div>
+    </div>
+  </SectionWrapper>
+
+  {/* Mission & Vision section */}
+  <SectionWrapper variant="light" id="mission-vision">
+    <SectionHeading centered>
+      Mission &amp; Vision
+    </SectionHeading>
+
+    {(mission || vision) && (
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+        {mission && (
+          <div class="rounded-xl border border-neutral-200 bg-white p-8">
+            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary-100 text-xl" aria-hidden="true">
+              🎯
+            </div>
+            <h3 class="font-heading text-lg font-semibold text-neutral-900">Our Mission</h3>
+            <p class="mt-3 text-sm leading-relaxed text-neutral-600">
+              {mission}
+            </p>
+          </div>
+        )}
+
+        {vision && (
+          <div class="rounded-xl border border-neutral-200 bg-white p-8">
+            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary-100 text-xl" aria-hidden="true">
+              🔭
+            </div>
+            <h3 class="font-heading text-lg font-semibold text-neutral-900">Our Vision</h3>
+            <p class="mt-3 text-sm leading-relaxed text-neutral-600">
+              {vision}
+            </p>
+          </div>
+        )}
+      </div>
+    )}
+
+    {/* Value cards */}
+    {values && values.length > 0 && (
+      <div class="mt-10 grid grid-cols-2 gap-6 md:grid-cols-4">
+        {values.map((v) => (
+          <div class="text-center">
+            <div class="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-primary-50 text-lg" aria-hidden="true">
+              {VALUE_ICONS[v.icon] ?? '✦'}
+            </div>
+            <h4 class="font-heading text-sm font-semibold text-neutral-900">{v.title}</h4>
+            <p class="mt-1 text-xs leading-relaxed text-neutral-500">{v.description}</p>
+          </div>
+        ))}
+      </div>
+    )}
+  </SectionWrapper>
+
+  {/* FAQ Section */}
+  <FAQSection category="about" sectionTitle="Common Questions" />
+
+  {/* Placeholder section anchors for Story 5.2 — AnchorNav items added when content exists */}
+  <section id="leadership"></section>
+  <section id="group-structure"></section>
+  <section id="credentials"></section>
+  <section id="values"></section>
+</PageLayout>

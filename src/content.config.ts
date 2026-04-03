@@ -175,6 +175,18 @@ export const pageSchema = z.object({
     .regex(/^\d{4}-\d{2}-\d{2}$/, 'Must be YYYY-MM-DD format')
     .refine((d) => !isNaN(Date.parse(d)), 'Invalid calendar date')
     .optional(),
+  // About page extensions (optional — only used by about.mdx)
+  mission: z.string().optional(),
+  vision: z.string().optional(),
+  values: z
+    .array(
+      z.object({
+        icon: z.string(),
+        title: z.string(),
+        description: z.string(),
+      }),
+    )
+    .optional(),
 });
 
 // ─── Collection Definitions ─────────────────────────────────────────

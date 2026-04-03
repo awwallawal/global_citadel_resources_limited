@@ -82,7 +82,7 @@ development_status:
 
   # --- Epic 5: Corporate Trust & Investor Experience ---
   epic-5: in-progress
-  5-1-about-the-group-page-overview-mission-vision: ready-for-dev
+  5-1-about-the-group-page-overview-mission-vision: done
   5-2-about-the-group-page-leadership-structure-credentials: ready-for-dev
   5-3-investors-partners-page: ready-for-dev
   epic-5-retrospective: optional

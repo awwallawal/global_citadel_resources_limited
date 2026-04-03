@@ -1,6 +1,6 @@
 # Story 5.1: About the Group Page — Overview, Mission & Vision
 
-Status: ready-for-dev
+Status: done
 
 ## Story
 
@@ -21,61 +21,61 @@ So that I can assess the company's legitimacy and values before engaging further
 
 ## Tasks / Subtasks
 
-- [ ] Task 1: Create `src/pages/about.astro` (AC: #1, #6, #7)
-  - [ ] 1.1 PageLayout with SEO: title "About Global Resources Citadel — Our Story, Mission, Leadership & Group Structure"
-  - [ ] 1.2 Description (~155 chars)
-  - [ ] 1.3 Canonical: `/about/`
-  - [ ] 1.4 Organization + AboutPage JSON-LD
-  - [ ] 1.5 BreadcrumbNav: Home > About the Group
-  - [ ] 1.6 Breadcrumb JSON-LD
-  - [ ] 1.7 Fetch content from pages/about.mdx collection entry
+- [x] Task 1: Create `src/pages/about.astro` (AC: #1, #6, #7)
+  - [x] 1.1 PageLayout with SEO: title "About Global Resources Citadel — Our Story, Mission, Leadership & Group Structure"
+  - [x] 1.2 Description (~155 chars)
+  - [x] 1.3 Canonical: `/about/`
+  - [x] 1.4 Organization + AboutPage JSON-LD
+  - [x] 1.5 BreadcrumbNav: Home > About the Group
+  - [x] 1.6 Breadcrumb JSON-LD
+  - [x] 1.7 Fetch content from pages/about.mdx collection entry
 
-- [ ] Task 2: Build page hero inline (AC: #1)
-  - [ ] 2.1 Build inline with SectionWrapper `variant="primary"` (primary-50 bg) — same pattern as Stories 3.1 and 4.1. Do NOT use the dark-gradient PageHero component.
-  - [ ] 2.2 Gold eyebrow: "About the Group"
-  - [ ] 2.3 H1: "Who We Are"
-  - [ ] 2.4 Sub-heading: positioning statement (max 30 words)
-  - [ ] 2.5 Centered text layout, constrained max-width (`max-w-3xl`)
+- [x] Task 2: Build page hero inline (AC: #1)
+  - [x] 2.1 Build inline with SectionWrapper `variant="primary"` (primary-50 bg)
+  - [x] 2.2 Gold eyebrow: "About the Group"
+  - [x] 2.3 H1: "Who We Are"
+  - [x] 2.4 Sub-heading: positioning statement (max 30 words)
+  - [x] 2.5 Centered text layout, constrained max-width (`max-w-3xl`)
 
-- [ ] Task 3: Create AnchorNav.astro component (AC: #2, #5)
-  - [ ] 3.1 Create `src/components/shared/AnchorNav.astro` (static shell)
-  - [ ] 3.2 Create `src/components/shared/AnchorNavClient.tsx` (React island for scroll-spy, `client:idle`)
-  - [ ] 3.3 Props: items array of `{ label: string; href: string }` (e.g., `{ label: "Overview", href: "#overview" }`)
-  - [ ] 3.4 Sticky below header: `sticky top-16 z-40` (below header's z-50)
-  - [ ] 3.5 Background: `bg-white/95 backdrop-blur-sm border-b border-neutral-200`
-  - [ ] 3.6 Horizontal scrollable on mobile: `overflow-x-auto` with `scrollbar-hide`
-  - [ ] 3.7 Active state: `text-primary-600 border-b-2 border-primary-600` on current section
-  - [ ] 3.8 IntersectionObserver scroll-spy: observe all `#section-id` elements, highlight matching nav item
-  - [ ] 3.9 Smooth scroll on click: `element.scrollIntoView({ behavior: 'smooth' })` — BUT respect reduced motion: check `window.matchMedia('(prefers-reduced-motion: reduce)').matches` and use `behavior: 'auto'` (instant) if true
-  - [ ] 3.10 Focus-visible on all nav links: `focus-visible:rounded focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2`
-  - [ ] 3.11 Mobile fade indicators at scroll edges (CSS gradient overlays)
+- [x] Task 3: Create AnchorNav.astro component (AC: #2, #5)
+  - [x] 3.1 Create `src/components/shared/AnchorNav.astro` (static shell)
+  - [x] 3.2 Create `src/components/shared/AnchorNavClient.tsx` (React island for scroll-spy, `client:idle`)
+  - [x] 3.3 Props: items array of `{ label: string; href: string }`
+  - [x] 3.4 Sticky below header: `sticky top-16 z-40` (below header's z-50)
+  - [x] 3.5 Background: `bg-white/95 backdrop-blur-sm border-b border-neutral-200`
+  - [x] 3.6 Horizontal scrollable on mobile: `overflow-x-auto` with scrollbar-hide
+  - [x] 3.7 Active state: `text-primary-600 border-b-2 border-primary-600` on current section
+  - [x] 3.8 IntersectionObserver scroll-spy: observe all `#section-id` elements, highlight matching nav item
+  - [x] 3.9 Smooth scroll on click with `prefers-reduced-motion` check
+  - [x] 3.10 Focus-visible on all nav links
+  - [x] 3.11 Mobile fade indicators at scroll edges (CSS gradient overlays)
 
-- [ ] Task 4: Build Overview section (#overview) (AC: #3)
-  - [ ] 4.1 SectionWrapper variant="default", `id="overview"`
-  - [ ] 4.2 2-column grid: `grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12`
-  - [ ] 4.3 Left: image placeholder (styled div with corporate icon, or Astro `<Image>` if asset exists)
-  - [ ] 4.4 Right: SectionHeading "Our Story" + 3-4 paragraphs from MDX content
-  - [ ] 4.5 Key fact callouts: styled inline badges/pills (Founded [Year], HQ: [City], 7 Divisions)
-  - [ ] 4.6 Prose: `text-lg leading-relaxed text-neutral-600`
+- [x] Task 4: Build Overview section (#overview) (AC: #3)
+  - [x] 4.1 SectionWrapper variant="default", `id="overview"`
+  - [x] 4.2 2-column grid: `grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12`
+  - [x] 4.3 Left: image placeholder (styled div with corporate building icon)
+  - [x] 4.4 Right: SectionHeading "Our Story" + 4 paragraphs from MDX content
+  - [x] 4.5 Key fact callouts: styled inline pills (Founded 2011, HQ: Lagos, 7 Divisions)
+  - [x] 4.6 Prose: `text-lg leading-relaxed text-neutral-600`
 
-- [ ] Task 5: Build Mission & Vision section (#mission-vision) (AC: #4)
-  - [ ] 5.1 SectionWrapper variant="light", `id="mission-vision"`
-  - [ ] 5.2 SectionHeading: "Mission & Vision"
-  - [ ] 5.3 2 side-by-side StatementCards: `grid-cols-1 md:grid-cols-2 gap-6`
-  - [ ] 5.4 Mission card: decorative icon + "Our Mission" heading + statement paragraph
-  - [ ] 5.5 Vision card: decorative icon + "Our Vision" heading + statement paragraph
-  - [ ] 5.6 Card styling: `border border-neutral-200 rounded-xl p-8`, icon circle with primary-100 bg
-  - [ ] 5.7 Optional value cards row below: `grid-cols-2 md:grid-cols-4 gap-6`
-  - [ ] 5.8 Value card: icon + title + description (small, compact)
+- [x] Task 5: Build Mission & Vision section (#mission-vision) (AC: #4)
+  - [x] 5.1 SectionWrapper variant="light", `id="mission-vision"`
+  - [x] 5.2 SectionHeading: "Mission & Vision"
+  - [x] 5.3 2 side-by-side StatementCards: `grid-cols-1 md:grid-cols-2 gap-6`
+  - [x] 5.4 Mission card: decorative icon + "Our Mission" heading + statement paragraph
+  - [x] 5.5 Vision card: decorative icon + "Our Vision" heading + statement paragraph
+  - [x] 5.6 Card styling: `border border-neutral-200 rounded-xl p-8`, icon circle with primary-100 bg
+  - [x] 5.7 4 value cards row below: `grid-cols-2 md:grid-cols-4 gap-6`
+  - [x] 5.8 Value card: emoji icon + title + description (compact)
 
-- [ ] Task 6: Prepare section anchors for Story 5.2 (AC: #2)
-  - [ ] 6.1 Add empty placeholder sections with correct IDs: `#leadership`, `#group-structure`, `#credentials`, `#values`
-  - [ ] 6.2 These will be populated in Story 5.2 but AnchorNav links must not break
+- [x] Task 6: Prepare section anchors for Story 5.2 (AC: #2)
+  - [x] 6.1 Add empty placeholder sections with correct IDs: `#leadership`, `#group-structure`, `#credentials`, `#values`
+  - [x] 6.2 AnchorNav links don't break — all 6 section IDs present
 
-- [ ] Task 7: FAQ Section (AC: FAQ)
-  - [ ] 7.1 Render `FAQSection.astro` component with `category="about"` filter
-  - [ ] 7.2 Place after the mission/vision section, before any closing CTA
-  - [ ] 7.3 Pass `sectionTitle="Common Questions"`
+- [x] Task 7: FAQ Section (AC: FAQ)
+  - [x] 7.1 Render `FAQSection.astro` component with `category="about"` filter
+  - [x] 7.2 Placed after mission/vision section, before placeholder sections
+  - [x] 7.3 Pass `sectionTitle="Common Questions"`
 
 ## Dev Notes
 
@@ -346,8 +346,46 @@ Files this story creates or modifies:
 
 ### Agent Model Used
 
+Claude Opus 4.6 (1M context)
+
 ### Debug Log References
+
+- Extended `pageSchema` in `content.config.ts` with optional `mission`, `vision`, `values` fields — required because Zod strips unknown frontmatter keys
+- Fixed Astro 6 Content Layer API: `page.render()` → `render(page)` — `render` is a standalone function imported from `astro:content`, not a method on collection entries
 
 ### Completion Notes List
 
+- Extended `pageSchema` with optional `mission` (string), `vision` (string), and `values` (array of icon/title/description objects) fields for About page frontmatter
+- Updated `about.mdx` with full corporate overview prose (4 paragraphs), mission statement, vision statement, and 4 values (Integrity, Excellence, Partnership, Sustainability)
+- Created `about.astro` page with hero (primary variant, gold eyebrow, H1), Overview section (2-col with image placeholder + MDX prose + fact pills), Mission & Vision section (2 statement cards + 4 value cards), FAQ section (6 about-category FAQs), and 4 placeholder section anchors for Story 5.2
+- Created `AnchorNav.astro` static shell + `AnchorNavClient.tsx` React island (client:idle) with IntersectionObserver scroll-spy, smooth scroll with reduced-motion respect, sticky positioning below header (z-40), mobile horizontal scroll with CSS fade indicators
+- Organization + AboutPage + BreadcrumbList JSON-LD structured data
+- Build: 26 pages generated successfully (1 new)
+
 ### File List
+
+- `src/pages/about.astro` (created)
+- `src/components/shared/AnchorNav.astro` (created)
+- `src/components/shared/AnchorNavClient.tsx` (created)
+- `src/content/pages/about.mdx` (modified — full content)
+- `src/content.config.ts` (modified — extended pageSchema with mission/vision/values)
+
+### Review Findings
+
+- [x] [Review][Patch] Placeholder sections (aria-hidden, zero-height) break AnchorNav scroll-spy and navigation — removed from anchorItems, removed aria-hidden [about.astro:51-58,185-188] — FIXED
+- [x] [Review][Patch] `mission`/`vision` rendered without null guards — schema has `.optional()` but cards render unconditionally [about.astro:149,159] — FIXED
+- [x] [Review][Patch] AnchorNav touch targets below 44px — `py-3` (~38px) increased to `py-4` [AnchorNavClient.tsx:77] — FIXED
+- [x] [Review][Patch] Arbitrary Tailwind values: `[&>p]:leading-relaxed`, scrollbar-hiding selectors — CLAUDE.md violation [about.astro:117, AnchorNavClient.tsx:71] — FIXED
+- [x] [Review][Patch] SEO title regex doesn't match actual seoTitle — produces double "Global Resources Citadel" in rendered title [about.astro:35] — FIXED
+- [x] [Review][Defer] Scroll-spy may pick wrong section when multiple visible — rootMargin mitigates, rare edge case
+- [x] [Review][Defer] `items` array in useEffect dependency — Astro hydrates once, latent only
+- [x] [Review][Defer] `scrollIntoView` on nav child may cause vertical page jump — sticky positioning mitigates
+- [x] [Review][Defer] `prefersReducedMotion` read once at mount — system setting rarely changes mid-session
+- [x] [Review][Defer] Fade gradient pseudo-elements use hardcoded `white` — minor design consistency
+- [x] [Review][Defer] `backdrop-blur-sm` performance on low-end mobile — accepted pattern across site
+- [x] [Review][Defer] `client:idle` hydration may delay scroll-spy on slow connections — spec specifies client:idle
+
+### Change Log
+
+- 2026-04-03: Implemented Story 5.1 — About page with overview, mission/vision, values, AnchorNav scroll-spy, FAQ section, placeholder anchors for Story 5.2
+- 2026-04-03: Code review completed — 5 patch findings (all fixed), 7 deferred, 8+ dismissed. Story status → done.

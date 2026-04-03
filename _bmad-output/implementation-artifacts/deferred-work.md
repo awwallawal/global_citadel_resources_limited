@@ -130,3 +130,13 @@ All 4 deferred items were resolved during review:
 - `-mt-6` negative margin coupling to SectionHeading internals — pre-existing pattern across pages (now removed from locations.astro but exists elsewhere)
 - LocationCard `<h3>` elements without intermediate `<h2>` grouping for Head Office vs Operational Sites — minor with only 3 cards
 - Border-left color-only distinction for head-office vs operational-site — Epic 8 a11y enhancement, add icon or text badge
+
+## Deferred from: code review of 5-1-about-the-group-page-overview-mission-vision (2026-04-03)
+
+- AnchorNav scroll-spy may pick wrong section when multiple visible — rootMargin `-80px 0px -60% 0px` mitigates; rare on typical viewports
+- `items` array in useEffect dependency may cause unnecessary observer re-init — Astro hydrates once so latent only; use `useMemo` or `[]` if reused
+- `scrollIntoView` on nav child may cause vertical page jump — sticky positioning mitigates
+- `prefersReducedMotion` read once at mount — system setting rarely changes mid-session
+- Fade gradient pseudo-elements use hardcoded `white` instead of design token — minor consistency
+- `backdrop-blur-sm` on AnchorNav may cause jank on low-end mobile — accepted pattern across site (header does same)
+- `client:idle` hydration delays scroll-spy on slow connections — spec mandates client:idle for AnchorNav

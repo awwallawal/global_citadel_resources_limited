@@ -146,6 +146,14 @@
   --animate-out: exit 150ms ease-in;
 }
 
+@utility scrollbar-hidden {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 @utility animate-in {
   animation: var(--animate-in);
   --tw-enter-opacity: initial;
