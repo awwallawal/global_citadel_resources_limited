@@ -11,5 +11,10 @@ export default defineConfig({
   integrations: [react(), mdx()],
   vite: {
     plugins: [tailwindcss()],
+    server: {
+      watch: {
+        ignored: ['**/.vercel/**'],
+      },
+    },
   },
 });

@@ -115,4 +115,12 @@ All 4 deferred items were resolved during review:
 
 - Phone field accepts any string with no format validation — Story 4.4 server-side validation will address; consider regex or `.refine()` for client-side phone format
 - `/investors-partners/` link in strategic sidebar will 404 — expected forward dependency on Epic 5 (Story 5.3)
-- Form state not reset after submission — Story 4.4 will add success/error feedback and form reset
+- ~~Form state not reset after submission~~ — RESOLVED: Story 4.4 added handleReset() with success/error states
+
+## Deferred from: code review of 4-4-form-submission-validation-email-processing (2026-04-03)
+
+- Rate limiter Map grows unbounded — serverless cold starts mitigate; acceptable for MVP volume. Consider Redis/KV store for production scaling.
+- Rate limiter ineffective across serverless cold starts — acknowledged in story dev notes; Vercel KV or Upstash Redis for production.
+- `investor-institutional` inquiry type accepted by server but unreachable from client — future variant scaffolding, no harm.
+- `getResendClient()` creates new Resend instance per email call — negligible overhead in serverless context.
+- Missing `Allow` header on 405 response — RFC 7231 §6.5.5 nice-to-have.

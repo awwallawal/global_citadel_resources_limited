@@ -82,7 +82,7 @@ function getSchema(variant: InquiryFormProps['variant']) {
   return divisionFormSchema;
 }
 
-function getFormData(variant: InquiryFormProps['variant']): Record<string, string> {
+function getInitialData(variant: InquiryFormProps['variant']): Record<string, string> {
   if (variant === 'general') {
     return { fullName: '', email: '', phone: '', subject: '', message: '' };
   }
@@ -92,16 +92,83 @@ function getFormData(variant: InquiryFormProps['variant']): Record<string, strin
   return { fullName: '', email: '', company: '', phone: '', enquiryType: '', message: '' };
 }
 
+function getInquiryType(variant: InquiryFormProps['variant']): string {
+  if (variant === 'general') return 'general-corporate';
+  if (variant === 'strategic') return 'strategic-partnership';
+  return 'division-business';
+}
+
+function getDestinationTeam(variant: InquiryFormProps['variant'], divisionSlug?: string): string {
+  if (variant === 'division' && divisionSlug) return divisionSlug;
+  if (variant === 'strategic') return 'strategic';
+  return 'corporate';
+}
+
+// ─── Success Confirmation ───────────────────────────────────────────
+
+function SuccessConfirmation({
+  routingContext,
+  onReset,
+}: {
+  routingContext: string;
+  onReset: () => void;
+}) {
+  return (
+    <div
+      className="rounded-xl border border-success-100 bg-success-100/50 p-8 text-center"
+      role="status"
+      aria-live="polite"
+    >
+      <svg
+        className="mx-auto h-12 w-12 text-success-600"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+      >
+        <circle cx="12" cy="12" r="10" />
+        <path d="m9 12 2 2 4-4" />
+      </svg>
+      <h3 className="mt-4 font-heading text-xl font-semibold text-neutral-900">
+        Your enquiry has been received
+      </h3>
+      <p className="mt-2 text-neutral-600">{routingContext}</p>
+      <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
+        <button
+          type="button"
+          onClick={onReset}
+          className="min-h-11 text-sm font-semibold text-primary-600 hover:text-primary-700 focus-visible:rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+        >
+          Submit another enquiry
+        </button>
+        <a
+          href="/contact/"
+          className="min-h-11 text-sm font-semibold text-neutral-600 hover:text-neutral-900 focus-visible:rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+        >
+          Return to Contact
+        </a>
+      </div>
+    </div>
+  );
+}
+
 // ─── Component ──────────────────────────────────────────────────────
 
 export default function InquiryForm({
   variant,
   divisionSlug,
+  divisionName,
 }: InquiryFormProps) {
   const schema = getSchema(variant);
-  const [formData, setFormData] = useState<Record<string, string>>(() => getFormData(variant));
+  const [formData, setFormData] = useState<Record<string, string>>(() => getInitialData(variant));
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [serverError, setServerError] = useState<string | null>(null);
+  const [successContext, setSuccessContext] = useState<string | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
 
   function validateField(name: string, value: string): string | undefined {
@@ -143,9 +210,11 @@ export default function InquiryForm({
     }
   }
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (isSubmitting) return;
+
+    setServerError(null);
 
     const result = schema.safeParse(formData);
     if (!result.success) {
@@ -160,18 +229,67 @@ export default function InquiryForm({
       return;
     }
 
-    // Check honeypot — bots fill hidden fields
+    // Check honeypot
+    let honeypotValue = '';
     if (formRef.current) {
-      const honeypot = new FormData(formRef.current).get('website');
-      if (honeypot) return;
+      honeypotValue = (new FormData(formRef.current).get('website') as string) || '';
+      if (honeypotValue) return;
     }
 
-    const validatedData = result.data;
+    const validatedData = result.data as Record<string, string>;
 
-    // Submission logic will be added in Story 4.4 — use validatedData (trimmed)
-    void validatedData;
     setIsSubmitting(true);
-    setTimeout(() => setIsSubmitting(false), 2000);
+
+    try {
+      const payload = {
+        inquiryType: getInquiryType(variant),
+        destinationTeam: getDestinationTeam(variant, divisionSlug),
+        divisionSlug: variant === 'division' ? divisionSlug : null,
+        sourcePage: window.location.pathname,
+        submittedAt: new Date().toISOString(),
+        honeypot: honeypotValue,
+        fields: validatedData,
+      };
+
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        setSuccessContext(data.routingContext);
+        return;
+      }
+
+      if (response.status === 400 && data.errors) {
+        // Server-side field validation errors
+        setErrors(data.errors as FormErrors);
+      } else if (response.status === 429) {
+        setServerError(data.message || 'Too many requests. Please try again later.');
+      } else {
+        setServerError(data.message || 'Unable to process your request. Please try again.');
+      }
+    } catch {
+      setServerError('Unable to reach our servers. Please check your connection and try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+
+  function handleReset() {
+    setFormData(getInitialData(variant));
+    setErrors({});
+    setServerError(null);
+    setSuccessContext(null);
+    setIsSubmitting(false);
+  }
+
+  // Show success confirmation
+  if (successContext !== null) {
+    return <SuccessConfirmation routingContext={successContext} onReset={handleReset} />;
   }
 
   const inputClasses =
@@ -206,6 +324,17 @@ export default function InquiryForm({
 
   return (
     <form ref={formRef} onSubmit={handleSubmit} noValidate className="space-y-6">
+      {/* Server error banner */}
+      {serverError && (
+        <div
+          className="rounded-lg border border-error-100 bg-error-100/50 p-4"
+          role="alert"
+          aria-live="assertive"
+        >
+          <p className="text-sm font-medium text-error-600">{serverError}</p>
+        </div>
+      )}
+
       {/* Full Name — all variants */}
       <div>
         <label htmlFor="fullName" className={labelClasses}>
@@ -472,16 +601,6 @@ export default function InquiryForm({
           autoComplete="off"
         />
       </div>
-
-      {/* Hidden context */}
-      {variant === 'division' && divisionSlug && (
-        <>
-          <input type="hidden" name="divisionSlug" value={divisionSlug} />
-          <input type="hidden" name="variant" value="division" />
-        </>
-      )}
-      {variant === 'general' && <input type="hidden" name="variant" value="general" />}
-      {variant === 'strategic' && <input type="hidden" name="variant" value="strategic" />}
 
       {/* Submit */}
       <button
