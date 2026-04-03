@@ -124,3 +124,9 @@ All 4 deferred items were resolved during review:
 - `investor-institutional` inquiry type accepted by server but unreachable from client — future variant scaffolding, no harm.
 - `getResendClient()` creates new Resend instance per email call — negligible overhead in serverless context.
 - Missing `Allow` header on 405 response — RFC 7231 §6.5.5 nice-to-have.
+
+## Deferred from: code review of 4-5-locations-page (2026-04-03)
+
+- `-mt-6` negative margin coupling to SectionHeading internals — pre-existing pattern across pages (now removed from locations.astro but exists elsewhere)
+- LocationCard `<h3>` elements without intermediate `<h2>` grouping for Head Office vs Operational Sites — minor with only 3 cards
+- Border-left color-only distinction for head-office vs operational-site — Epic 8 a11y enhancement, add icon or text badge

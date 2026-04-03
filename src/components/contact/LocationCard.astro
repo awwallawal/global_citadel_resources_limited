@@ -1,0 +1,33 @@
+---
+/**
+ * LocationCard.astro — Displays a physical location with address, phone, and hours.
+ * Head office variant uses primary accent; operational sites use neutral.
+ */
+import { cn } from '@/lib/utils';
+
+interface Props {
+  name: string;
+  type: 'head-office' | 'operational-site';
+  address: string;
+  phone?: string;
+  hours?: string;
+}
+
+const { name, type, address, phone, hours } = Astro.props;
+---
+
+<div class={cn('border-l-2 py-2 pl-5', type === 'head-office' ? 'border-primary-600' : 'border-neutral-300')}>
+  <h3 class="font-heading text-base font-semibold text-neutral-900">{name}</h3>
+  <p class="mt-1 text-sm leading-relaxed text-neutral-600">{address}</p>
+  {phone && (
+    <a
+      href={`tel:${phone.replace(/\s/g, '')}`}
+      class="mt-1 block min-h-11 text-sm text-neutral-600 hover:text-primary-600 focus-visible:rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+    >
+      {phone}
+    </a>
+  )}
+  {hours && (
+    <p class="mt-1 text-xs text-neutral-500">{hours}</p>
+  )}
+</div>

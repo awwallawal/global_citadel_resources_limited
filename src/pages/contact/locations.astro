@@ -1,0 +1,84 @@
+---
+/**
+ * Locations — Physical offices and operational sites for GRCL.
+ * Static page with placeholder addresses pending client confirmation.
+ */
+import PageLayout from '@/layouts/PageLayout.astro';
+import BreadcrumbNav from '@/components/layout/BreadcrumbNav.astro';
+import SectionWrapper from '@/components/layout/SectionWrapper.astro';
+import LocationCard from '@/components/contact/LocationCard.astro';
+import {
+  generateMetadata,
+  generateBreadcrumbJsonLd,
+  type BreadcrumbItem,
+} from '@/lib/seo';
+
+const breadcrumbs: BreadcrumbItem[] = [
+  { label: 'Home', href: '/' },
+  { label: 'Contact', href: '/contact/' },
+  { label: 'Locations' },
+];
+
+const seo = {
+  ...generateMetadata({
+    title: 'Our Locations',
+    description:
+      'Find Global Resources Citadel Limited offices and operational sites across Nigeria.',
+    path: '/contact/locations/',
+  }),
+  jsonLd: [generateBreadcrumbJsonLd(breadcrumbs)],
+};
+---
+
+<PageLayout seo={seo}>
+  <BreadcrumbNav items={breadcrumbs} slot="breadcrumb" />
+
+  <SectionWrapper variant="default">
+    <div class="mx-auto max-w-3xl text-center">
+      <p class="mb-4 text-xs font-semibold uppercase tracking-widest text-gold-600">
+        Contact
+      </p>
+      <h1 class="font-heading text-3xl font-bold leading-tight tracking-tight lg:text-5xl">
+        Our Locations
+      </h1>
+      <p class="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-neutral-600">
+        Find Global Resources Citadel offices and operational sites.
+      </p>
+    </div>
+
+    <div class="mt-10 grid grid-cols-1 gap-8 lg:mt-12 lg:grid-cols-2 lg:gap-12">
+      {/* OpenStreetMap embed — Victoria Island, Lagos */}
+      <div class="overflow-hidden rounded-xl">
+        <iframe
+          title="Map showing Victoria Island, Lagos, Nigeria"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=3.4050%2C6.4200%2C3.4450%2C6.4500&layer=mapnik&marker=6.4281%2C3.4219"
+          class="aspect-video w-full border-0"
+          loading="lazy"
+          referrerpolicy="no-referrer"
+        ></iframe>
+      </div>
+
+      {/* Location details */}
+      <div class="space-y-8">
+        <LocationCard
+          name="Head Office"
+          type="head-office"
+          address="Victoria Island, Lagos, Nigeria"
+          hours="Monday – Friday, 8:00am – 5:00pm WAT"
+        />
+
+        <LocationCard
+          name="Agricultural Operations"
+          type="operational-site"
+          address="Middle Belt Region, Nigeria"
+        />
+
+        <LocationCard
+          name="Processing Facility"
+          type="operational-site"
+          address="Ogun State, Nigeria"
+        />
+      </div>
+    </div>
+  </SectionWrapper>
+</PageLayout>
