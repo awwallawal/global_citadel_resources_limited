@@ -103,3 +103,10 @@ All 4 deferred items were resolved during review:
 - Emoji icons inconsistent across platforms/devices — swap to SVG icons when design assets available
 - Verbose card accessible name (full tagline in link) — add aria-label during Epic 8 a11y audit
 - 2-card clusters leave orphan column in 3-col desktop grid — design consideration, not a bug
+
+## Deferred from: code review of 4-2-contact-by-division-directory-division-inquiry-forms (2026-04-03)
+
+- `cluster!.data` non-null assertion in getStaticPaths — pre-existing pattern across codebase (also flagged in 3-3 review), safe due to Zod enum + build-time validation
+- No CSRF protection on inquiry form — Story 4.4 will implement server-side submission with CSRF handling
+- No `.max()` / `maxLength` on text inputs — Story 4.4 server-side payload limits will address this
+- `accentColor` optional in cluster schema with silent amber fallback — pre-existing schema design, all 3 clusters currently define accentColor

@@ -35,7 +35,7 @@
 # - Dev moves story to 'review', then runs code-review (fresh context, different LLM recommended)
 
 generated: 2026-03-28
-last_updated: 2026-04-02
+last_updated: 2026-04-03
 project: UK_Web_Design
 last_story_created: 8-4-cicd-pipeline-production-deployment
 project_key: NOKEY
@@ -74,7 +74,7 @@ development_status:
   # --- Epic 4: Inquiry & Contact Architecture ---
   epic-4: in-progress
   4-1-contact-hub-inquiry-routing: done
-  4-2-contact-by-division-directory-division-inquiry-forms: ready-for-dev
+  4-2-contact-by-division-directory-division-inquiry-forms: done
   4-3-general-strategic-inquiry-forms: ready-for-dev
   4-4-form-submission-validation-email-processing: ready-for-dev
   4-5-locations-page: ready-for-dev

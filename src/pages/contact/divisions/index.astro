@@ -1,0 +1,76 @@
+---
+/**
+ * Contact by Division — Directory listing all 7 divisions with contact links.
+ * Each DivisionContactCard links to the division-specific inquiry form.
+ */
+import { getCollection, getEntry } from 'astro:content';
+import PageLayout from '@/layouts/PageLayout.astro';
+import BreadcrumbNav from '@/components/layout/BreadcrumbNav.astro';
+import SectionWrapper from '@/components/layout/SectionWrapper.astro';
+import DivisionContactCard from '@/components/contact/DivisionContactCard.astro';
+import {
+  generateMetadata,
+  generateBreadcrumbJsonLd,
+  type BreadcrumbItem,
+} from '@/lib/seo';
+
+const breadcrumbs: BreadcrumbItem[] = [
+  { label: 'Home', href: '/' },
+  { label: 'Contact', href: '/contact/' },
+  { label: 'Contact by Division' },
+];
+
+const seo = {
+  ...generateMetadata({
+    title: 'Contact by Division',
+    description:
+      'Reach the specific business division team you need. Select a division to submit a pre-routed enquiry directly to the right team at Global Resources Citadel.',
+    path: '/contact/divisions/',
+  }),
+  jsonLd: [generateBreadcrumbJsonLd(breadcrumbs)],
+};
+
+const divisions = await getCollection('divisions');
+const sorted = divisions.sort((a, b) => a.data.sortOrder - b.data.sortOrder);
+
+const divisionsWithCluster = await Promise.all(
+  sorted.map(async (division) => {
+    const cluster = await getEntry('clusters', division.data.clusterSlug);
+    return {
+      name: division.data.name,
+      slug: division.data.slug,
+      accentColor: cluster?.data.accentColor ?? 'amber',
+    };
+  }),
+);
+---
+
+<PageLayout seo={seo}>
+  <BreadcrumbNav items={breadcrumbs} slot="breadcrumb" />
+
+  <SectionWrapper variant="primary">
+    <div class="mx-auto max-w-3xl text-center">
+      <p class="mb-4 text-xs font-semibold uppercase tracking-widest text-gold-600">
+        Contact
+      </p>
+      <h1 class="font-heading text-3xl font-bold leading-tight tracking-tight lg:text-5xl">
+        Contact by Division
+      </h1>
+      <p class="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-neutral-600">
+        Reach the team in the division relevant to you. Select a division below.
+      </p>
+    </div>
+  </SectionWrapper>
+
+  <SectionWrapper variant="default">
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {divisionsWithCluster.map((div) => (
+        <DivisionContactCard
+          name={div.name}
+          slug={div.slug}
+          accentColor={div.accentColor}
+        />
+      ))}
+    </div>
+  </SectionWrapper>
+</PageLayout>

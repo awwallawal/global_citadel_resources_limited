@@ -1,0 +1,55 @@
+---
+/**
+ * DivisionContactCard.astro — Card linking to a division-specific contact form.
+ * Used on the Contact by Division directory page.
+ */
+import { cn } from '@/lib/utils';
+import { DIVISION_ICONS } from '@/lib/divisions';
+import type { ClusterAccentColor } from '@/content/config';
+
+interface Props {
+  name: string;
+  slug: string;
+  accentColor: ClusterAccentColor;
+  class?: string;
+}
+
+const { name, slug, accentColor, class: className } = Astro.props;
+
+const icon = DIVISION_ICONS[slug] ?? '';
+
+const accentClasses: Record<ClusterAccentColor, { bg: string; text: string }> = {
+  amber: { bg: 'bg-cluster-amber-100', text: 'text-cluster-amber-600' },
+  copper: { bg: 'bg-cluster-copper-100', text: 'text-cluster-copper-600' },
+  slate: { bg: 'bg-cluster-slate-100', text: 'text-cluster-slate-600' },
+};
+
+const accent = accentClasses[accentColor];
+---
+
+<a
+  href={`/contact/divisions/${slug}/`}
+  class={cn(
+    'group flex flex-col items-center rounded-xl border border-neutral-200 p-6 text-center motion-safe:transition-all motion-safe:duration-300 motion-safe:hover:shadow-md motion-safe:hover:border-neutral-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2',
+    className,
+  )}
+>
+  <div
+    class={cn(
+      'mb-4 flex h-12 w-12 items-center justify-center rounded-full text-xl',
+      accent.bg,
+      accent.text,
+    )}
+    aria-hidden="true"
+  >
+    {icon}
+  </div>
+
+  <h3 class="font-heading text-lg font-semibold text-neutral-900">
+    {name}
+  </h3>
+
+  <span class="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-primary-600 motion-safe:transition-[gap] motion-safe:duration-200 group-hover:gap-2.5">
+    Contact <span aria-hidden="true">&rarr;</span>
+  </span>
+</a>
