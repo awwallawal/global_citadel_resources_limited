@@ -1,0 +1,109 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '@/layouts/PageLayout.astro';
+import SectionWrapper from '@/components/layout/SectionWrapper.astro';
+import BreadcrumbNav from '@/components/layout/BreadcrumbNav.astro';
+import FilterTabs from '@/components/insights/FilterTabs.astro';
+import { DIVISION_ICONS } from '@/lib/divisions';
+import {
+  generateMetadata,
+  generateBreadcrumbJsonLd,
+  type BreadcrumbItem,
+} from '@/lib/seo';
+
+const divisions = (await getCollection('divisions')).sort(
+  (a, b) => a.data.sortOrder - b.data.sortOrder,
+);
+const articles = await getCollection('articles');
+
+const divisionInsights = divisions.map((div) => ({
+  name: div.data.name,
+  slug: div.data.slug,
+  icon: DIVISION_ICONS[div.data.slug] || '🏢',
+  articleCount: articles.filter((a) => a.data.divisionSlug === div.data.slug).length,
+}));
+
+const breadcrumbs: BreadcrumbItem[] = [
+  { label: 'Home', href: '/' },
+  { label: 'Insights', href: '/insights/' },
+  { label: 'By Division' },
+];
+
+const SITE_URL = (import.meta.env.SITE ?? 'https://globalresourcescitadel.com').replace(/\/$/, '');
+
+const seo = {
+  ...generateMetadata({
+    title: 'Insights by Division',
+    description:
+      'Browse insights from each of Global Resources Citadel\'s seven business divisions.',
+    path: '/insights/divisions/',
+  }),
+  jsonLd: [
+    generateBreadcrumbJsonLd(breadcrumbs),
+    {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: 'Insights by Division',
+      description: 'Browse insights from each of Global Resources Citadel\'s seven business divisions.',
+      url: `${SITE_URL}/insights/divisions/`,
+      mainEntity: {
+        '@type': 'ItemList',
+        numberOfItems: divisionInsights.length,
+        itemListElement: divisionInsights.map((div, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          name: div.name,
+          url: `${SITE_URL}/insights/divisions/${div.slug}/`,
+        })),
+      },
+    },
+  ],
+};
+---
+
+<PageLayout seo={seo}>
+  <BreadcrumbNav items={breadcrumbs} slot="breadcrumb" />
+
+  {/* ── Page Hero ── */}
+  <SectionWrapper variant="primary">
+    <div class="mx-auto max-w-3xl text-center">
+      <p class="mb-4 text-xs font-semibold uppercase tracking-widest text-gold-600">
+        Insights
+      </p>
+      <h1 class="font-heading text-3xl font-bold leading-tight tracking-tight lg:text-5xl">
+        Insights by Division
+      </h1>
+      <p class="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-neutral-600">
+        Explore news, updates, and thought leadership from each of our seven business divisions.
+      </p>
+    </div>
+  </SectionWrapper>
+
+  <FilterTabs currentPath="/insights/divisions/" />
+
+  {/* ── Division Cards Grid ── */}
+  <SectionWrapper>
+    <h2 class="sr-only">Divisions</h2>
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {divisionInsights.map((div) => (
+        <a
+          href={`/insights/divisions/${div.slug}/`}
+          class="group flex items-start gap-4 rounded-2xl border border-neutral-200 p-6 transition-all duration-300 hover:shadow-md motion-safe:hover:border-gold-600 focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+        >
+          <span class="flex-shrink-0 text-3xl" aria-hidden="true">{div.icon}</span>
+          <div>
+            <h2 class="font-heading text-lg font-semibold text-neutral-900 motion-safe:transition-colors group-hover:text-primary-600">
+              {div.name}
+            </h2>
+            <p class="mt-1 text-sm text-neutral-500">
+              {div.articleCount} {div.articleCount === 1 ? 'article' : 'articles'}
+            </p>
+            <span class="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-primary-600">
+              View Insights <span class="motion-safe:transition-transform group-hover:translate-x-1">&rarr;</span>
+            </span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </SectionWrapper>
+</PageLayout>

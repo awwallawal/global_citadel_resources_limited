@@ -1,0 +1,138 @@
+---
+/**
+ * InsightsListing.astro — Reusable insights listing template.
+ * Used by /insights/, /insights/news/, /insights/thought-leadership/,
+ * /insights/latest/, and /insights/divisions/[division]/.
+ */
+import type { CollectionEntry } from 'astro:content';
+import SectionWrapper from '@/components/layout/SectionWrapper.astro';
+import FeaturedArticleCard from '@/components/insights/FeaturedArticleCard.astro';
+import FilterTabs from '@/components/insights/FilterTabs.astro';
+import InsightCard from '@/components/insights/InsightCard.astro';
+import { STREAM_LABELS } from '@/lib/divisions';
+
+interface Props {
+  articles: CollectionEntry<'articles'>[];
+  title: string;
+  description?: string;
+  eyebrow?: string;
+  showFeatured?: boolean;
+  showFilterTabs?: boolean;
+  currentPath: string;
+  categoryName?: string;
+}
+
+const {
+  articles,
+  title,
+  description,
+  eyebrow,
+  showFeatured = false,
+  showFilterTabs = false,
+  currentPath,
+  categoryName,
+} = Astro.props;
+
+const featured = showFeatured
+  ? articles.find((a) => a.data.featured) || articles[0]
+  : undefined;
+
+const gridArticles = featured
+  ? articles.filter((a) => a.id !== featured.id)
+  : articles;
+---
+
+{/* ── Page Hero ── */}
+<SectionWrapper variant="primary">
+  <div class="mx-auto max-w-3xl text-center">
+    {eyebrow && (
+      <p class="mb-4 text-xs font-semibold uppercase tracking-widest text-gold-600">
+        {eyebrow}
+      </p>
+    )}
+    <h1 class="font-heading text-3xl font-bold leading-tight tracking-tight lg:text-5xl">
+      {title}
+    </h1>
+    {description && (
+      <p class="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-neutral-600">
+        {description}
+      </p>
+    )}
+  </div>
+</SectionWrapper>
+
+{/* ── Filter Tabs ── */}
+{showFilterTabs && <FilterTabs currentPath={currentPath} />}
+
+{/* ── Featured Article ── */}
+{featured && (
+  <SectionWrapper>
+    <h2 class="sr-only">Featured Article</h2>
+    <FeaturedArticleCard
+      title={featured.data.title}
+      excerpt={featured.data.excerpt}
+      category={STREAM_LABELS[featured.data.stream] || featured.data.stream}
+      publishedAt={featured.data.publishedAt}
+      href={`/insights/${featured.id}/`}
+    />
+  </SectionWrapper>
+)}
+
+{/* ── Article Grid ── */}
+{gridArticles.length > 0 ? (
+  <SectionWrapper variant={featured ? 'light' : 'default'}>
+    {!featured && <h2 class="sr-only">Articles</h2>}
+    {featured && <h2 class="sr-only">More Articles</h2>}
+    <div id="article-grid" class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3" aria-live="polite">
+      {gridArticles.map((article, i) => (
+        <div class={i >= 9 ? 'hidden' : undefined} data-article-item>
+          <InsightCard
+            title={article.data.title}
+            excerpt={article.data.excerpt}
+            category={STREAM_LABELS[article.data.stream] || article.data.stream}
+            href={`/insights/${article.id}/`}
+          />
+        </div>
+      ))}
+    </div>
+    {gridArticles.length > 9 && (
+      <div class="mt-8 text-center">
+        <button
+          id="load-more"
+          type="button"
+          class="inline-block rounded-lg border border-neutral-300 px-8 py-3 text-sm font-semibold text-neutral-700 hover:bg-neutral-50 focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+          aria-label={`Show more articles (${gridArticles.length - 9} remaining)`}
+        >
+          Load More
+        </button>
+        <script>
+          document.getElementById('load-more')?.addEventListener('click', function () {
+            const hidden = document.querySelectorAll('[data-article-item].hidden');
+            hidden.forEach((el, i) => {
+              if (i < 9) el.classList.remove('hidden');
+            });
+            if (!document.querySelector('[data-article-item].hidden')) {
+              this.remove();
+            }
+          });
+        </script>
+      </div>
+    )}
+  </SectionWrapper>
+) : (
+  <SectionWrapper>
+    <div class="mx-auto max-w-lg py-12 text-center">
+      <p class="text-lg text-neutral-600">
+        {categoryName
+          ? `No articles yet for ${categoryName}. Check back soon.`
+          : 'No articles yet in this category. Check back soon.'}
+      </p>
+      <a
+        href="/insights/"
+        class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary-600 hover:text-primary-700 focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+      >
+        View all insights &rarr;
+      </a>
+    </div>
+  </SectionWrapper>
+)}

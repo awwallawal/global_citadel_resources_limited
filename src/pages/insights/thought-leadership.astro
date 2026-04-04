@@ -1,0 +1,68 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '@/layouts/PageLayout.astro';
+import BreadcrumbNav from '@/components/layout/BreadcrumbNav.astro';
+import InsightsListing from '@/components/insights/InsightsListing.astro';
+import {
+  generateMetadata,
+  generateBreadcrumbJsonLd,
+  type BreadcrumbItem,
+} from '@/lib/seo';
+
+const thoughtStreams = ['thought-leadership', 'industry-commentary'];
+
+const thoughtArticles = (await getCollection('articles'))
+  .filter((a) => thoughtStreams.includes(a.data.stream))
+  .sort((a, b) => new Date(b.data.publishedAt).getTime() - new Date(a.data.publishedAt).getTime());
+
+const breadcrumbs: BreadcrumbItem[] = [
+  { label: 'Home', href: '/' },
+  { label: 'Insights', href: '/insights/' },
+  { label: 'Thought Leadership' },
+];
+
+const SITE_URL = (import.meta.env.SITE ?? 'https://globalresourcescitadel.com').replace(/\/$/, '');
+
+const seo = {
+  ...generateMetadata({
+    title: 'Thought Leadership',
+    description:
+      'Thought leadership and industry commentary from Global Resources Citadel — perspectives on agriculture, trade, and economic development in Nigeria.',
+    path: '/insights/thought-leadership/',
+  }),
+  jsonLd: [
+    generateBreadcrumbJsonLd(breadcrumbs),
+    {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: 'Thought Leadership',
+      description: 'Thought leadership and industry commentary from Global Resources Citadel.',
+      url: `${SITE_URL}/insights/thought-leadership/`,
+      mainEntity: {
+        '@type': 'ItemList',
+        numberOfItems: thoughtArticles.length,
+        itemListElement: thoughtArticles.map((a, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          name: a.data.title,
+          url: `${SITE_URL}/insights/${a.id}/`,
+        })),
+      },
+    },
+  ],
+};
+---
+
+<PageLayout seo={seo}>
+  <BreadcrumbNav items={breadcrumbs} slot="breadcrumb" />
+
+  <InsightsListing
+    articles={thoughtArticles}
+    eyebrow="Insights"
+    title="Thought Leadership"
+    description="Industry perspectives, strategic commentary, and thought leadership from across the Group."
+    showFeatured={false}
+    showFilterTabs={true}
+    currentPath="/insights/thought-leadership/"
+  />
+</PageLayout>

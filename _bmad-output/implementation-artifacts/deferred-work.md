@@ -147,3 +147,13 @@ All 4 deferred items were resolved during review:
 - OrgChart desktop layout lacks semantic tree roles (`role="tree"`/`role="treeitem"`) — Epic 8 a11y audit
 - LeaderCard `photo` prop accepted but unused — placeholder SVG until real portraits available
 - Both CTA buttons on investors-partners.astro link to same `/contact/strategic/` — intentional per single form, consider query param differentiation later
+
+## Deferred from: code review of 6-1-insights-hub-category-listing-pages (2026-04-04)
+
+- Article detail links are 404s across all insights pages — expected forward dependency on Story 6.2
+- JSON-LD `url` values in `/insights/` CollectionPage point to 404 article detail pages — same root cause (Story 6.2)
+- InsightCard missing date display — pre-existing (Story 2.4), no `publishedAt` prop on InsightCard
+- InsightCard missing "Read Article →" CTA text — pre-existing (Story 2.4), entire card is clickable link
+- InsightCard `border-neutral-300` vs spec's `border-neutral-200` — pre-existing (Story 2.4)
+- InsightCard missing `overflow-hidden` class — pre-existing (Story 2.4)
+- InsightCard `line-clamp-2` vs spec's 3-4 lines + competing transition-shadow/transition-colors — pre-existing (Story 2.4)

@@ -1,6 +1,6 @@
 # Story 6.1: Insights Hub & Category Listing Pages
 
-Status: ready-for-dev
+Status: done
 
 ## Story
 
@@ -20,61 +20,61 @@ So that I can stay informed about GRCL and its industries.
 
 ## Tasks / Subtasks
 
-- [ ] Task 1: Create insights listing template component (AC: #1, #2)
-  - [ ] 1.1 Create `src/components/insights/InsightsListing.astro` — reusable listing template
-  - [ ] 1.2 Props: articles array, title, description, eyebrow, showFeatured (boolean), showFilterTabs (boolean)
-  - [ ] 1.3 Featured article section: FeaturedArticleCard (2-column: image left, meta right)
-  - [ ] 1.4 Article grid: `grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6` with InsightCard
-  - [ ] 1.5 Empty state: styled message with link to `/insights/`
-  - [ ] 1.6 "Load More" button (client-side JS to show next 9, or initially render all and paginate via CSS/JS)
+- [x] Task 1: Create insights listing template component (AC: #1, #2)
+  - [x] 1.1 Create `src/components/insights/InsightsListing.astro` — reusable listing template
+  - [x] 1.2 Props: articles array, title, description, eyebrow, showFeatured (boolean), showFilterTabs (boolean)
+  - [x] 1.3 Featured article section: FeaturedArticleCard (2-column: image left, meta right)
+  - [x] 1.4 Article grid: `grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6` with InsightCard
+  - [x] 1.5 Empty state: styled message with link to `/insights/`
+  - [x] 1.6 "Load More" button (client-side JS to show next 9, or initially render all and paginate via CSS/JS)
 
-- [ ] Task 2: Create FeaturedArticleCard.astro (AC: #1)
-  - [ ] 2.1 Create `src/components/insights/FeaturedArticleCard.astro`
-  - [ ] 2.2 2-column layout: image placeholder left, meta right (`grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8`)
-  - [ ] 2.3 Category badge (gold-dark uppercase), headline (H3 text-2xl font-bold), date, excerpt (3-4 lines), "Read Article →" link
-  - [ ] 2.4 Card: `rounded-2xl border border-neutral-200 overflow-hidden`
-  - [ ] 2.5 Hover: border-color shifts to gold-600
-  - [ ] 2.6 Mobile: stack vertically
+- [x] Task 2: Create FeaturedArticleCard.astro (AC: #1)
+  - [x] 2.1 Create `src/components/insights/FeaturedArticleCard.astro`
+  - [x] 2.2 2-column layout: image placeholder left, meta right (`grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8`)
+  - [x] 2.3 Category badge (gold-dark uppercase), headline (H3 text-2xl font-bold), date, excerpt (3-4 lines), "Read Article →" link
+  - [x] 2.4 Card: `rounded-2xl border border-neutral-200 overflow-hidden`
+  - [x] 2.5 Hover: border-color shifts to gold-600
+  - [x] 2.6 Mobile: stack vertically
 
-- [ ] Task 3: Create FilterTabs component (AC: #1)
-  - [ ] 3.1 Create `src/components/insights/FilterTabs.astro` (static — tabs are links, not client-side filters)
-  - [ ] 3.2 Tabs as nav links: All (→ /insights/), News & Updates (→ /insights/news/), Thought Leadership (→ /insights/thought-leadership/), By Division (dropdown → /insights/divisions/)
-  - [ ] 3.3 Active tab: `text-primary-600 border-b-2 border-primary-600 font-semibold`
-  - [ ] 3.4 Inactive: `text-neutral-500 hover:text-neutral-900`
-  - [ ] 3.5 Mobile: horizontal scrollable with overflow-x-auto
-  - [ ] 3.6 Props: `currentPath` to determine active tab
-  - [ ] 3.7 "By Division" as dropdown link or simple link to `/insights/divisions/`
+- [x] Task 3: Create FilterTabs component (AC: #1)
+  - [x] 3.1 Create `src/components/insights/FilterTabs.astro` (static — tabs are links, not client-side filters)
+  - [x] 3.2 Tabs as nav links: All (→ /insights/), News & Updates (→ /insights/news/), Thought Leadership (→ /insights/thought-leadership/), By Division (dropdown → /insights/divisions/)
+  - [x] 3.3 Active tab: `text-primary-600 border-b-2 border-primary-600 font-semibold`
+  - [x] 3.4 Inactive: `text-neutral-500 hover:text-neutral-900`
+  - [x] 3.5 Mobile: horizontal scrollable with overflow-x-auto
+  - [x] 3.6 Props: `currentPath` to determine active tab
+  - [x] 3.7 "By Division" as dropdown link or simple link to `/insights/divisions/`
 
-- [ ] Task 4: Create Insights Hub page `/insights/index.astro` (AC: #1, #6, #7)
-  - [ ] 4.1 PageLayout with SEO: "Insights — News, Updates & Thought Leadership | Global Resources Citadel"
-  - [ ] 4.2 BreadcrumbNav: Home > Insights
-  - [ ] 4.3 Build page hero inline with SectionWrapper `variant="primary"` (primary-50 bg) — same pattern as hub pages (3.1, 4.1, 5.1). Eyebrow "Insights", heading "News, Updates & Thought Leadership", sub-heading. Centered text, `max-w-3xl`.
-  - [ ] 4.4 Fetch all articles, find featured (most recent with `featured: true` or just most recent)
-  - [ ] 4.5 Render InsightsListing with all articles, showFeatured=true, showFilterTabs=true
-  - [ ] 4.6 CollectionPage JSON-LD
+- [x] Task 4: Create Insights Hub page `/insights/index.astro` (AC: #1, #6, #7)
+  - [x] 4.1 PageLayout with SEO: "Insights — News, Updates & Thought Leadership | Global Resources Citadel"
+  - [x] 4.2 BreadcrumbNav: Home > Insights
+  - [x] 4.3 Build page hero inline with SectionWrapper `variant="primary"` (primary-50 bg) — same pattern as hub pages (3.1, 4.1, 5.1). Eyebrow "Insights", heading "News, Updates & Thought Leadership", sub-heading. Centered text, `max-w-3xl`.
+  - [x] 4.4 Fetch all articles, find featured (most recent with `featured: true` or just most recent)
+  - [x] 4.5 Render InsightsListing with all articles, showFeatured=true, showFilterTabs=true
+  - [x] 4.6 CollectionPage JSON-LD
 
-- [ ] Task 5: Create category sub-pages (AC: #3, #6)
-  - [ ] 5.1 `/insights/latest.astro` — all articles sorted by date, no featured hero
-  - [ ] 5.2 `/insights/news.astro` — filtered to streams: company-news, announcements, operational-updates
-  - [ ] 5.3 `/insights/thought-leadership.astro` — filtered to streams: thought-leadership, industry-commentary
-  - [ ] 5.4 Each uses InsightsListing template with filtered articles
-  - [ ] 5.5 Each has correct breadcrumbs (Home > Insights > [Category])
-  - [ ] 5.6 Each has FilterTabs with currentPath highlighting active tab
+- [x] Task 5: Create category sub-pages (AC: #3, #6)
+  - [x] 5.1 `/insights/latest.astro` — all articles sorted by date, no featured hero
+  - [x] 5.2 `/insights/news.astro` — filtered to streams: company-news, announcements, operational-updates
+  - [x] 5.3 `/insights/thought-leadership.astro` — filtered to streams: thought-leadership, industry-commentary
+  - [x] 5.4 Each uses InsightsListing template with filtered articles
+  - [x] 5.5 Each has correct breadcrumbs (Home > Insights > [Category])
+  - [x] 5.6 Each has FilterTabs with currentPath highlighting active tab
 
-- [ ] Task 6: Create division insights pages (AC: #4, #5)
-  - [ ] 6.1 `/insights/divisions/index.astro` — taxonomy hub with 7 division cards
-  - [ ] 6.2 Cards: icon + division name + article count + "View Insights →" link
-  - [ ] 6.3 Grid: `grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6`
-  - [ ] 6.4 `/insights/divisions/[division].astro` with `getStaticPaths` for 7 division slugs
-  - [ ] 6.5 Each division insights page: filtered articles where `divisionSlug === slug`
-  - [ ] 6.6 Breadcrumbs: Home > Insights > By Division > [Division Name]
-  - [ ] 6.7 Fallback: "No articles yet for [Division]. Check back soon." + link to all insights
+- [x] Task 6: Create division insights pages (AC: #4, #5)
+  - [x] 6.1 `/insights/divisions/index.astro` — taxonomy hub with 7 division cards
+  - [x] 6.2 Cards: icon + division name + article count + "View Insights →" link
+  - [x] 6.3 Grid: `grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6`
+  - [x] 6.4 `/insights/divisions/[division].astro` with `getStaticPaths` for 7 division slugs
+  - [x] 6.5 Each division insights page: filtered articles where `divisionSlug === slug`
+  - [x] 6.6 Breadcrumbs: Home > Insights > By Division > [Division Name]
+  - [x] 6.7 Fallback: "No articles yet for [Division]. Check back soon." + link to all insights
 
-- [ ] Task 7: Implement "Load More" pagination (AC: #1)
-  - [ ] 7.1 Initial render: show first 9 articles
-  - [ ] 7.2 "Load More" button reveals next 9 (client-side show/hide, OR Astro static generates all and CSS hides overflow)
-  - [ ] 7.3 For MVP: render all articles, use CSS `max-height` + `overflow-hidden` with JS toggle. Or simply show all if <20 articles.
-  - [ ] 7.4 Button text: "Load More" → hidden when all shown
+- [x] Task 7: Implement "Load More" pagination (AC: #1)
+  - [x] 7.1 Initial render: show first 9 articles
+  - [x] 7.2 "Load More" button reveals next 9 (client-side show/hide, OR Astro static generates all and CSS hides overflow)
+  - [x] 7.3 For MVP: render all articles, use CSS `max-height` + `overflow-hidden` with JS toggle. Or simply show all if <20 articles.
+  - [x] 7.4 Button text: "Load More" → hidden when all shown
 
 ## Dev Notes
 
@@ -282,8 +282,58 @@ Files this story creates:
 
 ### Agent Model Used
 
+Claude Opus 4.6 (1M context)
+
 ### Debug Log References
+
+- Build validated: all 12 routes prerendered successfully (3 components, 6 page files)
+- TypeScript check: no errors
+- No ESLint config in project (Epic 8 concern)
 
 ### Completion Notes List
 
+- Created InsightsListing.astro as reusable template with hero, FilterTabs, FeaturedArticleCard, article grid, empty state, and Load More — all pages compose through this single component
+- Created FeaturedArticleCard.astro with 2-column layout (image placeholder + meta), hover border transition, accessible focus ring, datetime attribute
+- Created FilterTabs.astro as static navigation links with route-based active state and aria-current, horizontal scrollable on mobile
+- Insights hub (/insights/) renders all articles with featured article hero, filter tabs, CollectionPage JSON-LD with ItemList
+- Category sub-pages (/insights/news/, /insights/thought-leadership/, /insights/latest/) filter by stream arrays
+- Division taxonomy hub (/insights/divisions/) shows 7 division cards with article counts and emoji icons
+- Dynamic division pages (/insights/divisions/[division]/) use getStaticPaths for 7 slugs with division-filtered articles
+- Load More: inline script shows/hides articles in batches of 9 — zero-bundle, no React island
+- All pages use PageLayout, SectionWrapper, BreadcrumbNav with correct hierarchy
+- Reused existing InsightCard, STREAM_LABELS, DIVISION_ICONS, formatDate, cn utilities
+
+### Change Log
+
+- 2026-04-04: Story 6.1 implemented — Insights hub, category sub-pages, division insights pages, Load More pagination
+
 ### File List
+
+- `src/components/insights/InsightsListing.astro` (created)
+- `src/components/insights/FeaturedArticleCard.astro` (created)
+- `src/components/insights/FilterTabs.astro` (created)
+- `src/pages/insights/index.astro` (created)
+- `src/pages/insights/latest.astro` (created)
+- `src/pages/insights/news.astro` (created)
+- `src/pages/insights/thought-leadership.astro` (created)
+- `src/pages/insights/divisions/index.astro` (created)
+- `src/pages/insights/divisions/[division].astro` (created)
+
+### Review Findings
+
+- [x] [Review][Decision] `/insights/latest/` page orphaned from FilterTabs — resolved: added "Latest" tab to FilterTabs
+- [x] [Review][Patch] Missing CollectionPage JSON-LD on 5 listing pages — fixed: added CollectionPage structured data to all listing pages
+- [x] [Review][Patch] Heading hierarchy skips h1 to h3 — fixed: added sr-only h2 section headings in InsightsListing and divisions/index
+- [x] [Review][Patch] Division empty state lacks division name — fixed: added categoryName prop, personalized message
+- [x] [Review][Patch] Division card competing transition utilities — fixed: replaced with transition-all duration-300
+- [x] [Review][Patch] Duplicate import statement — fixed: merged into single import
+- [x] [Review][Patch] Load More has no accessibility feedback — fixed: added aria-live region and aria-label on button
+- [x] [Review][Patch] DIVISION_ICONS fallback missing — fixed: added fallback emoji
+- [x] [Review][Patch] SVG placeholder missing aria-hidden — fixed: added aria-hidden="true"
+- [x] [Review][Defer] Article detail links are 404s — deferred, Story 6.2
+- [x] [Review][Defer] JSON-LD url values point to 404 article pages — deferred, Story 6.2
+- [x] [Review][Defer] InsightCard missing date display — deferred, pre-existing (Story 2.4)
+- [x] [Review][Defer] InsightCard missing "Read Article" CTA text — deferred, pre-existing (Story 2.4)
+- [x] [Review][Defer] InsightCard border-neutral-300 vs spec neutral-200 — deferred, pre-existing (Story 2.4)
+- [x] [Review][Defer] InsightCard missing overflow-hidden — deferred, pre-existing (Story 2.4)
+- [x] [Review][Defer] InsightCard line-clamp-2 vs spec 3-4 lines + transition conflict — deferred, pre-existing (Story 2.4)

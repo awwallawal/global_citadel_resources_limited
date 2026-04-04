@@ -1,0 +1,65 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '@/layouts/PageLayout.astro';
+import BreadcrumbNav from '@/components/layout/BreadcrumbNav.astro';
+import InsightsListing from '@/components/insights/InsightsListing.astro';
+import {
+  generateMetadata,
+  generateBreadcrumbJsonLd,
+  type BreadcrumbItem,
+} from '@/lib/seo';
+
+const allArticles = (await getCollection('articles')).sort(
+  (a, b) => new Date(b.data.publishedAt).getTime() - new Date(a.data.publishedAt).getTime(),
+);
+
+const breadcrumbs: BreadcrumbItem[] = [
+  { label: 'Home', href: '/' },
+  { label: 'Insights' },
+];
+
+const SITE_URL = (import.meta.env.SITE ?? 'https://globalresourcescitadel.com').replace(/\/$/, '');
+
+const seo = {
+  ...generateMetadata({
+    title: 'Insights',
+    description:
+      'News, updates, and thought leadership from Global Resources Citadel — stay informed about our operations across agriculture, trade, real estate, and energy.',
+    path: '/insights/',
+  }),
+  jsonLd: [
+    generateBreadcrumbJsonLd(breadcrumbs),
+    {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: 'Insights — News, Updates & Thought Leadership',
+      description: 'News, updates, and thought leadership from Global Resources Citadel.',
+      url: `${SITE_URL}/insights/`,
+      mainEntity: {
+        '@type': 'ItemList',
+        numberOfItems: allArticles.length,
+        itemListElement: allArticles.map((a, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          name: a.data.title,
+          url: `${SITE_URL}/insights/${a.id}/`,
+        })),
+      },
+    },
+  ],
+};
+---
+
+<PageLayout seo={seo}>
+  <BreadcrumbNav items={breadcrumbs} slot="breadcrumb" />
+
+  <InsightsListing
+    articles={allArticles}
+    eyebrow="Insights"
+    title="News, Updates & Thought Leadership"
+    description="Stay informed about Global Resources Citadel — corporate news, operational updates, and thought leadership from across our seven divisions."
+    showFeatured={true}
+    showFilterTabs={true}
+    currentPath="/insights/"
+  />
+</PageLayout>

@@ -1,0 +1,68 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '@/layouts/PageLayout.astro';
+import BreadcrumbNav from '@/components/layout/BreadcrumbNav.astro';
+import InsightsListing from '@/components/insights/InsightsListing.astro';
+import {
+  generateMetadata,
+  generateBreadcrumbJsonLd,
+  type BreadcrumbItem,
+} from '@/lib/seo';
+
+const newsStreams = ['company-news', 'announcements', 'operational-updates'];
+
+const newsArticles = (await getCollection('articles'))
+  .filter((a) => newsStreams.includes(a.data.stream))
+  .sort((a, b) => new Date(b.data.publishedAt).getTime() - new Date(a.data.publishedAt).getTime());
+
+const breadcrumbs: BreadcrumbItem[] = [
+  { label: 'Home', href: '/' },
+  { label: 'Insights', href: '/insights/' },
+  { label: 'News & Updates' },
+];
+
+const SITE_URL = (import.meta.env.SITE ?? 'https://globalresourcescitadel.com').replace(/\/$/, '');
+
+const seo = {
+  ...generateMetadata({
+    title: 'News & Updates',
+    description:
+      'Company news, announcements, and operational updates from Global Resources Citadel.',
+    path: '/insights/news/',
+  }),
+  jsonLd: [
+    generateBreadcrumbJsonLd(breadcrumbs),
+    {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: 'News & Updates',
+      description: 'Company news, announcements, and operational updates from Global Resources Citadel.',
+      url: `${SITE_URL}/insights/news/`,
+      mainEntity: {
+        '@type': 'ItemList',
+        numberOfItems: newsArticles.length,
+        itemListElement: newsArticles.map((a, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          name: a.data.title,
+          url: `${SITE_URL}/insights/${a.id}/`,
+        })),
+      },
+    },
+  ],
+};
+---
+
+<PageLayout seo={seo}>
+  <BreadcrumbNav items={breadcrumbs} slot="breadcrumb" />
+
+  <InsightsListing
+    articles={newsArticles}
+    eyebrow="Insights"
+    title="News & Updates"
+    description="Company news, announcements, and operational updates from across the Group."
+    showFeatured={false}
+    showFilterTabs={true}
+    currentPath="/insights/news/"
+  />
+</PageLayout>

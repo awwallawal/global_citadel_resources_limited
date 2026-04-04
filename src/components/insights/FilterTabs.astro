@@ -1,0 +1,40 @@
+---
+/**
+ * FilterTabs.astro — Static navigation tabs for Insights category filtering.
+ * Each tab is a link to a separate Astro page (not client-side filtering).
+ */
+import { cn } from '@/lib/utils';
+
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+
+const tabs = [
+  { label: 'All', href: '/insights/' },
+  { label: 'Latest', href: '/insights/latest/' },
+  { label: 'News & Updates', href: '/insights/news/' },
+  { label: 'Thought Leadership', href: '/insights/thought-leadership/' },
+  { label: 'By Division', href: '/insights/divisions/' },
+];
+---
+
+<nav aria-label="Insight categories" class="border-b border-neutral-200">
+  <div class="mx-auto flex max-w-7xl gap-0 overflow-x-auto px-4 sm:px-6 lg:px-8">
+    {tabs.map((tab) => (
+      <a
+        href={tab.href}
+        class={cn(
+          'whitespace-nowrap border-b-2 px-4 py-3 text-sm font-medium transition-colors focus-visible:rounded focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2',
+          currentPath === tab.href || (tab.href !== '/insights/' && currentPath.startsWith(tab.href))
+            ? 'border-primary-600 text-primary-600 font-semibold'
+            : 'border-transparent text-neutral-500 hover:text-neutral-900',
+        )}
+        aria-current={currentPath === tab.href || (tab.href !== '/insights/' && currentPath.startsWith(tab.href)) ? 'page' : undefined}
+      >
+        {tab.label}
+      </a>
+    ))}
+  </div>
+</nav>

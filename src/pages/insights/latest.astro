@@ -1,0 +1,66 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '@/layouts/PageLayout.astro';
+import BreadcrumbNav from '@/components/layout/BreadcrumbNav.astro';
+import InsightsListing from '@/components/insights/InsightsListing.astro';
+import {
+  generateMetadata,
+  generateBreadcrumbJsonLd,
+  type BreadcrumbItem,
+} from '@/lib/seo';
+
+const allArticles = (await getCollection('articles')).sort(
+  (a, b) => new Date(b.data.publishedAt).getTime() - new Date(a.data.publishedAt).getTime(),
+);
+
+const breadcrumbs: BreadcrumbItem[] = [
+  { label: 'Home', href: '/' },
+  { label: 'Insights', href: '/insights/' },
+  { label: 'Latest' },
+];
+
+const SITE_URL = (import.meta.env.SITE ?? 'https://globalresourcescitadel.com').replace(/\/$/, '');
+
+const seo = {
+  ...generateMetadata({
+    title: 'Latest Insights',
+    description:
+      'The latest news, updates, and thought leadership from Global Resources Citadel.',
+    path: '/insights/latest/',
+  }),
+  jsonLd: [
+    generateBreadcrumbJsonLd(breadcrumbs),
+    {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: 'Latest Insights',
+      description: 'The latest news, updates, and thought leadership from Global Resources Citadel.',
+      url: `${SITE_URL}/insights/latest/`,
+      mainEntity: {
+        '@type': 'ItemList',
+        numberOfItems: allArticles.length,
+        itemListElement: allArticles.map((a, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          name: a.data.title,
+          url: `${SITE_URL}/insights/${a.id}/`,
+        })),
+      },
+    },
+  ],
+};
+---
+
+<PageLayout seo={seo}>
+  <BreadcrumbNav items={breadcrumbs} slot="breadcrumb" />
+
+  <InsightsListing
+    articles={allArticles}
+    eyebrow="Insights"
+    title="Latest Insights"
+    description="All articles from Global Resources Citadel, sorted by most recent."
+    showFeatured={false}
+    showFilterTabs={true}
+    currentPath="/insights/latest/"
+  />
+</PageLayout>

@@ -35,7 +35,7 @@
 # - Dev moves story to 'review', then runs code-review (fresh context, different LLM recommended)
 
 generated: 2026-03-28
-last_updated: 2026-04-03
+last_updated: 2026-04-04 # code review completed
 project: UK_Web_Design
 last_story_created: 8-4-cicd-pipeline-production-deployment
 project_key: NOKEY
@@ -89,7 +89,7 @@ development_status:
 
   # --- Epic 6: Publishing & Thought Leadership ---
   epic-6: in-progress
-  6-1-insights-hub-category-listing-pages: ready-for-dev
+  6-1-insights-hub-category-listing-pages: done
   6-2-article-detail-page: ready-for-dev
   6-3-seed-content-publishing-workflow: ready-for-dev
   epic-6-retrospective: optional

@@ -1,0 +1,78 @@
+---
+import { getCollection } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+import PageLayout from '@/layouts/PageLayout.astro';
+import BreadcrumbNav from '@/components/layout/BreadcrumbNav.astro';
+import InsightsListing from '@/components/insights/InsightsListing.astro';
+import {
+  generateMetadata,
+  generateBreadcrumbJsonLd,
+  type BreadcrumbItem,
+} from '@/lib/seo';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const divisions = await getCollection('divisions');
+  return divisions.map((div) => ({
+    params: { division: div.data.slug },
+    props: { divisionName: div.data.name, divisionSlug: div.data.slug },
+  }));
+};
+
+const { divisionName, divisionSlug } = Astro.props;
+
+const divisionArticles = (await getCollection('articles'))
+  .filter((a) => a.data.divisionSlug === divisionSlug)
+  .sort((a, b) => new Date(b.data.publishedAt).getTime() - new Date(a.data.publishedAt).getTime());
+
+const breadcrumbs: BreadcrumbItem[] = [
+  { label: 'Home', href: '/' },
+  { label: 'Insights', href: '/insights/' },
+  { label: 'By Division', href: '/insights/divisions/' },
+  { label: divisionName },
+];
+
+const SITE_URL = (import.meta.env.SITE ?? 'https://globalresourcescitadel.com').replace(/\/$/, '');
+
+const seo = {
+  ...generateMetadata({
+    title: `${divisionName} Insights`,
+    description: `News, updates, and insights from Global Resources Citadel's ${divisionName} division.`,
+    path: `/insights/divisions/${divisionSlug}/`,
+  }),
+  jsonLd: [
+    generateBreadcrumbJsonLd(breadcrumbs),
+    {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: `${divisionName} Insights`,
+      description: `News, updates, and insights from Global Resources Citadel's ${divisionName} division.`,
+      url: `${SITE_URL}/insights/divisions/${divisionSlug}/`,
+      mainEntity: {
+        '@type': 'ItemList',
+        numberOfItems: divisionArticles.length,
+        itemListElement: divisionArticles.map((a, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          name: a.data.title,
+          url: `${SITE_URL}/insights/${a.id}/`,
+        })),
+      },
+    },
+  ],
+};
+---
+
+<PageLayout seo={seo}>
+  <BreadcrumbNav items={breadcrumbs} slot="breadcrumb" />
+
+  <InsightsListing
+    articles={divisionArticles}
+    eyebrow={divisionName}
+    title={`${divisionName} Insights`}
+    description={`News, updates, and thought leadership from the ${divisionName} division.`}
+    showFeatured={false}
+    showFilterTabs={true}
+    currentPath={`/insights/divisions/${divisionSlug}/`}
+    categoryName={divisionName}
+  />
+</PageLayout>
