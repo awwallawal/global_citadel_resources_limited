@@ -96,7 +96,7 @@ development_status:
 
   # --- Epic 7: Search, Discovery & Supporting Pages ---
   epic-7: in-progress
-  7-1-search-page-functionality: ready-for-dev
+  7-1-search-page-functionality: done
   7-2-legal-pages-sitemap-custom-404: ready-for-dev
   7-3-internal-cross-linking-discovery-pathways: ready-for-dev
   epic-7-retrospective: optional

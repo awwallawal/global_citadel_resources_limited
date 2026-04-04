@@ -167,3 +167,9 @@ All 4 deferred items were resolved during review:
 ## Deferred from: code review of 6-3-seed-content-publishing-workflow (2026-04-04)
 
 - No Zod-level enforcement that `division-insight` stream requires `divisionSlug` — schema gap from Story 1.3. An editor can publish a division-insight without divisionSlug and the build succeeds but the article orphans from division pages
+
+## Deferred from: code review of 7-1-search-page-functionality (2026-04-04)
+
+- Search index (~30 items, 2-4KB gzipped) embedded in every page HTML via Header/SearchOverlay — MVP acceptable per spec Task 5.4, optimize post-MVP to static JSON fetch
+- No debounce on SearchOverlay keystroke search — trivial with ~30 items, add when corpus grows
+- Search results use `div[role="list"]` instead of semantic `<ul>/<li>` — minor a11y improvement for Epic 8

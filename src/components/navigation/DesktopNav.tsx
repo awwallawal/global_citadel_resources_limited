@@ -232,8 +232,9 @@ export default function DesktopNav({ currentPath, divisions, clusters, headerVar
 
         {/* Right side: Search + CTA */}
         <div className="flex items-center gap-3 shrink-0">
-          <a
-            href="/search/"
+          <button
+            type="button"
+            onClick={() => document.dispatchEvent(new CustomEvent('open-search-overlay'))}
             className={cn(
               'min-h-11 min-w-11 inline-flex items-center justify-center rounded-lg motion-safe:transition-colors motion-safe:duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2',
               isScrolled
@@ -243,7 +244,7 @@ export default function DesktopNav({ currentPath, divisions, clusters, headerVar
             aria-label="Search"
           >
             <Search className="h-5 w-5" aria-hidden="true" />
-          </a>
+          </button>
           <a
             href="/contact/"
             className={cn(

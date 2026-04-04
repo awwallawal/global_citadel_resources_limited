@@ -3,6 +3,8 @@ import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
 import DesktopNav from '@/components/navigation/DesktopNav';
 import MobileNav from '@/components/navigation/MobileNav';
+import SearchOverlay from '@/components/search/SearchOverlay';
+import { buildSearchIndex } from '@/lib/search';
 import emblemLogo from '@/assets/brand/grcl-emblem.png';
 
 interface Props {
@@ -12,6 +14,7 @@ interface Props {
 
 const { currentPath, headerVariant = 'solid' } = Astro.props;
 
+const searchIndex = await buildSearchIndex();
 const allDivisions = await getCollection('divisions');
 const allClusters = await getCollection('clusters');
 
@@ -92,4 +95,6 @@ const clusters = allClusters
       />
     </div>
   </div>
+
+  <SearchOverlay client:idle index={searchIndex} />
 </header>

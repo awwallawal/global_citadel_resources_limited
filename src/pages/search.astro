@@ -1,0 +1,43 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import SectionWrapper from '@/components/layout/SectionWrapper.astro';
+import BreadcrumbNav from '@/components/layout/BreadcrumbNav.astro';
+import SearchPage from '@/components/search/SearchPage';
+import { buildSearchIndex } from '@/lib/search';
+import {
+  generateMetadata,
+  generateBreadcrumbJsonLd,
+  type BreadcrumbItem,
+} from '@/lib/seo';
+
+const searchIndex = await buildSearchIndex();
+
+const breadcrumbs: BreadcrumbItem[] = [
+  { label: 'Home', href: '/' },
+  { label: 'Search' },
+];
+
+const seo = {
+  ...generateMetadata({
+    title: 'Search',
+    description: 'Search Global Resources Citadel for pages, divisions, insights, and contacts.',
+    path: '/search/',
+  }),
+  robots: 'noindex, follow',
+  jsonLd: [generateBreadcrumbJsonLd(breadcrumbs)],
+};
+---
+
+<PageLayout seo={seo}>
+  <BreadcrumbNav items={breadcrumbs} slot="breadcrumb" />
+
+  <SectionWrapper variant="primary">
+    <div class="mx-auto max-w-3xl text-center">
+      <h1 class="font-heading text-3xl font-bold leading-tight tracking-tight lg:text-5xl">
+        Search Global Resources Citadel
+      </h1>
+    </div>
+  </SectionWrapper>
+
+  <SearchPage client:load index={searchIndex} />
+</PageLayout>

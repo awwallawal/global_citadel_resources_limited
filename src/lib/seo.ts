@@ -5,6 +5,7 @@ export interface SeoMetadata {
   ogImage?: string;
   ogType?: string;
   twitterCard?: string;
+  robots?: string;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 

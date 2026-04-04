@@ -1,6 +1,6 @@
 # Story 7.1: Search Page & Functionality
 
-Status: ready-for-dev
+Status: done
 
 ## Story
 
@@ -23,49 +23,49 @@ So that I can find what I need quickly when navigation alone is not enough.
 
 ## Tasks / Subtasks
 
-- [ ] Task 1: Build search index at build time (AC: #2, #5)
-  - [ ] 1.1 Create `src/lib/search.ts` — build-time index generator
-  - [ ] 1.2 Index divisions: id, slug, title (name), type "division", section, summary (tagline)
-  - [ ] 1.3 Index clusters: id, slug, title (name), type "page", section "divisions", summary (tagline)
-  - [ ] 1.4 Index articles: id, slug, title, type "insight", section, summary (excerpt), stream, publishedAt, divisionSlug
-  - [ ] 1.5 Index static pages: about, investors-partners, contact hub, contact sub-pages
-  - [ ] 1.6 Index contact routes: general, strategic, 7 division contacts as type "contact"
-  - [ ] 1.7 Generate JSON search index exported for client-side use
+- [x] Task 1: Build search index at build time (AC: #2, #5)
+  - [x] 1.1 Create `src/lib/search.ts` — build-time index generator
+  - [x] 1.2 Index divisions: id, slug, title (name), type "division", section, summary (tagline)
+  - [x] 1.3 Index clusters: id, slug, title (name), type "page", section "divisions", summary (tagline)
+  - [x] 1.4 Index articles: id, slug, title, type "insight", section, summary (excerpt), stream, publishedAt, divisionSlug
+  - [x] 1.5 Index static pages: about, investors-partners, contact hub, contact sub-pages
+  - [x] 1.6 Index contact routes: general, strategic, 7 division contacts as type "contact"
+  - [x] 1.7 Generate JSON search index exported for client-side use
 
-- [ ] Task 2: Create `src/pages/search.astro` (AC: #1, #8, #9)
-  - [ ] 2.1 PageLayout with SEO: title "Search — Global Resources Citadel"
-  - [ ] 2.2 Robots: `<meta name="robots" content="noindex, follow" />`
-  - [ ] 2.3 BreadcrumbNav: Home > Search
-  - [ ] 2.4 Heading: "Search Global Resources Citadel"
-  - [ ] 2.5 Render SearchPage React island with `client:load`
+- [x] Task 2: Create `src/pages/search.astro` (AC: #1, #8, #9)
+  - [x] 2.1 PageLayout with SEO: title "Search — Global Resources Citadel"
+  - [x] 2.2 Robots: `<meta name="robots" content="noindex, follow" />`
+  - [x] 2.3 BreadcrumbNav: Home > Search
+  - [x] 2.4 Heading: "Search Global Resources Citadel"
+  - [x] 2.5 Render SearchPage React island with `client:load`
 
-- [ ] Task 3: Create SearchPage.tsx React island (AC: #1, #2, #3, #4, #5, #6, #7)
-  - [ ] 3.1 Create `src/components/search/SearchPage.tsx` with `client:load`
-  - [ ] 3.2 Read `q` and `type` from URL search params on mount
-  - [ ] 3.3 SearchInput: text input + submit button, updates URL on submit
-  - [ ] 3.4 Client-side search: filter index by query (case-insensitive match on title + summary)
-  - [ ] 3.5 SearchFilterTabs: All, Pages, Divisions, Insights, Contacts — updates `type` URL param. Each tab button: `focus-visible:rounded focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2`
-  - [ ] 3.6 Results count: "[X] results found for '[query]'"
-  - [ ] 3.7 SearchResultCard for each result: type badge, linked title, URL path, excerpt, meta
-  - [ ] 3.8 Term highlighting: bold matched terms in title + excerpt
-  - [ ] 3.9 Pagination: show first 10, "Load More Results" reveals next 10. Button: `focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2`
-  - [ ] 3.10 NoResultsState with recovery links
-  - [ ] 3.11 Empty state (no query): show prompt text, no results
+- [x] Task 3: Create SearchPage.tsx React island (AC: #1, #2, #3, #4, #5, #6, #7)
+  - [x] 3.1 Create `src/components/search/SearchPage.tsx` with `client:load`
+  - [x] 3.2 Read `q` and `type` from URL search params on mount
+  - [x] 3.3 SearchInput: text input + submit button, updates URL on submit
+  - [x] 3.4 Client-side search: filter index by query (case-insensitive match on title + summary)
+  - [x] 3.5 SearchFilterTabs: All, Pages, Divisions, Insights, Contacts — updates `type` URL param. Each tab button: `focus-visible:rounded focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2`
+  - [x] 3.6 Results count: "[X] results found for '[query]'"
+  - [x] 3.7 SearchResultCard for each result: type badge, linked title, URL path, excerpt, meta
+  - [x] 3.8 Term highlighting: bold matched terms in title + excerpt
+  - [x] 3.9 Pagination: show first 10, "Load More Results" reveals next 10. Button: `focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2`
+  - [x] 3.10 NoResultsState with recovery links
+  - [x] 3.11 Empty state (no query): show prompt text, no results
 
-- [ ] Task 4: Create SearchOverlay.tsx (AC: #10)
-  - [ ] 4.1 Create `src/components/search/SearchOverlay.tsx` with `client:idle`
-  - [ ] 4.2 Triggered by search icon in header (from Story 1.5)
-  - [ ] 4.3 Modal overlay with search input
-  - [ ] 4.4 Quick results preview (top 5 matches) as user types
-  - [ ] 4.5 "View all results" link navigates to `/search?q=[query]`
-  - [ ] 4.6 Escape closes overlay, focus trapped within
-  - [ ] 4.7 `aria-label="Search"`, `role="dialog"`, `aria-modal="true"`
+- [x] Task 4: Create SearchOverlay.tsx (AC: #10)
+  - [x] 4.1 Create `src/components/search/SearchOverlay.tsx` with `client:idle`
+  - [x] 4.2 Triggered by search icon in header (from Story 1.5)
+  - [x] 4.3 Modal overlay with search input
+  - [x] 4.4 Quick results preview (top 5 matches) as user types
+  - [x] 4.5 "View all results" link navigates to `/search?q=[query]`
+  - [x] 4.6 Escape closes overlay, focus trapped within
+  - [x] 4.7 `aria-label="Search"`, `role="dialog"`, `aria-modal="true"`
 
-- [ ] Task 5: Integrate SearchOverlay into Header (AC: #10)
-  - [ ] 5.1 Wire desktop search icon click in Header.astro to open SearchOverlay
-  - [ ] 5.2 SearchOverlay rendered with `client:idle` (not needed immediately)
-  - [ ] 5.3 **Desktop (md+):** search icon triggers SearchOverlay modal. **Mobile (below md):** search icon remains a plain `<a href="/search/">` link (Story 1.6 pattern) — better UX than modal overlay on small screens.
-  - [ ] 5.4 Header.astro (or PageLayout) must call `buildSearchIndex()` and pass the index to SearchOverlay as a prop. For ~50 items this is a few KB inlined per page — acceptable for MVP. Post-MVP: consider writing the index to a static JSON file at build time and fetching on demand to avoid per-page inline cost.
+- [x] Task 5: Integrate SearchOverlay into Header (AC: #10)
+  - [x] 5.1 Wire desktop search icon click in Header.astro to open SearchOverlay
+  - [x] 5.2 SearchOverlay rendered with `client:idle` (not needed immediately)
+  - [x] 5.3 **Desktop (md+):** search icon triggers SearchOverlay modal. **Mobile (below md):** search icon remains a plain `<a href="/search/">` link (Story 1.6 pattern) — better UX than modal overlay on small screens.
+  - [x] 5.4 Header.astro (or PageLayout) must call `buildSearchIndex()` and pass the index to SearchOverlay as a prop. For ~50 items this is a few KB inlined per page — acceptable for MVP. Post-MVP: consider writing the index to a static JSON file at build time and fetching on demand to avoid per-page inline cost.
 
 ## Dev Notes
 
@@ -300,8 +300,53 @@ Files this story creates:
 
 ### Agent Model Used
 
+Claude Opus 4.6 (1M context)
+
 ### Debug Log References
+
+- Build passes: /search/index.html rendered, SearchOverlay embedded in all pages via Header
+- robots meta verified: `<meta name="robots" content="noindex, follow">` present on search page
+- TypeScript: no errors
+- Added `robots` optional field to SeoMetadata interface and BaseLayout props for clean meta rendering
 
 ### Completion Notes List
 
+- Created `src/lib/search.ts` with `buildSearchIndex()` — indexes 7 divisions, 3 clusters, 6 articles, 6 static pages, 8 contact pages (~30 items)
+- Created `src/pages/search.astro` with PageLayout, hero, breadcrumbs, noindex robots meta, SearchPage React island
+- Created `src/components/search/SearchPage.tsx` (client:load) — full-width search input, URL param sync (q, type), filter tabs (All/Pages/Divisions/Insights/Contacts), result cards with type badges, term highlighting via regex, Load More (10 per batch), no-results state with recovery links, empty state
+- Created `src/components/search/SearchOverlay.tsx` (client:idle) — modal overlay triggered by custom event, top 5 quick results, "View all results" link, Escape closes, focus trap, backdrop click close, aria-modal dialog
+- Modified DesktopNav.tsx: changed search icon from `<a>` to `<button>` dispatching `open-search-overlay` custom event
+- Modified Header.astro: imports SearchOverlay + buildSearchIndex, passes index as prop with client:idle
+- Mobile search icon remains `<a href="/search/">` link — better UX than modal on small screens
+- Added `robots` optional field to SeoMetadata interface (seo.ts) and BaseLayout props for reusable noindex support
+
+### Change Log
+
+- 2026-04-04: Story 7.1 implemented — Search page with client-side index, SearchOverlay in header, filter tabs, result cards, term highlighting
+
 ### File List
+
+- `src/lib/search.ts` (created)
+- `src/pages/search.astro` (created)
+- `src/components/search/SearchPage.tsx` (created)
+- `src/components/search/SearchOverlay.tsx` (created)
+- `src/components/navigation/DesktopNav.tsx` (modified — search icon → button with custom event)
+- `src/components/layout/Header.astro` (modified — added SearchOverlay with client:idle)
+- `src/lib/seo.ts` (modified — added robots field to SeoMetadata)
+- `src/layouts/BaseLayout.astro` (modified — added robots prop and meta rendering)
+- `_bmad-output/implementation-artifacts/sprint-status.yaml` (modified)
+
+### Review Findings
+
+- [x] [Review][Patch] highlightTerms regex bug — fixed: replaced regex.test() with string comparison
+- [x] [Review][Patch] Heading hierarchy h1→h3 — fixed: added sr-only h2 "Search Results"
+- [x] [Review][Patch] SearchOverlay scroll lock — fixed: added body overflow:hidden when open
+- [x] [Review][Patch] SearchOverlay focus restoration — fixed: capture/restore previousFocusRef on open/close
+- [x] [Review][Patch] Search index missing pages — fixed: added homepage, /divisions/, /insights/ hub + category pages
+- [x] [Review][Patch] focus-visible:outline-none — fixed: added to filter tabs and Load More button
+- [x] [Review][Patch] gold-700 → gold-600 — fixed: in both SearchPage and SearchOverlay
+- [x] [Review][Patch] Touch targets — fixed: p-3 on submit buttons, min-h-11 min-w-11 on ESC button
+- [x] [Review][Patch] Flash of empty state — fixed: initialize useState from URL params directly
+- [x] [Review][Defer] Search index embedded in every page — MVP acceptable per spec Task 5.4
+- [x] [Review][Defer] No debounce on search input — trivial with ~30 items
+- [x] [Review][Defer] div role="list" instead of semantic ul/li — Epic 8 a11y
