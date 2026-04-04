@@ -91,7 +91,7 @@ development_status:
   epic-6: in-progress
   6-1-insights-hub-category-listing-pages: done
   6-2-article-detail-page: done
-  6-3-seed-content-publishing-workflow: ready-for-dev
+  6-3-seed-content-publishing-workflow: done
   epic-6-retrospective: optional
 
   # --- Epic 7: Search, Discovery & Supporting Pages ---

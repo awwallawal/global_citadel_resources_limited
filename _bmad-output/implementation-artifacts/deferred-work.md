@@ -163,3 +163,7 @@ All 4 deferred items were resolved during review:
 - Hero image uses raw `<img>` instead of Astro `<Image>` — no optimization, no srcset, no width/height. MVP acceptable, address when real editorial images available
 - Reading time calculation from raw MDX body includes import statements and component tags — minor inaccuracy, acceptable for MVP
 - Related articles fallback shows latest 3 regardless of topic when no division/stream match — product decision, not a code bug
+
+## Deferred from: code review of 6-3-seed-content-publishing-workflow (2026-04-04)
+
+- No Zod-level enforcement that `division-insight` stream requires `divisionSlug` — schema gap from Story 1.3. An editor can publish a division-insight without divisionSlug and the build succeeds but the article orphans from division pages

@@ -1,6 +1,6 @@
 # Story 6.3: Seed Content & Publishing Workflow
 
-Status: ready-for-dev
+Status: done
 
 ## Story
 
@@ -19,53 +19,53 @@ So that the platform launches with content and I understand how to add more.
 
 ## Tasks / Subtasks
 
-- [ ] Task 1: Create seed article 1 — company-news stream (AC: #1, #2, #3)
-  - [ ] 1.1 Create `src/content/articles/grcl-expands-processing-capacity.mdx`
-  - [ ] 1.2 Stream: `company-news`, no division tag (company-wide)
-  - [ ] 1.3 Featured: `true` (appears in homepage featured section)
-  - [ ] 1.4 Title: "GRCL Expands Processing Capacity in Kano State"
-  - [ ] 1.5 Realistic excerpt (~2-3 sentences)
-  - [ ] 1.6 MDX body: 3-4 paragraphs with H2 headings and a blockquote
+- [x] Task 1: Create seed article 1 — company-news stream (AC: #1, #2, #3)
+  - [x] 1.1 Create `src/content/articles/grcl-expands-processing-capacity.mdx`
+  - [x] 1.2 Stream: `company-news`, no division tag (company-wide)
+  - [x] 1.3 Featured: `true` (appears in homepage featured section)
+  - [x] 1.4 Title: "GRCL Expands Processing Capacity in Kano State"
+  - [x] 1.5 Realistic excerpt (~2-3 sentences)
+  - [x] 1.6 MDX body: 3-4 paragraphs with H2 headings and a blockquote
 
-- [ ] Task 2: Create seed article 2 — thought-leadership stream (AC: #1, #2, #3)
-  - [ ] 2.1 Create `src/content/articles/integrated-value-chains-future-agriculture.mdx`
-  - [ ] 2.2 Stream: `thought-leadership`, no division tag (company-wide)
-  - [ ] 2.3 Featured: `false`
-  - [ ] 2.4 Title: "Why Integrated Value Chains Are the Future of Nigerian Agriculture"
-  - [ ] 2.5 Realistic excerpt
-  - [ ] 2.6 MDX body: 4-5 paragraphs with H2, H3, a bulleted list, a blockquote, and a placeholder image (`![Aerial view of integrated farming operations](./images/placeholder-farming.jpg)`) to demonstrate image syntax for content owners. The image file doesn't need to exist for MVP — it shows the pattern.
+- [x] Task 2: Create seed article 2 — thought-leadership stream (AC: #1, #2, #3)
+  - [x] 2.1 Create `src/content/articles/integrated-value-chains-future-agriculture.mdx`
+  - [x] 2.2 Stream: `thought-leadership`, no division tag (company-wide)
+  - [x] 2.3 Featured: `false`
+  - [x] 2.4 Title: "Why Integrated Value Chains Are the Future of Nigerian Agriculture"
+  - [x] 2.5 Realistic excerpt
+  - [x] 2.6 MDX body: 4-5 paragraphs with H2, H3, a bulleted list, a blockquote, and a placeholder image (`![Aerial view of integrated farming operations](./images/placeholder-farming.jpg)`) to demonstrate image syntax for content owners. The image file doesn't need to exist for MVP — it shows the pattern.
 
-- [ ] Task 3: Create seed article 3 — division-insight stream (AC: #1, #2)
-  - [ ] 3.1 Create `src/content/articles/commodity-markets-west-africa-trends.mdx`
-  - [ ] 3.2 Stream: `division-insight`, divisionSlug: `commodity-marketing`
-  - [ ] 3.3 Featured: `false`
-  - [ ] 3.4 Title: "Commodity Markets in West Africa: Trends and Outlook"
-  - [ ] 3.5 Realistic excerpt
-  - [ ] 3.6 MDX body: 3-4 paragraphs with H2, an ordered list, and a table
+- [x] Task 3: Create seed article 3 — division-insight stream (AC: #1, #2)
+  - [x] 3.1 Create `src/content/articles/commodity-markets-west-africa-trends.mdx`
+  - [x] 3.2 Stream: `division-insight`, divisionSlug: `commodity-marketing`
+  - [x] 3.3 Featured: `false`
+  - [x] 3.4 Title: "Commodity Markets in West Africa: Trends and Outlook"
+  - [x] 3.5 Realistic excerpt
+  - [x] 3.6 MDX body: 3-4 paragraphs with H2, an ordered list, and a table
 
-- [ ] Task 4: Verify Zod validation (AC: #4)
-  - [ ] 4.1 Run `npm run build` — all 3 articles pass schema validation
-  - [ ] 4.2 Temporarily remove a required field (e.g., `title`) — verify build fails
-  - [ ] 4.3 Restore the field — verify build succeeds again
+- [x] Task 4: Verify Zod validation (AC: #4)
+  - [x] 4.1 Run `npm run build` — all 3 articles pass schema validation
+  - [x] 4.2 Temporarily remove a required field (e.g., `title`) — verify build fails
+  - [x] 4.3 Restore the field — verify build succeeds again
 
-- [ ] Task 5: Create PUBLISHING.md guide (AC: #5)
-  - [ ] 5.1 Create `PUBLISHING.md` in project root
-  - [ ] 5.2 Document: file naming convention (`[slug].mdx`)
-  - [ ] 5.3 Document: required AND optional frontmatter fields with examples. Must include ALL schema fields: `heroImage` (optional, path to hero image), `thumbnailImage` (optional, path to card thumbnail), `heroImageCaption` (optional), `seoTitle` (optional, overrides title for SEO), `seoDescription` (optional, max 160 chars). These are in the article schema but missing from the current template — content owners need to know they exist.
-  - [ ] 5.4 Document: supported MDX content elements (headings, paragraphs, images, blockquotes, lists, tables)
-  - [ ] 5.5 Document: git workflow (create file → fill frontmatter → write content → commit → push → auto-deploy)
-  - [ ] 5.6 Document: where articles appear (homepage, insights hub, division pages, etc.)
-  - [ ] 5.7 Document: stream values and their meaning
-  - [ ] 5.8 Document: how to tag an article to a division
+- [x] Task 5: Create PUBLISHING.md guide (AC: #5)
+  - [x] 5.1 Create `PUBLISHING.md` in project root
+  - [x] 5.2 Document: file naming convention (`[slug].mdx`)
+  - [x] 5.3 Document: required AND optional frontmatter fields with examples. Must include ALL schema fields: `heroImage` (optional, path to hero image), `thumbnailImage` (optional, path to card thumbnail), `heroImageCaption` (optional), `seoTitle` (optional, overrides title for SEO), `seoDescription` (optional, max 160 chars). These are in the article schema but missing from the current template — content owners need to know they exist.
+  - [x] 5.4 Document: supported MDX content elements (headings, paragraphs, images, blockquotes, lists, tables)
+  - [x] 5.5 Document: git workflow (create file → fill frontmatter → write content → commit → push → auto-deploy)
+  - [x] 5.6 Document: where articles appear (homepage, insights hub, division pages, etc.)
+  - [x] 5.7 Document: stream values and their meaning
+  - [x] 5.8 Document: how to tag an article to a division
 
-- [ ] Task 6: Verify articles surface correctly across the platform (AC: #6)
-  - [ ] 6.1 Homepage latest insights section shows seed articles
-  - [ ] 6.2 Insights hub (`/insights/`) displays all 3 articles
-  - [ ] 6.3 News page (`/insights/news/`) shows article 1
-  - [ ] 6.4 Thought leadership page (`/insights/thought-leadership/`) shows article 2
-  - [ ] 6.5 Division insights (`/insights/divisions/commodity-marketing/`) shows article 3
-  - [ ] 6.6 Commodity Marketing division detail page related insights shows article 3
-  - [ ] 6.7 Article detail pages render MDX body correctly
+- [x] Task 6: Verify articles surface correctly across the platform (AC: #6)
+  - [x] 6.1 Homepage latest insights section shows seed articles
+  - [x] 6.2 Insights hub (`/insights/`) displays all 6 articles (3 existing + 3 new)
+  - [x] 6.3 News page (`/insights/news/`) shows article 1 (+ existing company-news article)
+  - [x] 6.4 Thought leadership page (`/insights/thought-leadership/`) shows article 2 (+ existing thought-leadership article)
+  - [x] 6.5 Division insights (`/insights/divisions/commodity-marketing/`) shows article 3
+  - [x] 6.6 Commodity Marketing division detail page related insights shows article 3
+  - [x] 6.7 Article detail pages render MDX body correctly
 
 ## Dev Notes
 
@@ -331,8 +331,43 @@ Files this story creates or modifies:
 
 ### Agent Model Used
 
+Claude Opus 4.6 (1M context)
+
 ### Debug Log References
+
+- Initial build failed: seoDescription on articles 2 and 3 exceeded 160 char Zod limit — shortened both
+- Zod validation test: removed `title` from article 1 → build failed with clear "title: Required" error → restored → build passed
+- Final build: all 6 article detail pages + all listing/hub/homepage pages render successfully
+- Verified article surfacing via grep on rendered HTML output
 
 ### Completion Notes List
 
+- Created 3 new seed articles with realistic Nigerian business content spanning company-news, thought-leadership, and division-insight streams
+- Article 1 (company-news): 3 paragraphs, H2 headings, blockquote — featured: true
+- Article 2 (thought-leadership): 5+ paragraphs, H2/H3 headings, bulleted list, blockquote — demonstrates most MDX elements
+- Article 3 (division-insight, commodity-marketing): H2 headings, ordered list, data table — tagged to Commodity Marketing division
+- All articles have realistic excerpts, author attribution, tags, SEO metadata
+- Verified Zod validation catches missing required fields (build fails with clear error)
+- Created PUBLISHING.md with complete guide: file naming, all frontmatter fields (including heroImage, thumbnailImage, heroImageCaption, seoTitle, seoDescription), MDX elements, git workflow, stream values, division tagging, where articles appear
+- Verified articles surface on: homepage (latest 3), insights hub (all 6), news page (company-news articles), thought leadership page (thought-leadership articles), commodity-marketing division page (division-tagged article)
+- This completes Epic 6 — the full publishing and thought leadership system is live
+
+### Change Log
+
+- 2026-04-04: Story 6.3 implemented — 3 seed articles, Zod validation verified, PUBLISHING.md guide created
+
 ### File List
+
+- `src/content/articles/grcl-expands-processing-capacity.mdx` (created)
+- `src/content/articles/integrated-value-chains-future-agriculture.mdx` (created)
+- `src/content/articles/commodity-markets-west-africa-trends.mdx` (created)
+- `PUBLISHING.md` (created)
+- `_bmad-output/implementation-artifacts/sprint-status.yaml` (modified)
+
+### Review Findings
+
+- [x] [Review][Decision] Two articles with `featured: true` — resolved: leave as-is, most recent wins by date sort (documented behavior)
+- [x] [Review][Patch] Article 2 missing placeholder image demo — fixed: added image syntax with public/ absolute path
+- [x] [Review][Patch] PUBLISHING.md branch name — fixed: changed to `git push` (branch-agnostic)
+- [x] [Review][Patch] PUBLISHING.md image path guidance — fixed: unified to public/ absolute paths for all article images
+- [x] [Review][Defer] No Zod enforcement that division-insight requires divisionSlug — schema gap from Story 1.3
