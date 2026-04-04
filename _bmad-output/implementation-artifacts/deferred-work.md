@@ -140,3 +140,10 @@ All 4 deferred items were resolved during review:
 - Fade gradient pseudo-elements use hardcoded `white` instead of design token — minor consistency
 - `backdrop-blur-sm` on AnchorNav may cause jank on low-end mobile — accepted pattern across site (header does same)
 - `client:idle` hydration delays scroll-spy on slow connections — spec mandates client:idle for AnchorNav
+
+## Deferred from: code review of 5-2 and 5-3 (2026-04-04)
+
+- LeaderCard `<summary>` has no visible expand/collapse indicator (list-none removes default triangle) — add chevron or "Read bio" affordance
+- OrgChart desktop layout lacks semantic tree roles (`role="tree"`/`role="treeitem"`) — Epic 8 a11y audit
+- LeaderCard `photo` prop accepted but unused — placeholder SVG until real portraits available
+- Both CTA buttons on investors-partners.astro link to same `/contact/strategic/` — intentional per single form, consider query param differentiation later

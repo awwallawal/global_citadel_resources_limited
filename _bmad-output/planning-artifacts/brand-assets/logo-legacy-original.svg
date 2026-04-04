@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 275" width="200" height="275">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&amp;display=swap');
+    </style>
+  </defs>
+
+  <!-- Original GRCL letterhead logo recreation -->
+
+  <!-- Dark shield/crest shape -->
+  <path d="M22 18 Q22 8 32 8 L168 8 Q178 8 178 18
+           L178 138 C178 192 146 228 100 245
+           C54 228 22 192 22 138 Z" fill="#3B3B3B"/>
+
+  <!-- === Two bright green leaves, side by side === -->
+
+  <!-- Left leaf — broad, curving up and slightly left -->
+  <path d="M97 172 C80 158 50 128 40 92
+           C33 66 40 46 58 34 C68 28 80 30 88 38
+           C95 46 96 68 96 92 C96 120 97 148 97 172 Z"
+        fill="#4CAF50" stroke="#388E3C" stroke-width="1.5"/>
+  <!-- Left leaf vein -->
+  <path d="M96 168 C84 146 62 112 44 72"
+        fill="none" stroke="#2E7D32" stroke-width="1.2" opacity="0.5"/>
+
+  <!-- Right leaf — mirror, curving up and slightly right -->
+  <path d="M103 172 C120 158 150 128 160 92
+           C167 66 160 46 142 34 C132 28 120 30 112 38
+           C105 46 104 68 104 92 C104 120 103 148 103 172 Z"
+        fill="#4CAF50" stroke="#388E3C" stroke-width="1.5"/>
+  <!-- Right leaf vein -->
+  <path d="M104 168 C116 146 138 112 156 72"
+        fill="none" stroke="#2E7D32" stroke-width="1.2" opacity="0.5"/>
+
+  <!-- === Sun rising between the leaves === -->
+
+  <!-- Rays — sharp triangles fanning upward like a sunrise -->
+  <!-- Center ray (tallest) -->
+  <polygon points="100,12 96,34 104,34" fill="#FFEB3B"/>
+  <!-- Inner left -->
+  <polygon points="85,16 91,36 97,32" fill="#FFEB3B"/>
+  <!-- Inner right -->
+  <polygon points="115,16 103,32 109,36" fill="#FFEB3B"/>
+  <!-- Mid left -->
+  <polygon points="71,25 83,42 89,36" fill="#FFEB3B"/>
+  <!-- Mid right -->
+  <polygon points="129,25 111,36 117,42" fill="#FFEB3B"/>
+  <!-- Outer left -->
+  <polygon points="60,38 77,48 82,42" fill="#FFEB3B"/>
+  <!-- Outer right -->
+  <polygon points="140,38 118,42 123,48" fill="#FFEB3B"/>
+
+  <!-- Sun disc — sitting between and slightly over the leaf tips -->
+  <circle cx="100" cy="42" r="14" fill="#FFEB3B"/>
+
+  <!-- === Company name beneath === -->
+  <text x="100" y="205" text-anchor="middle"
+        fill="#8DC63F" font-family="Poppins, sans-serif"
+        font-weight="700" font-size="13" letter-spacing="1.2">GLOBAL RESOURCES</text>
+  <text x="100" y="225" text-anchor="middle"
+        fill="#8DC63F" font-family="Poppins, sans-serif"
+        font-weight="700" font-size="13" letter-spacing="1.2">CITADEL LTD.</text>
+</svg>

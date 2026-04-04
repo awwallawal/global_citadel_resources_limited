@@ -5,7 +5,28 @@
     </style>
   </defs>
 
-  <!-- GRC Monogram — reversed: white circle, gold ring, dark green text -->
-  <circle cx="50" cy="50" r="42" fill="#FFFFFF" stroke="#B48A3E" stroke-width="2.5"/>
-  <text x="50" y="60" text-anchor="middle" fill="#14532D" font-family="Poppins, sans-serif" font-weight="700" font-size="26" letter-spacing="2">GRC</text>
+  <!-- GRC Monogram — Reversed: white circle, crowned pinnacles, for dark backgrounds -->
+
+  <!-- Outer gold ring — confident 3px weight -->
+  <circle cx="50" cy="50" r="45" fill="none" stroke="#B48A3E" stroke-width="3"/>
+
+  <!-- Inner accent ring -->
+  <circle cx="50" cy="50" r="42" fill="none" stroke="#B48A3E" stroke-width="0.5" opacity="0.3"/>
+
+  <!-- White circle -->
+  <circle cx="50" cy="50" r="41" fill="#FFFFFF"/>
+
+  <!-- Crown motif — three geometric pinnacles in green -->
+  <!-- Center pinnacle (tallest) -->
+  <path d="M50 13 L47 23 L50 32 L53 23 Z" fill="#15803D" opacity="0.7"/>
+  <!-- Left pinnacle -->
+  <path d="M41 18 L38.5 25.5 L42 31 L43.5 24 Z" fill="#15803D" opacity="0.4"/>
+  <!-- Right pinnacle -->
+  <path d="M59 18 L56.5 24 L58 31 L61.5 25.5 Z" fill="#15803D" opacity="0.4"/>
+
+  <!-- GRC monogram text -->
+  <text x="50" y="62" text-anchor="middle" fill="#14532D" font-family="Poppins, sans-serif" font-weight="700" font-size="23" letter-spacing="3">GRC</text>
+
+  <!-- Subtle gold accent underline -->
+  <line x1="30" y1="70" x2="70" y2="70" stroke="#B48A3E" stroke-width="0.75" opacity="0.35"/>
 </svg>

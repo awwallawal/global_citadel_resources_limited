@@ -187,6 +187,8 @@ export const pageSchema = z.object({
       }),
     )
     .optional(),
+  // Investors & Partners page extension
+  whyPartner: z.string().optional(),
 });
 
 // ─── Collection Definitions ─────────────────────────────────────────

@@ -1,0 +1,287 @@
+---
+/**
+ * Investors & Partners — Curated credibility page for strategic audiences.
+ * 7 sections: Hero, Why Partner, Capabilities, Portfolio Strength,
+ * Governance, Latest Updates, Strategic CTA.
+ */
+import { getEntry, getCollection } from 'astro:content';
+import PageLayout from '@/layouts/PageLayout.astro';
+import BreadcrumbNav from '@/components/layout/BreadcrumbNav.astro';
+import SectionWrapper from '@/components/layout/SectionWrapper.astro';
+import SectionHeading from '@/components/layout/SectionHeading.astro';
+import CredibilityBar from '@/components/shared/CredibilityBar.astro';
+import CTABanner from '@/components/shared/CTABanner.astro';
+import ViewAllLink from '@/components/shared/ViewAllLink.astro';
+import InsightCard from '@/components/insights/InsightCard.astro';
+import { STREAM_LABELS } from '@/lib/divisions';
+import {
+  generateMetadata,
+  generateBreadcrumbJsonLd,
+  generateOrganizationJsonLd,
+  type BreadcrumbItem,
+} from '@/lib/seo';
+
+const page = await getEntry('pages', 'investors-partners');
+if (!page) throw new Error('Missing content: pages/investors-partners.mdx');
+
+const { whyPartner } = page.data;
+
+const clusters = (await getCollection('clusters')).sort((a, b) => a.data.sortOrder - b.data.sortOrder);
+const featuredLeaders = (await getCollection('team'))
+  .filter((l) => l.data.featured)
+  .sort((a, b) => a.data.sortOrder - b.data.sortOrder)
+  .slice(0, 3);
+const companyCredentials = (await getCollection('credentials'))
+  .filter((c) => c.data.scope === 'company-wide')
+  .sort((a, b) => a.data.sortOrder - b.data.sortOrder)
+  .slice(0, 4);
+const articles = (await getCollection('articles'))
+  .sort((a, b) => new Date(b.data.publishedAt).getTime() - new Date(a.data.publishedAt).getTime())
+  .slice(0, 3);
+
+const breadcrumbs: BreadcrumbItem[] = [
+  { label: 'Home', href: '/' },
+  { label: 'Investors & Partners' },
+];
+
+const SITE_URL = (import.meta.env.SITE ?? 'https://globalresourcescitadel.com').replace(/\/$/, '');
+
+const seo = {
+  ...generateMetadata({
+    title: 'Investors & Partners — Strategic Opportunities',
+    description: page.data.seoDescription,
+    path: '/investors-partners/',
+  }),
+  jsonLd: [
+    generateBreadcrumbJsonLd(breadcrumbs),
+    generateOrganizationJsonLd(),
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      name: 'Investors & Partners',
+      url: `${SITE_URL}/investors-partners/`,
+    },
+  ],
+};
+
+const CLUSTER_ICONS: Record<string, string> = {
+  'agriculture-processing': '🌾',
+  'trade-markets': '🌍',
+  'built-environment-energy': '🏗️',
+};
+
+const whyPartnerParagraphs = whyPartner?.split('\n\n').filter((p) => p.trim()) ?? [];
+---
+
+<PageLayout seo={seo}>
+  <BreadcrumbNav items={breadcrumbs} slot="breadcrumb" />
+
+  {/* ── Section 1: Hero ── */}
+  <SectionWrapper variant="hero">
+    <div class="mx-auto max-w-3xl text-center">
+      <p class="mb-4 text-xs font-semibold uppercase tracking-widest text-gold-600">
+        Investors &amp; Partners
+      </p>
+      <h1 class="font-heading text-3xl font-bold leading-tight tracking-tight text-white lg:text-5xl">
+        Partner With a Group Built for Scale
+      </h1>
+      <p class="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-white/80">
+        A diversified Nigerian conglomerate offering structured entry points for investment, partnership, and strategic collaboration across seven business divisions.
+      </p>
+    </div>
+  </SectionWrapper>
+
+  {/* ── Section 2: Why Partner ── */}
+  <SectionWrapper variant="default">
+    <div class="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
+      <div>
+        <SectionHeading>Why Partner With Us</SectionHeading>
+        {whyPartnerParagraphs.map((paragraph) => (
+          <p class="mt-4 text-lg leading-relaxed text-neutral-600">{paragraph.trim()}</p>
+        ))}
+      </div>
+
+      <div class="flex aspect-video items-center justify-center rounded-xl bg-neutral-100" aria-hidden="true">
+        <svg
+          class="h-12 w-12 text-neutral-400"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
+          <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" />
+          <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" />
+          <path d="M10 6h4" /><path d="M10 10h4" /><path d="M10 14h4" /><path d="M10 18h4" />
+        </svg>
+      </div>
+    </div>
+  </SectionWrapper>
+
+  {/* ── Section 3: Group Capabilities ── */}
+  <SectionWrapper variant="light">
+    <SectionHeading centered subtitle="Our portfolio spans three strategic clusters, each with complementary divisions that create integrated value.">
+      Multi-Sector Reach
+    </SectionHeading>
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+      {clusters.map((cluster) => (
+        <a
+          href={`/divisions/${cluster.data.slug}/`}
+          class="group block border-l-2 border-gold-600 py-2 pl-5 focus-visible:rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 motion-safe:transition-colors motion-safe:hover:border-gold-400"
+        >
+          <div class="mb-2 text-xl" aria-hidden="true">
+            {CLUSTER_ICONS[cluster.data.slug] ?? '📊'}
+          </div>
+          <h3 class="font-heading text-base font-bold text-neutral-900 motion-safe:transition-colors group-hover:text-primary-600">
+            {cluster.data.name}
+          </h3>
+          <p class="mt-2 text-sm leading-relaxed text-neutral-600">
+            {cluster.data.tagline}
+          </p>
+        </a>
+      ))}
+    </div>
+  </SectionWrapper>
+
+  {/* ── Section 4: Portfolio Strength ── */}
+  <CredibilityBar
+    heading="By the Numbers"
+    stats={[
+      { value: 15, suffix: '+', label: 'Years Operating' },
+      { value: 7, label: 'Divisions Active' },
+      { value: 3, label: 'Strategic Clusters' },
+      { value: 6, suffix: '+', label: 'Markets Served' },
+    ]}
+  />
+
+  {/* ── Section 5: Governance & Credibility ── */}
+  <SectionWrapper variant="default">
+    <SectionHeading centered>
+      Governance &amp; Credibility
+    </SectionHeading>
+    <div class="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
+      {/* Leadership preview */}
+      <div>
+        <h3 class="mb-4 font-heading text-base font-semibold text-neutral-900">Leadership</h3>
+        <div class="space-y-4">
+          {featuredLeaders.map((leader) => (
+            <div class="flex items-center gap-4">
+              <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-neutral-100">
+                <svg
+                  class="h-7 w-7 text-neutral-400"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <circle cx="12" cy="8" r="5" />
+                  <path d="M20 21a8 8 0 0 0-16 0" />
+                </svg>
+              </div>
+              <div>
+                <p class="font-heading text-sm font-semibold text-neutral-900">{leader.data.name}</p>
+                <p class="text-xs text-neutral-600">{leader.data.title}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <a
+          href="/about/#leadership"
+          class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary-600 motion-safe:transition-colors hover:text-primary-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+        >
+          View Full Team <span aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+
+      {/* Credentials preview */}
+      <div>
+        <h3 class="mb-4 font-heading text-base font-semibold text-neutral-900">Credentials</h3>
+        <div class="space-y-3">
+          {companyCredentials.map((cred) => (
+            <div class="flex items-center gap-3 rounded-lg border border-neutral-200 px-4 py-3">
+              <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded bg-neutral-100">
+                <svg
+                  class="h-5 w-5 text-neutral-400"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
+                </svg>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-neutral-900">{cred.data.name}</p>
+                <p class="text-xs text-neutral-500">{cred.data.issuer}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <a
+          href="/about/#credentials"
+          class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary-600 motion-safe:transition-colors hover:text-primary-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+        >
+          View All Credentials <span aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+    </div>
+  </SectionWrapper>
+
+  {/* ── Section 6: Latest Updates ── */}
+  <SectionWrapper variant="light">
+    <SectionHeading eyebrow="Insights" centered>
+      Latest News
+    </SectionHeading>
+
+    {articles.length > 0 ? (
+      <>
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+          {articles.map((article) => (
+            <InsightCard
+              title={article.data.title}
+              excerpt={article.data.excerpt}
+              category={STREAM_LABELS[article.data.stream] ?? article.data.stream}
+              href={`/insights/${article.id}/`}
+            />
+          ))}
+        </div>
+        <div class="mt-8 text-center">
+          <ViewAllLink href="/insights/" label="View All Insights" />
+        </div>
+      </>
+    ) : (
+      <div class="text-center">
+        <p class="text-lg text-neutral-600">
+          Stay informed about our latest developments.
+        </p>
+        <a
+          href="/contact/"
+          class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary-600 motion-safe:transition-colors hover:text-primary-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+        >
+          Get in Touch <span aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+    )}
+  </SectionWrapper>
+
+  {/* ── Section 7: Strategic CTA ── */}
+  <CTABanner
+    variant="gold"
+    heading="Start a Conversation"
+    body="Whether you're exploring investment, partnership, or strategic collaboration, our team is ready to engage."
+    primaryCta={{ label: 'Partner Inquiry', href: '/contact/strategic/' }}
+    secondaryCta={{ label: 'Investor Inquiry', href: '/contact/strategic/' }}
+  />
+</PageLayout>

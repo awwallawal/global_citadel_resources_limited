@@ -5,11 +5,34 @@
     </style>
   </defs>
 
-  <!-- GRC Monogram — reversed: white on gold ring -->
-  <circle cx="52" cy="60" r="42" fill="#FFFFFF" stroke="#B48A3E" stroke-width="2.5"/>
-  <text x="52" y="70" text-anchor="middle" fill="#14532D" font-family="Poppins, sans-serif" font-weight="700" font-size="24" letter-spacing="2">GRC</text>
+  <!-- Full Lockup — Enhanced monogram + stacked wordmark, dark backgrounds -->
 
-  <!-- Stacked Wordmark — white/gold for dark backgrounds -->
+  <!-- === Monogram (reversed) === -->
+
+  <!-- Outer gold ring -->
+  <circle cx="52" cy="60" r="45" fill="none" stroke="#B48A3E" stroke-width="3"/>
+
+  <!-- Inner accent ring -->
+  <circle cx="52" cy="60" r="42" fill="none" stroke="#B48A3E" stroke-width="0.5" opacity="0.3"/>
+
+  <!-- White circle -->
+  <circle cx="52" cy="60" r="41" fill="#FFFFFF"/>
+
+  <!-- Crown motif — three geometric pinnacles in green -->
+  <!-- Center pinnacle -->
+  <path d="M52 23 L49 33 L52 42 L55 33 Z" fill="#15803D" opacity="0.7"/>
+  <!-- Left pinnacle -->
+  <path d="M43 28 L40.5 35.5 L44 41 L45.5 34 Z" fill="#15803D" opacity="0.4"/>
+  <!-- Right pinnacle -->
+  <path d="M61 28 L58.5 34 L60 41 L63.5 35.5 Z" fill="#15803D" opacity="0.4"/>
+
+  <!-- GRC monogram text -->
+  <text x="52" y="72" text-anchor="middle" fill="#14532D" font-family="Poppins, sans-serif" font-weight="700" font-size="22" letter-spacing="3">GRC</text>
+
+  <!-- Gold accent underline -->
+  <line x1="32" y1="80" x2="72" y2="80" stroke="#B48A3E" stroke-width="0.75" opacity="0.35"/>
+
+  <!-- === Stacked Wordmark (reversed) === -->
   <text x="118" y="34" fill="#D4AF6A" font-family="Poppins, sans-serif" font-weight="500" font-size="13" letter-spacing="4">GLOBAL RESOURCES</text>
   <text x="118" y="74" fill="#FFFFFF" font-family="Poppins, sans-serif" font-weight="700" font-size="38" letter-spacing="7">CITADEL</text>
   <text x="118" y="98" fill="rgba(255,255,255,0.6)" font-family="Poppins, sans-serif" font-weight="300" font-size="9" letter-spacing="5">LIMITED</text>

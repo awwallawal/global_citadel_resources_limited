@@ -147,37 +147,46 @@ Minimum clear space around the logo = the cap height of "C" in "CITADEL" on all 
 
 ## Letterhead Specification
 
+> **Updated 2026-04-04:** Logo replaced with approved ornate emblem. Contact details confirmed from client letterhead. Layout revised to centre the emblem as the dominant visual anchor.
+
+### Logo Asset
+
+The letterhead uses the approved ornate emblem (`src/assets/brand/grcl-emblem.png`) — a baroque shield/crest featuring a golden sunrise over three green leaves, flanked by wheat sheaves, with a "GLOBAL RESOURCES CITADEL LTD." banner and gold globe. This replaces the earlier GRC monogram + stacked wordmark for print/formal contexts.
+
 ### Layout (A4 — 210 x 297mm)
 
-**Header (top 45mm):**
-- Left: Logo lockup (GRC monogram + stacked wordmark)
-- Right: Address block (registered office address, website URL in brand green)
-- Separated from body by a thin green-to-gold gradient line
+**Header (top 50mm):**
+- Centre: Ornate emblem logo, scaled to ~35mm height (the emblem is symmetrical and visually dominant — centred placement gives it the weight it deserves)
+- Below emblem: Company name "Global Resources Citadel Limited" centred, Poppins 500, 9pt, deep green, wide tracking
+- Below name: Contact row centred — phone | address | email — Inter 9pt, primary-700 green, separated by gold dot dividers
+- Separated from body by a thin green-to-gold gradient line (full page width minus margins)
 
-**Body (45mm–250mm):**
+**Body (50mm–250mm):**
 - Left margin: 25mm
 - Right margin: 25mm
-- Date position: right-aligned, 55mm from top
-- Recipient block: left-aligned, 70mm from top
+- Date position: right-aligned, 60mm from top
+- Recipient block: left-aligned, 75mm from top
 - Body text: Inter 11pt, 1.6 line height
 - Signature block: left-aligned, generous space above for wet signature
 
 **Footer (bottom 25mm):**
-- Left: email, phone number
-- Centre: gold divider dot/line
-- Right: RC number, registered address
 - Thin gold accent line above footer
+- Left: website URL in primary-700 green
+- Centre: gold divider dot
+- Right: RC number, registered address (compact)
+- All footer text: Inter 8pt, neutral-600
 
 ### Letterhead Content
 
-| Field | Value |
-|-------|-------|
-| Company name | Global Resources Citadel Limited |
-| Address | *To be provided by client* |
-| Email | info@grcl.com *[placeholder]* |
-| Phone | +234 XXX XXX XXXX *[placeholder]* |
-| Website | www.grcl.com *[placeholder]* |
-| RC Number | *To be provided by client* |
+| Field | Value | Status |
+|-------|-------|--------|
+| Company name | Global Resources Citadel Limited | Confirmed |
+| Address | 1st Floor, Gbemisola House, Opp. Omole Phase I, Ogba, Lagos, Nigeria | Confirmed |
+| Email | info@globalresourcescitadel.com | Active (replaces legacy Yahoo) |
+| Phone | +234-811-191-2174 | Confirmed |
+| Website | www.globalresourcescitadel.com | New domain |
+| RC Number | *To be provided by client* | Pending |
+| Logo | `src/assets/brand/grcl-emblem.png` | Approved |
 
 ---
 

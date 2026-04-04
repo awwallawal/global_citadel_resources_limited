@@ -1,0 +1,55 @@
+---
+/**
+ * LeaderCard.astro — Leadership team member card with expandable bio.
+ * Uses <details>/<summary> for zero-JS inline bio expansion.
+ */
+import { cn } from '@/lib/utils';
+
+interface Props {
+  name: string;
+  title: string;
+  briefDescriptor: string;
+  bio: string;
+  photo?: string;
+  class?: string;
+}
+
+const { name, title, briefDescriptor, bio, class: className } = Astro.props;
+---
+
+<details class={cn('group', className)}>
+  <summary class="cursor-pointer list-none focus-visible:rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2">
+    <div class="overflow-hidden rounded-xl border border-neutral-200 motion-safe:transition-shadow motion-safe:group-hover:shadow-md">
+      {/* Photo placeholder */}
+      <div class="flex aspect-portrait items-center justify-center bg-neutral-100">
+        <svg
+          class="h-16 w-16 text-neutral-300"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <circle cx="12" cy="8" r="5" />
+          <path d="M20 21a8 8 0 0 0-16 0" />
+        </svg>
+      </div>
+      <div class="p-4">
+        <h3 class="font-heading text-base font-semibold text-neutral-900">{name}</h3>
+        <p class="text-sm text-neutral-600">{title}</p>
+        <p class="mt-1 line-clamp-2 text-xs text-neutral-500">{briefDescriptor}</p>
+      </div>
+    </div>
+  </summary>
+  {/* Expanded bio */}
+  <div class="mt-2 rounded-xl border border-primary-100 bg-primary-50/50 p-6">
+    <p class="font-heading text-sm font-semibold text-neutral-900">{name}</p>
+    <p class="text-xs text-neutral-500">{title}</p>
+    {bio.split('\n\n').filter((p) => p.trim()).map((paragraph) => (
+      <p class="mt-3 text-sm leading-relaxed text-neutral-600">{paragraph.trim()}</p>
+    ))}
+  </div>
+</details>

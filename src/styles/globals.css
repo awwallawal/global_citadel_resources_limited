@@ -10,6 +10,9 @@
 @import "@fontsource-variable/jetbrains-mono";
 
 @theme {
+  /* Aspect ratios */
+  --aspect-portrait: 3/4;
+
   /* Typography — font families */
   --font-heading: 'Poppins', system-ui, sans-serif;
   --font-body: 'Inter Variable', system-ui, sans-serif;
