@@ -1,0 +1,139 @@
+---
+import { getCollection, getEntry, render } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+import ArticleLayout from '@/layouts/ArticleLayout.astro';
+import { STREAM_LABELS } from '@/lib/divisions';
+import {
+  generateMetadata,
+  generateBreadcrumbJsonLd,
+  type BreadcrumbItem,
+} from '@/lib/seo';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const articles = await getCollection('articles');
+
+  return Promise.all(
+    articles.map(async (article) => {
+      // Related: same division or same stream, excluding self
+      let related = articles
+        .filter((a) => a.id !== article.id)
+        .filter(
+          (a) =>
+            (article.data.divisionSlug &&
+              a.data.divisionSlug === article.data.divisionSlug) ||
+            a.data.stream === article.data.stream,
+        )
+        .sort(
+          (a, b) =>
+            new Date(b.data.publishedAt).getTime() -
+            new Date(a.data.publishedAt).getTime(),
+        )
+        .slice(0, 3);
+
+      // Fallback: latest 3 if no related
+      if (related.length === 0) {
+        related = articles
+          .filter((a) => a.id !== article.id)
+          .sort(
+            (a, b) =>
+              new Date(b.data.publishedAt).getTime() -
+              new Date(a.data.publishedAt).getTime(),
+          )
+          .slice(0, 3);
+      }
+
+      // Division data for contextual CTA
+      const division = article.data.divisionSlug
+        ? await getEntry('divisions', article.data.divisionSlug)
+        : null;
+
+      return {
+        params: { slug: article.id },
+        props: { article, related, division },
+      };
+    }),
+  );
+};
+
+const { article, related, division } = Astro.props;
+const { Content } = await render(article);
+
+// Reading time from body text (~200 words/minute)
+const wordCount = (article.body ?? '').trim().split(/\s+/).length;
+const readingTime = Math.max(1, Math.ceil(wordCount / 200));
+
+// Category label
+const divisionName = division?.data.name;
+const categoryLabel =
+  article.data.stream === 'division-insight' && divisionName
+    ? divisionName
+    : STREAM_LABELS[article.data.stream] || article.data.stream;
+
+// Breadcrumb category mapping
+const categoryBreadcrumbMap: Record<string, { label: string; href: string }> = {
+  'company-news': { label: 'News & Updates', href: '/insights/news/' },
+  announcements: { label: 'News & Updates', href: '/insights/news/' },
+  'operational-updates': { label: 'News & Updates', href: '/insights/news/' },
+  'thought-leadership': { label: 'Thought Leadership', href: '/insights/thought-leadership/' },
+  'industry-commentary': { label: 'Thought Leadership', href: '/insights/thought-leadership/' },
+  'division-insight': { label: 'By Division', href: '/insights/divisions/' },
+};
+
+const categoryBreadcrumb = categoryBreadcrumbMap[article.data.stream] || {
+  label: 'All',
+  href: '/insights/',
+};
+
+const breadcrumbs: BreadcrumbItem[] = [
+  { label: 'Home', href: '/' },
+  { label: 'Insights', href: '/insights/' },
+  { label: categoryBreadcrumb.label, href: categoryBreadcrumb.href },
+  { label: article.data.title },
+];
+
+const SITE_URL = (import.meta.env.SITE ?? 'https://globalresourcescitadel.com').replace(/\/$/, '');
+const canonicalUrl = `${SITE_URL}/insights/${article.id}/`;
+
+const seo = {
+  ...generateMetadata({
+    title: article.data.seoTitle || article.data.title,
+    description: article.data.seoDescription || article.data.excerpt,
+    path: `/insights/${article.id}/`,
+    ogImage: article.data.heroImage,
+    type: 'article',
+  }),
+  jsonLd: [
+    generateBreadcrumbJsonLd(breadcrumbs),
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: article.data.title,
+      datePublished: article.data.publishedAt,
+      description: article.data.excerpt,
+      url: canonicalUrl,
+      image: article.data.heroImage || `${SITE_URL}/og-default.png`,
+      ...(article.data.author
+        ? { author: { '@type': 'Person', name: article.data.author } }
+        : {}),
+      publisher: {
+        '@type': 'Organization',
+        name: 'Global Resources Citadel Limited',
+        url: SITE_URL,
+      },
+    },
+  ],
+};
+---
+
+<ArticleLayout
+  article={article}
+  related={related}
+  divisionName={divisionName}
+  readingTime={readingTime}
+  categoryLabel={categoryLabel}
+  breadcrumbs={breadcrumbs}
+  seo={seo}
+  canonicalUrl={canonicalUrl}
+>
+  <Content />
+</ArticleLayout>

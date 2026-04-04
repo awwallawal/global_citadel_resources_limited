@@ -1,6 +1,6 @@
 # Story 6.2: Article Detail Page
 
-Status: ready-for-dev
+Status: done
 
 ## Story
 
@@ -21,64 +21,64 @@ So that I can engage deeply with GRCL's thought leadership and stay within the p
 
 ## Tasks / Subtasks
 
-- [ ] Task 1: Create ArticleLayout.astro (AC: #1-#6)
-  - [ ] 1.1 Create `src/layouts/ArticleLayout.astro`
-  - [ ] 1.2 Extends PageLayout with article-specific structure
-  - [ ] 1.3 Props: article data, related articles, seo
-  - [ ] 1.4 Renders 5-section article template
+- [x] Task 1: Create ArticleLayout.astro (AC: #1-#6)
+  - [x] 1.1 Create `src/layouts/ArticleLayout.astro`
+  - [x] 1.2 Extends PageLayout with article-specific structure
+  - [x] 1.3 Props: article data, related articles, seo
+  - [x] 1.4 Renders 5-section article template
 
-- [ ] Task 2: Create `src/pages/insights/[slug].astro` with `getStaticPaths` (AC: #7, #8)
-  - [ ] 2.1 `getStaticPaths()` generates paths for all articles
-  - [ ] 2.2 Fetch article data + related articles per path
-  - [ ] 2.3 Calculate reading time (~200 words/minute from MDX body)
-  - [ ] 2.4 Determine category label from stream value
-  - [ ] 2.5 SEO: "[Article Title] | Global Resources Citadel Insights"
-  - [ ] 2.6 BreadcrumbNav: Home > Insights > [Category] > [Article Title]
-  - [ ] 2.7 Article + BreadcrumbList JSON-LD
-  - [ ] 2.8 Open Graph: title, description, image for social sharing
+- [x] Task 2: Create `src/pages/insights/[slug].astro` with `getStaticPaths` (AC: #7, #8)
+  - [x] 2.1 `getStaticPaths()` generates paths for all articles
+  - [x] 2.2 Fetch article data + related articles per path
+  - [x] 2.3 Calculate reading time (~200 words/minute from MDX body)
+  - [x] 2.4 Determine category label from stream value
+  - [x] 2.5 SEO: "[Article Title] | Global Resources Citadel Insights"
+  - [x] 2.6 BreadcrumbNav: Home > Insights > [Category] > [Article Title]
+  - [x] 2.7 Article + BreadcrumbList JSON-LD
+  - [x] 2.8 Open Graph: title, description, image for social sharing
 
-- [ ] Task 3: Build Article Header section (AC: #1)
-  - [ ] 3.1 Centered layout, `max-w-overview` (960px token from Story 2.1 — NOT `max-w-4xl` which is only 896px)
-  - [ ] 3.2 Category badge: gold-dark uppercase text-xs tracking-wide
-  - [ ] 3.3 H1: `font-heading text-3xl md:text-4xl lg:text-5xl font-bold leading-tight`
-  - [ ] 3.4 Meta row: published date via `formatDate()` + reading time + optional author
-  - [ ] 3.5 Meta: `text-sm text-neutral-500`, separated by middot (`·`)
+- [x] Task 3: Build Article Header section (AC: #1)
+  - [x] 3.1 Centered layout, `max-w-overview` (960px token from Story 2.1 — NOT `max-w-4xl` which is only 896px)
+  - [x] 3.2 Category badge: gold-dark uppercase text-xs tracking-wide
+  - [x] 3.3 H1: `font-heading text-3xl md:text-4xl lg:text-5xl font-bold leading-tight`
+  - [x] 3.4 Meta row: published date via `formatDate()` + reading time + optional author
+  - [x] 3.5 Meta: `text-sm text-neutral-500`, separated by middot (`·`)
 
-- [ ] Task 4: Build Hero Image section (AC: #2)
-  - [ ] 4.1 Full content-width image placeholder (not full-bleed)
-  - [ ] 4.2 Aspect ratio: 16:9 via `aspect-video`
-  - [ ] 4.3 Lazy loading: Astro `<Image>` with `loading="lazy"` (or placeholder div for MVP)
-  - [ ] 4.4 Optional caption below: `text-xs text-neutral-500 mt-2 text-center`
-  - [ ] 4.5 If no hero image: section omitted entirely
+- [x] Task 4: Build Hero Image section (AC: #2)
+  - [x] 4.1 Full content-width image placeholder (not full-bleed)
+  - [x] 4.2 Aspect ratio: 16:9 via `aspect-video`
+  - [x] 4.3 Lazy loading: Astro `<Image>` with `loading="lazy"` (or placeholder div for MVP)
+  - [x] 4.4 Optional caption below: `text-xs text-neutral-500 mt-2 text-center`
+  - [x] 4.5 If no hero image: section omitted entirely
 
-- [ ] Task 5: Build Article Body with sidebar layout (AC: #3, #4)
-  - [ ] 5.1 Desktop: 2-column layout with sidebar — `grid-cols-1` on mobile, scoped `<style>` for `lg:grid-template-columns: 1fr 240px` (avoids arbitrary Tailwind value per CLAUDE.md). Gap: `gap-8 lg:gap-12`.
-  - [ ] 5.2 Article body: `max-w-article` (add `--container-article: 720px` design token in globals.css `@theme` block, same pattern as Story 2.1's `--container-overview`). Apply `prose` styling via scoped `<style>` block.
-  - [ ] 5.3 Prose typography: `text-lg leading-[1.7] text-neutral-700`, H2-H4 in Poppins, body in Inter
-  - [ ] 5.4 Supported elements: headings, paragraphs, images, blockquotes (left border gold-600), lists, tables, code blocks (font-mono)
-  - [ ] 5.5 Sidebar (desktop): sticky `top-24`, share links + division tag + content tags
-  - [ ] 5.6 Mobile: sidebar content renders above article body (below header)
+- [x] Task 5: Build Article Body with sidebar layout (AC: #3, #4)
+  - [x] 5.1 Desktop: 2-column layout with sidebar — `grid-cols-1` on mobile, scoped `<style>` for `lg:grid-template-columns: 1fr 240px` (avoids arbitrary Tailwind value per CLAUDE.md). Gap: `gap-8 lg:gap-12`.
+  - [x] 5.2 Article body: `max-w-article` (add `--container-article: 720px` design token in globals.css `@theme` block, same pattern as Story 2.1's `--container-overview`). Apply `prose` styling via scoped `<style>` block.
+  - [x] 5.3 Prose typography: `text-lg leading-[1.7] text-neutral-700`, H2-H4 in Poppins, body in Inter
+  - [x] 5.4 Supported elements: headings, paragraphs, images, blockquotes (left border gold-600), lists, tables, code blocks (font-mono)
+  - [x] 5.5 Sidebar (desktop): sticky `top-24`, share links + division tag + content tags
+  - [x] 5.6 Mobile: sidebar content renders above article body (below header)
 
-- [ ] Task 6: Create ShareLinks component (AC: #4)
-  - [ ] 6.1 Create `src/components/insights/ShareLinks.astro` (or .tsx if clipboard API needed)
-  - [ ] 6.2 LinkedIn share: `https://www.linkedin.com/sharing/share-offsite/?url={url}`
-  - [ ] 6.3 Twitter/X share: `https://twitter.com/intent/tweet?url={url}&text={title}`
-  - [ ] 6.4 Copy Link: button with clipboard API (requires React island or inline `<script>`)
-  - [ ] 6.5 Icons: Lucide or inline SVGs (LinkedIn, Twitter, Link icons)
-  - [ ] 6.6 Vertical stack layout, icon-only with tooltips
-  - [ ] 6.7 Focus-visible rings on all share buttons
+- [x] Task 6: Create ShareLinks component (AC: #4)
+  - [x] 6.1 Create `src/components/insights/ShareLinks.astro` (or .tsx if clipboard API needed)
+  - [x] 6.2 LinkedIn share: `https://www.linkedin.com/sharing/share-offsite/?url={url}`
+  - [x] 6.3 Twitter/X share: `https://twitter.com/intent/tweet?url={url}&text={title}`
+  - [x] 6.4 Copy Link: button with clipboard API (requires React island or inline `<script>`)
+  - [x] 6.5 Icons: Lucide or inline SVGs (LinkedIn, Twitter, Link icons)
+  - [x] 6.6 Vertical stack layout, icon-only with tooltips
+  - [x] 6.7 Focus-visible rings on all share buttons
 
-- [ ] Task 7: Build Related Articles section (AC: #5)
-  - [ ] 7.1 SectionWrapper variant="light" (neutral-50)
-  - [ ] 7.2 SectionHeading: "Related Insights"
-  - [ ] 7.3 3 InsightCards in `grid-cols-1 md:grid-cols-3 gap-6`
-  - [ ] 7.4 Selection: articles sharing same `divisionSlug` or `stream`, excluding current article
-  - [ ] 7.5 Fallback: latest 3 articles if no related matches
-  - [ ] 7.6 ViewAllLink: "Back to All Insights →" → `/insights/`
+- [x] Task 7: Build Related Articles section (AC: #5)
+  - [x] 7.1 SectionWrapper variant="light" (neutral-50)
+  - [x] 7.2 SectionHeading: "Related Insights"
+  - [x] 7.3 3 InsightCards in `grid-cols-1 md:grid-cols-3 gap-6`
+  - [x] 7.4 Selection: articles sharing same `divisionSlug` or `stream`, excluding current article
+  - [x] 7.5 Fallback: latest 3 articles if no related matches
+  - [x] 7.6 ViewAllLink: "Back to All Insights →" → `/insights/`
 
-- [ ] Task 8: Build contextual CTA section (AC: #6)
-  - [ ] 8.1 If article has `divisionSlug`: CTABanner gold variant — "Interested in [Division Name]?" → `/contact/divisions/[slug]/`
-  - [ ] 8.2 If no division tag: CTABanner dark variant — "Get In Touch" → `/contact/`
+- [x] Task 8: Build contextual CTA section (AC: #6)
+  - [x] 8.1 If article has `divisionSlug`: CTABanner gold variant — "Interested in [Division Name]?" → `/contact/divisions/[slug]/`
+  - [x] 8.2 If no division tag: CTABanner dark variant — "Get In Touch" → `/contact/`
 
 ## Dev Notes
 
@@ -400,8 +400,46 @@ Files this story creates:
 
 ### Agent Model Used
 
+Claude Opus 4.6 (1M context)
+
 ### Debug Log References
+
+- Initial build failed: `article.render is not a function` — Astro 6 Content Layer uses `render()` as standalone import from `astro:content`, not a method on entries. Fixed import.
+- Rebuild: all 3 article pages + all prior pages prerender successfully
+- TypeScript check: no errors
+- Added `--container-article: 720px` design token in globals.css @theme block
 
 ### Completion Notes List
 
+- Created ArticleLayout.astro with all 5 sections: header (category badge, H1, meta row), hero image (conditional, lazy-loaded, optional caption), body+sidebar (2-column grid via scoped CSS), related articles (3 InsightCards), contextual CTA (division-specific gold or generic dark)
+- Created [slug].astro with getStaticPaths generating paths for all MDX articles; calculates reading time from article.body word count; determines category label from stream+division; builds breadcrumbs with stream→category mapping; Article+BreadcrumbList JSON-LD; OG metadata
+- Created ShareLinks.astro — LinkedIn/X share via URL intent, Copy Link via clipboard API with inline script and visual feedback; vertical (desktop) and horizontal (mobile) layouts; accessible with aria-labels and focus-visible rings
+- Prose typography via scoped <style> with :global() selectors — 18px base, 1.7 line-height, Poppins headings, gold-bordered blockquotes, styled tables/code/lists
+- Desktop sidebar: sticky top-24, share links + division tag pill + content tag pills; mobile: inline above body
+- Related articles: same divisionSlug or stream (excluding self), fallback to latest 3
+- Resolves Story 6.1 deferred items: article detail links and JSON-LD URLs now resolve to real pages
+
+### Change Log
+
+- 2026-04-04: Story 6.2 implemented — Article detail pages with layout, MDX rendering, sidebar, sharing, related articles, contextual CTA
+
 ### File List
+
+- `src/layouts/ArticleLayout.astro` (created)
+- `src/pages/insights/[slug].astro` (created)
+- `src/components/insights/ShareLinks.astro` (created)
+- `src/styles/globals.css` (modified — added --container-article token)
+- `_bmad-output/implementation-artifacts/sprint-status.yaml` (modified)
+
+### Review Findings
+
+- [x] [Review][Decision] Hero image loading — resolved: switched to eager + fetchpriority="high" for LCP
+- [x] [Review][Patch] Missing `og:type=article` — fixed: added type: 'article' to generateMetadata call
+- [x] [Review][Patch] ShareLinks missing visible tooltips — fixed: added title attributes to all links/button
+- [x] [Review][Patch] Sidebar headings use h2 — fixed: changed to `<p>` elements (non-heading)
+- [x] [Review][Patch] Hero image alt duplicates H1 — fixed: set alt="" role="presentation" (decorative)
+- [x] [Review][Patch] Copy Link no accessible feedback — fixed: added aria-live status with success/error messages
+- [x] [Review][Patch] Prose ul/ol missing list markers — fixed: added list-style-type disc/decimal
+- [x] [Review][Defer] Hero image uses raw `<img>` — no Astro Image optimization, MVP acceptable
+- [x] [Review][Defer] Reading time from raw MDX body includes syntax — minor inaccuracy, MVP acceptable
+- [x] [Review][Defer] Related articles fallback can show unrelated content across verticals — product decision

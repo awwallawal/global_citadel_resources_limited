@@ -157,3 +157,9 @@ All 4 deferred items were resolved during review:
 - InsightCard `border-neutral-300` vs spec's `border-neutral-200` — pre-existing (Story 2.4)
 - InsightCard missing `overflow-hidden` class — pre-existing (Story 2.4)
 - InsightCard `line-clamp-2` vs spec's 3-4 lines + competing transition-shadow/transition-colors — pre-existing (Story 2.4)
+
+## Deferred from: code review of 6-2-article-detail-page (2026-04-04)
+
+- Hero image uses raw `<img>` instead of Astro `<Image>` — no optimization, no srcset, no width/height. MVP acceptable, address when real editorial images available
+- Reading time calculation from raw MDX body includes import statements and component tags — minor inaccuracy, acceptable for MVP
+- Related articles fallback shows latest 3 regardless of topic when no division/stream match — product decision, not a code bug

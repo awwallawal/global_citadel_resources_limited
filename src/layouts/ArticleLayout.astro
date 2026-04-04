@@ -1,0 +1,294 @@
+---
+/**
+ * ArticleLayout.astro — Article detail page layout.
+ * Renders: header, hero image, body+sidebar, related articles, contextual CTA.
+ */
+import type { CollectionEntry } from 'astro:content';
+import PageLayout from '@/layouts/PageLayout.astro';
+import BreadcrumbNav from '@/components/layout/BreadcrumbNav.astro';
+import SectionWrapper from '@/components/layout/SectionWrapper.astro';
+import SectionHeading from '@/components/layout/SectionHeading.astro';
+import InsightCard from '@/components/insights/InsightCard.astro';
+import ShareLinks from '@/components/insights/ShareLinks.astro';
+import ViewAllLink from '@/components/shared/ViewAllLink.astro';
+import CTABanner from '@/components/shared/CTABanner.astro';
+import { formatDate } from '@/lib/utils';
+import { STREAM_LABELS } from '@/lib/divisions';
+import type { SeoMetadata, BreadcrumbItem } from '@/lib/seo';
+
+interface Props {
+  article: CollectionEntry<'articles'>;
+  related: CollectionEntry<'articles'>[];
+  divisionName?: string;
+  readingTime: number;
+  categoryLabel: string;
+  breadcrumbs: BreadcrumbItem[];
+  seo: SeoMetadata;
+  canonicalUrl: string;
+}
+
+const {
+  article,
+  related,
+  divisionName,
+  readingTime,
+  categoryLabel,
+  breadcrumbs,
+  seo,
+  canonicalUrl,
+} = Astro.props;
+---
+
+<PageLayout seo={seo}>
+  <BreadcrumbNav items={breadcrumbs} slot="breadcrumb" />
+
+  {/* ── Section 1: Article Header ── */}
+  <SectionWrapper>
+    <div class="mx-auto max-w-overview text-center">
+      <span class="text-xs font-semibold uppercase tracking-wide text-gold-600">
+        {categoryLabel}
+      </span>
+      <h1 class="mt-4 font-heading text-3xl font-bold leading-tight tracking-tight md:text-4xl lg:text-5xl">
+        {article.data.title}
+      </h1>
+      <p class="mt-4 text-sm text-neutral-500">
+        <time datetime={article.data.publishedAt}>{formatDate(article.data.publishedAt)}</time>
+        <span aria-hidden="true"> &middot; </span>
+        <span>{readingTime} min read</span>
+        {article.data.author && (
+          <>
+            <span aria-hidden="true"> &middot; </span>
+            <span>{article.data.author}</span>
+          </>
+        )}
+      </p>
+    </div>
+  </SectionWrapper>
+
+  {/* ── Section 2: Hero Image ── */}
+  {article.data.heroImage && (
+    <SectionWrapper>
+      <div class="mx-auto max-w-overview">
+        <div class="aspect-video overflow-hidden rounded-2xl bg-neutral-100">
+          <img
+            src={article.data.heroImage}
+            alt=""
+            role="presentation"
+            class="h-full w-full object-cover"
+            loading="eager"
+            fetchpriority="high"
+          />
+        </div>
+        {article.data.heroImageCaption && (
+          <p class="mt-2 text-center text-xs text-neutral-500">
+            {article.data.heroImageCaption}
+          </p>
+        )}
+      </div>
+    </SectionWrapper>
+  )}
+
+  {/* ── Section 3: Article Body + Sidebar ── */}
+  <SectionWrapper>
+    <div class="article-grid mx-auto max-w-overview">
+      {/* Mobile sidebar (above body) */}
+      <div class="mb-8 flex flex-wrap items-center gap-4 lg:hidden">
+        <ShareLinks url={canonicalUrl} title={article.data.title} layout="horizontal" />
+        {article.data.divisionSlug && divisionName && (
+          <a
+            href={`/divisions/${article.data.divisionSlug}/`}
+            class="rounded-full bg-primary-50 px-3 py-1 text-sm font-medium text-primary-700 hover:bg-primary-100 focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+          >
+            {divisionName}
+          </a>
+        )}
+        {article.data.tags && article.data.tags.length > 0 && (
+          <div class="flex flex-wrap gap-2">
+            {article.data.tags.map((tag) => (
+              <span class="rounded-full bg-neutral-100 px-3 py-1 text-xs text-neutral-600">{tag}</span>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Article body */}
+      <div class="prose-article mx-auto max-w-article">
+        <slot />
+      </div>
+
+      {/* Desktop sidebar */}
+      <aside class="hidden lg:block">
+        <div class="sticky top-24 space-y-6">
+          <ShareLinks url={canonicalUrl} title={article.data.title} />
+          {article.data.divisionSlug && divisionName && (
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-neutral-500">Division</p>
+              <a
+                href={`/divisions/${article.data.divisionSlug}/`}
+                class="mt-1 inline-block rounded-full bg-primary-50 px-3 py-1 text-sm font-medium text-primary-700 hover:bg-primary-100 focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+              >
+                {divisionName}
+              </a>
+            </div>
+          )}
+          {article.data.tags && article.data.tags.length > 0 && (
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-neutral-500">Tags</p>
+              <div class="mt-1 flex flex-wrap gap-2">
+                {article.data.tags.map((tag) => (
+                  <span class="rounded-full bg-neutral-100 px-3 py-1 text-xs text-neutral-600">{tag}</span>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </aside>
+    </div>
+  </SectionWrapper>
+
+  {/* ── Section 4: Related Articles ── */}
+  {related.length > 0 && (
+    <SectionWrapper variant="light">
+      <SectionHeading centered>Related Insights</SectionHeading>
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+        {related.map((r) => (
+          <InsightCard
+            title={r.data.title}
+            excerpt={r.data.excerpt}
+            category={STREAM_LABELS[r.data.stream] || r.data.stream}
+            href={`/insights/${r.id}/`}
+          />
+        ))}
+      </div>
+      <div class="mt-10 text-center">
+        <ViewAllLink href="/insights/" label="Back to All Insights" />
+      </div>
+    </SectionWrapper>
+  )}
+
+  {/* ── Section 5: Contextual CTA ── */}
+  {article.data.divisionSlug && divisionName ? (
+    <CTABanner
+      heading={`Interested in ${divisionName}?`}
+      body={`Learn more about our ${divisionName} operations or get in touch with the team.`}
+      primaryCta={{ label: 'Contact Division', href: `/contact/divisions/${article.data.divisionSlug}/` }}
+      secondaryCta={{ label: 'View Division', href: `/divisions/${article.data.divisionSlug}/` }}
+      variant="gold"
+    />
+  ) : (
+    <CTABanner
+      heading="Get In Touch"
+      body="Have questions about Global Resources Citadel? We'd love to hear from you."
+      primaryCta={{ label: 'Contact Us', href: '/contact/' }}
+      variant="dark"
+    />
+  )}
+</PageLayout>
+
+<style>
+  /* Article grid: 2-column on desktop (body + sidebar) */
+  .article-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  @media (min-width: 1024px) {
+    .article-grid {
+      grid-template-columns: 1fr 240px;
+      gap: 3rem;
+    }
+  }
+
+  /* Article prose typography */
+  .prose-article {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--color-neutral-700);
+  }
+  .prose-article :global(h2) {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--color-neutral-900);
+  }
+  .prose-article :global(h3) {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    color: var(--color-neutral-900);
+  }
+  .prose-article :global(h4) {
+    font-family: var(--font-heading);
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-neutral-900);
+  }
+  .prose-article :global(p) {
+    margin-bottom: 1.25rem;
+  }
+  .prose-article :global(blockquote) {
+    border-left: 3px solid var(--color-gold-600);
+    padding-left: 1.25rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: var(--color-neutral-600);
+  }
+  .prose-article :global(ul) {
+    list-style-type: disc;
+    margin-bottom: 1.25rem;
+    padding-left: 1.5rem;
+  }
+  .prose-article :global(ol) {
+    list-style-type: decimal;
+    margin-bottom: 1.25rem;
+    padding-left: 1.5rem;
+  }
+  .prose-article :global(li) {
+    margin-bottom: 0.5rem;
+  }
+  .prose-article :global(img) {
+    border-radius: 0.75rem;
+    margin: 1.5rem 0;
+  }
+  .prose-article :global(code) {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    background: var(--color-neutral-100);
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.25rem;
+  }
+  .prose-article :global(pre) {
+    background: var(--color-neutral-900);
+    color: var(--color-neutral-100);
+    padding: 1.25rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+  }
+  .prose-article :global(pre code) {
+    background: transparent;
+    padding: 0;
+  }
+  .prose-article :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+  }
+  .prose-article :global(th),
+  .prose-article :global(td) {
+    border: 1px solid var(--color-neutral-200);
+    padding: 0.75rem;
+    text-align: left;
+    font-size: 0.875rem;
+  }
+  .prose-article :global(th) {
+    background: var(--color-neutral-50);
+    font-weight: 600;
+  }
+</style>
