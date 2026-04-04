@@ -102,7 +102,7 @@ export default function DesktopNav({ currentPath, divisions, clusters, headerVar
         </a>
 
         {/* Center nav items */}
-        <NavigationMenu delayDuration={200} className="mx-auto">
+        <NavigationMenu delayDuration={200} viewport={false} className="mx-auto">
           <NavigationMenuList className="gap-0">
             {/* Home */}
             <NavigationMenuItem>
@@ -143,8 +143,8 @@ export default function DesktopNav({ currentPath, divisions, clusters, headerVar
               >
                 Divisions
               </NavigationMenuTrigger>
-              <NavigationMenuContent className="p-0">
-                <div className="grid grid-cols-3 gap-x-8 gap-y-5 p-5 min-w-xl">
+              <NavigationMenuContent className="p-0 -left-24 max-w-[calc(100vw-2rem)]">
+                <div className="grid grid-cols-3 gap-x-8 gap-y-5 p-6 min-w-xl">
                   {groupedDivisions.filter(({ divisions: d }) => d.length > 0).map(({ cluster, divisions: clusterDivisions }) => (
                     <div key={cluster.slug}>
                       <p className="text-overline font-semibold uppercase tracking-widest text-gold-600 mb-2">
@@ -156,7 +156,7 @@ export default function DesktopNav({ currentPath, divisions, clusters, headerVar
                             <NavigationMenuLink asChild>
                               <a
                                 href={`/divisions/${division.slug}/`}
-                                className="block rounded-md px-2 py-1.5 min-h-9 text-body-sm font-medium text-neutral-700 hover:text-neutral-900 hover:bg-neutral-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 motion-safe:transition-colors motion-safe:duration-150"
+                                className="block rounded-md px-2 py-2 min-h-9 text-body-sm font-medium text-neutral-700 hover:text-neutral-900 hover:bg-neutral-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 motion-safe:transition-colors motion-safe:duration-150"
                               >
                                 {division.name}
                               </a>

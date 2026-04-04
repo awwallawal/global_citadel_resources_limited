@@ -117,7 +117,7 @@ export default function SearchOverlay({ index }: SearchOverlayProps) {
     return () => document.removeEventListener('keydown', handler);
   }, [isOpen, results]);
 
-  if (!isOpen) return null;
+  if (!isOpen) return <div hidden />;
 
   return (
     <div

@@ -1,3 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /api/
+Disallow: /search
+
+Sitemap: https://globalresourcescitadel.com/sitemap-index.xml

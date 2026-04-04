@@ -1,0 +1,50 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import SectionWrapper from '@/components/layout/SectionWrapper.astro';
+
+const seo = {
+  title: 'Page Not Found — Global Resources Citadel',
+  description: 'The page you are looking for does not exist.',
+  robots: 'noindex',
+};
+---
+
+<PageLayout seo={seo}>
+  <SectionWrapper class="flex min-h-error items-center justify-center text-center">
+    <div>
+      <p class="font-heading text-7xl font-bold text-primary-600" aria-hidden="true">404</p>
+      <h1 class="mt-4 font-heading text-3xl font-bold text-neutral-900">Page Not Found</h1>
+      <p class="mx-auto mt-3 max-w-md text-lg text-neutral-600">
+        The page you're looking for doesn't exist or has been moved.
+      </p>
+      <div class="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+        <a
+          href="/"
+          class="inline-flex min-h-11 items-center justify-center rounded-lg bg-primary-600 px-8 py-4 text-sm font-semibold text-white motion-safe:transition-all motion-safe:duration-200 hover:bg-primary-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+        >
+          Go to Homepage
+        </a>
+      </div>
+      <div class="mt-6 flex flex-wrap justify-center gap-4 text-sm">
+        <a
+          href="/divisions/"
+          class="inline-flex min-h-11 items-center px-3 py-2 font-semibold text-primary-600 motion-safe:transition-colors motion-safe:duration-200 hover:text-primary-700 focus-visible:rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+        >
+          Browse Divisions
+        </a>
+        <a
+          href="/insights/"
+          class="inline-flex min-h-11 items-center px-3 py-2 font-semibold text-primary-600 motion-safe:transition-colors motion-safe:duration-200 hover:text-primary-700 focus-visible:rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+        >
+          Read Insights
+        </a>
+        <a
+          href="/contact/"
+          class="inline-flex min-h-11 items-center px-3 py-2 font-semibold text-primary-600 motion-safe:transition-colors motion-safe:duration-200 hover:text-primary-700 focus-visible:rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+        >
+          Contact Us
+        </a>
+      </div>
+    </div>
+  </SectionWrapper>
+</PageLayout>

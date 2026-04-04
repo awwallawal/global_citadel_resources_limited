@@ -1,0 +1,133 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import SectionWrapper from '@/components/layout/SectionWrapper.astro';
+import BreadcrumbNav from '@/components/layout/BreadcrumbNav.astro';
+import {
+  generateMetadata,
+  generateBreadcrumbJsonLd,
+  type BreadcrumbItem,
+} from '@/lib/seo';
+
+const breadcrumbs: BreadcrumbItem[] = [
+  { label: 'Home', href: '/' },
+  { label: 'Privacy Policy' },
+];
+
+const seo = {
+  ...generateMetadata({
+    title: 'Privacy Policy',
+    description: 'Privacy policy for the Global Resources Citadel Limited website.',
+    path: '/privacy-policy/',
+  }),
+  jsonLd: [generateBreadcrumbJsonLd(breadcrumbs)],
+};
+---
+
+<PageLayout seo={seo}>
+  <BreadcrumbNav items={breadcrumbs} slot="breadcrumb" />
+
+  <SectionWrapper>
+    <div class="mx-auto max-w-article">
+      <h1 class="font-heading text-3xl font-bold lg:text-4xl">Privacy Policy</h1>
+      <p class="mt-2 text-sm text-neutral-500">Last Updated: March 2026</p>
+
+      <div class="prose-legal mt-10">
+        <p>This privacy policy explains how Global Resources Citadel Limited ("GRCL", "we", "us", or "our") collects, uses, and protects personal information when you visit our website. By using this site, you agree to the practices described below.</p>
+
+        <h2>Information We Collect</h2>
+        <p>When you use our website or submit enquiries through our contact forms, we may collect the following information:</p>
+        <ul>
+          <li>Your name and contact details (email address, phone number) when you submit an enquiry form</li>
+          <li>Your organisation name and role, if provided</li>
+          <li>The content of your enquiry or message</li>
+          <li>Technical information such as browser type, device type, and IP address, collected automatically when you browse the site</li>
+          <li>Usage data including pages visited, time spent on pages, and navigation patterns</li>
+        </ul>
+
+        <h2>How We Use Your Information</h2>
+        <p>We use the information we collect for the following purposes:</p>
+        <ul>
+          <li>Responding to your enquiries and providing requested information</li>
+          <li>Routing your enquiry to the appropriate division or department</li>
+          <li>Sending confirmation emails for form submissions</li>
+          <li>Improving our website, content, and user experience</li>
+          <li>Complying with legal and regulatory obligations</li>
+        </ul>
+        <p>We do not sell, trade, or rent your personal information to third parties. We do not use your information for automated decision-making or profiling.</p>
+
+        <h2>Data Protection</h2>
+        <p>We implement appropriate technical and organisational security measures to protect your personal information against unauthorised access, alteration, disclosure, or destruction. These measures include encrypted data transmission (HTTPS), secure hosting infrastructure, and access controls limiting who within our organisation can view submitted data.</p>
+        <p>While we strive to protect your personal information, no method of transmission over the internet is completely secure. We cannot guarantee absolute security of data transmitted to our site.</p>
+
+        <h2>Cookies</h2>
+        <p>Our website uses essential cookies to ensure proper functionality. We use Vercel Analytics for anonymous, aggregated usage statistics to help us understand how visitors use the site. These analytics do not collect personally identifiable information.</p>
+        <p>You may disable cookies in your browser settings. Doing so may affect certain features of the website but will not prevent you from accessing content.</p>
+
+        <h2>Third-Party Services</h2>
+        <p>We use the following third-party services in the operation of this website:</p>
+        <ul>
+          <li><strong>Vercel</strong> — Website hosting, deployment, and analytics</li>
+          <li><strong>Resend</strong> — Email delivery for contact form submissions</li>
+        </ul>
+        <p>These services may process data on our behalf in accordance with their own privacy policies. We select service providers who maintain appropriate data protection standards.</p>
+
+        <h2>Your Rights</h2>
+        <p>You have the right to:</p>
+        <ul>
+          <li>Request access to the personal information we hold about you</li>
+          <li>Request correction of inaccurate personal information</li>
+          <li>Request deletion of your personal information, subject to legal retention requirements</li>
+          <li>Withdraw consent for data processing where consent is the legal basis</li>
+        </ul>
+        <p>To exercise any of these rights, please contact us using the details below.</p>
+
+        <h2>Contact for Privacy Concerns</h2>
+        <p>For privacy-related enquiries or to exercise your data rights, please contact us at <a href="mailto:info@globalresourcescitadel.com">info@globalresourcescitadel.com</a> or through our <a href="/contact/general/">general enquiry form</a>.</p>
+
+        <p class="mt-8 text-xs italic text-neutral-400">This privacy policy is placeholder content for structural and layout purposes. All legal text must be reviewed and approved by a qualified legal professional before production launch.</p>
+      </div>
+    </div>
+  </SectionWrapper>
+</PageLayout>
+
+<style>
+  .prose-legal {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-neutral-600);
+  }
+  .prose-legal h2 {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+    color: var(--color-neutral-900);
+  }
+  .prose-legal h3 {
+    font-family: var(--font-heading);
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-neutral-900);
+  }
+  .prose-legal p { margin-bottom: 1rem; }
+  .prose-legal ul, .prose-legal ol {
+    list-style-type: disc;
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+  }
+  .prose-legal ol { list-style-type: decimal; }
+  .prose-legal li { margin-bottom: 0.375rem; }
+  .prose-legal a {
+    color: var(--color-primary-600);
+    text-decoration: underline;
+    border-radius: 2px;
+  }
+  .prose-legal a:hover { color: var(--color-primary-700); }
+  .prose-legal a:focus-visible {
+    outline: 2px solid var(--color-primary-500);
+    outline-offset: 2px;
+  }
+</style>

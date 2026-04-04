@@ -42,7 +42,7 @@ const isGold = variant === 'gold';
       {isGold ? (
         <a
           href={primaryCta.href}
-          class="inline-flex min-h-11 items-center justify-center rounded-lg bg-primary-900 px-8 py-4 font-semibold text-white motion-safe:transition-all motion-safe:duration-200 hover:bg-primary-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-900 focus-visible:ring-offset-2 focus-visible:ring-offset-gold-600"
+          class="inline-flex min-h-11 items-center justify-center rounded-lg bg-primary-900 px-8 py-4 text-base font-semibold text-white motion-safe:transition-all motion-safe:duration-200 motion-safe:hover:-translate-y-px hover:bg-primary-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-900 focus-visible:ring-offset-2 focus-visible:ring-offset-gold-600"
         >
           {primaryCta.label}
         </a>
@@ -58,9 +58,9 @@ const isGold = variant === 'gold';
         <a
           href={secondaryCta.href}
           class={cn(
-            'inline-flex min-h-11 items-center justify-center rounded-lg border px-8 py-4 font-semibold motion-safe:transition-all motion-safe:duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
+            'inline-flex min-h-11 items-center justify-center rounded-lg border px-8 py-4 text-base font-semibold motion-safe:transition-all motion-safe:duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
             isGold
-              ? 'border-primary-900 text-primary-900 hover:bg-primary-900/10 focus-visible:ring-primary-900 focus-visible:ring-offset-gold-600'
+              ? 'border-primary-900 text-primary-900 motion-safe:hover:-translate-y-px hover:bg-primary-900/10 focus-visible:ring-primary-900 focus-visible:ring-offset-gold-600'
               : 'border-neutral-600 text-white hover:bg-neutral-800 focus-visible:ring-primary-500 focus-visible:ring-offset-neutral-900',
           )}
         >

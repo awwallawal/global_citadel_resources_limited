@@ -1,6 +1,6 @@
 # Story 7.2: Legal Pages, Sitemap & Custom 404
 
-Status: ready-for-dev
+Status: done
 
 ## Story
 
@@ -17,47 +17,47 @@ So that I can find privacy and terms information and recover gracefully from dea
 
 ## Tasks / Subtasks
 
-- [ ] Task 1: Create Privacy Policy page (AC: #1)
-  - [ ] 1.1 Create `src/pages/privacy-policy.astro`
-  - [ ] 1.2 PageLayout with SEO: "Privacy Policy — Global Resources Citadel"
-  - [ ] 1.3 BreadcrumbNav: Home > Privacy Policy
-  - [ ] 1.4 H1: "Privacy Policy"
-  - [ ] 1.5 "Last Updated: March 2026" below heading
-  - [ ] 1.6 Prose body at `max-w-article` (720px token from Story 6.2 — NOT arbitrary `max-w-article`) with article typography (reuse Story 6.2 prose styling)
-  - [ ] 1.7 Sections: Information Collection, Use of Information, Data Protection, Cookies, Third-Party Services, Your Rights, Contact for Privacy Concerns
-  - [ ] 1.8 Placeholder legal content (realistic structure, not lorem ipsum — marked as draft for legal review)
+- [x] Task 1: Create Privacy Policy page (AC: #1)
+  - [x] 1.1 Create `src/pages/privacy-policy.astro`
+  - [x] 1.2 PageLayout with SEO: "Privacy Policy — Global Resources Citadel"
+  - [x] 1.3 BreadcrumbNav: Home > Privacy Policy
+  - [x] 1.4 H1: "Privacy Policy"
+  - [x] 1.5 "Last Updated: March 2026" below heading
+  - [x] 1.6 Prose body at `max-w-article` (720px token from Story 6.2 — NOT arbitrary `max-w-article`) with article typography (reuse Story 6.2 prose styling)
+  - [x] 1.7 Sections: Information Collection, Use of Information, Data Protection, Cookies, Third-Party Services, Your Rights, Contact for Privacy Concerns
+  - [x] 1.8 Placeholder legal content (realistic structure, not lorem ipsum — marked as draft for legal review)
 
-- [ ] Task 2: Create Terms of Use page (AC: #2)
-  - [ ] 2.1 Create `src/pages/terms.astro`
-  - [ ] 2.2 PageLayout with SEO: "Terms of Use — Global Resources Citadel"
-  - [ ] 2.3 BreadcrumbNav: Home > Terms of Use
-  - [ ] 2.4 H1: "Terms of Use"
-  - [ ] 2.5 "Last Updated: March 2026"
-  - [ ] 2.6 Same prose styling as privacy policy
-  - [ ] 2.7 Sections: Acceptance of Terms, Use of Site, Intellectual Property, Disclaimer of Warranties, Limitation of Liability, Governing Law, Contact
-  - [ ] 2.8 Placeholder legal content (realistic structure, marked as draft)
+- [x] Task 2: Create Terms of Use page (AC: #2)
+  - [x] 2.1 Create `src/pages/terms.astro`
+  - [x] 2.2 PageLayout with SEO: "Terms of Use — Global Resources Citadel"
+  - [x] 2.3 BreadcrumbNav: Home > Terms of Use
+  - [x] 2.4 H1: "Terms of Use"
+  - [x] 2.5 "Last Updated: March 2026"
+  - [x] 2.6 Same prose styling as privacy policy
+  - [x] 2.7 Sections: Acceptance of Terms, Use of Site, Intellectual Property, Disclaimer of Warranties, Limitation of Liability, Governing Law, Contact
+  - [x] 2.8 Placeholder legal content (realistic structure, marked as draft)
 
-- [ ] Task 3: Create HTML Sitemap page (AC: #3)
-  - [ ] 3.1 Create `src/pages/sitemap.astro`
-  - [ ] 3.2 PageLayout with SEO: "Sitemap — Global Resources Citadel"
-  - [ ] 3.3 BreadcrumbNav: Home > Sitemap
-  - [ ] 3.4 H1: "Sitemap"
-  - [ ] 3.5 Structured link list organized by section with H2 headings
-  - [ ] 3.6 Fetch all divisions, clusters, articles from content collections for dynamic links
-  - [ ] 3.7 Sections per epics: Home, The Group, Investors & Partners, Divisions (with all 7 + 3 clusters), Insights (with category pages), Contact (with all sub-pages), Legal — 7 sections matching epics AC which lists "Investors & Partners" as standalone
+- [x] Task 3: Create HTML Sitemap page (AC: #3)
+  - [x] 3.1 Create `src/pages/sitemap.astro`
+  - [x] 3.2 PageLayout with SEO: "Sitemap — Global Resources Citadel"
+  - [x] 3.3 BreadcrumbNav: Home > Sitemap
+  - [x] 3.4 H1: "Sitemap"
+  - [x] 3.5 Structured link list organized by section with H2 headings
+  - [x] 3.6 Fetch all divisions, clusters, articles from content collections for dynamic links
+  - [x] 3.7 Sections per epics: Home, The Group, Investors & Partners, Divisions (with all 7 + 3 clusters), Insights (with category pages), Contact (with all sub-pages), Legal — 7 sections matching epics AC which lists "Investors & Partners" as standalone
 
-- [ ] Task 4: Create custom 404 page (AC: #4)
-  - [ ] 4.1 Create `src/pages/404.astro`
-  - [ ] 4.2 PageLayout (minimal — no breadcrumbs on 404)
-  - [ ] 4.3 Centered content: "404" large heading, "Page Not Found" sub-heading
-  - [ ] 4.4 Body: "The page you're looking for doesn't exist or has been moved."
-  - [ ] 4.5 Recovery links: "Go to Homepage" (primary button), plus text links to Divisions, Contact, Insights
-  - [ ] 4.6 SEO: `<meta name="robots" content="noindex" />`
+- [x] Task 4: Create custom 404 page (AC: #4)
+  - [x] 4.1 Create `src/pages/404.astro`
+  - [x] 4.2 PageLayout (minimal — no breadcrumbs on 404)
+  - [x] 4.3 Centered content: "404" large heading, "Page Not Found" sub-heading
+  - [x] 4.4 Body: "The page you're looking for doesn't exist or has been moved."
+  - [x] 4.5 Recovery links: "Go to Homepage" (primary button), plus text links to Divisions, Contact, Insights
+  - [x] 4.6 SEO: `<meta name="robots" content="noindex" />`
 
-- [ ] Task 5: Generate XML sitemap (AC: #3)
-  - [ ] 5.1 Astro's built-in `@astrojs/sitemap` integration (if not already installed) or manual generation
-  - [ ] 5.2 Include all public routes, exclude `/api/`, `/search/`, `/404`
-  - [ ] 5.3 Verify `sitemap-index.xml` or `sitemap-0.xml` generated at build time
+- [x] Task 5: Generate XML sitemap (AC: #3)
+  - [x] 5.1 Astro's built-in `@astrojs/sitemap` integration (if not already installed) or manual generation
+  - [x] 5.2 Include all public routes, exclude `/api/`, `/search/`, `/404`
+  - [x] 5.3 Verify `sitemap-index.xml` or `sitemap-0.xml` generated at build time
 
 ## Dev Notes
 
@@ -367,8 +367,49 @@ Files this story creates or modifies:
 
 ### Agent Model Used
 
+Claude Opus 4.6 (1M context)
+
 ### Debug Log References
+
+- Build passes: all 4 new pages prerender successfully
+- sitemap-index.xml + sitemap-0.xml generated by @astrojs/sitemap
+- XML sitemap filter verified: 0 matches for /search, /404, /token-test, /api
+- TypeScript: no errors
+- robots.txt updated with sitemap reference and /search disallow
 
 ### Completion Notes List
 
+- Created privacy-policy.astro with 7 sections of realistic placeholder legal content, .prose-legal scoped styling (16px/1.7 line-height), "Last Updated: March 2026", draft disclaimer
+- Created terms.astro with 7 sections (Acceptance, Use, IP, Warranties, Liability, Governing Law, Contact), same prose-legal styling, draft disclaimer
+- Created sitemap.astro with dynamic content — fetches divisions, clusters, articles from content collections, 7 sections (Home, The Group, Investors, Divisions with 10 links, Insights with all articles, Contact with all sub-pages, Legal), multi-column layout
+- Created 404.astro with centered "404" hero, "Page Not Found" H1, recovery links (Homepage primary button + Divisions/Insights/Contact text links), noindex robots meta
+- Installed @astrojs/sitemap, configured filter excluding /api/, /search, /404, /token-test
+- Updated robots.txt with Sitemap directive and /search disallow
+- Footer links to Privacy Policy, Terms, Sitemap now resolve to real pages
+
+### Review Findings
+
+- [x] [Review][Decision] DesktopNav dropdown `-left-24` offset may overflow viewport — FIXED: added `max-w-[calc(100vw-2rem)]` guard [src/components/navigation/DesktopNav.tsx:146]
+- [x] [Review][Decision] 404 page arbitrary Tailwind value — FIXED: defined `--min-h-error: 60vh` token in globals.css [src/styles/globals.css:105, src/pages/404.astro:13]
+- [x] [Review][Patch] DesktopNav design token regression — FIXED: restored `text-overline`/`text-body-sm` [src/components/navigation/DesktopNav.tsx:150,159]
+- [x] [Review][Patch] 404 page missing SectionWrapper — FIXED: wrapped in SectionWrapper [src/pages/404.astro:13]
+- [x] [Review][Patch] Sitemap XML filter overly broad — FIXED: replaced `includes('/search')` with regex `/\/search(\/|$)/` [astro.config.mjs:17]
+- [x] [Review][Patch] 404 CTA button missing motion-safe transition — FIXED: added `motion-safe:transition-all motion-safe:duration-200` [src/pages/404.astro:24]
+- [x] [Review][Patch] 404 secondary links insufficient touch targets — FIXED: added `min-h-11 items-center px-3 py-2` for 44px targets [src/pages/404.astro:31-49]
+- [x] [Review][Defer] Sitemap renders all articles unbounded — scaling concern for large content volumes, but AC requires "all public pages"; revisit if article count grows significantly [src/pages/sitemap.astro:52]
+- [x] [Review][Defer] `.prose-legal` CSS block (~30 lines) duplicated in privacy-policy.astro and terms.astro — DRY concern, only 2 files affected [src/pages/privacy-policy.astro:93, src/pages/terms.astro:76]
+- [x] [Review][Defer] SearchOverlay focus trap recalculates on every `results` change — brief window where Tab key could escape overlay during rapid typing; pre-existing issue [src/components/search/SearchOverlay.tsx:91]
+
+### Change Log
+
+- 2026-04-04: Story 7.2 implemented — Privacy Policy, Terms of Use, HTML sitemap, custom 404, XML sitemap, robots.txt update
+
 ### File List
+
+- `src/pages/privacy-policy.astro` (created)
+- `src/pages/terms.astro` (created)
+- `src/pages/sitemap.astro` (created)
+- `src/pages/404.astro` (created)
+- `astro.config.mjs` (modified — added @astrojs/sitemap integration)
+- `public/robots.txt` (modified — added sitemap reference + search disallow)
+- `_bmad-output/implementation-artifacts/sprint-status.yaml` (modified)

@@ -173,3 +173,9 @@ All 4 deferred items were resolved during review:
 - Search index (~30 items, 2-4KB gzipped) embedded in every page HTML via Header/SearchOverlay — MVP acceptable per spec Task 5.4, optimize post-MVP to static JSON fetch
 - No debounce on SearchOverlay keystroke search — trivial with ~30 items, add when corpus grows
 - Search results use `div[role="list"]` instead of semantic `<ul>/<li>` — minor a11y improvement for Epic 8
+
+## Deferred from: code review of 7-2-legal-pages-sitemap-custom-404 (2026-04-04)
+
+- Sitemap renders all articles unbounded — AC requires "all public pages" so correct for now, but page will grow linearly with content. Revisit if article count exceeds ~50.
+- `.prose-legal` CSS block (~30 lines) duplicated in privacy-policy.astro and terms.astro — extract to shared stylesheet if more legal pages are added.
+- SearchOverlay focus trap recalculates on every `results` change — brief Tab-escape window during rapid typing. Pre-existing, not introduced by Story 7.2.

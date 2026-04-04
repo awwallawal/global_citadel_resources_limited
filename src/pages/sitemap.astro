@@ -1,0 +1,127 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '@/layouts/PageLayout.astro';
+import SectionWrapper from '@/components/layout/SectionWrapper.astro';
+import BreadcrumbNav from '@/components/layout/BreadcrumbNav.astro';
+import {
+  generateMetadata,
+  generateBreadcrumbJsonLd,
+  type BreadcrumbItem,
+} from '@/lib/seo';
+
+const divisions = (await getCollection('divisions')).sort(
+  (a, b) => a.data.sortOrder - b.data.sortOrder,
+);
+const clusters = (await getCollection('clusters')).sort(
+  (a, b) => a.data.sortOrder - b.data.sortOrder,
+);
+const articles = (await getCollection('articles')).sort(
+  (a, b) => new Date(b.data.publishedAt).getTime() - new Date(a.data.publishedAt).getTime(),
+);
+
+const sitemapSections = [
+  {
+    title: 'Home',
+    links: [{ label: 'Homepage', href: '/' }],
+  },
+  {
+    title: 'The Group',
+    links: [{ label: 'About the Group', href: '/about/' }],
+  },
+  {
+    title: 'Investors & Partners',
+    links: [
+      { label: 'Investors & Partners', href: '/investors-partners/' },
+      { label: 'Strategic Inquiry', href: '/contact/strategic/' },
+    ],
+  },
+  {
+    title: 'Divisions',
+    links: [
+      { label: 'All Divisions', href: '/divisions/' },
+      ...clusters.map((c) => ({ label: c.data.name, href: `/divisions/${c.data.slug}/` })),
+      ...divisions.map((d) => ({ label: d.data.name, href: `/divisions/${d.data.slug}/` })),
+    ],
+  },
+  {
+    title: 'Insights',
+    links: [
+      { label: 'All Insights', href: '/insights/' },
+      { label: 'Latest', href: '/insights/latest/' },
+      { label: 'News & Updates', href: '/insights/news/' },
+      { label: 'Thought Leadership', href: '/insights/thought-leadership/' },
+      { label: 'By Division', href: '/insights/divisions/' },
+      ...articles.map((a) => ({ label: a.data.title, href: `/insights/${a.id}/` })),
+    ],
+  },
+  {
+    title: 'Contact',
+    links: [
+      { label: 'Contact Hub', href: '/contact/' },
+      { label: 'General Enquiries', href: '/contact/general/' },
+      { label: 'Contact by Division', href: '/contact/divisions/' },
+      ...divisions.map((d) => ({ label: `${d.data.name} Enquiry`, href: `/contact/divisions/${d.data.slug}/` })),
+      { label: 'Partner & Investor Contact', href: '/contact/strategic/' },
+      { label: 'Locations', href: '/contact/locations/' },
+    ],
+  },
+  {
+    title: 'Legal',
+    links: [
+      { label: 'Privacy Policy', href: '/privacy-policy/' },
+      { label: 'Terms of Use', href: '/terms/' },
+    ],
+  },
+];
+
+const breadcrumbs: BreadcrumbItem[] = [
+  { label: 'Home', href: '/' },
+  { label: 'Sitemap' },
+];
+
+const seo = {
+  ...generateMetadata({
+    title: 'Sitemap',
+    description: 'Complete sitemap of the Global Resources Citadel website.',
+    path: '/sitemap/',
+  }),
+  jsonLd: [generateBreadcrumbJsonLd(breadcrumbs)],
+};
+---
+
+<PageLayout seo={seo}>
+  <BreadcrumbNav items={breadcrumbs} slot="breadcrumb" />
+
+  <SectionWrapper variant="primary">
+    <div class="mx-auto max-w-3xl text-center">
+      <h1 class="font-heading text-3xl font-bold leading-tight tracking-tight lg:text-5xl">
+        Sitemap
+      </h1>
+      <p class="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-neutral-600">
+        A complete overview of all pages on the Global Resources Citadel website.
+      </p>
+    </div>
+  </SectionWrapper>
+
+  <SectionWrapper>
+    <div class="mx-auto max-w-3xl columns-1 gap-8 sm:columns-2 lg:columns-3">
+      {sitemapSections.map((section) => (
+        <div class="mb-8 break-inside-avoid">
+          <h2 class="mb-3 font-heading text-lg font-semibold text-neutral-900">{section.title}</h2>
+          <ul class="space-y-1.5">
+            {section.links.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  class="text-sm text-primary-600 hover:text-primary-700 hover:underline focus-visible:rounded focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </SectionWrapper>
+</PageLayout>

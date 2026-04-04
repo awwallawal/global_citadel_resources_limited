@@ -35,7 +35,7 @@
 # - Dev moves story to 'review', then runs code-review (fresh context, different LLM recommended)
 
 generated: 2026-03-28
-last_updated: 2026-04-04 # code review completed
+last_updated: 2026-04-04 # story 7-2 code review passed, patches applied
 project: UK_Web_Design
 last_story_created: 8-4-cicd-pipeline-production-deployment
 project_key: NOKEY
@@ -97,7 +97,7 @@ development_status:
   # --- Epic 7: Search, Discovery & Supporting Pages ---
   epic-7: in-progress
   7-1-search-page-functionality: done
-  7-2-legal-pages-sitemap-custom-404: ready-for-dev
+  7-2-legal-pages-sitemap-custom-404: done
   7-3-internal-cross-linking-discovery-pathways: ready-for-dev
   epic-7-retrospective: optional
 

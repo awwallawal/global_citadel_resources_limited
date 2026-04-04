@@ -100,6 +100,7 @@
   --radius-2xl: 16px;
 
   /* Custom component tokens */
+  --min-h-error: 60vh;
   --height-divider: 3px;
 
   /* Homepage hero tokens */
