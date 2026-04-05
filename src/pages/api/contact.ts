@@ -1,14 +1,17 @@
 import type { APIRoute } from 'astro';
-import { z } from 'zod';
 import { getCollection } from 'astro:content';
+import {
+  contactEnvelopeSchema,
+  fieldsSchemaMap,
+  getRecipientEmail,
+  getRoutingContext,
+} from '@/lib/contact';
 import { sendInquiryNotification, sendConfirmationEmail } from '@/lib/email';
 
 export const prerender = false;
 
-// ─── Rate limiting ──────────────────────────────────────────────────
-
 const rateLimit = new Map<string, number[]>();
-const RATE_LIMIT_WINDOW = 15 * 60 * 1000; // 15 minutes
+const RATE_LIMIT_WINDOW = 15 * 60 * 1000;
 const RATE_LIMIT_MAX = 5;
 
 function isRateLimited(ip: string): boolean {
@@ -20,68 +23,6 @@ function isRateLimited(ip: string): boolean {
   return false;
 }
 
-// ─── Validation schemas (mirror client-side) ────────────────────────
-
-const baseFieldsSchema = z.object({
-  fullName: z.string().trim().min(2),
-  email: z.string().email(),
-  phone: z.string().optional(),
-});
-
-const generalFieldsSchema = baseFieldsSchema.extend({
-  subject: z.string().trim().min(1),
-  message: z.string().trim().min(20),
-});
-
-const divisionFieldsSchema = baseFieldsSchema.extend({
-  company: z.string().optional(),
-  enquiryType: z.string().min(1),
-  message: z.string().trim().min(20),
-});
-
-const strategicFieldsSchema = baseFieldsSchema.extend({
-  organization: z.string().trim().min(1),
-  titleRole: z.string().trim().min(1),
-  inquiryType: z.string().min(1),
-  description: z.string().trim().min(20),
-});
-
-const contactEnvelopeSchema = z.object({
-  inquiryType: z.enum([
-    'general-corporate',
-    'division-business',
-    'strategic-partnership',
-    'investor-institutional',
-  ]),
-  destinationTeam: z.string().min(1),
-  divisionSlug: z.string().nullable().optional(),
-  sourcePage: z.string().min(1),
-  submittedAt: z.string().optional(),
-  honeypot: z.string().optional(),
-  fields: z.record(z.string(), z.unknown()),
-});
-
-const fieldsSchemaMap: Record<string, z.ZodObject<z.ZodRawShape>> = {
-  'general-corporate': generalFieldsSchema,
-  'division-business': divisionFieldsSchema,
-  'strategic-partnership': strategicFieldsSchema,
-  'investor-institutional': strategicFieldsSchema,
-};
-
-// ─── Routing context messages ───────────────────────────────────────
-
-function getRoutingContext(inquiryType: string, divisionName?: string): string {
-  if (inquiryType === 'division-business' && divisionName) {
-    return `Our ${divisionName} team will respond within 2 business days.`;
-  }
-  if (inquiryType === 'strategic-partnership' || inquiryType === 'investor-institutional') {
-    return 'Our strategic team will respond within 3 business days. All enquiries are handled confidentially.';
-  }
-  return 'We aim to respond within 2 business days.';
-}
-
-// ─── Helper ─────────────────────────────────────────────────────────
-
 function jsonResponse(body: Record<string, unknown>, status: number) {
   return new Response(JSON.stringify(body), {
     status,
@@ -89,10 +30,7 @@ function jsonResponse(body: Record<string, unknown>, status: number) {
   });
 }
 
-// ─── Endpoint ───────────────────────────────────────────────────────
-
 export const POST: APIRoute = async ({ request, clientAddress }) => {
-  // Rate limit
   if (isRateLimited(clientAddress)) {
     return jsonResponse(
       { success: false, message: 'Too many requests. Please try again later.' },
@@ -107,18 +45,13 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     return jsonResponse({ success: false, message: 'Invalid request body.' }, 400);
   }
 
-  // Parse envelope
   const envelopeResult = contactEnvelopeSchema.safeParse(body);
   if (!envelopeResult.success) {
-    return jsonResponse(
-      { success: false, message: 'Invalid request format.' },
-      400,
-    );
+    return jsonResponse({ success: false, message: 'Invalid request format.' }, 400);
   }
 
   const envelope = envelopeResult.data;
 
-  // Honeypot — silently fake success
   if (envelope.honeypot) {
     return jsonResponse(
       { success: true, message: 'Inquiry submitted successfully', routingContext: '' },
@@ -126,7 +59,6 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     );
   }
 
-  // Validate fields based on inquiry type
   const fieldSchema = fieldsSchemaMap[envelope.inquiryType];
   if (!fieldSchema) {
     return jsonResponse({ success: false, message: 'Unknown inquiry type.' }, 400);
@@ -145,23 +77,21 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   }
 
   const validatedFields = fieldsResult.data as Record<string, string>;
-
-  // Resolve division name + recipient email
-  let recipientEmail = import.meta.env.CONTACT_EMAIL_DEFAULT || 'info@globalresourcescitadel.com';
-  let divisionName: string | undefined;
-
-  if (envelope.inquiryType === 'division-business' && envelope.divisionSlug) {
-    const divisions = await getCollection('divisions');
-    const division = divisions.find((d) => d.data.slug === envelope.divisionSlug);
-    if (division) {
-      recipientEmail = division.data.contactEmail;
-      divisionName = division.data.name;
-    }
-  }
-
+  const defaultEmail = import.meta.env.CONTACT_EMAIL_DEFAULT || 'info@globalresourcescitadel.com';
+  const divisions = envelope.inquiryType === 'division-business'
+    ? (await getCollection('divisions')).map((division) => ({
+        slug: division.data.slug,
+        name: division.data.name,
+        contactEmail: division.data.contactEmail,
+      }))
+    : [];
+  const { recipientEmail, divisionName } = getRecipientEmail(
+    envelope.inquiryType,
+    envelope.divisionSlug,
+    divisions,
+    defaultEmail,
+  );
   const routingContext = getRoutingContext(envelope.inquiryType, divisionName);
-
-  // Send emails independently — partial success still returns 200 to the user
   const serverTimestamp = new Date().toISOString();
 
   const [notificationResult, confirmationResult] = await Promise.allSettled([
@@ -188,7 +118,6 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     console.error('User confirmation email failed:', confirmationResult.reason);
   }
 
-  // Fail only if both emails failed — user should see success if at least one was sent
   if (notificationResult.status === 'rejected' && confirmationResult.status === 'rejected') {
     return jsonResponse(
       { success: false, message: 'Unable to process your request. Please try again.' },

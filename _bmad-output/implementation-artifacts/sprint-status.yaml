@@ -35,7 +35,7 @@
 # - Dev moves story to 'review', then runs code-review (fresh context, different LLM recommended)
 
 generated: 2026-03-28
-last_updated: 2026-04-05 # story 7-3 code review passed
+last_updated: 2026-04-05
 project: UK_Web_Design
 last_story_created: 8-4-cicd-pipeline-production-deployment
 project_key: NOKEY
@@ -103,7 +103,7 @@ development_status:
 
   # --- Epic 8: Accessible, Fast, Production-Ready Platform ---
   epic-8: in-progress
-  8-1-unit-component-testing: ready-for-dev
+  8-1-unit-component-testing: done
   8-2-e2e-testing-accessibility-audit: ready-for-dev
   8-3-performance-optimization-lighthouse-audit: ready-for-dev
   8-4-cicd-pipeline-production-deployment: ready-for-dev

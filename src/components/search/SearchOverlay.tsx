@@ -34,9 +34,11 @@ function search(index: SearchItem[], query: string): SearchItem[] {
 export default function SearchOverlay({ index }: SearchOverlayProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState('');
+  const [activeIndex, setActiveIndex] = useState(-1);
   const inputRef = useRef<HTMLInputElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
+  const resultRefs = useRef<Array<HTMLAnchorElement | null>>([]);
 
   const results = search(index, query);
 
@@ -44,50 +46,82 @@ export default function SearchOverlay({ index }: SearchOverlayProps) {
     previousFocusRef.current = document.activeElement as HTMLElement | null;
     setIsOpen(true);
     setQuery('');
+    setActiveIndex(-1);
   }, []);
 
   const close = useCallback(() => {
     setIsOpen(false);
     setQuery('');
+    setActiveIndex(-1);
     requestAnimationFrame(() => {
       previousFocusRef.current?.focus();
       previousFocusRef.current = null;
     });
   }, []);
 
-  // Listen for custom event from search trigger button
   useEffect(() => {
     const handler = () => open();
     document.addEventListener('open-search-overlay', handler);
     return () => document.removeEventListener('open-search-overlay', handler);
   }, [open]);
 
-  // Lock body scroll when open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
-      return () => { document.body.style.overflow = ''; };
+      return () => {
+        document.body.style.overflow = '';
+      };
     }
   }, [isOpen]);
 
-  // Focus input on open
   useEffect(() => {
     if (isOpen) {
       requestAnimationFrame(() => inputRef.current?.focus());
     }
   }, [isOpen]);
 
-  // Escape closes
+  useEffect(() => {
+    resultRefs.current = [];
+    if (!query.trim() || results.length === 0) {
+      setActiveIndex(-1);
+      return;
+    }
+    setActiveIndex((current) => (current >= results.length ? 0 : current));
+  }, [query, results]);
+
+  useEffect(() => {
+    if (activeIndex < 0) return;
+    resultRefs.current[activeIndex]?.focus();
+  }, [activeIndex]);
+
   useEffect(() => {
     if (!isOpen) return;
     const handler = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') close();
+      if (e.key === 'Escape') {
+        close();
+        return;
+      }
+
+      if (!results.length || (e.key !== 'ArrowDown' && e.key !== 'ArrowUp')) {
+        return;
+      }
+
+      e.preventDefault();
+      const direction = e.key === 'ArrowDown' ? 1 : -1;
+      const nextIndex =
+        activeIndex === -1
+          ? direction === 1
+            ? 0
+            : results.length - 1
+          : (activeIndex + direction + results.length) % results.length;
+
+      setActiveIndex(nextIndex);
     };
+
     document.addEventListener('keydown', handler);
     return () => document.removeEventListener('keydown', handler);
-  }, [isOpen, close]);
+  }, [activeIndex, close, isOpen, results]);
 
-  // Trap focus within overlay
   useEffect(() => {
     if (!isOpen || !overlayRef.current) return;
     const focusable = overlayRef.current.querySelectorAll<HTMLElement>(
@@ -105,11 +139,9 @@ export default function SearchOverlay({ index }: SearchOverlayProps) {
           e.preventDefault();
           last.focus();
         }
-      } else {
-        if (document.activeElement === last) {
-          e.preventDefault();
-          first.focus();
-        }
+      } else if (document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
       }
     };
 
@@ -173,14 +205,22 @@ export default function SearchOverlay({ index }: SearchOverlayProps) {
           </button>
         </form>
 
-        {/* Quick Results */}
         {query.trim() && results.length > 0 && (
           <ul className="max-h-80 overflow-y-auto p-2">
-            {results.map((item) => (
+            {results.map((item, index) => (
               <li key={item.id}>
                 <a
                   href={item.url}
-                  className="flex items-start gap-3 rounded-lg p-3 transition-colors hover:bg-neutral-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+                  tabIndex={-1}
+                  ref={(element) => {
+                    resultRefs.current[index] = element;
+                  }}
+                  className={cn(
+                    'flex items-start gap-3 rounded-lg p-3 transition-colors hover:bg-neutral-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500',
+                    activeIndex === index && 'bg-neutral-50',
+                  )}
+                  aria-selected={activeIndex === index}
+                  onFocus={() => setActiveIndex(index)}
                 >
                   <span
                     className={cn(
@@ -205,14 +245,12 @@ export default function SearchOverlay({ index }: SearchOverlayProps) {
           </ul>
         )}
 
-        {/* No results */}
         {query.trim() && results.length === 0 && (
           <p className="p-4 text-center text-sm text-neutral-500">
             No results found.
           </p>
         )}
 
-        {/* Footer */}
         <div className="flex items-center justify-between rounded-b-2xl border-t border-neutral-200 px-4 py-3">
           {query.trim() ? (
             <a

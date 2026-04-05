@@ -1,5 +1,10 @@
 import { useState, useRef, type FormEvent, type FocusEvent } from 'react';
 import { z } from 'zod';
+import {
+  generalFormSchema,
+  divisionFormSchema,
+  strategicFormSchema,
+} from '@/lib/contact';
 import { cn } from '@/lib/utils';
 
 // ─── Enquiry type options per variant ────────────────────────────────
@@ -20,33 +25,6 @@ const STRATEGIC_INQUIRY_TYPES = [
 ];
 
 // ─── Validation schemas ─────────────────────────────────────────────
-
-const generalFormSchema = z.object({
-  fullName: z.string().trim().min(2, 'Name must be at least 2 characters'),
-  email: z.string().email('Please enter a valid email address'),
-  phone: z.string().optional(),
-  subject: z.string().trim().min(1, 'Please enter a subject'),
-  message: z.string().trim().min(20, 'Message must be at least 20 characters'),
-});
-
-const divisionFormSchema = z.object({
-  fullName: z.string().trim().min(2, 'Name must be at least 2 characters'),
-  email: z.string().email('Please enter a valid email address'),
-  company: z.string().optional(),
-  phone: z.string().optional(),
-  enquiryType: z.string().min(1, 'Please select an enquiry type'),
-  message: z.string().trim().min(20, 'Message must be at least 20 characters'),
-});
-
-const strategicFormSchema = z.object({
-  fullName: z.string().trim().min(2, 'Name must be at least 2 characters'),
-  email: z.string().email('Please enter a valid email address'),
-  organization: z.string().trim().min(1, 'Please enter your organization'),
-  titleRole: z.string().trim().min(1, 'Please enter your title or role'),
-  phone: z.string().optional(),
-  inquiryType: z.string().min(1, 'Please select an inquiry type'),
-  description: z.string().trim().min(20, 'Description must be at least 20 characters'),
-});
 
 // ─── Form data type (superset of all variants) ─────────────────────
 
