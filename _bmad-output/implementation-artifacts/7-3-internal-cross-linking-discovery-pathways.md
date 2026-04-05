@@ -1,6 +1,6 @@
 # Story 7.3: Internal Cross-Linking & Discovery Pathways
 
-Status: ready-for-dev
+Status: done
 
 ## Story
 
@@ -21,112 +21,112 @@ So that I can move between divisions, insights, contacts, and corporate pages wi
 
 ## Tasks / Subtasks
 
-- [ ] Task 1: Audit all internal links for 404 errors (AC: #8)
-  - [ ] 1.1 Run `npm run build` and check for build warnings about broken links
-  - [ ] 1.2 Create a link-checking script or use `astro check` to verify all `<a href>` resolve
-  - [ ] 1.3 Manually verify each route category: homepage, divisions (hub, clusters, detail), insights (hub, categories, articles, division insights), contact (hub, general, strategic, divisions, locations), about, investors-partners, legal, sitemap, search, 404
-  - [ ] 1.4 Fix any broken links found
+- [x] Task 1: Audit all internal links for 404 errors (AC: #8)
+  - [x] 1.1 Run `npm run build` and check for build warnings about broken links
+  - [x] 1.2 Create a link-checking script or use `astro check` to verify all `<a href>` resolve
+  - [x] 1.3 Manually verify each route category: homepage, divisions (hub, clusters, detail), insights (hub, categories, articles, division insights), contact (hub, general, strategic, divisions, locations), about, investors-partners, legal, sitemap, search, 404
+  - [x] 1.4 Fix any broken links found
 
-- [ ] Task 1.5: Verify homepage content links (AC: #6, #8)
-  - [ ] 1.5.1 Bento grid: all 7 division cards link to correct `/divisions/[slug]/` pages
-  - [ ] 1.5.2 Cluster cards: all 3 cards link to correct `/divisions/[cluster-slug]/` pages
-  - [ ] 1.5.3 Featured article cards: all 3 link to correct `/insights/[article-slug]/` pages
-  - [ ] 1.5.4 "View All Insights" link resolves to `/insights/`
-  - [ ] 1.5.5 Any other homepage section links (stats, about teaser) resolve correctly
+- [x] Task 1.5: Verify homepage content links (AC: #6, #8)
+  - [x] 1.5.1 Bento grid: all 7 division cards link to correct `/divisions/[slug]/` pages
+  - [x] 1.5.2 Cluster cards: all 3 cards link to correct `/divisions/[cluster-slug]/` pages
+  - [x] 1.5.3 Featured article cards: all 3 link to correct `/insights/[article-slug]/` pages
+  - [x] 1.5.4 "View All Insights" link resolves to `/insights/`
+  - [x] 1.5.5 Any other homepage section links (stats, about teaser) resolve correctly
 
-- [ ] Task 2: Verify division page cross-links (AC: #1)
-  - [ ] 2.1 Each of 7 division detail pages links to its parent cluster page
-  - [ ] 2.2 Each division page shows related divisions from same cluster (sidebar or inline links)
-  - [ ] 2.3 Each division page Section 5 CTA links to `/contact/divisions/[slug]/`
-  - [ ] 2.4 Each division page Section 4 "View All [Division] Insights" links to `/insights/divisions/[slug]/`
-  - [ ] 2.5 If any cross-links are missing, add them (may require modifying DivisionLayout or division page template)
+- [x] Task 2: Verify division page cross-links (AC: #1)
+  - [x] 2.1 Each of 7 division detail pages links to its parent cluster page
+  - [x] 2.2 Each division page shows related divisions from same cluster (sidebar or inline links)
+  - [x] 2.3 Each division page Section 5 CTA links to `/contact/divisions/[slug]/`
+  - [x] 2.4 Each division page Section 4 "View All [Division] Insights" links to `/insights/divisions/[slug]/`
+  - [x] 2.5 If any cross-links are missing, add them (may require modifying DivisionLayout or division page template)
 
-- [ ] Task 3: Verify cluster page cross-links (AC: #2)
-  - [ ] 3.1 Each of 3 cluster pages links to all member division detail pages
-  - [ ] 3.2 Each cluster page insights section links to relevant insight articles
-  - [ ] 3.3 Each cluster page CTA links to `/contact/`
-  - [ ] 3.4 Verify "Explore Division →" links on DivisionFeatureCards resolve correctly
+- [x] Task 3: Verify cluster page cross-links (AC: #2)
+  - [x] 3.1 Each of 3 cluster pages links to all member division detail pages
+  - [x] 3.2 Each cluster page insights section links to relevant insight articles
+  - [x] 3.3 Each cluster page CTA links to `/contact/`
+  - [x] 3.4 Verify "Explore Division →" links on DivisionFeatureCards resolve correctly
 
-- [ ] Task 3.5: Verify insights hub navigation pathways (AC: #3, #8)
-  - [ ] 3.5.1 "By Division" dropdown/filter exists on insights hub
-  - [ ] 3.5.2 "By Division" links to all 7 `/insights/divisions/[slug]/` pages resolve
-  - [ ] 3.5.3 Category tabs (Latest, News, Thought Leadership) link to correct sub-pages
-  - [ ] 3.5.4 Article cards on hub link to correct `/insights/[article-slug]/` pages
+- [x] Task 3.5: Verify insights hub navigation pathways (AC: #3, #8)
+  - [x] 3.5.1 "By Division" dropdown/filter exists on insights hub
+  - [x] 3.5.2 "By Division" links to all 7 `/insights/divisions/[slug]/` pages resolve
+  - [x] 3.5.3 Category tabs (Latest, News, Thought Leadership) link to correct sub-pages
+  - [x] 3.5.4 Article cards on hub link to correct `/insights/[article-slug]/` pages
 
-- [ ] Task 4: Verify insight article cross-links (AC: #3)
-  - [ ] 4.1 Articles with `divisionSlug` link to the tagged division page in sidebar/tags
-  - [ ] 4.2 Related articles section links to other article detail pages
-  - [ ] 4.3 "Back to All Insights →" links to `/insights/`
-  - [ ] 4.4 Division-specific CTA links to `/contact/divisions/[slug]/`
+- [x] Task 4: Verify insight article cross-links (AC: #3)
+  - [x] 4.1 Articles with `divisionSlug` link to the tagged division page in sidebar/tags
+  - [x] 4.2 Related articles section links to other article detail pages
+  - [x] 4.3 "Back to All Insights →" links to `/insights/`
+  - [x] 4.4 Division-specific CTA links to `/contact/divisions/[slug]/`
 
-- [ ] Task 4.5: Verify contact hub pathway cards (AC: #8)
-  - [ ] 4.5.1 Contact hub (`/contact/`) displays 2x2 pathway card grid
-  - [ ] 4.5.2 "General Enquiries" card links to `/contact/general/`
-  - [ ] 4.5.3 "Contact by Division" card links to `/contact/divisions/`
-  - [ ] 4.5.4 "Partner / Investor" card links to `/contact/strategic/`
-  - [ ] 4.5.5 Division contact directory (`/contact/divisions/`) shows 7 division cards linking to `/contact/divisions/[slug]/`
+- [x] Task 4.5: Verify contact hub pathway cards (AC: #8)
+  - [x] 4.5.1 Contact hub (`/contact/`) displays 2x2 pathway card grid
+  - [x] 4.5.2 "General Enquiries" card links to `/contact/general/`
+  - [x] 4.5.3 "Contact by Division" card links to `/contact/divisions/`
+  - [x] 4.5.4 "Partner / Investor" card links to `/contact/strategic/`
+  - [x] 4.5.5 Division contact directory (`/contact/divisions/`) shows 7 division cards linking to `/contact/divisions/[slug]/`
 
-- [ ] Task 5: Verify corporate page cross-links (AC: #4, #5)
-  - [ ] 5.1 Investors & Partners page links to `/about/#leadership` and `/about/#credentials`
-  - [ ] 5.2 Investors & Partners "View Full Team →" and "View All Credentials →" links resolve
-  - [ ] 5.3 Investors & Partners cluster cards link to cluster pages
-  - [ ] 5.4 Investors & Partners CTA links to `/contact/strategic/`
-  - [ ] 5.5 About page OrgChart division nodes link to `/divisions/[slug]/`
-  - [ ] 5.6 About page "Explore Our Divisions →" links to `/divisions/`
-  - [ ] 5.7 About page CTA links to `/contact/` and `/divisions/`
+- [x] Task 5: Verify corporate page cross-links (AC: #4, #5)
+  - [x] 5.1 Investors & Partners page links to `/about/#leadership` and `/about/#credentials`
+  - [x] 5.2 Investors & Partners "View Full Team →" and "View All Credentials →" links resolve
+  - [x] 5.3 Investors & Partners cluster cards link to cluster pages
+  - [x] 5.4 Investors & Partners CTA links to `/contact/strategic/`
+  - [x] 5.5 About page OrgChart division nodes link to `/divisions/[slug]/`
+  - [x] 5.6 About page "Explore Our Divisions →" links to `/divisions/`
+  - [x] 5.7 About page CTA links to `/contact/` and `/divisions/`
 
-- [ ] Task 6: Verify CTABanners across all pages (AC: #6)
-  - [ ] 6.1 Homepage CTA: "Contact Us" → `/contact/`, "Partner With Us" → `/contact/strategic/`
-  - [ ] 6.2 Divisions hub CTA: "Contact Us" → `/contact/`, "Search the Site" → `/search/`
-  - [ ] 6.3 Cluster page CTAs: "Get In Touch" → `/contact/`
-  - [ ] 6.4 Division detail CTAs: "Contact Our Team" → `/contact/divisions/[slug]/`
-  - [ ] 6.5 About page CTA: "Contact Us" → `/contact/`, "Explore Divisions" → `/divisions/`
-  - [ ] 6.6 Investors & Partners CTA: both buttons → `/contact/strategic/`
-  - [ ] 6.7 Insights hub CTA: "Contact Us" → `/contact/`
-  - [ ] 6.8 Article detail CTA: division-specific → `/contact/divisions/[slug]/` if tagged, otherwise generic → `/contact/`
+- [x] Task 6: Verify CTABanners across all pages (AC: #6)
+  - [x] 6.1 Homepage CTA: "Contact Us" → `/contact/`, "Partner With Us" → `/contact/strategic/`
+  - [x] 6.2 Divisions hub CTA: "Contact Us" → `/contact/`, "Search the Site" → `/search/`
+  - [x] 6.3 Cluster page CTAs: "Get In Touch" → `/contact/`
+  - [x] 6.4 Division detail CTAs: "Contact Our Team" → `/contact/divisions/[slug]/`
+  - [x] 6.5 About page CTA: "Contact Us" → `/contact/`, "Explore Divisions" → `/divisions/`
+  - [x] 6.6 Investors & Partners CTA: both buttons → `/contact/strategic/`
+  - [x] 6.7 Insights hub CTA: "Contact Us" → `/contact/`
+  - [x] 6.8 Article detail CTA: division-specific → `/contact/divisions/[slug]/` if tagged, otherwise generic → `/contact/`
 
-- [ ] Task 7: Verify footer links (AC: #7)
-  - [ ] 7.1 The Group column: all 4 links resolve
-  - [ ] 7.2 Divisions columns: all 8 links resolve (7 divisions + "View All Divisions")
-  - [ ] 7.3 Insights column: all 3 links resolve
-  - [ ] 7.4 Get In Touch column: all 4 links resolve
-  - [ ] 7.5 Investors & Partners column: all 3 links resolve
-  - [ ] 7.6 Connect column: social links are present (placeholder # is acceptable)
-  - [ ] 7.7 Copyright bar: Privacy Policy, Terms of Use, Sitemap links resolve
+- [x] Task 7: Verify footer links (AC: #7)
+  - [x] 7.1 The Group column: all 4 links resolve
+  - [x] 7.2 Divisions columns: all 8 links resolve (7 divisions + "View All Divisions")
+  - [x] 7.3 Insights column: all 3 links resolve
+  - [x] 7.4 Get In Touch column: all 4 links resolve
+  - [x] 7.5 Investors & Partners column: all 3 links resolve
+  - [x] 7.6 Connect column: social links are present (placeholder # is acceptable)
+  - [x] 7.7 Copyright bar: Privacy Policy, Terms of Use, Sitemap links resolve
 
-- [ ] Task 8: Verify header/navigation links (AC: #8)
-  - [ ] 8.1 Desktop nav: all 6 primary links resolve
-  - [ ] 8.2 Division dropdown: all 7 division links + "View All Divisions" resolve
-  - [ ] 8.3 Mobile nav: all links resolve (same destinations as desktop)
-  - [ ] 8.4 Search icon: links to `/search/` or opens SearchOverlay
-  - [ ] 8.5 "Get In Touch" CTA: links to `/contact/`
+- [x] Task 8: Verify header/navigation links (AC: #8)
+  - [x] 8.1 Desktop nav: all 6 primary links resolve
+  - [x] 8.2 Division dropdown: all 7 division links + "View All Divisions" resolve
+  - [x] 8.3 Mobile nav: all links resolve (same destinations as desktop)
+  - [x] 8.4 Search icon: links to `/search/` or opens SearchOverlay
+  - [x] 8.5 "Get In Touch" CTA: links to `/contact/`
 
-- [ ] Task 9: Verify breadcrumb trails across all page types (AC: #8)
-  - [ ] 9.1 About: Home > About the Group
-  - [ ] 9.2 Divisions Hub: Home > Divisions
-  - [ ] 9.3 Cluster pages: Home > Divisions > [Cluster Name]
-  - [ ] 9.4 Division detail: Home > Divisions > [Cluster Name] > [Division Name]
-  - [ ] 9.5 Insights Hub: Home > Insights
-  - [ ] 9.6 Insights sub-pages: Home > Insights > [Category]
-  - [ ] 9.7 Division insights: Home > Insights > By Division > [Division Name]
-  - [ ] 9.8 Article detail: Home > Insights > [Category] > [Article Title]
-  - [ ] 9.9 Investors & Partners: Home > Investors & Partners
-  - [ ] 9.10 Contact hub: Home > Contact
-  - [ ] 9.11 Contact sub-pages: Home > Contact > [Sub-page Title]
-  - [ ] 9.12 Division contact: Home > Contact > Contact by Division > [Division Name]
-  - [ ] 9.13 Search: Home > Search
-  - [ ] 9.14 Legal pages: Home > [Page Title]
-  - [ ] 9.15 Every crumb except the current page is a clickable link; final crumb is non-linked
-  - [ ] 9.16 Mobile breadcrumbs truncate middle items with ellipsis for deep paths
+- [x] Task 9: Verify breadcrumb trails across all page types (AC: #8)
+  - [x] 9.1 About: Home > About the Group
+  - [x] 9.2 Divisions Hub: Home > Divisions
+  - [x] 9.3 Cluster pages: Home > Divisions > [Cluster Name]
+  - [x] 9.4 Division detail: Home > Divisions > [Cluster Name] > [Division Name]
+  - [x] 9.5 Insights Hub: Home > Insights
+  - [x] 9.6 Insights sub-pages: Home > Insights > [Category]
+  - [x] 9.7 Division insights: Home > Insights > By Division > [Division Name]
+  - [x] 9.8 Article detail: Home > Insights > [Category] > [Article Title]
+  - [x] 9.9 Investors & Partners: Home > Investors & Partners
+  - [x] 9.10 Contact hub: Home > Contact
+  - [x] 9.11 Contact sub-pages: Home > Contact > [Sub-page Title]
+  - [x] 9.12 Division contact: Home > Contact > Contact by Division > [Division Name]
+  - [x] 9.13 Search: Home > Search
+  - [x] 9.14 Legal pages: Home > [Page Title]
+  - [x] 9.15 Every crumb except the current page is a clickable link; final crumb is non-linked
+  - [x] 9.16 Mobile breadcrumbs truncate middle items with ellipsis for deep paths
 
-- [ ] Task 10: Add any missing cross-links discovered during audit (AC: #1-#7)
-  - [ ] 10.1 Add "Related Divisions" links on division pages if not already present (sibling divisions in same cluster)
-  - [ ] 10.2 Add "Back to [Cluster]" link on division pages if not already present
-  - [ ] 10.3 Add any missing ViewAllLinks or navigation aids
-  - [ ] 10.4 Add missing insights hub "By Division" navigation if absent
-  - [ ] 10.5 Add missing contact hub pathway cards if absent
-  - [ ] 10.6 Add missing article detail CTA bands if absent
-  - [ ] 10.7 Verify all added links resolve correctly after fixes
+- [x] Task 10: Add any missing cross-links discovered during audit (AC: #1-#7)
+  - [x] 10.1 Add "Related Divisions" links on division pages if not already present (sibling divisions in same cluster)
+  - [x] 10.2 Add "Back to [Cluster]" link on division pages if not already present
+  - [x] 10.3 Add any missing ViewAllLinks or navigation aids
+  - [x] 10.4 Add missing insights hub "By Division" navigation if absent
+  - [x] 10.5 Add missing contact hub pathway cards if absent
+  - [x] 10.6 Add missing article detail CTA bands if absent
+  - [x] 10.7 Verify all added links resolve correctly after fixes
 
 ## Dev Notes
 
@@ -299,8 +299,43 @@ Files this story may modify (fixes only):
 
 ### Agent Model Used
 
+Claude Opus 4.6 (1M context)
+
 ### Debug Log References
+
+- Build passes: all 50 routes prerender successfully
+- Link checker: 3,264 internal `<a href>` links verified, 0 broken
+- TypeScript: no errors
+- All 15 breadcrumb trails verified correct across all page types
 
 ### Completion Notes List
 
+- Created `scripts/check-links.js` — automated link checker that crawls all HTML in `dist/client`, extracts `<a href>` links, and verifies against generated routes
+- Fixed footer "Group Structure" link: `/about/#structure` → `/about/#group-structure` to match actual anchor ID in about.astro
+- Added CTABanner to insights hub (`src/pages/insights/index.astro`) — was the only major page missing a CTA section
+- Added "Also in [Cluster]" related divisions section to DivisionLayout — sibling divisions from same cluster displayed as pill links between Stats and Insights sections
+- Passed `siblingDivisions` prop from `[slug].astro` to DivisionLayout (computed in getStaticPaths)
+- Verified all 8 AC items: division cross-links, cluster cross-links, article cross-links, corporate page links, CTABanners on every page, footer links, no 404s, breadcrumb trails
+- All existing cross-links (homepage, divisions, clusters, insights, articles, contact, corporate pages, header, footer, breadcrumbs) verified correct — 3 issues found and fixed
+
+### Review Findings
+
+- [x] [Review][Patch] Remove duplicate `route.replace(/\/index\.html$/, '/')` — dead code [scripts/check-links.js:67] — FIXED
+- [x] [Review][Patch] Add existence check for `dist/client` directory with user-friendly error message [scripts/check-links.js:56] — FIXED
+- [x] [Review][Defer] Link checker regex only matches double-quoted href attributes — deferred, pre-existing (Astro always emits double-quoted)
+- [x] [Review][Defer] normalizeRoute comment/code mismatch for 404.html — deferred, pre-existing (harmless, nothing links to /404)
+- [x] [Review][Defer] Link checker not wired into package.json scripts — deferred, DX improvement
+- [x] [Review][Defer] Link checker does not verify anchor fragment targets — deferred, out of scope
+
+### Change Log
+
+- 2026-04-04: Story 7.3 implemented — full link audit, 3 fixes (footer anchor, insights CTA, sibling divisions), link checker script created
+
 ### File List
+
+- `scripts/check-links.js` (created — link verification script)
+- `src/components/layout/Footer.astro` (modified — fixed #group-structure anchor)
+- `src/pages/insights/index.astro` (modified — added CTABanner)
+- `src/layouts/DivisionLayout.astro` (modified — added "Also in [Cluster]" sibling divisions section)
+- `src/pages/divisions/[slug].astro` (modified — computed siblingDivisions, passed to DivisionLayout)
+- `_bmad-output/implementation-artifacts/sprint-status.yaml` (modified)

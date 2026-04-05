@@ -37,6 +37,7 @@ interface DivisionProps {
   articles: { id: string; data: Article }[];
   isArticleFallback: boolean;
   accentColor: 'amber' | 'copper' | 'slate';
+  siblingDivisions: { id: string; data: Division }[];
 }
 
 type Props = ClusterProps | DivisionProps;
@@ -94,6 +95,10 @@ export async function getStaticPaths() {
           .slice(0, 3)
       : divisionArticles;
 
+    const siblingDivisions = divisions
+      .filter((d) => d.data.clusterSlug === division.data.clusterSlug && d.data.slug !== division.data.slug)
+      .sort((a, b) => a.data.sortOrder - b.data.sortOrder);
+
     return {
       params: { slug: division.data.slug },
       props: {
@@ -103,6 +108,7 @@ export async function getStaticPaths() {
         articles: resolvedArticles,
         isArticleFallback,
         accentColor: (parentCluster!.data.accentColor ?? 'amber') as 'amber' | 'copper' | 'slate',
+        siblingDivisions,
       },
     };
   });
@@ -304,5 +310,6 @@ const divisionSeo = !isCluster
     isArticleFallback={divisionData!.isArticleFallback}
     seo={divisionSeo!}
     accentColor={divisionData!.accentColor}
+    siblingDivisions={divisionData!.siblingDivisions}
   />
 )}

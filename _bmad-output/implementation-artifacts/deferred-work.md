@@ -179,3 +179,10 @@ All 4 deferred items were resolved during review:
 - Sitemap renders all articles unbounded — AC requires "all public pages" so correct for now, but page will grow linearly with content. Revisit if article count exceeds ~50.
 - `.prose-legal` CSS block (~30 lines) duplicated in privacy-policy.astro and terms.astro — extract to shared stylesheet if more legal pages are added.
 - SearchOverlay focus trap recalculates on every `results` change — brief Tab-escape window during rapid typing. Pre-existing, not introduced by Story 7.2.
+
+## Deferred from: code review of 7-3-internal-cross-linking-discovery-pathways (2026-04-05)
+
+- Link checker regex only matches double-quoted href attributes — Astro always emits double-quoted, but single-quoted hrefs from third-party components would be silently skipped
+- normalizeRoute comment says `/404.html -> /404` but code produces `/404/` — harmless, nothing links to /404
+- Link checker not wired into package.json scripts — add `"check-links": "node scripts/check-links.js"` for DX
+- Link checker does not verify anchor fragment targets — `#hash` stripped before resolution, anchor mismatches go undetected

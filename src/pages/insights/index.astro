@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import PageLayout from '@/layouts/PageLayout.astro';
 import BreadcrumbNav from '@/components/layout/BreadcrumbNav.astro';
 import InsightsListing from '@/components/insights/InsightsListing.astro';
+import CTABanner from '@/components/shared/CTABanner.astro';
 import {
   generateMetadata,
   generateBreadcrumbJsonLd,
@@ -61,5 +62,13 @@ const seo = {
     showFeatured={true}
     showFilterTabs={true}
     currentPath="/insights/"
+  />
+
+  <CTABanner
+    heading="Have a question or opportunity?"
+    body="Get in touch with Global Resources Citadel to discuss partnerships, inquiries, or collaboration."
+    primaryCta={{ label: 'Contact Us', href: '/contact/' }}
+    secondaryCta={{ label: 'Explore Divisions', href: '/divisions/' }}
+    variant="dark"
   />
 </PageLayout>

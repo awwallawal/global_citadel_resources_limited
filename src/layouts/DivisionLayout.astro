@@ -30,9 +30,10 @@ interface Props {
   isArticleFallback: boolean;
   seo: SeoMetadata;
   accentColor: 'amber' | 'copper' | 'slate';
+  siblingDivisions: { id: string; data: Division }[];
 }
 
-const { division, cluster, articles, isArticleFallback, seo, accentColor } = Astro.props;
+const { division, cluster, articles, isArticleFallback, seo, accentColor, siblingDivisions } = Astro.props;
 
 // --- Breadcrumbs ---
 const breadcrumbs: BreadcrumbItem[] = [
@@ -151,6 +152,27 @@ const streamLabels = STREAM_LABELS;
             </p>
           </blockquote>
         )}
+      </div>
+    </SectionWrapper>
+  )}
+
+  {/* ── Related Divisions (sibling divisions in same cluster) ── */}
+  {siblingDivisions.length > 0 && (
+    <SectionWrapper variant="light">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="text-overline font-semibold uppercase tracking-widest text-neutral-500">
+          Also in {cluster.name}
+        </p>
+        <div class="mt-4 flex flex-wrap items-center justify-center gap-3">
+          {siblingDivisions.map((div) => (
+            <a
+              href={`/divisions/${div.data.slug}/`}
+              class="inline-flex min-h-11 items-center rounded-full border border-neutral-200 bg-white px-5 py-2 text-sm font-medium text-neutral-700 motion-safe:transition-colors motion-safe:duration-150 hover:border-primary-200 hover:bg-primary-50 hover:text-primary-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+            >
+              {div.data.name}
+            </a>
+          ))}
+        </div>
       </div>
     </SectionWrapper>
   )}
