@@ -70,7 +70,7 @@ export default function MobileNav({ divisions, clusters, currentPath, headerVari
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger
         className={cn(
-          'flex md:hidden items-center justify-center min-h-11 min-w-11 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2',
+          'flex md:hidden items-center justify-center min-h-11 min-w-11 rounded-lg motion-safe:transition-colors motion-safe:duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2',
           headerVariant === 'transparent'
             ? 'text-white hover:text-white/80'
             : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100',

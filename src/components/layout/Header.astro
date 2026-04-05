@@ -34,10 +34,13 @@ const clusters = allClusters
   }));
 ---
 
-<header class:list={[
-  'top-0 z-50',
-  headerVariant === 'transparent' ? 'fixed inset-x-0' : 'sticky',
-]}>
+<header
+  class:list={[
+    'top-0 z-50',
+    headerVariant === 'transparent' ? 'fixed inset-x-0' : 'sticky',
+  ]}
+  data-variant={headerVariant}
+>
   <DesktopNav
     client:load
     divisions={divisions}
@@ -47,12 +50,16 @@ const clusters = allClusters
   />
 
   <!-- Mobile header bar: [Logo] [Search] [Hamburger] -->
-  <div class:list={[
-    'flex md:hidden items-center justify-between px-4 h-16 backdrop-blur-lg',
-    headerVariant === 'transparent'
-      ? 'bg-transparent'
-      : 'bg-white/95 border-b border-neutral-300',
-  ]}>
+  <div
+    data-mobile-bar
+    class:list={[
+      'flex md:hidden items-center justify-between px-4 h-16 backdrop-blur-lg',
+      'motion-safe:transition-[background-color,border-color] motion-safe:duration-300',
+      headerVariant === 'transparent'
+        ? 'bg-transparent border-b border-transparent'
+        : 'bg-white/95 border-b border-neutral-300',
+    ]}
+  >
     <a
       href="/"
       class="shrink-0 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
@@ -71,8 +78,9 @@ const clusters = allClusters
       <!-- Standalone mobile search icon -->
       <a
         href="/search/"
+        data-mobile-search
         class:list={[
-          'min-h-11 min-w-11 inline-flex items-center justify-center rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2',
+          'min-h-11 min-w-11 inline-flex items-center justify-center rounded-lg motion-safe:transition-colors motion-safe:duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2',
           headerVariant === 'transparent'
             ? 'text-white hover:text-white/80'
             : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100',
@@ -98,3 +106,44 @@ const clusters = allClusters
 
   <SearchOverlay client:idle index={searchIndex} />
 </header>
+
+{/* Scroll-based transparent → solid transition for mobile bar.
+    CSS uses is:global because selectors must reach into the React MobileNav island.
+    Both style and script self-guard via [data-variant="transparent"] — no-op on solid pages. */}
+<style is:global>
+  header[data-variant="transparent"][data-scrolled] [data-mobile-bar] {
+    background-color: color-mix(in srgb, white 95%, transparent);
+    border-bottom-color: var(--color-neutral-300);
+  }
+  header[data-variant="transparent"][data-scrolled] [data-mobile-search] {
+    color: var(--color-neutral-600);
+  }
+  header[data-variant="transparent"][data-scrolled] [data-mobile-search]:hover {
+    color: var(--color-neutral-900);
+  }
+  header[data-variant="transparent"][data-scrolled] [aria-label="Open navigation menu"] {
+    color: var(--color-neutral-600);
+  }
+  header[data-variant="transparent"][data-scrolled] [aria-label="Open navigation menu"]:hover {
+    color: var(--color-neutral-900);
+  }
+</style>
+
+<script>
+  const header = document.querySelector('header[data-variant="transparent"]');
+  if (header) {
+    let rafId = 0;
+    function onScroll() {
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        if (window.scrollY > 50) {
+          header!.setAttribute('data-scrolled', '');
+        } else {
+          header!.removeAttribute('data-scrolled');
+        }
+      });
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+</script>

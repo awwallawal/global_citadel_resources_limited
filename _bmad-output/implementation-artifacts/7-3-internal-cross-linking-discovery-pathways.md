@@ -330,6 +330,7 @@ Claude Opus 4.6 (1M context)
 ### Change Log
 
 - 2026-04-04: Story 7.3 implemented — full link audit, 3 fixes (footer anchor, insights CTA, sibling divisions), link checker script created
+- 2026-04-05: Post-review bugfix — mobile header transparent→solid scroll transition. On the homepage (transparent variant), mobile search icon and hamburger were invisible against white-background sections because the mobile bar lacked scroll-based color switching (desktop nav had it via React state, mobile bar was static Astro markup). Added `data-scrolled` attribute toggle via inline `<script>` (50px threshold, rAF + passive listener), CSS overrides via `<style is:global>` using Tailwind v4 CSS custom properties for token consistency, and `motion-safe:transition` classes on mobile bar/icons for smooth 300ms animation. Self-guarding on solid-variant pages (no listener attached). Also added `motion-safe:transition-colors` to MobileNav.tsx hamburger button.
 
 ### File List
 
@@ -338,4 +339,6 @@ Claude Opus 4.6 (1M context)
 - `src/pages/insights/index.astro` (modified — added CTABanner)
 - `src/layouts/DivisionLayout.astro` (modified — added "Also in [Cluster]" sibling divisions section)
 - `src/pages/divisions/[slug].astro` (modified — computed siblingDivisions, passed to DivisionLayout)
+- `src/components/layout/Header.astro` (modified — mobile bar scroll-based transparent→solid transition)
+- `src/components/navigation/MobileNav.tsx` (modified — added transition-colors to hamburger button)
 - `_bmad-output/implementation-artifacts/sprint-status.yaml` (modified)
