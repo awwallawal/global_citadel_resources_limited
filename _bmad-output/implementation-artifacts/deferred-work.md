@@ -186,3 +186,11 @@ All 4 deferred items were resolved during review:
 - normalizeRoute comment says `/404.html -> /404` but code produces `/404/` — harmless, nothing links to /404
 - Link checker not wired into package.json scripts — add `"check-links": "node scripts/check-links.js"` for DX
 - Link checker does not verify anchor fragment targets — `#hash` stripped before resolution, anchor mismatches go undetected
+
+## Deferred from: code review of 8-1-unit-component-testing (2026-04-05)
+
+- ClusterAccentColor type manually hardcoded in `src/lib/schemas.ts` — should derive from schema enum instead of duplicating literal union
+- Empty strings pass schema validation for all `z.string()` fields (capabilities, stats labels, etc.) — pre-existing schema design choice from Story 1.3
+- formatDate locale assumption — tests assume `en-GB` locale available; modern Node ships full ICU but some CI environments may strip it
+- SearchOverlay focus trap not tested — jsdom/Testing Library limitations make focus trap testing unreliable; better suited for E2E testing (Story 8.2)
+- SearchOverlay body scroll lock not tested — implementation detail better verified in E2E (Story 8.2)

@@ -135,6 +135,11 @@ describe('divisionSchema', () => {
     ).toThrow();
   });
 
+  it('rejects more than 4 stats', () => {
+    const stats = Array.from({ length: 5 }, (_, i) => ({ label: `Stat ${i}`, value: i }));
+    expect(() => divisionSchema.parse({ ...validDivision, stats })).toThrow();
+  });
+
   it('rejects invalid contactEmail', () => {
     expect(() =>
       divisionSchema.parse({ ...validDivision, contactEmail: 'not-an-email' }),
@@ -221,6 +226,15 @@ describe('articleSchema', () => {
     expect(() =>
       articleSchema.parse({ ...validArticle, publishedAt: '15-03-2026' }),
     ).toThrow();
+  });
+
+  it('does not reject rolled-over calendar dates like Feb 30 (known Date.parse limitation)', () => {
+    // Date.parse('2026-02-30') rolls over to March 2 in most JS engines.
+    // The schema's .refine() check uses !isNaN(Date.parse(d)) which passes.
+    // Documenting the gap — fix requires a stricter calendar validator.
+    expect(() =>
+      articleSchema.parse({ ...validArticle, publishedAt: '2026-02-30' }),
+    ).not.toThrow();
   });
 
   it('validates divisionSlug against enum', () => {
@@ -328,6 +342,10 @@ describe('faqSchema', () => {
     expect(() => faqSchema.parse({ ...validFaq, answer: 'Too short.' })).toThrow();
   });
 
+  it('rejects answer over 1000 characters', () => {
+    expect(() => faqSchema.parse({ ...validFaq, answer: 'x'.repeat(1001) })).toThrow();
+  });
+
   it('rejects invalid category', () => {
     expect(() => faqSchema.parse({ ...validFaq, category: 'invalid' })).toThrow();
   });
@@ -370,6 +388,13 @@ describe('pageSchema', () => {
     expect(() =>
       pageSchema.parse({ ...validPage, lastUpdated: '28-03-2026' }),
     ).toThrow();
+  });
+
+  it('does not reject rolled-over calendar dates like Feb 30 (known Date.parse limitation)', () => {
+    // Same limitation as articleSchema.publishedAt — Date.parse rolls over invalid days.
+    expect(() =>
+      pageSchema.parse({ ...validPage, lastUpdated: '2026-02-30' }),
+    ).not.toThrow();
   });
 
   it('accepts optional about-page extension fields', () => {

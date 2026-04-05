@@ -453,4 +453,24 @@ Claude Opus 4.6 (1M context)
 - `npm.cmd test` passed with `167/167` tests.
 - `npm.cmd run build` passed.
 
+### Review Findings (2026-04-05, second pass)
+
+Layers: Blind Hunter (completed), Edge Case Hunter (completed), Acceptance Auditor (failed — rate limit).
+Tests verified: 174/174 passing (7 new tests added during patch).
+
+- [x] [Review][Patch] Mock data structurally incomplete — FIXED: added `overview`, `capabilities`, `stats`, `seoTitle`, `seoDescription` to mock divisions; `tagline`, `overview`, `seoTitle`, `seoDescription` to mock clusters.
+- [x] [Review][Patch] global.fetch mock leaks across test files — FIXED: save original fetch, restore in `afterAll`.
+- [x] [Review][Patch] Fragile `.closest('form')!` non-null assertion — FIXED: extracted `getForm()` helper with descriptive error message.
+- [x] [Review][Patch] Stats `.max(4)` constraint untested — FIXED: added upper bound test.
+- [x] [Review][Patch] FAQ answer `.max(1000)` constraint untested — FIXED: added upper bound test.
+- [x] [Review][Patch] Date `.refine()` calendar validation never exercised — FIXED: added tests documenting known `Date.parse` rollover limitation (Feb 30 → March 2). Schema gap is pre-existing.
+- [x] [Review][Patch] Network error path untested — FIXED: added `fetch()` rejection test exercising catch branch.
+- [x] [Review][Patch] Honeypot filled silent abort untested — FIXED: added test verifying fetch is NOT called when honeypot is filled.
+- [x] [Review][Patch] SearchOverlay backdrop click may test wrong target — FIXED: added complementary test confirming clicks inside content panel do NOT close overlay.
+- [x] [Review][Patch] Discriminated validation test misleading assertion — FIXED: uses `safeParse` and explicitly asserts `subject` is the missing field.
+- [x] [Review][Defer] ClusterAccentColor type manually hardcoded [src/lib/schemas.ts] — deferred, pre-existing. Should derive from schema enum.
+- [x] [Review][Defer] Empty strings pass schema validation for string fields — deferred, pre-existing schema design choice.
+- [x] [Review][Defer] formatDate locale assumption — deferred, environment-dependent. Modern Node ships full ICU.
+- [x] [Review][Defer] SearchOverlay focus trap not tested — deferred, better suited for E2E (Story 8.2).
+- [x] [Review][Defer] SearchOverlay body scroll lock not tested — deferred, better suited for E2E (Story 8.2).
 

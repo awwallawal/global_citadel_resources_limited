@@ -154,7 +154,13 @@ describe('discriminated field validation', () => {
   it('selects generalFormSchema for general-corporate', () => {
     const schema = fieldsSchemaMap['general-corporate'];
     expect(() => schema.parse(validGeneral)).not.toThrow();
-    expect(() => schema.parse(validDivision)).toThrow();
+    // Rejects division data because it lacks 'subject' (required in general schema)
+    const result = schema.safeParse(validDivision);
+    expect(result.success).toBe(false);
+    if (!result.success) {
+      const fields = result.error.issues.map((i) => i.path[0]);
+      expect(fields).toContain('subject');
+    }
   });
 
   it('selects divisionFormSchema for division-business', () => {

@@ -2,13 +2,26 @@ import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import InquiryForm from '../../src/components/contact/InquiryForm';
 
-// Mock fetch globally
+// Mock fetch globally — save original for cleanup
+const originalFetch = global.fetch;
 const mockFetch = vi.fn();
 global.fetch = mockFetch;
 
 beforeEach(() => {
   mockFetch.mockReset();
 });
+
+afterAll(() => {
+  global.fetch = originalFetch;
+});
+
+/** Get the form element containing the submit button, with a clear error on failure. */
+function getForm(): HTMLFormElement {
+  const btn = screen.getByRole('button', { name: /submit/i });
+  const form = btn.closest('form');
+  if (!form) throw new Error('Submit button is not inside a <form> element');
+  return form;
+}
 
 /** Fill a form field quickly via fireEvent.change (avoids character-by-character typing). */
 function fillField(element: HTMLElement, value: string) {
@@ -94,7 +107,7 @@ describe('InquiryForm — division variant', () => {
     render(<InquiryForm {...divisionProps} />);
     fillDivisionForm();
 
-    fireEvent.submit(screen.getByRole('button', { name: /submit/i }).closest('form')!);
+    fireEvent.submit(getForm());
 
     await waitFor(() => {
       expect(screen.getByText(/sending/i)).toBeInTheDocument();
@@ -114,7 +127,7 @@ describe('InquiryForm — division variant', () => {
     render(<InquiryForm {...divisionProps} />);
     fillDivisionForm();
 
-    fireEvent.submit(screen.getByRole('button', { name: /submit/i }).closest('form')!);
+    fireEvent.submit(getForm());
 
     await waitFor(() => {
       expect(screen.getByText(/enquiry has been received/i)).toBeInTheDocument();
@@ -137,7 +150,7 @@ describe('InquiryForm — division variant', () => {
     render(<InquiryForm {...divisionProps} />);
     fillDivisionForm();
 
-    fireEvent.submit(screen.getByRole('button', { name: /submit/i }).closest('form')!);
+    fireEvent.submit(getForm());
 
     await waitFor(() => {
       expect(screen.getByRole('alert')).toBeInTheDocument();
@@ -153,6 +166,37 @@ describe('InquiryForm — division variant', () => {
     const honeypot = screen.getByLabelText(/website/i);
     expect(honeypot).toBeInTheDocument();
     expect(honeypot.closest('div')).toHaveClass('sr-only');
+  });
+
+  it('silently aborts submission when honeypot is filled', async () => {
+    render(<InquiryForm {...divisionProps} />);
+    fillDivisionForm();
+
+    const honeypot = screen.getByLabelText(/website/i);
+    fireEvent.change(honeypot, { target: { value: 'http://spam.bot' } });
+
+    fireEvent.submit(getForm());
+
+    // Wait a tick then verify fetch was never called
+    await waitFor(() => {
+      expect(mockFetch).not.toHaveBeenCalled();
+    });
+  });
+
+  it('shows error state on network failure', async () => {
+    mockFetch.mockRejectedValue(new TypeError('Failed to fetch'));
+
+    render(<InquiryForm {...divisionProps} />);
+    fillDivisionForm();
+
+    fireEvent.submit(getForm());
+
+    await waitFor(() => {
+      expect(screen.getByRole('alert')).toBeInTheDocument();
+    });
+
+    // Form data is preserved after network error
+    expect(screen.getByLabelText(/full name/i)).toHaveValue('John Doe');
   });
 });
 
@@ -221,7 +265,7 @@ describe('InquiryForm — division pre-selection', () => {
     );
 
     fillDivisionForm();
-    fireEvent.submit(screen.getByRole('button', { name: /submit/i }).closest('form')!);
+    fireEvent.submit(getForm());
 
     await waitFor(() => {
       expect(mockFetch).toHaveBeenCalledOnce();

@@ -129,12 +129,22 @@ describe('SearchOverlay', () => {
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
   });
 
-  it('closes when clicking backdrop', async () => {
+  it('closes when clicking backdrop (outer dialog area)', async () => {
     const user = userEvent.setup();
     renderAndOpen();
 
+    // Click the outer dialog overlay (backdrop) — component uses e.target === e.currentTarget
     await user.click(screen.getByRole('dialog'));
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  });
+
+  it('does not close when clicking inside the content panel', async () => {
+    const user = userEvent.setup();
+    renderAndOpen();
+
+    // Click inside the search input area (a child of dialog, not the backdrop)
+    await user.click(screen.getByPlaceholderText(/search/i));
+    expect(screen.getByRole('dialog')).toBeInTheDocument();
   });
 
   it('shows "View all results" link when query is active', async () => {
