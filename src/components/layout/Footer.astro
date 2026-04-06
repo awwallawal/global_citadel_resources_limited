@@ -4,7 +4,7 @@
  * Zero client-side JS. Mobile accordion uses native <details>/<summary>.
  */
 import { Image } from 'astro:assets';
-import emblemLogo from '@/assets/brand/grcl-emblem.png';
+import legacyLogo from '@/assets/brand/logo-legacy.png';
 
 interface FooterLink {
   label: string;
@@ -24,6 +24,7 @@ const columns: FooterColumn[] = [
       { label: 'About the Group', href: '/about/' },
       { label: 'Leadership', href: '/about/#leadership' },
       { label: 'Group Structure', href: '/about/#group-structure' },
+      { label: 'Community Impact', href: '/community-impact/' },
       { label: 'Credentials', href: '/about/#credentials' },
     ],
   },
@@ -106,18 +107,18 @@ const headingClasses =
         aria-label="Global Resources Citadel - Home"
       >
         <Image
-          src={emblemLogo}
+          src={legacyLogo}
           alt="Global Resources Citadel"
           width={56}
-          height={56}
+          height={62}
           class="h-14 w-auto"
           loading="lazy"
         />
       </a>
       <p class="max-w-xl text-body-sm leading-relaxed text-neutral-400">
-        Global Resources Citadel Limited is a diversified Nigerian conglomerate building
+        Global Resources Citadel Limited is a pan-African conglomerate headquartered in Lagos, building
         integrated value chains across agriculture, trade, real estate, and energy.
-        Seven business divisions working together to strengthen Nigeria's economic foundations.
+        Seven business divisions working together to strengthen economic foundations across the continent.
       </p>
     </div>
 

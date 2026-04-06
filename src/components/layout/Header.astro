@@ -5,7 +5,7 @@ import DesktopNav from '@/components/navigation/DesktopNav';
 import MobileNav from '@/components/navigation/MobileNav';
 import SearchOverlay from '@/components/search/SearchOverlay';
 import { buildSearchIndex } from '@/lib/search';
-import emblemLogo from '@/assets/brand/grcl-emblem.png';
+import legacyLogo from '@/assets/brand/logo-legacy.png';
 
 interface Props {
   currentPath: string;
@@ -14,7 +14,7 @@ interface Props {
 
 const { currentPath, headerVariant = 'solid' } = Astro.props;
 
-const optimizedEmblem = await getImage({ src: emblemLogo, width: 80, height: 80, format: 'webp' });
+const optimizedLogo = await getImage({ src: legacyLogo, width: 80, height: 88, format: 'webp' });
 const searchIndex = await buildSearchIndex();
 const allDivisions = await getCollection('divisions');
 const allClusters = await getCollection('clusters');
@@ -48,7 +48,7 @@ const clusters = allClusters
     clusters={clusters}
     currentPath={currentPath}
     headerVariant={headerVariant}
-    logoSrc={optimizedEmblem.src}
+    logoSrc={optimizedLogo.src}
   />
 
   <!-- Mobile header bar: [Logo] [Search] [Hamburger] -->
@@ -68,10 +68,10 @@ const clusters = allClusters
       aria-label="Global Resources Citadel - Home"
     >
       <Image
-        src={emblemLogo}
+        src={legacyLogo}
         alt="Global Resources Citadel"
         width={40}
-        height={40}
+        height={44}
         class="h-10 w-auto"
       />
     </a>

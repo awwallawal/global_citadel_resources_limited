@@ -41,7 +41,7 @@ export function generateOrganizationJsonLd(): Record<string, unknown> {
     url: SITE_URL,
     logo: `${SITE_URL}/favicon.svg`,
     description:
-      'A Nigerian conglomerate operating across agriculture, trade, real estate, and energy verticals.',
+      'A pan-African conglomerate headquartered in Lagos, Nigeria, operating across agriculture, trade, real estate, and energy verticals with operations spanning West Africa.',
   };
 }
 

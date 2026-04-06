@@ -194,3 +194,17 @@ All 4 deferred items were resolved during review:
 - formatDate locale assumption — tests assume `en-GB` locale available; modern Node ships full ICU but some CI environments may strip it
 - SearchOverlay focus trap not tested — jsdom/Testing Library limitations make focus trap testing unreliable; better suited for E2E testing (Story 8.2)
 - SearchOverlay body scroll lock not tested — implementation detail better verified in E2E (Story 8.2)
+
+## Resolved from: code review of 9-1-legacy-logo-swap (2026-04-06)
+
+All 3 deferred items resolved during review:
+- ~~PDF devDependencies in diff~~ — RESOLVED: reverted package.json to HEAD; deps belong to story 9-5
+- ~~Stale `public/brand/grcl-emblem.png` (1.87 MB)~~ — RESOLVED: deleted from `public/brand/`; `src/assets/brand/` copy retained
+- ~~No `<img>` onError handler in DesktopNav~~ — RESOLVED: added onError handler that hides broken image
+
+## Resolved from: code review of 9-2-pan-african-copy-rewrite (2026-04-07)
+
+All 3 items resolved during review:
+- ~~Missing paragraph terminator in built-environment-energy.yaml ¶2~~ — verified false positive: sentence ends with period
+- ~~About.mdx SEO title 82 chars~~ — RESOLVED: trimmed to 57 chars
+- ~~Only 6 of 7 divisions in index SEO description~~ — RESOLVED: all 7 divisions now listed (157 chars)

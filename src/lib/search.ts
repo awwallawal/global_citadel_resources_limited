@@ -70,7 +70,7 @@ export async function buildSearchIndex(): Promise<SearchItem[]> {
       title: 'Home',
       type: 'page',
       section: 'Home',
-      summary: 'Global Resources Citadel — a Nigerian conglomerate across agriculture, trade, real estate, and energy.',
+      summary: 'Global Resources Citadel — a pan-African conglomerate across agriculture, trade, real estate, and energy.',
       url: '/',
     },
     {

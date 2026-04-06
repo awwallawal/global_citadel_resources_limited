@@ -75,6 +75,11 @@ This document provides the complete epic and story breakdown for UK_Web_Design, 
 - FR51: Visitors can use the platform through accessible navigation and interaction patterns.
 - FR52: The platform can support reusable content and interface structures across company and division contexts.
 - FR53: The platform can support future integrations and structured content extensions without invalidating core user journeys.
+- FR54: The platform presents the company's heritage brand mark (legacy logo) consistently across header, footer, favicon, and all brand touchpoints.
+- FR55: The platform positions the company as a pan-African group headquartered in Nigeria, using credible trajectory language across all copy touchpoints.
+- FR56: Visitors can access a community impact page that presents the company's social responsibility initiative (SRADA) as a credibility signal.
+- FR57: The community impact initiative is discoverable through primary navigation, homepage, about page, and contact pathways without disrupting the existing 7-division information architecture.
+- FR58: The platform uses African-context photography across all major pages to reinforce authentic visual positioning.
 
 ### NonFunctional Requirements
 
@@ -291,6 +296,12 @@ The platform is tested, accessible, performant, and deployed to production. Ligh
 **FRs covered:** FR50, FR51
 **NFRs covered:** NFR1-27
 **ARs addressed:** AR9, AR10
+
+### Epic 9: Platform Evolution & Brand Maturation
+The platform evolves from its MVP foundation to reflect the company's heritage identity, pan-African ambition, community impact commitment, and visual maturity. The legacy logo replaces the generated emblem across all touchpoints. Copy across all pages is rewritten to frame the company as a pan-African group headquartered in Nigeria. A new Community Impact page presents SRADA as a credibility multiplier. African-context photography replaces placeholder imagery. Professional print collateral (business cards, letterhead) reflects the brand system.
+**Reference:** `_bmad-output/planning-artifacts/platform-evolution-spec-v1.md`
+**FRs covered:** FR54, FR55, FR56, FR57, FR58
+**NFRs addressed:** NFR1-5 (performance — images must meet budget), NFR10 (content governance — pan-African claims must be credible), NFR11-14 (scalability — community impact page uses existing patterns), NFR15-19 (accessibility — new page and sections require full a11y compliance)
 
 ## Epic 1: Platform Foundation & Design System
 
@@ -967,3 +978,147 @@ So that every change is validated before going live and the site stays stable.
 **And** the deployment is rollback-safe via Vercel's deployment history
 **And** robots.txt allows all public pages and disallows /api/ and search result pages
 **And** XML sitemap is generated for all public routes
+
+## Epic 9: Platform Evolution & Brand Maturation
+
+The platform evolves from its MVP foundation to reflect the company's heritage identity, pan-African ambition, community impact commitment, and visual maturity. All changes are specified in the evolution spec (`_bmad-output/planning-artifacts/platform-evolution-spec-v1.md`).
+
+**Sequencing:** Epic 8 (quality gate) should close before Epic 9 begins. After Epic 9 completes, re-run E2E tests and Lighthouse checks to verify no regressions.
+
+### Story 9.1: Legacy Logo Swap
+
+As a **visitor**,
+I want to see the company's heritage brand mark across the entire site,
+So that I perceive GRCL as an established business with history and continuity.
+
+**Reference:** Evolution spec Section 1
+
+**Acceptance Criteria:**
+
+**Given** the approved legacy logo PNG (`src/assets/brand/logo-legacy.png`)
+**When** the site is loaded
+**Then** the Header component displays `logo-legacy.png` instead of `grcl-emblem.png`, at 60-80px height on desktop and 40-48px on mobile
+**And** the Footer component displays `logo-legacy.png` at 56px height
+**And** the favicon uses `logo-legacy-favicon.png` (copy to `public/favicon.png`)
+**And** the DesktopNav fallback logo path references `logo-legacy.png`
+**And** old assets (`grcl-emblem.png`, `grcl-emblem-alt.png`) are retained in the repo but no longer imported
+**And** all logo references site-wide use the legacy asset consistently
+
+### Story 9.2: Pan-African Copy Rewrite
+
+As a **visitor**,
+I want the platform's language to reflect a pan-African group headquartered in Nigeria,
+So that I perceive GRCL as a company with continental ambition and scale.
+
+**Reference:** Evolution spec Sections 3.2–3.11, Appendix A
+
+**Acceptance Criteria:**
+
+**Given** the page-by-page copy change tables in the evolution spec
+**When** all content files are updated
+**Then** the homepage hero reads "Building Africa's Future From Nigeria's Strongest Foundations"
+**And** all 7 division YAML files have updated taglines, overviews, capabilities, and SEO metadata per spec Section 3.5
+**And** all 3 cluster YAML files have updated taglines, overviews, and SEO metadata per spec Section 3.6
+**And** the About page (`about.astro` + `about.mdx`) reflects pan-African positioning with Nigerian grounding per spec Section 3.3
+**And** the Investors & Partners page reflects pan-African investment opportunity framing per spec Section 3.7
+**And** the Footer brand statement is updated to "pan-African conglomerate headquartered in Lagos" per spec Section 3.9
+**And** the SEO module (`seo.ts`) Organization JSON-LD description is updated per spec Section 3.10
+**And** FAQ content is corrected (6 fixes including Abuja→Lagos HQ) and 2 new entries added per spec Section 3.11
+**And** the credibility stat "6 Nigerian States" is replaced with "Operations Across West Africa"
+**And** no legal pages (privacy, terms) are changed — jurisdiction remains Nigerian
+**And** all pan-African language uses trajectory framing ("extending across," "growing presence") — no unsubstantiated operational claims
+
+### Story 9.3: Community Impact Page & Site Integration (SRADA)
+
+As a **visitor**,
+I want to learn about GRCL's community impact and social responsibility work,
+So that I perceive GRCL as a socially responsible business that gives back to its communities.
+
+**Reference:** Evolution spec Section 2
+
+**Acceptance Criteria:**
+
+**Given** SRADA as a Community Impact initiative using the GRCL brand (no separate logo)
+**When** the community impact page is created
+**Then** a new page exists at `/community-impact/` with Hero, About SRADA, Impact Areas, and CTA sections
+**And** the page follows existing Astro patterns (PageLayout, SectionWrapper, SectionHeading, single H1)
+**And** the About page includes a new "Community Impact" anchor section after Group Structure, before Credentials
+**And** the Homepage includes a new "Community Impact" section between Credibility Stats and Insights
+**And** the desktop nav includes a "Community Impact" link after Insights, before Investors & Partners
+**And** the mobile nav includes "Community Impact" in the `NAV_LINKS_AFTER` array
+**And** the Footer "The Group" column includes a "Community Impact" link
+**And** the Contact hub includes a new SRADA/Community pathway card
+**And** the Investors & Partners page includes a Social Impact subsection
+**And** SRADA copy uses draft content from spec Section 2.5 — no "Coming Soon" text
+
+### Story 9.4: African-Context Image Sourcing & Integration
+
+As a **visitor**,
+I want to see authentic African-context photography throughout the site,
+So that the visual experience matches the company's identity and positioning.
+
+**Reference:** Evolution spec Section 4 (Sections 4.3–4.5 contain page-by-page requirements, search terms, naming convention, and attribution format)
+
+**Two-Phase Workflow:**
+
+**Phase A — Agent-Sourced Curation (automated + human approval gate):**
+
+An AI agent performs the sourcing work:
+1. Reads the image requirements table (spec Section 4.3) for every page/section slot
+2. Searches royalty-free platforms in priority order: Iwaria (iwaria.com) → Unsplash → Pexels → Nappy.co → Pixabay — using the search terms specified in spec Section 4.3
+3. Downloads 2–3 candidate images per slot into `src/assets/images/_candidates/{page-name}/`
+4. Names candidates with slot context: `{slot}-candidate-{n}.jpg` (e.g., `homepage-hero-candidate-1.jpg`)
+5. Generates a curation manifest (`src/assets/images/_candidates/MANIFEST.md`) mapping each candidate to its target slot, with: source URL, photographer, license, search terms used, and recommended pick
+6. Builds a draft `ATTRIBUTIONS.md` for the recommended picks
+
+**Human approval gate (~5 min):** Awwal reviews the candidates folder, confirms or swaps picks. Agent moves approved images to final locations per spec Section 4.4 naming convention, removes rejected candidates, and finalizes `ATTRIBUTIONS.md`.
+
+**Phase A Acceptance Criteria:**
+
+**Given** the image requirements table in spec Section 4.3
+**When** the sourcing agent completes its run
+**Then** `src/assets/images/_candidates/` contains 2–3 candidates per required slot
+**And** `src/assets/images/_candidates/MANIFEST.md` maps every candidate to its target page/section with source metadata
+**And** all sourced images come from verified royalty-free platforms (Unsplash License, Pexels License, Pixabay License, or equivalent)
+**And** no generic Western stock photography is included — all imagery shows African people, landscapes, agriculture, or infrastructure
+**And** after human approval, approved images are moved to final locations per spec Section 4.4 naming convention
+**And** `src/assets/images/ATTRIBUTIONS.md` tracks all approved images with format: `filename | source | photographer | license | URL`
+
+**Phase B — Dev Integration (standard dev story):**
+
+**Given** approved images in `src/assets/images/` (organized per spec Section 4.4)
+**When** images are integrated into pages
+**Then** each major page has appropriate African-context photography per spec Section 4.3
+**And** all images use Astro `<Image>` / `<Picture>` with WebP/AVIF conversion
+**And** hero images are under 150KB compressed, section images under 80KB
+**And** hero images use eager loading (above fold), all others use `loading="lazy"`
+**And** no generic Western stock photography is used — all imagery shows African context
+**And** homepage total page weight remains under 500KB after image additions
+
+### Story 9.5: Print Collateral — Business Cards & Letterhead
+
+As a **business stakeholder**,
+I want professional print collateral that reflects the platform's brand system,
+So that offline materials match the digital presence in quality and identity.
+
+**Reference:** Evolution spec Sections 5 and 6
+
+**Note:** This is a non-web deliverable. It produces self-contained HTML files for browser-to-PDF printing. It has no dependencies on other Epic 9 stories and can be developed in parallel.
+
+**Acceptance Criteria:**
+
+**Given** the business card specification in the evolution spec
+**When** the 3 business card concepts are created
+**Then** `business-card-concept-1.html` (Heritage Classic) exists in `_bmad-output/planning-artifacts/`
+**And** `business-card-concept-2.html` (Modern Executive) exists in `_bmad-output/planning-artifacts/`
+**And** `business-card-concept-3.html` (Pan-African Bold) exists in `_bmad-output/planning-artifacts/`
+**And** each renders front and back of a 90x55mm business card
+**And** each uses the legacy logo (embedded as base64), Poppins + Inter typography, and forest green + gold colour system
+**And** each has editable placeholder fields for name, title, division, and contact details
+**And** each includes `@media print` styles for Ctrl+P → PDF workflow
+
+**Given** the letterhead update specification
+**When** the letterhead is updated
+**Then** `letterhead-grcl-v3.html` exists with the legacy logo replacing the ornate emblem
+**And** the RC Number uses placeholder `RC-000000` (CAC format) with an HTML comment marking it for replacement
+**And** all other letterhead elements (typography, contact row, layout, footer) remain unchanged

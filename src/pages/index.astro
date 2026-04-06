@@ -38,9 +38,9 @@ const streamLabels: Record<string, string> = {
 
 const seo = {
   ...generateMetadata({
-    title: "Building Nigeria's Future Across Seven Sectors",
+    title: "Pan-African Conglomerate | Agriculture, Trade, Energy",
     description:
-      'Global Resources Citadel Limited is a diversified Nigerian conglomerate operating across agriculture, trade, real estate, and energy. Seven divisions driving economic growth.',
+      "A pan-African conglomerate headquartered in Lagos with seven divisions across agriculture, trade, real estate, and energy serving African markets.",
     path: '/',
   }),
   jsonLd: [generateOrganizationJsonLd(), generateWebSiteJsonLd()],
@@ -63,11 +63,11 @@ const clusterIcons: Record<string, string> = {
   <section class="hero-section relative flex min-h-hero-mobile items-center justify-center overflow-hidden bg-gradient-to-br from-primary-900 to-primary-700 px-6 py-36 text-center lg:min-h-screen lg:py-40">
     <div class="relative z-10 mx-auto max-w-4xl">
       <h1 class="mx-auto max-w-hero font-heading text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
-        Building Nigeria's Future Across Seven Sectors
+        Building Africa's Future From Nigeria's Strongest Foundations
       </h1>
       <p class="mx-auto mt-5 max-w-hero-subtitle text-base leading-relaxed text-white/80 sm:text-lg lg:text-xl">
         From agriculture to energy, Global Resources Citadel is creating integrated
-        value chains that drive economic growth and opportunity.
+        value chains that drive economic growth and opportunity across Africa's fastest-growing markets.
       </p>
       <div class="mt-9 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
         <a
@@ -91,9 +91,9 @@ const clusterIcons: Record<string, string> = {
     <div class="mx-auto max-w-overview">
       <SectionHeading
         eyebrow="Our Business"
-        subtitle="Global Resources Citadel operates across interconnected sectors, each strengthening the others. Our agricultural foundation feeds our processing capacity. Our trade networks connect our products to markets. Our infrastructure investments build the platforms for future growth."
+        subtitle="Global Resources Citadel operates across interconnected sectors, each strengthening the others. Our agricultural foundation feeds our processing capacity. Our trade networks connect our products to markets across the continent. Our infrastructure investments build the platforms for Africa's next phase of growth."
       >
-        A Multi-Division Business Built for Scale
+        A Pan-African Business Built for Scale
       </SectionHeading>
 
       <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
@@ -142,10 +142,38 @@ const clusterIcons: Record<string, string> = {
     stats={[
       { value: 7, label: 'Divisions Active' },
       { value: 15, label: 'Years in Business', suffix: '+' },
-      { value: 6, label: 'Nigerian States' },
-      { value: 40, label: 'Business Partners', suffix: '+' },
+      { value: 6, suffix: '+', label: 'African Markets' },
+      { value: 40, label: 'Partners Across Africa', suffix: '+' },
     ]}
   />
+
+  {/* ── Community Impact ── */}
+  <SectionWrapper variant="light">
+    <SectionHeading eyebrow="Community Impact" centered>
+      Giving Back to the Communities That Sustain Us
+    </SectionHeading>
+    <div class="mx-auto max-w-2xl text-center">
+      <p class="text-lg leading-relaxed text-neutral-600">
+        Through the Support Rural Agricultural Development Association (SRADA), GRCL channels its agricultural expertise into sustainable community development — training smallholder farmers, improving access to quality inputs, and strengthening the rural infrastructure that underpins Africa's food security.
+      </p>
+    </div>
+    <div class="mx-auto mt-8 max-w-xl">
+      <a
+        href="/community-impact/"
+        class="group block rounded-2xl border border-neutral-100 bg-white p-6 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 motion-safe:transition-shadow motion-safe:hover:shadow-md"
+      >
+        <p class="font-heading text-base font-bold text-neutral-900 motion-safe:transition-colors group-hover:text-primary-600">
+          SRADA — Community Impact Initiative
+        </p>
+        <p class="mt-2 text-sm leading-relaxed text-neutral-600">
+          Strengthening rural farming communities across Africa through training, agricultural input access, and infrastructure support.
+        </p>
+        <span class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary-600 motion-safe:transition-colors group-hover:text-primary-700">
+          Learn About Our Impact <span aria-hidden="true">&rarr;</span>
+        </span>
+      </a>
+    </div>
+  </SectionWrapper>
 
   {/* ── Latest Insights ── */}
   <SectionWrapper variant="default">

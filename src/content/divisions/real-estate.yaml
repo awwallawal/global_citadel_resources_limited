@@ -2,20 +2,20 @@ name: Real Estate
 slug: real-estate
 clusterSlug: built-environment-energy
 tier: aspirational
-tagline: "Developing quality commercial and residential spaces across Nigeria's growth corridors"
+tagline: "Developing quality commercial and residential spaces across Africa's fastest-growing urban corridors"
 overview: |
-  GRCL's Real Estate division is building a portfolio of commercial and residential properties in Nigeria's fastest-growing urban centres. The division focuses on developments that address the country's acute housing deficit and growing demand for modern commercial spaces, with an emphasis on quality construction, functional design, and long-term asset value.
+  GRCL's Real Estate division is building a portfolio of commercial and residential properties in some of Africa's fastest-growing urban centres, starting with Nigeria's major cities. The division focuses on developments that address Africa's acute housing deficit — estimated at over 50 million units continent-wide — and growing demand for modern commercial spaces, with an emphasis on quality construction, functional design, and long-term asset value.
 
-  Current projects span mixed-use developments, warehouse and logistics parks that support the Group's trading operations, and residential estates targeting Nigeria's expanding middle class. Each project is developed with attention to infrastructure provision, environmental sustainability, and community integration.
+  Current projects span mixed-use developments, warehouse and logistics parks that support the Group's trading operations, and residential estates targeting Africa's rapidly expanding middle class. Each project is developed with attention to infrastructure provision, environmental sustainability, and community integration.
 
-  As an aspirational growth vertical, the Real Estate division represents GRCL's strategic bet on Nigeria's urbanisation trajectory. The division leverages the Group's existing land assets and construction relationships to enter the market with a cost advantage, while maintaining the quality standards that the GRCL brand demands.
+  As an aspirational growth vertical, the Real Estate division represents GRCL's strategic bet on Africa's urbanisation trajectory — the fastest on the planet. The division leverages the Group's existing land assets and construction relationships to enter the market with a cost advantage, while maintaining the quality standards that the GRCL brand demands.
 capabilities:
   - icon: building
     name: Commercial Development
     description: "Office parks, retail spaces, and logistics warehouses designed for Nigeria's growing commercial sector."
   - icon: home
     name: Residential Estates
-    description: "Quality housing developments targeting middle-income buyers in Nigeria's major urban corridors."
+    description: "Quality housing developments targeting middle-income buyers across Africa's major urban corridors."
   - icon: hard-hat
     name: Project Management
     description: "End-to-end construction project management ensuring on-time, on-budget delivery to specification."
@@ -29,5 +29,5 @@ stats:
     value: 3
 contactEmail: real-estate@globalresourcescitadel.com
 seoTitle: "Real Estate — Global Resources Citadel | Built Environment & Energy"
-seoDescription: "Learn about Global Resources Citadel's Real Estate division. Commercial and residential property development across Nigeria's growth corridors."
+seoDescription: "Learn about Global Resources Citadel's Real Estate division. Commercial and residential property development across Africa's fastest-growing urban corridors."
 sortOrder: 1

@@ -93,7 +93,7 @@ export default function DesktopNav({ currentPath, divisions, clusters, headerVar
           className="shrink-0 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
           aria-label="Global Resources Citadel - Home"
         >
-          <img src={logoSrc || '/brand/grcl-emblem.png'} alt="Global Resources Citadel" className="h-10 w-auto" width={40} height={40} />
+          <img src={logoSrc || '/brand/logo-legacy.png'} alt="Global Resources Citadel" className="h-10 w-auto" width={40} height={44} onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }} />
         </a>
 
         {/* Center nav items */}
@@ -198,6 +198,17 @@ export default function DesktopNav({ currentPath, divisions, clusters, headerVar
                 aria-current={isActive('/insights/', currentPath) ? 'page' : undefined}
               >
                 Insights
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+
+            {/* Community Impact */}
+            <NavigationMenuItem>
+              <NavigationMenuLink
+                href="/community-impact/"
+                className={linkClass('/community-impact/')}
+                aria-current={isActive('/community-impact/', currentPath) ? 'page' : undefined}
+              >
+                Community Impact
               </NavigationMenuLink>
             </NavigationMenuItem>
 

@@ -2,13 +2,13 @@ name: Animal Husbandry
 slug: animal-husbandry
 clusterSlug: agriculture-processing
 tier: supporting
-tagline: "Building Nigeria's protein infrastructure through modern livestock management"
+tagline: "Building Africa's protein infrastructure through modern livestock management"
 overview: |
-  The Animal Husbandry division operates integrated livestock production systems designed to address Nigeria's growing demand for quality animal protein. Our operations span cattle ranching, poultry farming, and aquaculture, with each programme built on modern animal welfare standards and veterinary oversight.
+  The Animal Husbandry division operates integrated livestock production systems designed to address Africa's growing demand for quality animal protein, starting with Nigeria's domestic market and extending across the West African region. Our operations span cattle ranching, poultry farming, and aquaculture, with each programme built on modern animal welfare standards and veterinary oversight.
 
   GRCL's livestock facilities employ controlled-environment housing, automated feeding systems, and rigorous biosecurity protocols that ensure consistent product quality and animal health. The division works closely with the Agro-Processing arm to create a seamless farm-to-market supply chain, minimising waste and maximising the value extracted from every production cycle.
 
-  With Nigeria importing billions of naira worth of animal protein annually, the Animal Husbandry division is positioned to capture domestic market share while building the technical capacity for eventual export readiness across the West African region.
+  With African nations importing billions of dollars worth of animal protein annually, the Animal Husbandry division is positioned to capture market share across the region while building the technical capacity and infrastructure for continental-scale production and distribution.
 capabilities:
   - icon: beef
     name: Cattle Ranching
@@ -32,5 +32,5 @@ stats:
     value: 6
 contactEmail: animal-husbandry@globalresourcescitadel.com
 seoTitle: "Animal Husbandry — Global Resources Citadel | Agriculture & Processing"
-seoDescription: "Discover Global Resources Citadel's Animal Husbandry division. Cattle ranching, poultry production, and aquaculture serving Nigeria's protein needs."
+seoDescription: "Discover Global Resources Citadel's Animal Husbandry division. Cattle ranching, poultry production, and aquaculture serving Africa's growing protein needs."
 sortOrder: 2

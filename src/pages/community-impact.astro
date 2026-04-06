@@ -1,0 +1,149 @@
+---
+/**
+ * Community Impact — SRADA social impact initiative page.
+ * Standalone page with hardcoded content (no MDX/content collection).
+ */
+import PageLayout from '@/layouts/PageLayout.astro';
+import BreadcrumbNav from '@/components/layout/BreadcrumbNav.astro';
+import SectionWrapper from '@/components/layout/SectionWrapper.astro';
+import SectionHeading from '@/components/layout/SectionHeading.astro';
+import CTABanner from '@/components/shared/CTABanner.astro';
+import {
+  generateMetadata,
+  generateBreadcrumbJsonLd,
+  type BreadcrumbItem,
+} from '@/lib/seo';
+
+const breadcrumbs: BreadcrumbItem[] = [
+  { label: 'Home', href: '/' },
+  { label: 'Community Impact' },
+];
+
+const seo = {
+  ...generateMetadata({
+    title: 'Community Impact — Strengthening Rural Communities',
+    description:
+      "Learn about SRADA, Global Resources Citadel's dedicated social impact initiative strengthening rural farming communities across Africa through training, agricultural input access, and infrastructure support.",
+    path: '/community-impact/',
+  }),
+  jsonLd: [generateBreadcrumbJsonLd(breadcrumbs)],
+};
+
+const impactAreas = [
+  {
+    icon: '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+    name: 'Rural Farmer Training & Capacity Building',
+    description:
+      'Practical training programmes that equip smallholder farmers with modern agricultural techniques, business management skills, and post-harvest handling practices to improve yields and market readiness.',
+  },
+  {
+    icon: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/>',
+    name: 'Agricultural Input Access & Supply Chain Support',
+    description:
+      'Connecting rural farming communities with quality seeds, fertilisers, and equipment through facilitated supply chain partnerships that reduce costs and improve productivity.',
+  },
+  {
+    icon: '<path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M17 18h1"/><path d="M12 18h1"/><path d="M7 18h1"/>',
+    name: 'Community Infrastructure Development',
+    description:
+      'Supporting the construction and improvement of rural infrastructure — from storage facilities and access roads to water systems — that enables farming communities to thrive.',
+  },
+  {
+    icon: '<path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/><path d="M8 11h8"/><path d="M8 7h6"/>',
+    name: 'Knowledge Transfer & Best Practice Dissemination',
+    description:
+      'Bridging the gap between commercial agricultural innovation and smallholder practice through extension services, demonstration plots, and peer-to-peer learning networks.',
+  },
+];
+---
+
+<PageLayout seo={seo}>
+  <BreadcrumbNav items={breadcrumbs} slot="breadcrumb" />
+
+  {/* ── Hero ── */}
+  <SectionWrapper variant="primary">
+    <div class="mx-auto max-w-3xl text-center">
+      <p class="mb-4 text-xs font-semibold uppercase tracking-widest text-gold-600">
+        Community Impact
+      </p>
+      <h1 class="font-heading text-3xl font-bold leading-tight tracking-tight lg:text-5xl">
+        Strengthening Rural Communities Across Africa
+      </h1>
+      <p class="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-neutral-600">
+        Global Resources Citadel's dedicated social impact initiative, channelling agricultural expertise into sustainable rural development.
+      </p>
+    </div>
+  </SectionWrapper>
+
+  {/* ── About SRADA ── */}
+  <SectionWrapper variant="default">
+    <SectionHeading>About SRADA</SectionHeading>
+    <div class="mx-auto max-w-3xl space-y-5">
+      <p class="text-lg leading-relaxed text-neutral-600">
+        The Support Rural Agricultural Development Association (SRADA) is Global Resources Citadel's dedicated social impact initiative, founded to channel the Group's agricultural expertise into sustainable rural community development across Africa.
+      </p>
+      <p class="text-lg leading-relaxed text-neutral-600">
+        While GRCL's commercial divisions build integrated value chains at industrial scale, SRADA works at the grassroots — training smallholder farmers, improving access to quality agricultural inputs, and strengthening the rural infrastructure that underpins Africa's food security.
+      </p>
+      <p class="text-lg leading-relaxed text-neutral-600">
+        SRADA represents GRCL's belief that lasting business success and community prosperity are inseparable. By investing in the capacity of rural farming communities, we strengthen the foundation on which Africa's agricultural economy grows.
+      </p>
+    </div>
+  </SectionWrapper>
+
+  {/* ── Impact Areas ── */}
+  <SectionWrapper variant="light">
+    <SectionHeading eyebrow="What We Do" centered>
+      Our Impact Areas
+    </SectionHeading>
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+      {impactAreas.map((area) => (
+        <div class="rounded-2xl border border-neutral-100 bg-white p-6 shadow-sm">
+          <svg
+            class="mb-4 h-8 w-8 text-primary-600"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+            set:html={area.icon}
+          />
+          <h3 class="font-heading text-base font-bold text-neutral-900">
+            {area.name}
+          </h3>
+          <p class="mt-2 text-sm leading-relaxed text-neutral-600">
+            {area.description}
+          </p>
+        </div>
+      ))}
+    </div>
+  </SectionWrapper>
+
+  {/* ── Get Involved ── */}
+  <SectionWrapper variant="default">
+    <SectionHeading centered>Get Involved</SectionHeading>
+    <div class="mx-auto max-w-2xl text-center">
+      <p class="text-lg leading-relaxed text-neutral-600">
+        SRADA welcomes partnerships with organisations, institutions, and individuals who share our commitment to strengthening rural farming communities. Whether through technical collaboration, resource support, or knowledge sharing, there are meaningful ways to contribute to sustainable agricultural development across Africa.
+      </p>
+      <a
+        href="/contact/general/?subject=srada"
+        class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-primary-600 motion-safe:transition-colors hover:text-primary-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+      >
+        Partner With SRADA <span aria-hidden="true">&rarr;</span>
+      </a>
+    </div>
+  </SectionWrapper>
+
+  {/* ── CTA Banner ── */}
+  <CTABanner
+    heading="Building Stronger Rural Communities Together"
+    body="Partner with SRADA to support sustainable agricultural development and strengthen the rural communities that underpin Africa's food security."
+    primaryCta={{ label: 'Partner With SRADA', href: '/contact/general/?subject=srada' }}
+    secondaryCta={{ label: 'Learn About Our Divisions', href: '/divisions/' }}
+    variant="dark"
+  />
+</PageLayout>

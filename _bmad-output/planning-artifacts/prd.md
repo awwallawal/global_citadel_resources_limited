@@ -439,6 +439,35 @@ At minimum, this requires strong product direction, UX/design discipline, front-
 - Reusable component and page-section architecture for future growth
 - Maintainable custom-coded implementation with room for future structured content expansion
 
+### Phase 1.5: Platform Evolution (Post-MVP Foundation, Pre-Phase 2)
+
+**Status:** Approved — 2026-04-06
+**Reference:** `_bmad-output/planning-artifacts/platform-evolution-spec-v1.md`
+
+After the MVP foundation was delivered and quality-gated (Epic 8, Stories 8.1–8.4), the client directed a strategic evolution of the platform's brand positioning and scope. This is not new feature depth (Phase 2) — it is a maturation of the existing foundation to reflect the company's heritage identity, pan-African ambition, and social responsibility commitment.
+
+**Capabilities Added:**
+
+- **Heritage brand identity:** Replace the generated emblem with the company's legacy logo (extracted from original corporate letterhead) across all site touchpoints — header, footer, favicon, print collateral
+- **Pan-African positioning:** Rewrite copy across all pages, divisions, and clusters to frame the company as a pan-African group headquartered in Nigeria, using trajectory language ("extending across," "growing presence") rather than unsubstantiated operational claims
+- **Community impact (SRADA):** New `/community-impact/` page presenting the company's social responsibility initiative as a credibility multiplier — positioned as a community impact arm (not an 8th division), integrated into navigation, homepage, about page, and contact hub
+- **Visual maturity:** Source and integrate African-context royalty-free photography across all major pages, replacing placeholder imagery
+- **Professional print collateral:** 3 business card concepts and updated letterhead reflecting the legacy logo and brand system (delivered as self-contained HTML files for browser-to-PDF workflow)
+
+**New User Journey Implication:**
+
+This evolution strengthens all four existing user journeys without adding new ones. Specifically:
+- Journey 1 (Investor/Partner): Pan-African positioning and SRADA signal scale and social responsibility — both investor confidence drivers
+- Journey 2 (Customer/Prospect): African-context imagery and heritage logo strengthen trust signals at division level
+- Journey 3 (General Public): Legacy logo and community impact content answer "is this a real, established business?" more convincingly
+- Journey 4 (Content Owner): No structural change — SRADA content follows existing patterns
+
+**Constraints:**
+- Pan-African claims must be credible — frame as trajectory, not overpromise
+- SRADA uses GRCL brand (no separate logo)
+- RC Number uses placeholder `RC-000000` until client provides real number
+- Legacy logo PNG approved — no SVG recreation required
+
 ### Post-MVP Features
 
 **Phase 2 (Post-MVP):**
@@ -551,6 +580,14 @@ The main resource risk is scope expansion through division-by-division overbuild
 - FR51: Visitors can use the platform through accessible navigation and interaction patterns.
 - FR52: The platform can support reusable content and interface structures across company and division contexts.
 - FR53: The platform can support future integrations and structured content extensions without invalidating core user journeys.
+
+### Brand Identity & Heritage (Phase 1.5)
+
+- FR54: The platform presents the company's heritage brand mark (legacy logo) consistently across header, footer, favicon, and all brand touchpoints.
+- FR55: The platform positions the company as a pan-African group headquartered in Nigeria, using credible trajectory language across all copy touchpoints.
+- FR56: Visitors can access a community impact page that presents the company's social responsibility initiative (SRADA) as a credibility signal.
+- FR57: The community impact initiative is discoverable through primary navigation, homepage, about page, and contact pathways without disrupting the existing 7-division information architecture.
+- FR58: The platform uses African-context photography across all major pages to reinforce authentic visual positioning.
 
 ## Non-Functional Requirements
 

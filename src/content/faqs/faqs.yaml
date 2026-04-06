@@ -1,12 +1,12 @@
 - id: homepage-what-does-grcl-do
   question: What does Global Resources Citadel Limited do?
-  answer: GRCL is a diversified Nigerian conglomerate operating across seven business divisions spanning agriculture, commodity trading, real estate, and energy. We create value through integrated operations that connect primary production to end markets.
+  answer: GRCL is a diversified pan-African conglomerate headquartered in Lagos, operating across seven business divisions spanning agriculture, commodity trading, real estate, and energy. We create value through integrated operations that connect primary production to end markets.
   category: homepage
   sortOrder: 1
 
 - id: homepage-where-operates
   question: Where does GRCL operate?
-  answer: Our operations are headquartered in Abuja with a growing presence across Nigeria's key economic corridors, including the Middle Belt agricultural zone, Lagos commercial hub, and the Niger Delta energy region.
+  answer: Our operations are headquartered in Lagos with a strong presence across Nigeria's key economic corridors, including the Middle Belt agricultural zone and the Niger Delta energy region, and an expanding footprint across West Africa.
   category: homepage
   sortOrder: 2
 
@@ -28,9 +28,15 @@
   category: homepage
   sortOrder: 5
 
+- id: homepage-pan-african
+  question: Is GRCL a Nigerian company or a pan-African company?
+  answer: GRCL is proudly Nigerian — headquartered in Lagos with deep roots across the country's most productive regions. At the same time, our operations, partnerships, and market reach extend across West Africa and the broader continent. We see Nigeria as our launchpad and Africa as our arena.
+  category: homepage
+  sortOrder: 6
+
 - id: about-founded
   question: When was Global Resources Citadel Limited founded?
-  answer: GRCL was established to build an integrated conglomerate that bridges Nigeria's resource wealth with modern business infrastructure, combining deep local expertise with international standards of governance.
+  answer: GRCL was established to build an integrated conglomerate that contributes meaningfully to economic development across Africa, starting from Nigeria, combining deep local expertise with international standards of governance.
   category: about
   sortOrder: 1
 
@@ -41,7 +47,7 @@
   sortOrder: 2
 
 - id: about-differentiator
-  question: What sets GRCL apart from other Nigerian conglomerates?
+  question: What sets GRCL apart from other African conglomerates?
   answer: Our integrated cluster model means our divisions reinforce each other — agricultural output feeds into commodity marketing, real estate development supports operational infrastructure, and energy investments power our entire value chain. This vertical integration creates resilience and efficiency.
   category: about
   sortOrder: 3
@@ -54,12 +60,18 @@
 
 - id: about-sustainability
   question: What is GRCL's approach to sustainability and community impact?
-  answer: Sustainable development is embedded in our operations. From responsible farming practices in our agricultural divisions to energy-efficient building standards in real estate, we prioritize long-term value creation that benefits both stakeholders and the communities where we operate.
+  answer: Sustainable development is embedded in our operations. From responsible farming practices in our agricultural divisions to energy-efficient building standards in real estate, we prioritize long-term value creation that benefits both stakeholders and the communities where we operate. Through SRADA, our dedicated community impact initiative, we extend these practices to support rural agricultural development across the region.
   category: about
   sortOrder: 5
 
 - id: about-local-development
   question: How does GRCL support local economic development?
-  answer: We create employment across Nigeria's economic zones, partner with local suppliers and smallholder farmers, invest in skill development, and contribute to infrastructure in the regions where we operate. Our growth strategy is intentionally tied to regional economic development.
+  answer: We create employment across Africa's economic zones, with a primary footprint in Nigeria's most productive regions, partner with local suppliers and smallholder farmers, invest in skill development, and contribute to infrastructure in the regions where we operate. Our growth strategy is intentionally tied to regional economic development.
   category: about
   sortOrder: 6
+
+- id: about-srada
+  question: What is SRADA and how does it relate to GRCL?
+  answer: The Support Rural Agricultural Development Association (SRADA) is GRCL's dedicated social impact initiative, focused on strengthening rural farming communities through training, agricultural input access, and infrastructure support. SRADA channels the Group's agricultural expertise into sustainable community development.
+  category: about
+  sortOrder: 7

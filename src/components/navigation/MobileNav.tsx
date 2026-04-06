@@ -44,6 +44,7 @@ const NAV_LINKS = [
 
 const NAV_LINKS_AFTER = [
   { label: 'Insights', href: '/insights/' },
+  { label: 'Community Impact', href: '/community-impact/' },
   { label: 'Investors & Partners', href: '/investors-partners/' },
   { label: 'Contact', href: '/contact/' },
 ] as const;

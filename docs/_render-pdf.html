@@ -1,0 +1,32 @@
+
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <style>
+      body { margin: 0; padding: 0; background: white; }
+      canvas { display: block; }
+    </style>
+  </head>
+  <body>
+    <canvas id="pdf-canvas"></canvas>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.min.mjs" type="module"></script>
+    <script type="module">
+      const pdfjsLib = await import('https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.min.mjs');
+      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.worker.min.mjs';
+
+      const loadingTask = pdfjsLib.getDocument('file:///C:/Users/DELL/Desktop/UK_Web_Design/docs/Black & Yellow Modern Professional Letterhead (2).pdf');
+      const pdf = await loadingTask.promise;
+      const pdfPage = await pdf.getPage(1);
+
+      const scale = 5;
+      const viewport = pdfPage.getViewport({ scale });
+      const canvas = document.getElementById('pdf-canvas');
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+      const context = canvas.getContext('2d');
+
+      await pdfPage.render({ canvasContext: context, viewport }).promise;
+      document.title = 'RENDERED';
+    </script>
+  </body>
+  </html>
