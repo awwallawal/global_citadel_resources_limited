@@ -166,6 +166,7 @@ Phase 1: GitHub repo → Vercel (auto-deploy on push, free URL). Phase 2: GitHub
 - Sanity CMS migration specifics — defer to phase 2
 - Analytics event tracking schema — defer until analytics requirements clarified
 - Digital Ocean deployment config — defer to phase 2
+- npm → pnpm migration — no phantom dependencies (verified Story 8.1), Vercel auto-detects pnpm from lockfile, recommended for Phase 2 when backend work increases dependency complexity
 
 ### Data Architecture
 

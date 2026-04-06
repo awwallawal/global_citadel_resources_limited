@@ -139,7 +139,7 @@ function SuccessConfirmation({
 export default function InquiryForm({
   variant,
   divisionSlug,
-  divisionName,
+  divisionName: _divisionName,
 }: InquiryFormProps) {
   const schema = getSchema(variant);
   const [formData, setFormData] = useState<Record<string, string>>(() => getInitialData(variant));

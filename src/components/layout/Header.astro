@@ -1,6 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import DesktopNav from '@/components/navigation/DesktopNav';
 import MobileNav from '@/components/navigation/MobileNav';
 import SearchOverlay from '@/components/search/SearchOverlay';
@@ -14,6 +14,7 @@ interface Props {
 
 const { currentPath, headerVariant = 'solid' } = Astro.props;
 
+const optimizedEmblem = await getImage({ src: emblemLogo, width: 80, height: 80, format: 'webp' });
 const searchIndex = await buildSearchIndex();
 const allDivisions = await getCollection('divisions');
 const allClusters = await getCollection('clusters');
@@ -47,6 +48,7 @@ const clusters = allClusters
     clusters={clusters}
     currentPath={currentPath}
     headerVariant={headerVariant}
+    logoSrc={optimizedEmblem.src}
   />
 
   <!-- Mobile header bar: [Logo] [Search] [Hamburger] -->

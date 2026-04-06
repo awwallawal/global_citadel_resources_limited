@@ -42,3 +42,10 @@ codex_dump.txt
 command.txt
 dump.txt
 design-artifacts/
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/

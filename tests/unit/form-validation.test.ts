@@ -39,7 +39,7 @@ describe('generalFormSchema', () => {
   });
 
   it('rejects missing fullName', () => {
-    const { fullName, ...rest } = validGeneral;
+    const { fullName: _fullName, ...rest } = validGeneral;
     expect(() => generalFormSchema.parse(rest)).toThrow();
   });
 
@@ -61,7 +61,7 @@ describe('generalFormSchema', () => {
   });
 
   it('allows optional phone', () => {
-    const { phone, ...rest } = validGeneral;
+    const { phone: _phone, ...rest } = validGeneral;
     expect(() => generalFormSchema.parse(rest)).not.toThrow();
   });
 });
@@ -76,7 +76,7 @@ describe('divisionFormSchema', () => {
   });
 
   it('allows optional company', () => {
-    const { company, ...rest } = validDivision;
+    const { company: _company, ...rest } = validDivision;
     expect(() => divisionFormSchema.parse(rest)).not.toThrow();
   });
 

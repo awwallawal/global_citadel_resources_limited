@@ -1,5 +1,5 @@
 import '../mocks/astro-content';
-import { mockDivisions, mockClusters } from '../mocks/astro-content';
+import { mockDivisions } from '../mocks/astro-content';
 import {
   getDivisionBySlug,
   getClusterDivisions,

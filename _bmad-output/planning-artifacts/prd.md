@@ -449,6 +449,7 @@ At minimum, this requires strong product direction, UX/design discipline, front-
 - Richer content taxonomy and archive filtering
 - Enhanced analytics and inquiry tracking, including division-aware measurement where useful
 - More advanced editorial workflows if needed
+- Migrate npm → pnpm for stricter dependency resolution, faster installs, and disk efficiency (investigated during Story 8.1 — no phantom dependencies found, safe to migrate; recommended when backend work begins in Phase 2)
 
 **Phase 3 (Expansion):**
 

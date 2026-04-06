@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GRCL Blank Letterhead v2 — Global Resources Citadel Limited</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   PRINT-FIRST DESIGN — A4 (210mm x 297mm)
+   ============================================ */
+@page {
+  size: A4;
+  margin: 0;
+}
+
+/* ============================================
+   TOKENS
+   ============================================ */
+:root {
+  --primary-900: #14532D;
+  --primary-800: #166534;
+  --primary-700: #15803D;
+  --primary-600: #16A34A;
+  --gold-dark: #8A6A2E;
+  --gold: #B48A3E;
+  --gold-light: #D4AF6A;
+  --neutral-900: #1F2937;
+  --neutral-700: #4B5563;
+  --neutral-600: #6B7280;
+  --neutral-500: #9CA3AF;
+  --neutral-400: #D1D5DB;
+  --white: #FFFFFF;
+}
+
+/* ============================================
+   RESET & BASE
+   ============================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-font-smoothing: antialiased; }
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--neutral-900);
+  background: #E5E7EB;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem;
+}
+
+/* ============================================
+   ON-SCREEN INSTRUCTIONS (hidden in print)
+   ============================================ */
+.instructions {
+  max-width: 210mm;
+  width: 100%;
+  background: var(--primary-900);
+  color: white;
+  border-radius: 10px 10px 0 0;
+  padding: 1.25rem 2rem;
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+.instructions h2 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--gold);
+}
+.instructions ol {
+  padding-left: 1.25rem;
+  color: rgba(255,255,255,0.8);
+}
+.instructions li { margin-bottom: 0.25rem; }
+.instructions strong { color: white; }
+.instructions .edit-note {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255,255,255,0.15);
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.6);
+}
+
+/* ============================================
+   LETTERHEAD PAGE
+   ============================================ */
+.letterhead {
+  width: 210mm;
+  min-height: 297mm;
+  background: var(--white);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ============================================
+   TOP ACCENT STRIPE
+   ============================================ */
+.lh-stripe {
+  height: 5px;
+  background: linear-gradient(90deg, var(--primary-900) 0%, var(--primary-700) 40%, var(--gold) 100%);
+  flex-shrink: 0;
+}
+
+/* ============================================
+   HEADER — Centred emblem layout
+   ============================================ */
+.lh-header {
+  padding: 10mm 25mm 0 25mm;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+/* Emblem */
+.lh-emblem {
+  height: 35mm;
+  width: auto;
+  display: block;
+}
+
+/* Company name below emblem */
+.lh-company-name {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 12pt;
+  color: var(--primary-900);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-top: 2.5mm;
+}
+
+/* Contact row */
+.lh-contact-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin-top: 2mm;
+  font-size: 8pt;
+  color: var(--primary-700);
+  line-height: 1.4;
+  flex-wrap: nowrap;
+}
+.lh-contact-row span {
+  white-space: nowrap;
+}
+.lh-contact-row .dot {
+  display: inline-block;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--gold);
+  margin: 0 2.5mm;
+  flex-shrink: 0;
+}
+
+/* Header separator — green-to-gold gradient */
+.lh-header-sep {
+  width: 100%;
+  height: 1px;
+  margin-top: 4mm;
+  background: linear-gradient(90deg, var(--primary-700) 0%, var(--gold-light) 50%, transparent 100%);
+}
+
+/* ============================================
+   WATERMARK — Ghost emblem in body area
+   ============================================ */
+.lh-watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100mm;
+  height: auto;
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ============================================
+   BODY
+   ============================================ */
+.lh-body {
+  flex: 1;
+  padding: 10mm 25mm 10mm 25mm;
+  font-size: 11pt;
+  line-height: 1.65;
+  color: var(--neutral-900);
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.lh-footer {
+  padding: 0 25mm 10mm 25mm;
+  font-size: 7.5pt;
+  color: var(--neutral-600);
+  position: relative;
+  z-index: 1;
+}
+
+/* Footer separator — gold-to-green (mirrors header) */
+.lh-footer-sep {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--gold-light) 50%, var(--primary-700) 100%);
+  margin-bottom: 3.5mm;
+}
+
+.lh-footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.lh-footer-left {
+  line-height: 1.5;
+}
+.lh-footer-left .website {
+  color: var(--primary-700);
+  font-weight: 500;
+}
+
+.lh-footer-center {
+  display: inline-block;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--gold);
+  align-self: center;
+}
+
+.lh-footer-right {
+  text-align: right;
+  line-height: 1.5;
+}
+
+/* ============================================
+   EDITABLE FIELDS
+   ============================================ */
+[contenteditable="true"] {
+  outline: none;
+}
+[contenteditable="true"]:focus {
+  background: #FFFDE7;
+  border-radius: 2px;
+}
+
+/* ============================================
+   PRINT OVERRIDES
+   ============================================ */
+@media print {
+  body {
+    background: white;
+    padding: 0;
+  }
+  .instructions { display: none; }
+  .letterhead {
+    box-shadow: none;
+    width: 100%;
+    height: 297mm;
+    min-height: 297mm;
+  }
+  [contenteditable="true"]:focus {
+    background: transparent;
+  }
+  .lh-watermark {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+
+/* ============================================
+   SCREEN RESPONSIVE (for small screens)
+   ============================================ */
+@media screen and (max-width: 800px) {
+  .letterhead {
+    width: 100%;
+    min-height: auto;
+  }
+  .lh-header { padding: 8mm 15mm 0 15mm; }
+  .lh-body { padding: 8mm 15mm 8mm 15mm; }
+  .lh-footer { padding: 0 15mm 8mm 15mm; }
+  .lh-emblem { height: 28mm; }
+  .lh-contact-row {
+    flex-direction: column;
+    gap: 1mm;
+  }
+  .lh-contact-row .dot { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================
+     ON-SCREEN INSTRUCTIONS
+     ============================================ -->
+<div class="instructions">
+  <h2>Blank Letterhead v2 &mdash; How to Use</h2>
+  <ol>
+    <li><strong>Write your letter:</strong> Click the body area below the header and start typing.</li>
+    <li><strong>Print to PDF:</strong> Press <strong>Ctrl+P</strong> (or Cmd+P on Mac), select <strong>&ldquo;Save as PDF&rdquo;</strong> as the destination.</li>
+    <li><strong>Settings:</strong> Set paper size to <strong>A4</strong>, margins to <strong>None</strong>, and enable <strong>&ldquo;Background graphics&rdquo;</strong> to preserve the accent stripe, watermark, and gradient lines.</li>
+  </ol>
+  <div class="edit-note">The yellow highlight on click is screen-only and will not appear in the printed PDF. All instructions above are also hidden in print.</div>
+</div>
+
+<!-- ============================================
+     LETTERHEAD
+     ============================================ -->
+<div class="letterhead">
+
+  <!-- TOP ACCENT STRIPE -->
+  <div class="lh-stripe"></div>
+
+  <!-- HEADER — Centred -->
+  <div class="lh-header">
+    <img src="../../docs/grcl_new.png" alt="Global Resources Citadel Limited — Emblem" class="lh-emblem">
+    <div class="lh-company-name">Global Resources Citadel Limited</div>
+    <div class="lh-contact-row">
+      <span>+234-811-191-2174</span>
+      <span class="dot"></span>
+      <span>1st Floor, Gbemisola House, Opp. Omole Phase I, Ogba, Lagos</span>
+      <span class="dot"></span>
+      <span>info@globalresourcescitadel.com</span>
+    </div>
+    <div class="lh-header-sep"></div>
+  </div>
+
+  <!-- WATERMARK -->
+  <img src="../../docs/grcl_new.png" alt="" class="lh-watermark" aria-hidden="true">
+
+  <!-- BODY (empty, editable) -->
+  <div class="lh-body" contenteditable="true">
+  </div>
+
+  <!-- FOOTER -->
+  <div class="lh-footer">
+    <div class="lh-footer-sep"></div>
+    <div class="lh-footer-content">
+      <div class="lh-footer-left">
+        <span class="website">www.globalresourcescitadel.com</span>
+      </div>
+      <span class="lh-footer-center"></span>
+      <div class="lh-footer-right">
+        RC: ______ <em style="font-size:6pt;color:var(--neutral-400)">(pending)</em><br>
+        1st Floor, Gbemisola House, Opp. Omole Phase I, Ogba, Lagos
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

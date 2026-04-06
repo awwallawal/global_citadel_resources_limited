@@ -3,6 +3,8 @@
  * Footer.astro — Site footer with brand row, 7-column link grid, and copyright bar.
  * Zero client-side JS. Mobile accordion uses native <details>/<summary>.
  */
+import { Image } from 'astro:assets';
+import emblemLogo from '@/assets/brand/grcl-emblem.png';
 
 interface FooterLink {
   label: string;
@@ -103,11 +105,11 @@ const headingClasses =
         class="mb-3 inline-block rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900"
         aria-label="Global Resources Citadel - Home"
       >
-        <img
-          src="/brand/grcl-emblem.png"
+        <Image
+          src={emblemLogo}
           alt="Global Resources Citadel"
-          width="56"
-          height="56"
+          width={56}
+          height={56}
           class="h-14 w-auto"
           loading="lazy"
         />

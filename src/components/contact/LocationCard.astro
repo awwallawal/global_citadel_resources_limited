@@ -17,7 +17,7 @@ const { name, type, address, phone, hours } = Astro.props;
 ---
 
 <div class={cn('border-l-2 py-2 pl-5', type === 'head-office' ? 'border-primary-600' : 'border-neutral-300')}>
-  <h3 class="font-heading text-base font-semibold text-neutral-900">{name}</h3>
+  <h2 class="font-heading text-base font-semibold text-neutral-900">{name}</h2>
   <p class="mt-1 text-sm leading-relaxed text-neutral-600">{address}</p>
   {phone && (
     <a

@@ -15,7 +15,7 @@ const { seo, headerVariant = 'solid' } = Astro.props;
 <BaseLayout {...seo}>
   <Header currentPath={Astro.url.pathname} headerVariant={headerVariant} />
   <slot name="breadcrumb" />
-  <main id="main">
+  <main id="main" tabindex="-1">
     <slot />
   </main>
   <Footer />

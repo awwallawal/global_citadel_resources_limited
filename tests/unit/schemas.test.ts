@@ -91,7 +91,7 @@ describe('divisionSchema', () => {
   });
 
   it('rejects missing required name', () => {
-    const { name, ...rest } = validDivision;
+    const { name: _name, ...rest } = validDivision;
     expect(() => divisionSchema.parse(rest)).toThrow();
   });
 
@@ -153,7 +153,7 @@ describe('divisionSchema', () => {
   });
 
   it('applies sortOrder default of 0', () => {
-    const { sortOrder, ...rest } = validDivision;
+    const { sortOrder: _sortOrder, ...rest } = validDivision;
     const result = divisionSchema.parse(rest);
     expect(result.sortOrder).toBe(0);
   });
@@ -165,7 +165,7 @@ describe('clusterSchema', () => {
   });
 
   it('rejects missing required name', () => {
-    const { name, ...rest } = validCluster;
+    const { name: _name2, ...rest } = validCluster;
     expect(() => clusterSchema.parse(rest)).toThrow();
   });
 
@@ -196,7 +196,7 @@ describe('articleSchema', () => {
   });
 
   it('rejects missing title', () => {
-    const { title, ...rest } = validArticle;
+    const { title: _title, ...rest } = validArticle;
     expect(() => articleSchema.parse(rest)).toThrow();
   });
 
@@ -257,17 +257,17 @@ describe('teamSchema', () => {
   });
 
   it('rejects missing name', () => {
-    const { name, ...rest } = validTeamMember;
+    const { name: _name3, ...rest } = validTeamMember;
     expect(() => teamSchema.parse(rest)).toThrow();
   });
 
   it('rejects missing title', () => {
-    const { title, ...rest } = validTeamMember;
+    const { title: _title2, ...rest } = validTeamMember;
     expect(() => teamSchema.parse(rest)).toThrow();
   });
 
   it('rejects missing bio', () => {
-    const { bio, ...rest } = validTeamMember;
+    const { bio: _bio, ...rest } = validTeamMember;
     expect(() => teamSchema.parse(rest)).toThrow();
   });
 
@@ -320,7 +320,7 @@ describe('credentialSchema', () => {
   });
 
   it('rejects missing issuer', () => {
-    const { issuer, ...rest } = validCredential;
+    const { issuer: _issuer, ...rest } = validCredential;
     expect(() => credentialSchema.parse(rest)).toThrow();
   });
 });
@@ -371,7 +371,7 @@ describe('pageSchema', () => {
   });
 
   it('rejects missing seoTitle', () => {
-    const { seoTitle, ...rest } = validPage;
+    const { seoTitle: _seoTitle, ...rest } = validPage;
     expect(() => pageSchema.parse(rest)).toThrow();
   });
 

@@ -26,6 +26,7 @@ interface DesktopNavProps {
   divisions: DivisionNavItem[];
   clusters: ClusterNavItem[];
   headerVariant?: 'solid' | 'transparent';
+  logoSrc?: string;
 }
 
 function isActive(href: string, currentPath: string): boolean {
@@ -33,13 +34,7 @@ function isActive(href: string, currentPath: string): boolean {
   return currentPath.startsWith(href);
 }
 
-function LogoEmblem() {
-  return (
-    <img src="/brand/grcl-emblem.png" alt="Global Resources Citadel" className="h-10 w-auto" />
-  );
-}
-
-export default function DesktopNav({ currentPath, divisions, clusters, headerVariant = 'solid' }: DesktopNavProps) {
+export default function DesktopNav({ currentPath, divisions, clusters, headerVariant = 'solid', logoSrc }: DesktopNavProps) {
   const [isScrolled, setIsScrolled] = useState(headerVariant === 'solid');
 
   useEffect(() => {
@@ -98,7 +93,7 @@ export default function DesktopNav({ currentPath, divisions, clusters, headerVar
           className="shrink-0 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
           aria-label="Global Resources Citadel - Home"
         >
-          <LogoEmblem />
+          <img src={logoSrc || '/brand/grcl-emblem.png'} alt="Global Resources Citadel" className="h-10 w-auto" width={40} height={40} />
         </a>
 
         {/* Center nav items */}
