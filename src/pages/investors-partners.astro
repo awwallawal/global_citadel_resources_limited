@@ -4,6 +4,8 @@
  * 7 sections: Hero, Why Partner, Capabilities, Portfolio Strength,
  * Governance, Latest Updates, Strategic CTA.
  */
+import { Image } from 'astro:assets';
+import investorsHero from '@/assets/images/hero/investors-hero.jpg';
 import { getEntry, getCollection } from 'astro:content';
 import PageLayout from '@/layouts/PageLayout.astro';
 import BreadcrumbNav from '@/components/layout/BreadcrumbNav.astro';
@@ -77,8 +79,17 @@ const whyPartnerParagraphs = whyPartner?.split('\n\n').filter((p) => p.trim()) ?
   <BreadcrumbNav items={breadcrumbs} slot="breadcrumb" />
 
   {/* ── Section 1: Hero ── */}
-  <SectionWrapper variant="hero">
-    <div class="mx-auto max-w-3xl text-center">
+  <SectionWrapper variant="hero" class="relative overflow-hidden">
+    <Image
+      src={investorsHero}
+      alt=""
+      class="absolute inset-0 h-full w-full object-cover"
+      widths={[640, 960, 1280, 1920]}
+      sizes="100vw"
+      loading="eager"
+    />
+    <div class="absolute inset-0 bg-primary-900/75"></div>
+    <div class="relative mx-auto max-w-3xl text-center">
       <p class="mb-4 text-xs font-semibold uppercase tracking-widest text-gold-600">
         Investors &amp; Partners
       </p>

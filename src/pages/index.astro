@@ -13,6 +13,8 @@ import {
   generateOrganizationJsonLd,
   generateWebSiteJsonLd,
 } from '@/lib/seo';
+import { Image } from 'astro:assets';
+import heroImage from '@/assets/images/hero/homepage-hero.jpg';
 import { validateContentIntegrity } from '@/lib/content-validation';
 
 await validateContentIntegrity();
@@ -61,6 +63,15 @@ const clusterIcons: Record<string, string> = {
 
   {/* ── Hero Section ── */}
   <section class="hero-section relative flex min-h-hero-mobile items-center justify-center overflow-hidden bg-gradient-to-br from-primary-900 to-primary-700 px-6 py-36 text-center lg:min-h-screen lg:py-40">
+    <Image
+      src={heroImage}
+      alt=""
+      class="absolute inset-0 h-full w-full object-cover"
+      widths={[640, 960, 1280, 1920]}
+      sizes="100vw"
+      loading="eager"
+    />
+    <div class="absolute inset-0 bg-primary-900/75"></div>
     <div class="relative z-10 mx-auto max-w-4xl">
       <h1 class="mx-auto max-w-hero font-heading text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
         Building Africa's Future From Nigeria's Strongest Foundations

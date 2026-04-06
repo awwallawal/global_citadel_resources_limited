@@ -4,6 +4,7 @@
  * Sizes: large (2-col, 2-row), standard (1-col), wide (2-col), compact (minimal).
  * Variants: filled (primary-900 dark), accent (primary-50 light), dark (neutral-900), outline (white+border).
  */
+import { Image } from 'astro:assets';
 import { cn } from '@/lib/utils';
 
 export type CardSize = 'large' | 'standard' | 'wide' | 'compact';
@@ -16,10 +17,11 @@ interface Props {
   size: CardSize;
   variant: CardVariant;
   icon?: string;
+  imageSrc?: ImageMetadata;
   class?: string;
 }
 
-const { name, slug, tagline, size, variant, icon, class: className } = Astro.props;
+const { name, slug, tagline, size, variant, icon, imageSrc, class: className } = Astro.props;
 
 const isDark = variant === 'filled' || variant === 'dark';
 const showDescription = size !== 'compact';
@@ -60,10 +62,23 @@ const iconSize = size === 'large' ? 'h-14 w-14' : 'h-12 w-12';
 
 <a
   href={`/divisions/${slug}/`}
-  class={cn(baseClasses, variantClasses[variant], sizeClasses[size], 'motion-safe:hover:shadow-md', className)}
+  class={cn(baseClasses, variantClasses[variant], sizeClasses[size], 'motion-safe:hover:shadow-md', imageSrc ? 'overflow-hidden' : '', className)}
 >
+  {imageSrc && (
+    <>
+      <Image
+        src={imageSrc}
+        alt=""
+        width={600}
+        height={400}
+        class="absolute inset-0 h-full w-full object-cover"
+        loading="lazy"
+      />
+      <div class={cn('absolute inset-0', isDark ? 'bg-neutral-900/70' : 'bg-white/80')}></div>
+    </>
+  )}
   {/* Icon circle */}
-  <div class={cn('mb-4 flex shrink-0 items-center justify-center rounded-full', iconSize, iconBgClasses[variant])}>
+  <div class={cn('relative mb-4 flex shrink-0 items-center justify-center rounded-full', iconSize, iconBgClasses[variant])}>
     {icon ? (
       <span class={size === 'large' ? 'text-2xl' : 'text-xl'} aria-hidden="true">{icon}</span>
     ) : (
@@ -85,18 +100,18 @@ const iconSize = size === 'large' ? 'h-14 w-14' : 'h-12 w-12';
   </div>
 
   {/* Content */}
-  <h3 class={cn('text-xl font-bold', headingClasses)}>
+  <h3 class={cn('relative text-xl font-bold', headingClasses)}>
     {name}
   </h3>
 
   {showDescription && (
-    <p class={cn('mt-2 flex-1 text-sm leading-relaxed', descClasses)}>
+    <p class={cn('relative mt-2 flex-1 text-sm leading-relaxed', descClasses)}>
       {tagline}
     </p>
   )}
 
   {/* Arrow link */}
-  <div class={cn('mt-4 inline-flex items-center gap-1.5 text-caption font-semibold motion-safe:transition-[gap] motion-safe:duration-200 group-hover:gap-2.5', arrowClasses)}>
+  <div class={cn('relative mt-4 inline-flex items-center gap-1.5 text-caption font-semibold motion-safe:transition-[gap] motion-safe:duration-200 group-hover:gap-2.5', arrowClasses)}>
     Explore Division
     <span aria-hidden="true">&rarr;</span>
   </div>

@@ -8,6 +8,7 @@
  *   4. Related Insights
  *   5. Inquiry CTA
  */
+import { Image } from 'astro:assets';
 import { cn } from '@/lib/utils';
 import PageLayout from '@/layouts/PageLayout.astro';
 import BreadcrumbNav from '@/components/layout/BreadcrumbNav.astro';
@@ -34,6 +35,20 @@ interface Props {
 }
 
 const { division, cluster, articles, isArticleFallback, seo, accentColor, siblingDivisions } = Astro.props;
+
+// --- Hero images (dynamic import map) ---
+const heroImages: Record<string, () => Promise<{ default: ImageMetadata }>> = {
+  'crop-farming': () => import('@/assets/images/divisions/crop-farming-hero.jpg'),
+  'animal-husbandry': () => import('@/assets/images/divisions/animal-husbandry-hero.jpg'),
+  'agro-processing': () => import('@/assets/images/divisions/agro-processing-hero.jpg'),
+  'commodity-marketing': () => import('@/assets/images/divisions/commodity-marketing-hero.jpg'),
+  'import-export': () => import('@/assets/images/divisions/import-export-hero.jpg'),
+  'real-estate': () => import('@/assets/images/divisions/real-estate-hero.jpg'),
+  'oil-gas': () => import('@/assets/images/divisions/oil-gas-hero.jpg'),
+};
+
+const heroImageLoader = heroImages[division.slug];
+const heroImage = heroImageLoader ? (await heroImageLoader()).default : null;
 
 // --- Breadcrumbs ---
 const breadcrumbs: BreadcrumbItem[] = [
@@ -65,14 +80,27 @@ const streamLabels = STREAM_LABELS;
   <BreadcrumbNav items={breadcrumbs} slot="breadcrumb" />
 
   {/* ── Section 1: Overview Hero (AC #1) ── */}
-  <SectionWrapper variant="hero">
-    <p class="mb-4 text-xs font-semibold uppercase tracking-widest text-gold-600">
+  <SectionWrapper variant="hero" class="relative overflow-hidden">
+    {heroImage && (
+      <>
+        <Image
+          src={heroImage}
+          alt=""
+          class="absolute inset-0 h-full w-full object-cover"
+          widths={[640, 960, 1280, 1920]}
+          sizes="100vw"
+          loading="eager"
+        />
+        <div class="absolute inset-0 bg-primary-900/70"></div>
+      </>
+    )}
+    <p class="relative mb-4 text-xs font-semibold uppercase tracking-widest text-gold-600">
       {cluster.name}
     </p>
-    <h1 class="font-heading text-3xl font-semibold leading-tight tracking-tight lg:text-5xl">
+    <h1 class="relative font-heading text-3xl font-semibold leading-tight tracking-tight lg:text-5xl">
       {division.name}
     </h1>
-    <p class="mt-4 max-w-2xl text-lg text-primary-100">
+    <p class="relative mt-4 max-w-2xl text-lg text-primary-100">
       {division.tagline}
     </p>
   </SectionWrapper>

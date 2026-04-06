@@ -3,6 +3,8 @@
  * Community Impact — SRADA social impact initiative page.
  * Standalone page with hardcoded content (no MDX/content collection).
  */
+import { Image } from 'astro:assets';
+import communityHero from '@/assets/images/hero/community-impact-hero.jpg';
 import PageLayout from '@/layouts/PageLayout.astro';
 import BreadcrumbNav from '@/components/layout/BreadcrumbNav.astro';
 import SectionWrapper from '@/components/layout/SectionWrapper.astro';
@@ -61,8 +63,17 @@ const impactAreas = [
   <BreadcrumbNav items={breadcrumbs} slot="breadcrumb" />
 
   {/* ── Hero ── */}
-  <SectionWrapper variant="primary">
-    <div class="mx-auto max-w-3xl text-center">
+  <SectionWrapper variant="primary" class="relative overflow-hidden">
+    <Image
+      src={communityHero}
+      alt=""
+      class="absolute inset-0 h-full w-full object-cover"
+      widths={[640, 960, 1280, 1920]}
+      sizes="100vw"
+      loading="eager"
+    />
+    <div class="absolute inset-0 bg-primary-50/85"></div>
+    <div class="relative mx-auto max-w-3xl text-center">
       <p class="mb-4 text-xs font-semibold uppercase tracking-widest text-gold-600">
         Community Impact
       </p>

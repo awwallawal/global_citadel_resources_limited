@@ -11,6 +11,14 @@ import type { CollectionEntry } from 'astro:content';
 import DivisionCard from '@/components/divisions/DivisionCard.astro';
 import type { CardSize, CardVariant } from '@/components/divisions/DivisionCard.astro';
 
+import bentoCropFarming from '@/assets/images/sections/bento-crop-farming.jpg';
+import bentoAnimalHusbandry from '@/assets/images/sections/bento-animal-husbandry.jpg';
+import bentoAgroProcessing from '@/assets/images/sections/bento-agro-processing.jpg';
+import bentoCommodityMarketing from '@/assets/images/sections/bento-commodity-marketing.jpg';
+import bentoImportExport from '@/assets/images/sections/bento-import-export.jpg';
+import bentoRealEstate from '@/assets/images/sections/bento-real-estate.jpg';
+import bentoOilGas from '@/assets/images/sections/bento-oil-gas.jpg';
+
 interface Props {
   divisions: CollectionEntry<'divisions'>[];
 }
@@ -22,6 +30,7 @@ interface GridConfig {
   variant: CardVariant;
   gridClass: string;
   icon: string;
+  image?: ImageMetadata;
 }
 
 const gridMap: Record<string, GridConfig> = {
@@ -30,42 +39,49 @@ const gridMap: Record<string, GridConfig> = {
     variant: 'filled',
     gridClass: 'bento-crop',
     icon: '\u{1F33E}',
+    image: bentoCropFarming,
   },
   'commodity-marketing': {
     size: 'large',
     variant: 'accent',
     gridClass: 'bento-comm',
     icon: '\u{1F4CA}',
+    image: bentoCommodityMarketing,
   },
   'animal-husbandry': {
     size: 'standard',
     variant: 'outline',
     gridClass: 'bento-animal',
     icon: '\u{1F404}',
+    image: bentoAnimalHusbandry,
   },
   'agro-processing': {
     size: 'standard',
     variant: 'outline',
     gridClass: 'bento-agro',
     icon: '\u{2699}',
+    image: bentoAgroProcessing,
   },
   'import-export': {
     size: 'wide',
     variant: 'outline',
     gridClass: 'bento-import',
     icon: '\u{1F30D}',
+    image: bentoImportExport,
   },
   'real-estate': {
     size: 'compact',
     variant: 'dark',
     gridClass: 'bento-restate',
     icon: '\u{1F3D7}',
+    image: bentoRealEstate,
   },
   'oil-gas': {
     size: 'compact',
     variant: 'outline',
     gridClass: 'bento-oil',
     icon: '\u{26FD}',
+    image: bentoOilGas,
   },
 };
 
@@ -98,6 +114,7 @@ const divisionMap = new Map(divisions.map((d) => [d.data.slug, d]));
           size={config.size}
           variant={config.variant}
           icon={config.icon}
+          imageSrc={config.image}
         />
       </div>
     );

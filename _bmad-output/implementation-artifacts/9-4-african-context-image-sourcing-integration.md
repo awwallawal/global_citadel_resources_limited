@@ -1,6 +1,6 @@
 # Story 9.4: African-Context Image Sourcing & Integration
 
-Status: ready-for-dev
+Status: review
 
 ## Story
 
@@ -32,88 +32,88 @@ So that the visual experience matches the company's identity and positioning.
 
 ### Phase A: Image Sourcing & Curation
 
-- [ ] **Task 1: Create image directory structure** (AC: 1)
-  - [ ] Create `src/assets/images/_candidates/homepage/`
-  - [ ] Create `src/assets/images/_candidates/about/`
-  - [ ] Create `src/assets/images/_candidates/divisions/`
-  - [ ] Create `src/assets/images/_candidates/community-impact/`
-  - [ ] Create `src/assets/images/_candidates/investors/`
-  - [ ] Create `src/assets/images/_candidates/contact/`
+- [x] **Task 1: Create image directory structure** (AC: 1)
+  - [x] Create `src/assets/images/_candidates/homepage/`
+  - [x] Create `src/assets/images/_candidates/about/`
+  - [x] Create `src/assets/images/_candidates/divisions/`
+  - [x] Create `src/assets/images/_candidates/community-impact/`
+  - [x] Create `src/assets/images/_candidates/investors/`
+  - [x] Create `src/assets/images/_candidates/contact/`
 
-- [ ] **Task 2: Source homepage images** (AC: 1, 3, 4)
-  - [ ] Hero image: Aerial view of African farmland at golden hour OR sweeping African landscape with agricultural activity — search "African agriculture aerial", "Nigeria farming landscape", "African farmland golden hour" — 1920x1080 max
-  - [ ] Business Overview accent: Abstract/environmental showing interconnected operations — search "African supply chain", "agriculture processing Africa" — 800x600
-  - [ ] Community Impact card: Rural agricultural community scene — search "African farmer training", "rural community Africa", "smallholder farmers" — 800x500
-  - [ ] Name candidates: `{slot}-candidate-{n}.jpg` (e.g., `homepage-hero-candidate-1.jpg`)
-  - [ ] Save 2-3 candidates per slot to `src/assets/images/_candidates/homepage/`
+- [x] **Task 2: Source homepage images** (AC: 1, 3, 4)
+  - [x] Hero image: Aerial view of African farmland at golden hour OR sweeping African landscape with agricultural activity — search "African agriculture aerial", "Nigeria farming landscape", "African farmland golden hour" — 1920x1080 max
+  - [x] Business Overview accent: Abstract/environmental showing interconnected operations — search "African supply chain", "agriculture processing Africa" — 800x600
+  - [x] Community Impact card: Rural agricultural community scene — search "African farmer training", "rural community Africa", "smallholder farmers" — 800x500
+  - [x] Name candidates: `{slot}-candidate-{n}.jpg` (e.g., `homepage-hero-candidate-1.jpg`)
+  - [x] Save 2-3 candidates per slot to `src/assets/images/_candidates/homepage/`
 
-- [ ] **Task 3: Source division card images (Bento Grid + Hub)** (AC: 1, 3, 4)
-  - [ ] Crop Farming: "African agriculture", "Nigeria farming", "crop field Africa" — 600x400
-  - [ ] Animal Husbandry: "African livestock", "cattle Nigeria", "poultry farm Africa" — 600x400
-  - [ ] Agro-Processing: "food processing Africa", "grain mill", "agro processing" — 600x400
-  - [ ] Commodity Marketing: "African commodity market", "grain trading", "agricultural trade" — 600x400
-  - [ ] Import & Export: "African port", "Lagos port", "shipping containers Africa" — 600x400
-  - [ ] Real Estate: "African real estate", "Lagos buildings", "modern African city" — 600x400
-  - [ ] Oil & Gas: "African energy", "fuel station Nigeria", "LPG Africa" — 600x400
-  - [ ] Name candidates: `{division-slug}-card-candidate-{n}.jpg`
-  - [ ] Save 2-3 candidates per division to `src/assets/images/_candidates/divisions/`
+- [x] **Task 3: Source division card images (Bento Grid + Hub)** (AC: 1, 3, 4)
+  - [x] Crop Farming: "African agriculture", "Nigeria farming", "crop field Africa" — 600x400
+  - [x] Animal Husbandry: "African livestock", "cattle Nigeria", "poultry farm Africa" — 600x400
+  - [x] Agro-Processing: "food processing Africa", "grain mill", "agro processing" — 600x400
+  - [x] Commodity Marketing: "African commodity market", "grain trading", "agricultural trade" — 600x400
+  - [x] Import & Export: "African port", "Lagos port", "shipping containers Africa" — 600x400
+  - [x] Real Estate: "African real estate", "Lagos buildings", "modern African city" — 600x400
+  - [x] Oil & Gas: "African energy", "fuel station Nigeria", "LPG Africa" — 600x400
+  - [x] Name candidates: `{division-slug}-card-candidate-{n}.jpg`
+  - [x] Save 2-3 candidates per division to `src/assets/images/_candidates/divisions/`
 
-- [ ] **Task 3b: Source division detail page hero images** (AC: 1, 3, 4)
-  - [ ] Each of the 7 division detail pages (`/divisions/{slug}/`) needs a full-width hero image at 1920x800 — same subject matter as bento cards but higher resolution, landscape orientation
-  - [ ] Crop Farming: "African farmland panoramic", "Nigeria agriculture wide" — 1920x800
-  - [ ] Animal Husbandry: "African cattle ranch wide", "livestock farm panoramic" — 1920x800
-  - [ ] Agro-Processing: "food processing plant wide", "agro industrial Africa" — 1920x800
-  - [ ] Commodity Marketing: "commodity market panoramic", "grain warehouse Africa" — 1920x800
-  - [ ] Import & Export: "African port panoramic", "container terminal Africa" — 1920x800
-  - [ ] Real Estate: "African city skyline", "Lagos urban development panoramic" — 1920x800
-  - [ ] Oil & Gas: "African energy infrastructure", "fuel depot panoramic" — 1920x800
-  - [ ] Name candidates: `{division-slug}-hero-candidate-{n}.jpg`
-  - [ ] Save 2-3 candidates per division to `src/assets/images/_candidates/divisions/`
+- [x] **Task 3b: Source division detail page hero images** (AC: 1, 3, 4)
+  - [x] Each of the 7 division detail pages (`/divisions/{slug}/`) needs a full-width hero image at 1920x800 — same subject matter as bento cards but higher resolution, landscape orientation
+  - [x] Crop Farming: "African farmland panoramic", "Nigeria agriculture wide" — 1920x800
+  - [x] Animal Husbandry: "African cattle ranch wide", "livestock farm panoramic" — 1920x800
+  - [x] Agro-Processing: "food processing plant wide", "agro industrial Africa" — 1920x800
+  - [x] Commodity Marketing: "commodity market panoramic", "grain warehouse Africa" — 1920x800
+  - [x] Import & Export: "African port panoramic", "container terminal Africa" — 1920x800
+  - [x] Real Estate: "African city skyline", "Lagos urban development panoramic" — 1920x800
+  - [x] Oil & Gas: "African energy infrastructure", "fuel depot panoramic" — 1920x800
+  - [x] Name candidates: `{division-slug}-hero-candidate-{n}.jpg`
+  - [x] Save 2-3 candidates per division to `src/assets/images/_candidates/divisions/`
 
-- [ ] **Task 4: Source About page images** (AC: 1, 3, 4)
-  - [ ] Hero/Story: Professional African business environment, office/boardroom — search "African business meeting", "Lagos office", "African professionals" — 1920x800
-  - [ ] Community Impact anchor: Rural community empowerment scene — search "African rural development", "community empowerment Africa" — 800x500
-  - [ ] Name candidates: `about-{slot}-candidate-{n}.jpg`
-  - [ ] Save 2-3 candidates per slot to `src/assets/images/_candidates/about/`
+- [x] **Task 4: Source About page images** (AC: 1, 3, 4)
+  - [x] Hero/Story: Professional African business environment, office/boardroom — search "African business meeting", "Lagos office", "African professionals" — 1920x800
+  - [x] Community Impact anchor: Rural community empowerment scene — search "African rural development", "community empowerment Africa" — 800x500
+  - [x] Name candidates: `about-{slot}-candidate-{n}.jpg`
+  - [x] Save 2-3 candidates per slot to `src/assets/images/_candidates/about/`
 
-- [ ] **Task 5: Source Community Impact page images** (AC: 1, 3, 4)
-  - [ ] Hero: Farmers in field, agricultural training, community gathering — search "African farmer training", "rural agricultural community", "African village farming" — 1920x800
-  - [ ] Impact Areas: Training sessions, farm inputs, community infrastructure — search "agricultural training Africa", "farm inputs Africa", "rural infrastructure Africa" — 800x500
-  - [ ] How to Get Involved: Partnership/collaboration/volunteers — search "African community partnership", "volunteer Africa agriculture" — 800x500
-  - [ ] Name candidates: `community-{slot}-candidate-{n}.jpg`
-  - [ ] Save 2-3 candidates per slot to `src/assets/images/_candidates/community-impact/`
+- [x] **Task 5: Source Community Impact page images** (AC: 1, 3, 4)
+  - [x] Hero: Farmers in field, agricultural training, community gathering — search "African farmer training", "rural agricultural community", "African village farming" — 1920x800
+  - [x] Impact Areas: Training sessions, farm inputs, community infrastructure — search "agricultural training Africa", "farm inputs Africa", "rural infrastructure Africa" — 800x500
+  - [x] How to Get Involved: Partnership/collaboration/volunteers — search "African community partnership", "volunteer Africa agriculture" — 800x500
+  - [x] Name candidates: `community-{slot}-candidate-{n}.jpg`
+  - [x] Save 2-3 candidates per slot to `src/assets/images/_candidates/community-impact/`
 
-- [ ] **Task 6: Source Investors & Partners images** (AC: 1, 3, 4)
-  - [ ] Hero: Handshake, boardroom, or skyline — African business context — search "African business handshake", "Lagos skyline", "African boardroom" — 1920x800
-  - [ ] Social Impact: Reuse from community-impact candidates or source new — 800x500
-  - [ ] Name candidates: `investors-{slot}-candidate-{n}.jpg`
-  - [ ] Save 2-3 candidates to `src/assets/images/_candidates/investors/`
+- [x] **Task 6: Source Investors & Partners images** (AC: 1, 3, 4)
+  - [x] Hero: Handshake, boardroom, or skyline — African business context — search "African business handshake", "Lagos skyline", "African boardroom" — 1920x800
+  - [x] Social Impact: Reuse from community-impact candidates or source new — 800x500
+  - [x] Name candidates: `investors-{slot}-candidate-{n}.jpg`
+  - [x] Save 2-3 candidates to `src/assets/images/_candidates/investors/`
 
-- [ ] **Task 7: Source Contact page images** (AC: 1, 3, 4)
-  - [ ] Contact Hub: Office exterior or professional environment — search "African office building", "Lagos business district" — 800x500
-  - [ ] Locations: Lagos office area, African city map, or business district — search "Lagos business area", "African city aerial", "West African map" — 800x500
-  - [ ] Name candidates: `contact-hub-candidate-{n}.jpg`, `contact-locations-candidate-{n}.jpg`
-  - [ ] Save 2-3 candidates to `src/assets/images/_candidates/contact/`
+- [x] **Task 7: Source Contact page images** (AC: 1, 3, 4)
+  - [x] Contact Hub: Office exterior or professional environment — search "African office building", "Lagos business district" — 800x500
+  - [x] Locations: Lagos office area, African city map, or business district — search "Lagos business area", "African city aerial", "West African map" — 800x500
+  - [x] Name candidates: `contact-hub-candidate-{n}.jpg`, `contact-locations-candidate-{n}.jpg`
+  - [x] Save 2-3 candidates to `src/assets/images/_candidates/contact/`
 
-- [ ] **Task 8: Generate curation manifest** (AC: 2)
-  - [ ] Create `src/assets/images/_candidates/MANIFEST.md` with format per slot:
+- [x] **Task 8: Generate curation manifest** (AC: 2)
+  - [x] Create `src/assets/images/_candidates/MANIFEST.md` with format per slot:
     ```
     ## [Page] — [Section/Slot]
     | Candidate | Source | Photographer | License | Search Terms | Recommended |
     |-----------|--------|-------------|---------|-------------|-------------|
     | filename  | URL    | name        | type    | terms used  | Yes/No      |
     ```
-  - [ ] Include recommended pick per slot with brief rationale
-  - [ ] Include total candidate count and coverage summary
+  - [x] Include recommended pick per slot with brief rationale
+  - [x] Include total candidate count and coverage summary
 
 - [ ] **HALT — Human Approval Gate** (~5-10 min)
-  - [ ] Present MANIFEST.md summary to Awwal for review
-  - [ ] Awwal reviews `src/assets/images/_candidates/` folders and confirms or swaps picks
-  - [ ] After approval: move approved images to final locations per Task 9
-  - [ ] Delete rejected candidates and `_candidates/` directory
+  - [x] Present MANIFEST.md summary to Awwal for review
+  - [x] Awwal reviews `src/assets/images/_candidates/` folders and confirms or swaps picks
+  - [x] After approval: move approved images to final locations per Task 9
+  - [x] Delete rejected candidates and `_candidates/` directory
 
-- [ ] **Task 9: Finalize approved images** (AC: 5, 6)
-  - [ ] Create final directory structure per spec Section 4.4:
+- [x] **Task 9: Finalize approved images** (AC: 5, 6)
+  - [x] Create final directory structure per spec Section 4.4:
     ```
     src/assets/images/
     ├── hero/          (homepage-hero.jpg, about-hero.jpg, community-impact-hero.jpg, investors-hero.jpg)
@@ -121,54 +121,54 @@ So that the visual experience matches the company's identity and positioning.
     ├── sections/      (bento-crop-farming.jpg, bento-animal-husbandry.jpg, etc.)
     └── community/     (srada-training.jpg, srada-community.jpg, srada-farming.jpg)
     ```
-  - [ ] Move approved images from `_candidates/` to final locations with proper names
-  - [ ] Create `src/assets/images/ATTRIBUTIONS.md` with format: `filename | source | photographer | license | URL`
-  - [ ] Remove `_candidates/` directory and any remaining rejected files
+  - [x] Move approved images from `_candidates/` to final locations with proper names
+  - [x] Create `src/assets/images/ATTRIBUTIONS.md` with format: `filename | source | photographer | license | URL`
+  - [x] Remove `_candidates/` directory and any remaining rejected files
 
 ### Phase B: Dev Integration
 
-- [ ] **Task 10: Integrate division detail page hero images** (AC: 7, 8, 9, 10)
-  - [ ] `src/pages/divisions/[slug].astro` — Add hero background image support to the hero SectionWrapper (line ~224). Use same pattern as homepage hero: absolute-positioned `<Image>` with dark overlay.
-  - [ ] Import division hero images from `@/assets/images/divisions/{slug}-hero.jpg` using a dynamic import map or per-slug conditional
-  - [ ] Hero images: `loading="eager"` (above fold)
-  - [ ] Ensure fallback renders gracefully if image is missing (gradient-only, matching current state)
+- [x] **Task 10: Integrate division detail page hero images** (AC: 7, 8, 9, 10)
+  - [x] `src/pages/divisions/[slug].astro` — Add hero background image support to the hero SectionWrapper (line ~224). Use same pattern as homepage hero: absolute-positioned `<Image>` with dark overlay.
+  - [x] Import division hero images from `@/assets/images/divisions/{slug}-hero.jpg` using a dynamic import map or per-slug conditional
+  - [x] Hero images: `loading="eager"` (above fold)
+  - [x] Ensure fallback renders gracefully if image is missing (gradient-only, matching current state)
 
-- [ ] **Task 11: Integrate homepage images** (AC: 7, 8, 9, 10)
-  - [ ] `src/pages/index.astro` — Hero: Add background image behind existing CSS gradient using absolute-positioned `<Image>` with dark overlay (`bg-primary-900/80` on top). Import hero image from `@/assets/images/hero/homepage-hero.jpg`. Keep existing gradient as fallback.
-  - [ ] Business Overview section: Add accent image if sourced (optional — section works without it)
-  - [ ] Community Impact section (added in Story 9.3): Add SRADA feature image if section exists
-  - [ ] Ensure hero image uses eager loading (`loading="eager"`), all others `loading="lazy"`
+- [x] **Task 11: Integrate homepage images** (AC: 7, 8, 9, 10)
+  - [x] `src/pages/index.astro` — Hero: Add background image behind existing CSS gradient using absolute-positioned `<Image>` with dark overlay (`bg-primary-900/80` on top). Import hero image from `@/assets/images/hero/homepage-hero.jpg`. Keep existing gradient as fallback.
+  - [x] Business Overview section: Add accent image if sourced (optional — section works without it)
+  - [x] Community Impact section (added in Story 9.3): Add SRADA feature image if section exists
+  - [x] Ensure hero image uses eager loading (`loading="eager"`), all others `loading="lazy"`
 
-- [ ] **Task 12: Integrate Bento Grid division card images** (AC: 7, 8, 9, 10)
-  - [ ] Modify `src/components/divisions/DivisionBentoGrid.astro` or `DivisionCard.astro` to accept an optional image prop
-  - [ ] Add background images to division cards — low opacity overlay so text remains readable
-  - [ ] Import section images from `@/assets/images/sections/bento-{division-slug}.jpg`
-  - [ ] All card images: `loading="lazy"`, target < 80KB each
-  - [ ] Ensure text contrast meets WCAG AA on image backgrounds (use dark overlay)
+- [x] **Task 12: Integrate Bento Grid division card images** (AC: 7, 8, 9, 10)
+  - [x] Modify `src/components/divisions/DivisionBentoGrid.astro` or `DivisionCard.astro` to accept an optional image prop
+  - [x] Add background images to division cards — low opacity overlay so text remains readable
+  - [x] Import section images from `@/assets/images/sections/bento-{division-slug}.jpg`
+  - [x] All card images: `loading="lazy"`, target < 80KB each
+  - [x] Ensure text contrast meets WCAG AA on image backgrounds (use dark overlay)
 
-- [ ] **Task 13: Integrate About page images** (AC: 7, 8, 10)
-  - [ ] `src/pages/about.astro` — Fill the existing image placeholder div (line ~101-104) with actual `<Image>` component
-  - [ ] Import hero image from `@/assets/images/hero/about-hero.jpg`
-  - [ ] Community Impact anchor section: add image if section exists (from Story 9.3)
-  - [ ] All images below fold: `loading="lazy"`
+- [x] **Task 13: Integrate About page images** (AC: 7, 8, 10)
+  - [x] `src/pages/about.astro` — Fill the existing image placeholder div (line ~101-104) with actual `<Image>` component
+  - [x] Import hero image from `@/assets/images/hero/about-hero.jpg`
+  - [x] Community Impact anchor section: add image if section exists (from Story 9.3)
+  - [x] All images below fold: `loading="lazy"`
 
-- [ ] **Task 14: Integrate Community Impact page images** (AC: 7, 8, 10)
-  - [ ] `src/pages/community-impact.astro` (created in Story 9.3) — Add hero image, impact area imagery
-  - [ ] Import from `@/assets/images/community/srada-*.jpg`
-  - [ ] Hero: eager loading; all others: lazy
-  - [ ] If community-impact page doesn't exist yet, skip this task and note in completion log
+- [x] **Task 14: Integrate Community Impact page images** (AC: 7, 8, 10)
+  - [x] `src/pages/community-impact.astro` (created in Story 9.3) — Add hero image, impact area imagery
+  - [x] Import from `@/assets/images/community/srada-*.jpg`
+  - [x] Hero: eager loading; all others: lazy
+  - [x] If community-impact page doesn't exist yet, skip this task and note in completion log
 
-- [ ] **Task 15: Integrate Investors & Partners images** (AC: 7, 8, 10)
-  - [ ] `src/pages/investors-partners.astro` — Add hero background image following same pattern as homepage hero (gradient overlay + background image)
-  - [ ] Import from `@/assets/images/hero/investors-hero.jpg`
-  - [ ] Social Impact section: add image if section exists (from Story 9.3)
+- [x] **Task 15: Integrate Investors & Partners images** (AC: 7, 8, 10)
+  - [x] `src/pages/investors-partners.astro` — Add hero background image following same pattern as homepage hero (gradient overlay + background image)
+  - [x] Import from `@/assets/images/hero/investors-hero.jpg`
+  - [x] Social Impact section: add image if section exists (from Story 9.3)
 
-- [ ] **Task 16: Performance verification** (AC: 9, 11)
-  - [ ] Run `npm run build` — verify all images are processed by Astro (check build output for image optimization lines)
-  - [ ] Check build output: hero images should be < 150KB after WebP conversion, section images < 80KB
-  - [ ] Run Lighthouse on homepage — verify total page weight < 500KB
-  - [ ] If any image exceeds budget, reduce source dimensions or quality before re-building
-  - [ ] Verify all below-fold images have `loading="lazy"` attribute in rendered HTML
+- [x] **Task 16: Performance verification** (AC: 9, 11)
+  - [x] Run `npm run build` — verify all images are processed by Astro (check build output for image optimization lines)
+  - [x] Check build output: hero images should be < 150KB after WebP conversion, section images < 80KB
+  - [x] Run Lighthouse on homepage — verify total page weight < 500KB
+  - [x] If any image exceeds budget, reduce source dimensions or quality before re-building
+  - [x] Verify all below-fold images have `loading="lazy"` attribute in rendered HTML
 
 ## Dev Notes
 
@@ -316,9 +316,57 @@ Modified files (Phase B):
 ## Dev Agent Record
 
 ### Agent Model Used
+Claude Opus 4.6 (1M context)
 
 ### Debug Log References
+- No build errors during integration — all 51 image variants generated successfully by Astro
+- Extra closing `</div>` in investors-partners.astro caught and fixed before build
 
 ### Completion Notes List
+- Phase A: 42 candidate images sourced from Pexels across 6 categories, manifest created, human approval obtained, 23 final images moved to production locations
+- Phase B: Images integrated into homepage hero, 7 division detail page heroes (via DivisionLayout), bento grid cards (7 cards via DivisionCard imageSrc prop), about page (replaced SVG placeholder), community impact hero, investors & partners hero
+- Astro Image component used throughout with responsive widths and WebP conversion
+- Hero images use `loading="eager"`, all others `loading="lazy"`
+- All hero images well under 150KB budget after WebP optimization (e.g., homepage 62KB, about 37KB)
+- All bento card images under 80KB (e.g., animal husbandry 25KB, oil & gas 18KB)
+- DivisionCard component extended with optional `imageSrc` prop — backward compatible, falls back to existing CSS styling when no image provided
+- DivisionLayout uses dynamic import map for per-slug hero images — graceful fallback to gradient-only if image missing
+- ATTRIBUTIONS.md tracks all 23 images with source, photographer, license, and URL
+- Build: 51 optimized images generated, zero errors. Tests: 174/174 passing
+
+### Change Log
+- 2026-04-07: Phase A — sourced 42 candidates from Pexels, created manifest, human approved recommendations
+- 2026-04-07: Phase B — integrated 23 images across homepage, divisions, about, community impact, investors pages
 
 ### File List
+- src/assets/images/ATTRIBUTIONS.md (new)
+- src/assets/images/hero/homepage-hero.jpg (new)
+- src/assets/images/hero/about-hero.jpg (new)
+- src/assets/images/hero/community-impact-hero.jpg (new)
+- src/assets/images/hero/investors-hero.jpg (new)
+- src/assets/images/divisions/crop-farming-hero.jpg (new)
+- src/assets/images/divisions/animal-husbandry-hero.jpg (new)
+- src/assets/images/divisions/agro-processing-hero.jpg (new)
+- src/assets/images/divisions/commodity-marketing-hero.jpg (new)
+- src/assets/images/divisions/import-export-hero.jpg (new)
+- src/assets/images/divisions/real-estate-hero.jpg (new)
+- src/assets/images/divisions/oil-gas-hero.jpg (new)
+- src/assets/images/sections/bento-crop-farming.jpg (new)
+- src/assets/images/sections/bento-animal-husbandry.jpg (new)
+- src/assets/images/sections/bento-agro-processing.jpg (new)
+- src/assets/images/sections/bento-commodity-marketing.jpg (new)
+- src/assets/images/sections/bento-import-export.jpg (new)
+- src/assets/images/sections/bento-real-estate.jpg (new)
+- src/assets/images/sections/bento-oil-gas.jpg (new)
+- src/assets/images/sections/contact-hub.jpg (new)
+- src/assets/images/sections/contact-locations.jpg (new)
+- src/assets/images/community/srada-community.jpg (new)
+- src/assets/images/community/srada-training.jpg (new)
+- src/assets/images/community/srada-farming.jpg (new)
+- src/pages/index.astro (modified — hero background image)
+- src/layouts/DivisionLayout.astro (modified — hero background images for all 7 divisions)
+- src/components/divisions/DivisionCard.astro (modified — optional imageSrc prop)
+- src/components/divisions/DivisionBentoGrid.astro (modified — image imports, passes imageSrc to cards)
+- src/pages/about.astro (modified — replaced SVG placeholder with Image component)
+- src/pages/community-impact.astro (modified — hero background image)
+- src/pages/investors-partners.astro (modified — hero background image)

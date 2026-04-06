@@ -117,6 +117,6 @@ development_status:
   9-1-legacy-logo-swap: done
   9-2-pan-african-copy-rewrite: done
   9-3-community-impact-page-srada: review
-  9-4-african-context-image-sourcing-integration: in-progress # two-phase: agent sources candidates → human approves → dev integrates
+  9-4-african-context-image-sourcing-integration: review # two-phase: agent sources candidates → human approves → dev integrates
   9-5-print-collateral-business-cards-letterhead: done # non-web, can run in parallel
   epic-9-retrospective: optional
