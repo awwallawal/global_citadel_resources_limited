@@ -182,9 +182,9 @@ The letterhead uses the approved ornate emblem (`src/assets/brand/grcl-emblem.pn
 |-------|-------|--------|
 | Company name | Global Resources Citadel Limited | Confirmed |
 | Address | 1st Floor, Gbemisola House, Opp. Omole Phase I, Ogba, Lagos, Nigeria | Confirmed |
-| Email | info@globalresourcescitadel.com | Active (replaces legacy Yahoo) |
+| Email | info@global-resources.org | Active (replaces legacy Yahoo) |
 | Phone | +234-811-191-2174 | Confirmed |
-| Website | www.globalresourcescitadel.com | New domain |
+| Website | www.global-resources.org | New domain |
 | RC Number | *To be provided by client* | Pending |
 | Logo | `src/assets/brand/grcl-emblem.png` | Approved |
 

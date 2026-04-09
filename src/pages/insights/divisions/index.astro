@@ -10,6 +10,7 @@ import {
   generateBreadcrumbJsonLd,
   type BreadcrumbItem,
 } from '@/lib/seo';
+import { COMPANY } from '@/lib/company';
 
 const divisions = (await getCollection('divisions')).sort(
   (a, b) => a.data.sortOrder - b.data.sortOrder,
@@ -29,7 +30,7 @@ const breadcrumbs: BreadcrumbItem[] = [
   { label: 'By Division' },
 ];
 
-const SITE_URL = (import.meta.env.SITE ?? 'https://global-resources.org').replace(/\/$/, '');
+const SITE_URL = (import.meta.env.SITE ?? COMPANY.siteUrl).replace(/\/$/, '');
 
 const seo = {
   ...generateMetadata({

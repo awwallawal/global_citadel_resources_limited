@@ -18,6 +18,7 @@ import {
   generateBreadcrumbJsonLd,
   type BreadcrumbItem,
 } from '@/lib/seo';
+import { COMPANY } from '@/lib/company';
 
 import { STREAM_LABELS } from '@/lib/divisions';
 import type { Cluster, Division, Article } from '@/content.config';
@@ -119,7 +120,7 @@ export async function getStaticPaths() {
 const props = Astro.props as Props;
 
 // --- Shared ---
-const SITE_URL = (import.meta.env.SITE ?? 'https://globalresourcescitadel.com').replace(/\/$/, '');
+const SITE_URL = (import.meta.env.SITE ?? COMPANY.siteUrl).replace(/\/$/, '');
 
 const streamLabels = STREAM_LABELS;
 

@@ -128,7 +128,7 @@ import vercel from '@astrojs/vercel';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  site: 'https://globalresourcescitadel.com', // placeholder
+  site: 'https://global-resources.org', // placeholder
   output: 'static',
   adapter: vercel(),
   integrations: [react()],
@@ -187,10 +187,10 @@ export default defineConfig({
 RESEND_API_KEY=re_xxxxxxxxxxxx
 
 # Default recipient for contact form submissions (server-only)
-CONTACT_EMAIL_DEFAULT=info@globalresourcescitadel.com
+CONTACT_EMAIL_DEFAULT=info@global-resources.org
 
 # Site URL for canonical URLs, sitemaps, and social meta tags (build-time)
-SITE_URL=https://globalresourcescitadel.com
+SITE_URL=https://global-resources.org
 
 # Public site name for meta tags and branding (public, exposed to client)
 PUBLIC_SITE_NAME=Global Resources Citadel

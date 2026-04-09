@@ -2,7 +2,7 @@ import '../mocks/astro-content';
 import { mockDivisions } from '../mocks/astro-content';
 import { getRecipientEmail, getRoutingContext } from '../../src/lib/contact';
 
-const DEFAULT_EMAIL = 'info@globalresourcescitadel.com';
+const DEFAULT_EMAIL = 'info@global-resources.org';
 const divisions = mockDivisions.map((division) => ({
   slug: division.data.slug,
   name: division.data.name,
@@ -27,7 +27,7 @@ describe('getRecipientEmail', () => {
 
   it('routes division inquiry to division email and name', () => {
     const result = getRecipientEmail('division-business', 'crop-farming', divisions, DEFAULT_EMAIL);
-    expect(result.recipientEmail).toBe('crop-farming@globalresourcescitadel.com');
+    expect(result.recipientEmail).toBe('crop-farming@global-resources.org');
     expect(result.divisionName).toBe('Crop Farming');
   });
 
@@ -42,13 +42,13 @@ describe('getRecipientEmail', () => {
   });
 
   const expectedRoutes: [string, string][] = [
-    ['crop-farming', 'crop-farming@globalresourcescitadel.com'],
-    ['animal-husbandry', 'animal-husbandry@globalresourcescitadel.com'],
-    ['agro-processing', 'agro-processing@globalresourcescitadel.com'],
-    ['commodity-marketing', 'commodity-marketing@globalresourcescitadel.com'],
-    ['import-export', 'import-export@globalresourcescitadel.com'],
-    ['real-estate', 'real-estate@globalresourcescitadel.com'],
-    ['oil-gas', 'oil-gas@globalresourcescitadel.com'],
+    ['crop-farming', 'crop-farming@global-resources.org'],
+    ['animal-husbandry', 'animal-husbandry@global-resources.org'],
+    ['agro-processing', 'agro-processing@global-resources.org'],
+    ['commodity-marketing', 'commodity-marketing@global-resources.org'],
+    ['import-export', 'import-export@global-resources.org'],
+    ['real-estate', 'real-estate@global-resources.org'],
+    ['oil-gas', 'oil-gas@global-resources.org'],
   ];
 
   it.each(expectedRoutes)('routes %s to %s', (slug, email) => {

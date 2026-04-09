@@ -12,7 +12,7 @@
 | Phone | +234-811-191-2174 | Confirmed |
 | Address | 1st Floor, Gbemisola House, Opp. Omole Phase I, Ogba, Lagos, Nigeria | Confirmed |
 | Email (legacy) | globalresources@yahoo.com | Legacy — do not use on new site |
-| Website (legacy) | www.global-resources.org | Legacy domain |
+| Website | www.global-resources.org | Primary domain (purchased 2026-04-09) |
 
 ## Legacy Logo Description
 
@@ -33,6 +33,6 @@ The original logo features:
 
 1. **Phone number** (+234-811-191-2174) should replace any placeholder phone numbers across the site
 2. **Physical address** (1st Floor, Gbemisola House, Opp. Omole Phase I, Ogba, Lagos) should be used as the headquarters address on the contact/locations page
-3. **Email** — the Yahoo address should NOT be used; the site already uses domain-based emails (e.g., info@globalresourcescitadel.com)
-4. **Website** — www.global-resources.org is the legacy domain; the new platform replaces this
+3. **Email** — the Yahoo address should NOT be used; the site already uses domain-based emails (e.g., info@global-resources.org)
+4. **Website** — www.global-resources.org is now the primary domain (purchased 2026-04-09); all site URLs, emails, and assets use this domain
 5. **Brand evolution** — the shift from lime/black/yellow to forest green/gold represents a significant credibility upgrade

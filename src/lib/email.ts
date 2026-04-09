@@ -1,3 +1,5 @@
+import { COMPANY } from '@/lib/company';
+
 interface NotificationParams {
   to: string;
   inquiryType: string;
@@ -97,9 +99,9 @@ export async function sendConfirmationEmail(params: ConfirmationParams) {
     <h2 style="font-size:16px;color:#1F2937;margin:0 0 12px;">Thank you, ${escapeHtml(params.name)}</h2>
     <p style="font-size:14px;color:#4B5563;line-height:1.6;margin:0 0 16px;">We have received your enquiry and it has been forwarded to the appropriate team.</p>
     <p style="font-size:14px;color:#4B5563;line-height:1.6;margin:0 0 16px;">${escapeHtml(params.routingContext)}</p>
-    <p style="font-size:14px;color:#4B5563;line-height:1.6;margin:0;">If you need to reach us urgently, please contact us at <a href="mailto:info@globalresourcescitadel.com" style="color:#15803D;">info@globalresourcescitadel.com</a>.</p>
+    <p style="font-size:14px;color:#4B5563;line-height:1.6;margin:0;">If you need to reach us urgently, please contact us at <a href="mailto:${COMPANY.defaultEmail}" style="color:#15803D;">${COMPANY.defaultEmail}</a>.</p>
   </div>
-  <p style="font-size:11px;color:#9CA3AF;margin:24px 0 0;text-align:center;">Global Resources Citadel Limited &bull; Victoria Island, Lagos, Nigeria</p>
+  <p style="font-size:11px;color:#9CA3AF;margin:24px 0 0;text-align:center;">${COMPANY.legalName} &bull; ${COMPANY.offices.nigeria.address.full}</p>
 </div>
 </body></html>`,
   });

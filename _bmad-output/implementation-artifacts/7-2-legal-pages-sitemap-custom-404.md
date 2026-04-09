@@ -165,7 +165,7 @@ Reuse the `.prose-article` styling from Story 6.2 or create `.prose-legal`:
 <p>You have the right to access, correct, or delete your personal information...</p>
 
 <h2>Contact for Privacy Concerns</h2>
-<p>For privacy-related enquiries, contact us at <a href="mailto:info@globalresourcescitadel.com">info@globalresourcescitadel.com</a>.</p>
+<p>For privacy-related enquiries, contact us at <a href="mailto:info@global-resources.org">info@global-resources.org</a>.</p>
 ```
 
 **Note:** This is placeholder content for structure/layout. All legal text must be reviewed and approved by a qualified legal professional before production launch.
@@ -301,7 +301,7 @@ In `astro.config.mjs`:
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://globalresourcescitadel.com',
+  site: 'https://global-resources.org',
   integrations: [react(), sitemap({
     filter: (page) => !page.includes('/api/') && !page.includes('/search') && !page.includes('/404'),
   })],
@@ -311,7 +311,7 @@ export default defineConfig({
 
 This generates `sitemap-index.xml` at build time, linked from `robots.txt`:
 ```
-Sitemap: https://globalresourcescitadel.com/sitemap-index.xml
+Sitemap: https://global-resources.org/sitemap-index.xml
 ```
 
 ### robots.txt Update
@@ -324,7 +324,7 @@ Allow: /
 Disallow: /api/
 Disallow: /search
 
-Sitemap: https://globalresourcescitadel.com/sitemap-index.xml
+Sitemap: https://global-resources.org/sitemap-index.xml
 ```
 
 ### Previous Story Intelligence

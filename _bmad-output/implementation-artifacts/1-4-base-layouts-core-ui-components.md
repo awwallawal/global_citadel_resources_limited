@@ -144,7 +144,7 @@ const {
   jsonLd,
 } = Astro.props;
 
-const siteUrl = import.meta.env.SITE_URL || 'https://globalresourcescitadel.com';
+const siteUrl = import.meta.env.SITE_URL || 'https://global-resources.org';
 const siteName = import.meta.env.PUBLIC_SITE_NAME || 'Global Resources Citadel';
 const canonicalUrl = canonical || new URL(Astro.url.pathname, siteUrl).href;
 ---

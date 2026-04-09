@@ -3,4 +3,4 @@ Allow: /
 Disallow: /api/
 Disallow: /search
 
-Sitemap: https://globalresourcescitadel.com/sitemap-index.xml
+Sitemap: https://global-resources.org/sitemap-index.xml

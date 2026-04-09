@@ -1,0 +1,873 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GRCL Business Card — Print-Ready (Thomas, CEO)</title>
+
+  <!--
+    GLOBAL RESOURCES CITADEL LIMITED — Business Card Print Suite
+    ─────────────────────────────────────────────────────────────
+    Card size:     85 mm × 55 mm (UK standard)
+    Corner radius: 4 mm (preserved in Single Card PDF mode)
+    Bleed:         3 mm (applied in Print Sheet / A4 imposition mode)
+    Safe area:     4 mm inner margin
+    Stock:         400 gsm matte uncoated, OR soft-touch laminated 350 gsm
+    Print colour:  4-process CMYK + optional spot-gold foil on the seal
+
+    Two print modes (toggle on-screen):
+      1. SINGLE CARD  — PDF pages are exactly 85 × 55 mm. Front + back.
+      2. PRINT SHEET   — A4 portrait with 8 cards (2 × 4), 3 mm bleed, crop marks.
+
+    QR code encodes: https://global-resources.org/contact/
+    QR file:         business-card-qr.png (local — no internet needed at print time)
+    Logo dependency:  ../../src/assets/brand/logo-legacy.png
+  -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    /* ── Brand tokens ────────────────────────────────────────── */
+    :root {
+      --primary-900: #14532d;
+      --primary-800: #166534;
+      --primary-700: #15803d;
+      --cream:       #f0fdf4;
+      --gold-core:   #b48a3e;
+      --gold-light:  #d4af6a;
+      --gold-dark:   #8a6a2e;
+    }
+
+    /* ── CRITICAL: Force backgrounds to print ────────────────── */
+    *, *::before, *::after {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      color-adjust: exact !important;
+    }
+
+    /* ── Page chrome (screen only) ───────────────────────────── */
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #e7e7e3;
+      font-family: 'Inter', system-ui, sans-serif;
+      color: #2a2a2a;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .preview-shell {
+      max-width: 240mm;
+      margin: 0 auto;
+      padding: 30px 20px 60px;
+    }
+
+    .preview-header h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      margin: 0 0 4px;
+      color: var(--primary-900);
+    }
+    .preview-header p {
+      margin: 0 0 10px;
+      font-size: 13px;
+      line-height: 1.5;
+      color: #555;
+      max-width: 600px;
+    }
+    .preview-header code {
+      background: #f1f1ed;
+      padding: 1px 5px;
+      border-radius: 3px;
+      font-family: ui-monospace, 'JetBrains Mono', monospace;
+      font-size: 12px;
+    }
+
+    /* ── Mode toggle ─────────────────────────────────────────── */
+    .print-mode-toggle {
+      display: flex;
+      gap: 0;
+      margin: 16px 0 0;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 2px solid var(--primary-900);
+      width: fit-content;
+    }
+    .print-mode-toggle button {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      background: white;
+      color: var(--primary-900);
+      transition: background 0.2s, color 0.2s;
+    }
+    .print-mode-toggle button:hover {
+      background: #f0fdf4;
+    }
+    .print-mode-toggle button.active {
+      background: var(--primary-900);
+      color: white;
+    }
+    .print-mode-toggle button + button {
+      border-left: 2px solid var(--primary-900);
+    }
+
+    /* ── Instructions panel ──────────────────────────────────── */
+    .print-instructions {
+      margin: 16px 0 24px;
+      padding: 16px 20px;
+      background: #fefce8;
+      border: 1px solid #fbbf24;
+      border-radius: 8px;
+      font-size: 13px;
+      line-height: 1.6;
+      max-width: 520px;
+    }
+    .print-instructions strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 14px;
+      color: var(--primary-900);
+    }
+    .print-instructions ol {
+      margin: 0;
+      padding-left: 20px;
+    }
+    .print-instructions li {
+      margin-bottom: 3px;
+    }
+    .print-instructions .warn {
+      color: #b45309;
+      font-weight: 600;
+    }
+    .instructions-card,
+    .instructions-sheet {
+      display: none;
+    }
+    body[data-print-mode="card"] .instructions-card { display: block; }
+    body[data-print-mode="sheet"] .instructions-sheet { display: block; }
+
+    /* ── Card label (screen only) ────────────────────────────── */
+    .card-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      color: #666;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin: 0 0 6px 1mm;
+    }
+
+    /* ── Output area visibility ──────────────────────────────── */
+    body[data-print-mode="card"] .print-sheet-output { display: none; }
+    body[data-print-mode="sheet"] .single-card-output { display: none; }
+
+    /* ── Single-card screen layout ───────────────────────────── */
+    .single-card-output {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18mm;
+      align-items: flex-start;
+    }
+
+    /* ── THE CARD ─────────────────────────────────────────────── */
+    .card {
+      width: 85mm;
+      height: 55mm;
+      border-radius: 4mm;
+      background: var(--primary-900);
+      color: var(--cream);
+      position: relative;
+      overflow: hidden;
+      box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.04) inset,
+        0 18px 38px -12px rgba(0, 0, 0, 0.45),
+        0 6px 14px -8px rgba(0, 0, 0, 0.3);
+      font-family: 'Inter', sans-serif;
+      background-image:
+        radial-gradient(ellipse at 20% 0%, rgba(180, 138, 62, 0.08), transparent 50%),
+        radial-gradient(ellipse at 100% 100%, rgba(22, 101, 52, 0.45), transparent 60%);
+    }
+
+    /* ── FRONT ────────────────────────────────────────────────── */
+    .card-front {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 5mm 4mm 0;
+    }
+
+    .card-front .seal {
+      display: block;
+      width: 13mm;
+      height: 13mm;
+      object-fit: contain;
+      filter: drop-shadow(0 1mm 1.5mm rgba(0, 0, 0, 0.35));
+      margin-top: 1mm;
+    }
+
+    .card-front .wordmark {
+      text-align: center;
+      margin-top: 1mm;
+    }
+
+    .card-front .word-global {
+      display: inline-flex;
+      align-items: center;
+      gap: 1.5mm;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      font-size: 7.2mm;
+      line-height: 1;
+      color: var(--gold-core);
+      letter-spacing: 0.06em;
+    }
+    .card-front .word-global svg {
+      width: 4.8mm;
+      height: 4.8mm;
+      stroke: var(--gold-light);
+      stroke-width: 1.6;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .card-front .word-rest {
+      display: block;
+      margin-top: 1mm;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+      font-size: 2.2mm;
+      letter-spacing: 0.32em;
+      color: var(--cream);
+      opacity: 0.92;
+    }
+
+    .card-front .tagline-band {
+      width: 100%;
+      background: var(--gold-core);
+      color: var(--primary-900);
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 1.95mm;
+      text-align: center;
+      padding: 1.5mm 4mm;
+      letter-spacing: 0.025em;
+      line-height: 1.15;
+      box-sizing: border-box;
+    }
+
+    /* ── BACK ─────────────────────────────────────────────────── */
+    .card-back {
+      padding: 4mm 4mm 3.5mm;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5mm;
+    }
+
+    .card-back .name-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 2mm;
+    }
+    .card-back .name {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 4.6mm;
+      line-height: 1;
+      color: var(--gold-core);
+      letter-spacing: 0.06em;
+    }
+    .card-back .title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: 2.1mm;
+      color: var(--cream);
+      margin-top: 0.6mm;
+      letter-spacing: 0.02em;
+    }
+    .card-back .full-name {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 1.75mm;
+      color: rgba(240, 253, 244, 0.55);
+      margin-top: 0.4mm;
+      letter-spacing: 0.01em;
+    }
+    .card-back .seal-mini {
+      width: 9mm;
+      height: 9mm;
+      object-fit: contain;
+      flex-shrink: 0;
+      filter: drop-shadow(0 0.5mm 1mm rgba(0, 0, 0, 0.35));
+    }
+
+    .card-back .rule {
+      width: 100%;
+      height: 0.25mm;
+      background: linear-gradient(
+        to right,
+        transparent,
+        var(--gold-core) 15%,
+        var(--gold-core) 85%,
+        transparent
+      );
+      opacity: 0.55;
+      margin: 0.5mm 0;
+    }
+
+    .card-back .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5mm;
+      flex: 1;
+    }
+    .card-back .contact-col {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4mm;
+    }
+    .card-back .col-label {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 1.65mm;
+      color: var(--gold-core);
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      margin-bottom: 0.5mm;
+    }
+    .card-back .row {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.2mm;
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 1.85mm;
+      color: var(--cream);
+      line-height: 1.28;
+    }
+    .card-back .row .icon {
+      flex-shrink: 0;
+      width: 2mm;
+      height: 2mm;
+      margin-top: 0.45mm;
+      stroke: var(--gold-light);
+      stroke-width: 2;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .card-back .row .lines {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15mm;
+    }
+
+    .card-back .footer-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 2mm;
+    }
+    .card-back .footer-left {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6mm;
+    }
+    .card-back .email-line {
+      display: flex;
+      align-items: center;
+      gap: 1.2mm;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: 2mm;
+      color: var(--cream);
+    }
+    .card-back .email-line svg {
+      width: 2.2mm;
+      height: 2.2mm;
+      stroke: var(--gold-light);
+      stroke-width: 2;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .card-back .rc-no {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.5mm;
+      color: rgba(240, 253, 244, 0.5);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .card-back .qr {
+      width: 12mm;
+      height: 12mm;
+      background: var(--cream);
+      padding: 0.5mm;
+      box-sizing: border-box;
+      border-radius: 0.6mm;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .card-back .qr img {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* ── PRINT SHEET: A4 imposition ──────────────────────────── */
+    /*
+      Layout: 2 columns × 4 rows = 8 cards per A4 portrait
+      Card cut area: 85 × 55 mm
+      Bleed: 3 mm all sides → 91 × 61 mm per card
+      Total cut grid: 170 × 220 mm
+      Total bleed area: 176 × 226 mm
+      Centered on A4 (210 × 297):
+        - Bleed starts: left 17 mm, top 35.5 mm
+        - Cut starts:   left 20 mm, top 38.5 mm
+    */
+    .print-sheet-output {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      align-items: center;
+    }
+    .sheet-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      color: #666;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin: 0 0 6px;
+      text-align: center;
+    }
+
+    .sheet-page {
+      width: 210mm;
+      height: 297mm;
+      background: white;
+      position: relative;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+      overflow: visible;
+    }
+
+    /* Bleed wrappers — each is 91×61mm containing the card inset 3mm */
+    .sheet-page .bleed-wrap {
+      position: absolute;
+      width: 91mm;
+      height: 61mm;
+      background: var(--primary-900);
+      background-image:
+        radial-gradient(ellipse at 20% 0%, rgba(180, 138, 62, 0.08), transparent 50%),
+        radial-gradient(ellipse at 100% 100%, rgba(22, 101, 52, 0.45), transparent 60%);
+      overflow: hidden;
+    }
+    .sheet-page .bleed-wrap .card {
+      position: absolute;
+      top: 3mm;
+      left: 3mm;
+      width: 85mm;
+      height: 55mm;
+      border-radius: 0;
+      box-shadow: none;
+      background: transparent;
+      background-image: none;
+      overflow: hidden;
+    }
+
+    /* 2×4 grid positions (bleed-wrapper top-left) */
+    .pos-r0c0 { top: 35.5mm; left: 17mm; }
+    .pos-r0c1 { top: 35.5mm; left: 102mm; }
+    .pos-r1c0 { top: 90.5mm; left: 17mm; }
+    .pos-r1c1 { top: 90.5mm; left: 102mm; }
+    .pos-r2c0 { top: 145.5mm; left: 17mm; }
+    .pos-r2c1 { top: 145.5mm; left: 102mm; }
+    .pos-r3c0 { top: 200.5mm; left: 17mm; }
+    .pos-r3c1 { top: 200.5mm; left: 102mm; }
+
+    /* Crop marks SVG overlay */
+    .crop-marks-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 210mm;
+      height: 297mm;
+      pointer-events: none;
+    }
+
+    /* ── Named page rules ────────────────────────────────────── */
+    @page {
+      margin: 0;
+    }
+    @page card-page {
+      size: 85mm 55mm;
+      margin: 0;
+    }
+    @page sheet-page {
+      size: A4 portrait;
+      margin: 0;
+    }
+
+    .single-card-page {
+      page: card-page;
+    }
+    .sheet-page {
+      page: sheet-page;
+    }
+
+    /* ── Print stylesheet ────────────────────────────────────── */
+    @media print {
+      html, body {
+        background: white;
+        margin: 0;
+        padding: 0;
+      }
+      .preview-shell {
+        padding: 0;
+        max-width: none;
+      }
+      .preview-header,
+      .print-mode-toggle,
+      .print-instructions,
+      .card-label,
+      .sheet-label {
+        display: none !important;
+      }
+
+      /* Single card mode: preserve rounded corners, one card per page */
+      .single-card-output {
+        display: block;
+        gap: 0;
+      }
+      .single-card-page {
+        page-break-after: always;
+        margin: 0;
+      }
+      .single-card-page:last-child {
+        page-break-after: auto;
+      }
+      .single-card-output .card {
+        border-radius: 4mm;
+        box-shadow: none;
+        margin: 0;
+      }
+
+      /* Print sheet mode: one A4 per page */
+      .print-sheet-output {
+        display: block;
+        gap: 0;
+      }
+      .sheet-page {
+        page-break-after: always;
+        box-shadow: none;
+        margin: 0;
+      }
+      .sheet-page:last-child {
+        page-break-after: auto;
+      }
+    }
+  </style>
+</head>
+<body data-print-mode="card">
+  <div class="preview-shell">
+    <header class="preview-header">
+      <h1>GRCL Business Card — Thomas (CEO)</h1>
+      <p>
+        Print-ready mockup. 85 &times; 55 mm UK standard, 4 mm corner radius.
+        Stock recommendation: 400 gsm matte uncoated or soft-touch laminated 350 gsm.
+        Logo: <code>../../src/assets/brand/logo-legacy.png</code>
+        &bull; QR: <code>business-card-qr.png</code> &rarr; global-resources.org/contact/
+      </p>
+
+      <!-- Mode toggle -->
+      <div class="print-mode-toggle">
+        <button data-mode="card" class="active">Single Card (85 &times; 55 mm)</button>
+        <button data-mode="sheet">Print Sheet (A4 Imposition)</button>
+      </div>
+
+      <!-- Instructions: Single Card mode -->
+      <div class="print-instructions instructions-card">
+        <strong>How to print &mdash; Single Card PDF</strong>
+        <ol>
+          <li>Press <kbd>Ctrl + P</kbd> (or <kbd>Cmd + P</kbd> on Mac)</li>
+          <li>Destination: <b>Save as PDF</b></li>
+          <li>Paper size: leave as default (browser picks 85 &times; 55 mm from CSS)</li>
+          <li>Margins: <b>None</b></li>
+          <li>Scale: <b>Default</b> or <b>Custom 100%</b> (never &ldquo;Fit to page&rdquo;)</li>
+          <li class="warn">Background graphics: <b>ON</b> &larr; critical!</li>
+        </ol>
+        <p style="margin:8px 0 0;color:#555;font-size:12px;">
+          Result: 2-page PDF (front + back), each page exactly business-card size with rounded corners.
+        </p>
+      </div>
+
+      <!-- Instructions: Print Sheet mode -->
+      <div class="print-instructions instructions-sheet">
+        <strong>How to print &mdash; A4 Print Sheet</strong>
+        <ol>
+          <li>Press <kbd>Ctrl + P</kbd> (or <kbd>Cmd + P</kbd> on Mac)</li>
+          <li>Destination: <b>Save as PDF</b></li>
+          <li>Paper size: <b>A4</b></li>
+          <li>Layout: <b>Portrait</b></li>
+          <li>Margins: <b>None</b></li>
+          <li>Scale: <b>Default</b> or <b>Custom 100%</b></li>
+          <li class="warn">Background graphics: <b>ON</b> &larr; critical!</li>
+        </ol>
+        <p style="margin:8px 0 0;color:#555;font-size:12px;">
+          Result: 2-page A4 PDF &mdash; page 1 has 8 fronts, page 2 has 8 backs.
+          3 mm bleed + crop marks included. Hand this file directly to your print shop.
+        </p>
+      </div>
+    </header>
+
+    <!-- ═══════════════════════════════════════════════════════
+         SINGLE CARD OUTPUT
+         ═══════════════════════════════════════════════════════ -->
+    <div class="output single-card-output">
+
+      <!-- FRONT -->
+      <div class="single-card-page">
+        <p class="card-label">Front</p>
+        <div class="card card-front" id="card-front-source">
+          <img
+            class="seal"
+            src="../../src/assets/brand/logo-legacy.png"
+            alt="Global Resources Citadel Limited heritage seal"
+          />
+          <div class="wordmark">
+            <span class="word-global">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M12 2a14.5 14.5 0 0 1 4 10 14.5 14.5 0 0 1-4 10 14.5 14.5 0 0 1-4-10 14.5 14.5 0 0 1 4-10z"></path>
+                <path d="M2 12h20"></path>
+              </svg>
+              GLOBAL
+            </span>
+            <span class="word-rest">RESOURCES&nbsp;&nbsp;CITADEL&nbsp;&nbsp;LIMITED</span>
+          </div>
+          <div class="tagline-band">
+            Building Africa&rsquo;s Future From Nigeria&rsquo;s Strongest Foundations
+          </div>
+        </div>
+      </div>
+
+      <!-- BACK -->
+      <div class="single-card-page">
+        <p class="card-label">Back</p>
+        <div class="card card-back" id="card-back-source">
+          <div class="name-row">
+            <div>
+              <div class="name">THOMAS</div>
+              <div class="title">Group Chief Executive Officer</div>
+              <div class="full-name">Olatunde&nbsp;Oluseye&nbsp;Taiwo&nbsp;Thomas</div>
+            </div>
+            <img
+              class="seal-mini"
+              src="../../src/assets/brand/logo-legacy.png"
+              alt=""
+            />
+          </div>
+
+          <div class="rule"></div>
+
+          <div class="contact-grid">
+            <div class="contact-col">
+              <div class="col-label">Nigeria&nbsp;&middot;&nbsp;HQ</div>
+              <div class="row">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+                <div class="lines">+234&nbsp;811&nbsp;191&nbsp;2174</div>
+              </div>
+              <div class="row">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <div class="lines">
+                  <span>1st&nbsp;Floor, Gbemisola&nbsp;House</span>
+                  <span>Opp.&nbsp;Omole&nbsp;Phase&nbsp;I, Ogba</span>
+                  <span>Lagos, Nigeria</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="contact-col">
+              <div class="col-label">United&nbsp;Kingdom</div>
+              <div class="row">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+                <div class="lines">+44&nbsp;7404&nbsp;138&nbsp;158</div>
+              </div>
+              <div class="row">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <div class="lines">
+                  <span>Office&nbsp;1249, 12&nbsp;Farwig&nbsp;Lane</span>
+                  <span>Bromley, BR1&nbsp;3RB</span>
+                  <span>England, United&nbsp;Kingdom</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="footer-row">
+            <div class="footer-left">
+              <div class="email-line">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                </svg>
+                info@global-resources.org
+              </div>
+              <div class="rc-no">RC&nbsp;No.&nbsp;1801787</div>
+            </div>
+            <div class="qr" title="Scan to visit global-resources.org/contact/">
+              <img
+                src="business-card-qr.png"
+                alt="QR code linking to the GRCL contact page"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════
+         PRINT SHEET OUTPUT (A4 imposition)
+         Cards are cloned into these containers by JavaScript.
+         ═══════════════════════════════════════════════════════ -->
+    <div class="output print-sheet-output">
+
+      <!-- FRONTS (page 1) -->
+      <div>
+        <p class="sheet-label">A4 Sheet &mdash; Fronts (page 1 of 2)</p>
+        <div class="sheet-page" id="sheet-fronts">
+          <!-- 8 .bleed-wrap cards are injected by JS -->
+          <svg class="crop-marks-overlay" viewBox="0 0 210 297" xmlns="http://www.w3.org/2000/svg">
+            <g stroke="#000" stroke-width="0.25" fill="none">
+              <!-- Vertical cut lines: x = 20, 105, 190 — top marks -->
+              <line x1="20" y1="31" x2="20" y2="35" />
+              <line x1="105" y1="31" x2="105" y2="35" />
+              <line x1="190" y1="31" x2="190" y2="35" />
+              <!-- Vertical cut lines — bottom marks -->
+              <line x1="20" y1="262" x2="20" y2="266" />
+              <line x1="105" y1="262" x2="105" y2="266" />
+              <line x1="190" y1="262" x2="190" y2="266" />
+
+              <!-- Horizontal cut lines: y = 38.5, 93.5, 148.5, 203.5, 258.5 — left marks -->
+              <line x1="12.5" y1="38.5" x2="16.5" y2="38.5" />
+              <line x1="12.5" y1="93.5" x2="16.5" y2="93.5" />
+              <line x1="12.5" y1="148.5" x2="16.5" y2="148.5" />
+              <line x1="12.5" y1="203.5" x2="16.5" y2="203.5" />
+              <line x1="12.5" y1="258.5" x2="16.5" y2="258.5" />
+              <!-- Horizontal cut lines — right marks -->
+              <line x1="193.5" y1="38.5" x2="197.5" y2="38.5" />
+              <line x1="193.5" y1="93.5" x2="197.5" y2="93.5" />
+              <line x1="193.5" y1="148.5" x2="197.5" y2="148.5" />
+              <line x1="193.5" y1="203.5" x2="197.5" y2="203.5" />
+              <line x1="193.5" y1="258.5" x2="197.5" y2="258.5" />
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <!-- BACKS (page 2) -->
+      <div>
+        <p class="sheet-label">A4 Sheet &mdash; Backs (page 2 of 2)</p>
+        <div class="sheet-page" id="sheet-backs">
+          <!-- 8 .bleed-wrap cards are injected by JS -->
+          <svg class="crop-marks-overlay" viewBox="0 0 210 297" xmlns="http://www.w3.org/2000/svg">
+            <g stroke="#000" stroke-width="0.25" fill="none">
+              <line x1="20" y1="31" x2="20" y2="35" />
+              <line x1="105" y1="31" x2="105" y2="35" />
+              <line x1="190" y1="31" x2="190" y2="35" />
+              <line x1="20" y1="262" x2="20" y2="266" />
+              <line x1="105" y1="262" x2="105" y2="266" />
+              <line x1="190" y1="262" x2="190" y2="266" />
+              <line x1="12.5" y1="38.5" x2="16.5" y2="38.5" />
+              <line x1="12.5" y1="93.5" x2="16.5" y2="93.5" />
+              <line x1="12.5" y1="148.5" x2="16.5" y2="148.5" />
+              <line x1="12.5" y1="203.5" x2="16.5" y2="203.5" />
+              <line x1="12.5" y1="258.5" x2="16.5" y2="258.5" />
+              <line x1="193.5" y1="38.5" x2="197.5" y2="38.5" />
+              <line x1="193.5" y1="93.5" x2="197.5" y2="93.5" />
+              <line x1="193.5" y1="148.5" x2="197.5" y2="148.5" />
+              <line x1="193.5" y1="203.5" x2="197.5" y2="203.5" />
+              <line x1="193.5" y1="258.5" x2="197.5" y2="258.5" />
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /.preview-shell -->
+
+  <script>
+    /* ── Mode toggle ──────────────────────────────────────────── */
+    document.querySelectorAll('.print-mode-toggle button').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        document.body.dataset.printMode = btn.dataset.mode;
+        document.querySelectorAll('.print-mode-toggle button').forEach(function(b) {
+          b.classList.toggle('active', b === btn);
+        });
+      });
+    });
+
+    /* ── Clone cards into A4 imposition sheets ────────────────── */
+    (function populateSheets() {
+      var frontSource = document.getElementById('card-front-source');
+      var backSource  = document.getElementById('card-back-source');
+      var sheetFronts = document.getElementById('sheet-fronts');
+      var sheetBacks  = document.getElementById('sheet-backs');
+
+      if (!frontSource || !backSource || !sheetFronts || !sheetBacks) return;
+
+      var positions = [
+        'pos-r0c0', 'pos-r0c1',
+        'pos-r1c0', 'pos-r1c1',
+        'pos-r2c0', 'pos-r2c1',
+        'pos-r3c0', 'pos-r3c1'
+      ];
+
+      var frontOverlay = sheetFronts.querySelector('.crop-marks-overlay');
+      var backOverlay  = sheetBacks.querySelector('.crop-marks-overlay');
+
+      positions.forEach(function(pos) {
+        // Front
+        var fWrap = document.createElement('div');
+        fWrap.className = 'bleed-wrap ' + pos;
+        var fCard = frontSource.cloneNode(true);
+        fCard.removeAttribute('id');
+        fWrap.appendChild(fCard);
+        sheetFronts.insertBefore(fWrap, frontOverlay);
+
+        // Back
+        var bWrap = document.createElement('div');
+        bWrap.className = 'bleed-wrap ' + pos;
+        var bCard = backSource.cloneNode(true);
+        bCard.removeAttribute('id');
+        bWrap.appendChild(bCard);
+        sheetBacks.insertBefore(bWrap, backOverlay);
+      });
+    })();
+  </script>
+</body>
+</html>

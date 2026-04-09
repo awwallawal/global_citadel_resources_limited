@@ -335,8 +335,8 @@ Copy Link uses inline `onclick` with clipboard API — no React island needed. B
     "@type": "Organization",
     "name": "Global Resources Citadel Limited"
   },
-  "image": "https://globalresourcescitadel.com/og-default.jpg",
-  "url": "https://globalresourcescitadel.com/insights/article-slug/",
+  "image": "https://global-resources.org/og-default.jpg",
+  "url": "https://global-resources.org/insights/article-slug/",
   "description": "Article excerpt"
 }
 ```

@@ -8,6 +8,7 @@ import {
   generateBreadcrumbJsonLd,
   type BreadcrumbItem,
 } from '@/lib/seo';
+import { COMPANY } from '@/lib/company';
 
 const thoughtStreams = ['thought-leadership', 'industry-commentary'];
 
@@ -21,7 +22,7 @@ const breadcrumbs: BreadcrumbItem[] = [
   { label: 'Thought Leadership' },
 ];
 
-const SITE_URL = (import.meta.env.SITE ?? 'https://globalresourcescitadel.com').replace(/\/$/, '');
+const SITE_URL = (import.meta.env.SITE ?? COMPANY.siteUrl).replace(/\/$/, '');
 
 const seo = {
   ...generateMetadata({

@@ -350,7 +350,7 @@ All 7 divisions with cluster membership and tier:
 - `overview`: 2-3 paragraphs describing the division's role, capabilities, and market position within Nigeria's economy
 - `capabilities`: 3-6 real capabilities per division (e.g., for Crop Farming: "Large-Scale Cultivation", "Post-Harvest Management", "Seed Technology")
 - `stats`: 3-4 plausible metrics (e.g., "Hectares Under Cultivation: 5000", "Annual Yield: 12000 tonnes")
-- `contactEmail`: Use pattern `[slug]@globalresourcescitadel.com`
+- `contactEmail`: Use pattern `[slug]@global-resources.org`
 - `seoTitle`: Pattern — `[Division Name] — Global Resources Citadel | [Cluster Name]`
 - `seoDescription`: ~155 chars describing division
 
@@ -435,7 +435,7 @@ stats:
     unit: tonnes
   - label: Years of Operation
     value: 15
-contactEmail: crop-farming@globalresourcescitadel.com
+contactEmail: crop-farming@global-resources.org
 seoTitle: "Crop Farming — Global Resources Citadel | Agriculture & Processing"
 seoDescription: "Explore Global Resources Citadel's Crop Farming division. Large-scale cultivation, post-harvest management, and seed technology across Nigeria."
 sortOrder: 1

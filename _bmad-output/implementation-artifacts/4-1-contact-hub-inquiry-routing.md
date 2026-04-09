@@ -63,7 +63,7 @@ So that I reach the appropriate team without guessing which form to use.
   - [x] 5.6 SectionWrapper variant="light" (neutral-50)
   - [x] 5.7 3-column grid: `grid-cols-1 md:grid-cols-3 gap-6`
   - [x] 5.8 Phone: "+234 XXX XXX XXXX" (placeholder)
-  - [x] 5.9 Email: "info@globalresourcescitadel.com"
+  - [x] 5.9 Email: "info@global-resources.org"
   - [x] 5.10 Head Office: placeholder address, City, Nigeria
 
 ## Dev Notes
@@ -110,7 +110,7 @@ Simplest approach: hardcode SVG icons inline in each PathwayCard instance on the
 | Field | Value |
 |-------|-------|
 | Phone | +234 XXX XXX XXXX (placeholder — client to provide) |
-| Email | info@globalresourcescitadel.com |
+| Email | info@global-resources.org |
 | Head Office | [Address], [City], Nigeria (placeholder — client to provide) |
 | Hours | Mon-Fri, 8am-5pm WAT |
 
@@ -122,11 +122,11 @@ Simplest approach: hardcode SVG icons inline in each PathwayCard instance on the
   "@type": "ContactPage",
   "name": "Contact Global Resources Citadel",
   "description": "Get in touch with Global Resources Citadel Limited.",
-  "url": "https://globalresourcescitadel.com/contact/",
+  "url": "https://global-resources.org/contact/",
   "mainEntity": {
     "@type": "Organization",
     "name": "Global Resources Citadel Limited",
-    "email": "info@globalresourcescitadel.com",
+    "email": "info@global-resources.org",
     "telephone": "+234XXXXXXXXX"
   }
 }

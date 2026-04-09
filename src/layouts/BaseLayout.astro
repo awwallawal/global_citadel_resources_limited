@@ -26,7 +26,7 @@ const {
   jsonLd,
 } = Astro.props;
 
-const siteUrl = Astro.site?.href.replace(/\/$/, '') || 'https://globalresourcescitadel.com';
+const siteUrl = Astro.site?.href.replace(/\/$/, '') || COMPANY.siteUrl;
 const siteName = 'Global Resources Citadel';
 const canonicalUrl = canonical || new URL(Astro.url.pathname, siteUrl).href;
 ---

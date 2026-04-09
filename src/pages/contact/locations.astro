@@ -12,6 +12,7 @@ import {
   generateBreadcrumbJsonLd,
   type BreadcrumbItem,
 } from '@/lib/seo';
+import { COMPANY } from '@/lib/company';
 
 const breadcrumbs: BreadcrumbItem[] = [
   { label: 'Home', href: '/' },
@@ -23,7 +24,7 @@ const seo = {
   ...generateMetadata({
     title: 'Our Locations',
     description:
-      'Find Global Resources Citadel Limited offices and operational sites across Nigeria.',
+      'Find Global Resources Citadel Limited offices and operational sites in Nigeria and the United Kingdom.',
     path: '/contact/locations/',
   }),
   jsonLd: [generateBreadcrumbJsonLd(breadcrumbs)],
@@ -42,7 +43,7 @@ const seo = {
         Our Locations
       </h1>
       <p class="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-neutral-600">
-        Find Global Resources Citadel offices and operational sites.
+        Find Global Resources Citadel offices and operational sites in Nigeria and the United Kingdom.
       </p>
     </div>
 
@@ -63,8 +64,14 @@ const seo = {
         <LocationCard
           name="Head Office"
           type="head-office"
-          address="1st Floor, Gbemisola House, Opp. Omole Phase I, Ogba, Lagos, Nigeria"
-          hours="Monday – Friday, 8:00am – 5:00pm WAT"
+          address={COMPANY.offices.nigeria.address.full}
+          hours={COMPANY.offices.nigeria.hoursLong}
+        />
+
+        <LocationCard
+          name="UK Office"
+          type="head-office"
+          address={COMPANY.offices.unitedKingdom.address.full}
         />
 
         <LocationCard

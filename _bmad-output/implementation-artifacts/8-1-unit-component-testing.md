@@ -142,7 +142,7 @@ Vitest needs mocks for `getCollection` and `getEntry` since they're Astro-specif
 import { vi } from 'vitest';
 
 const mockDivisions = [
-  { id: 'crop-farming', data: { name: 'Crop Farming', slug: 'crop-farming', clusterSlug: 'agriculture-processing', tier: 'core', tagline: '...', contactEmail: 'crop-farming@globalresourcescitadel.com', sortOrder: 1 } },
+  { id: 'crop-farming', data: { name: 'Crop Farming', slug: 'crop-farming', clusterSlug: 'agriculture-processing', tier: 'core', tagline: '...', contactEmail: 'crop-farming@global-resources.org', sortOrder: 1 } },
   // ... other divisions
 ];
 
@@ -285,25 +285,25 @@ describe('InquiryForm — strategic variant', () => {
 // Note: describe, it, expect are globally available via globals: true
 
 const divisionEmails: Record<string, string> = {
-  'crop-farming': 'crop-farming@globalresourcescitadel.com',
-  'animal-husbandry': 'animal-husbandry@globalresourcescitadel.com',
+  'crop-farming': 'crop-farming@global-resources.org',
+  'animal-husbandry': 'animal-husbandry@global-resources.org',
   // ... all 7
 };
 
 describe('getRecipientEmail', () => {
   it('routes general inquiry to default email', () => {
     const result = getRecipientEmail('general-corporate', 'corporate', divisionEmails);
-    expect(result).toBe('info@globalresourcescitadel.com');
+    expect(result).toBe('info@global-resources.org');
   });
 
   it('routes division inquiry to division email', () => {
     const result = getRecipientEmail('division-business', 'crop-farming', divisionEmails);
-    expect(result).toBe('crop-farming@globalresourcescitadel.com');
+    expect(result).toBe('crop-farming@global-resources.org');
   });
 
   it('routes strategic inquiry to default email', () => {
     const result = getRecipientEmail('strategic-partnership', 'strategic', divisionEmails);
-    expect(result).toBe('info@globalresourcescitadel.com');
+    expect(result).toBe('info@global-resources.org');
   });
 
   // Test all 7 division routes

@@ -10,6 +10,7 @@ import {
   generateBreadcrumbJsonLd,
   type BreadcrumbItem,
 } from '@/lib/seo';
+import { COMPANY } from '@/lib/company';
 import { DIVISION_ICONS } from '@/lib/divisions';
 
 const divisions = await getCollection('divisions');
@@ -35,7 +36,7 @@ const breadcrumbs: BreadcrumbItem[] = [
   { label: 'Divisions' },
 ];
 
-const SITE_URL = (import.meta.env.SITE ?? 'https://global-resources.org').replace(/\/$/, '');
+const SITE_URL = (import.meta.env.SITE ?? COMPANY.siteUrl).replace(/\/$/, '');
 
 const seo = {
   ...generateMetadata({

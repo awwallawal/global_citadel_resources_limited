@@ -320,8 +320,8 @@ Vercel auto-detects Astro projects. No `vercel.json` needed for basic setup. Key
 | Variable | Scope | Value |
 |----------|-------|-------|
 | `RESEND_API_KEY` | Production + Preview | `re_xxxxxxxxxxxx` (from Resend dashboard) |
-| `CONTACT_EMAIL_DEFAULT` | Production + Preview | `info@globalresourcescitadel.com` |
-| `SITE_URL` | Production | `https://globalresourcescitadel.com` (or Vercel URL) |
+| `CONTACT_EMAIL_DEFAULT` | Production + Preview | `info@global-resources.org` |
+| `SITE_URL` | Production | `https://global-resources.org` (or Vercel URL) |
 | `PUBLIC_SITE_NAME` | Production + Preview | `Global Resources Citadel` |
 
 **Important:** `SITE_URL` for Preview environments should use the Vercel preview URL pattern or be left unset (pages will use relative URLs). For production, set to the final domain.
@@ -377,7 +377,7 @@ Allow: /
 Disallow: /api/
 Disallow: /search
 
-Sitemap: https://globalresourcescitadel.com/sitemap-index.xml
+Sitemap: https://global-resources.org/sitemap-index.xml
 ```
 
 Story 7.2 should have already set this. Verify it's correct.

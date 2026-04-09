@@ -22,6 +22,7 @@ import {
   generateOrganizationJsonLd,
   type BreadcrumbItem,
 } from '@/lib/seo';
+import { COMPANY } from '@/lib/company';
 
 const page = await getEntry('pages', 'about');
 if (!page) throw new Error('Missing content: pages/about.mdx');
@@ -37,7 +38,7 @@ const breadcrumbs: BreadcrumbItem[] = [
   { label: 'About the Group' },
 ];
 
-const SITE_URL = (import.meta.env.SITE ?? 'https://globalresourcescitadel.com').replace(/\/$/, '');
+const SITE_URL = (import.meta.env.SITE ?? COMPANY.siteUrl).replace(/\/$/, '');
 
 const seo = {
   ...generateMetadata({
@@ -120,10 +121,16 @@ const hiddenCredentials = credentials.slice(6);
             Founded 2011
           </div>
           <div class="rounded-full bg-primary-50 px-4 py-1.5 text-sm font-medium text-primary-700">
-            Headquarters: Lagos, Nigeria
+            RC No. 1801787
           </div>
           <div class="rounded-full bg-primary-50 px-4 py-1.5 text-sm font-medium text-primary-700">
-            7 Business Divisions
+            HQ: Lagos, Nigeria
+          </div>
+          <div class="rounded-full bg-primary-50 px-4 py-1.5 text-sm font-medium text-primary-700">
+            UK Office: Bromley, England
+          </div>
+          <div class="rounded-full bg-primary-50 px-4 py-1.5 text-sm font-medium text-primary-700">
+            8 Business Divisions
           </div>
         </div>
       </div>

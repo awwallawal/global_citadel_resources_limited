@@ -315,15 +315,15 @@ const seo = {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "Global Resources Citadel Limited",
-    "url": "https://globalresourcescitadel.com",
-    "logo": "https://globalresourcescitadel.com/favicon.svg",
+    "url": "https://global-resources.org",
+    "logo": "https://global-resources.org/favicon.svg",
     "description": "Diversified Nigerian conglomerate across agriculture, trade, real estate, and energy."
   },
   {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "Global Resources Citadel",
-    "url": "https://globalresourcescitadel.com"
+    "url": "https://global-resources.org"
   }
 ]
 ```

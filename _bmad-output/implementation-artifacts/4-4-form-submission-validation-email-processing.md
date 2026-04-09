@@ -231,7 +231,7 @@ function getRecipientEmail(inquiryType: string, destinationTeam: string, divisio
 }
 ```
 
-Division contact emails come from the content collections — each division has a `contactEmail` field (e.g., `crop-farming@globalresourcescitadel.com`). Load in the endpoint handler:
+Division contact emails come from the content collections — each division has a `contactEmail` field (e.g., `crop-farming@global-resources.org`). Load in the endpoint handler:
 
 ```typescript
 import { getCollection } from 'astro:content';
@@ -241,7 +241,7 @@ const divisions = await getCollection('divisions');
 const divisionEmailMap = Object.fromEntries(
   divisions.map(d => [d.data.slug, d.data.contactEmail])
 );
-// Then: divisionEmailMap['crop-farming'] → 'crop-farming@globalresourcescitadel.com'
+// Then: divisionEmailMap['crop-farming'] → 'crop-farming@global-resources.org'
 ```
 
 ### Resend Email Implementation (`src/lib/email.ts`)
@@ -262,7 +262,7 @@ export async function sendInquiryNotification(params: {
 }) {
   const { data, error } = await resend.emails.send({
     // DEV: Use 'onboarding@resend.dev' until domain is verified in Resend dashboard.
-    // PROD: Switch to 'GRCL Website <noreply@globalresourcescitadel.com>' after domain verification.
+    // PROD: Switch to 'GRCL Website <noreply@global-resources.org>' after domain verification.
     from: import.meta.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev',
     to: params.to,
     subject: `[${params.inquiryType}] New enquiry from ${params.fromName}`,
@@ -295,7 +295,7 @@ export async function sendConfirmationEmail(params: {
 - Clear subject lines indicating inquiry type
 - Internal notification: includes ALL form fields, source page, timestamp, inquiry type
 - User confirmation: acknowledges receipt, states routing (which team), response timeframe
-- Email `from` address uses `RESEND_FROM_EMAIL` env var (defaults to `onboarding@resend.dev` for development). Set to `GRCL Website <noreply@globalresourcescitadel.com>` in production after Resend domain verification.
+- Email `from` address uses `RESEND_FROM_EMAIL` env var (defaults to `onboarding@resend.dev` for development). Set to `GRCL Website <noreply@global-resources.org>` in production after Resend domain verification.
 
 ### Inline Success Confirmation
 

@@ -27,7 +27,7 @@ const validDivision = {
     { label: 'Yield', value: 12000, unit: 'tonnes' },
     { label: 'Years', value: 15 },
   ],
-  contactEmail: 'crop-farming@globalresourcescitadel.com',
+  contactEmail: 'crop-farming@global-resources.org',
   seoTitle: 'Crop Farming — GRCL',
   seoDescription: 'Explore GRCL Crop Farming division.',
   sortOrder: 1,

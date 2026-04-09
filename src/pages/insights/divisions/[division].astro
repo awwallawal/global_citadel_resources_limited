@@ -9,6 +9,7 @@ import {
   generateBreadcrumbJsonLd,
   type BreadcrumbItem,
 } from '@/lib/seo';
+import { COMPANY } from '@/lib/company';
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const divisions = await getCollection('divisions');
@@ -31,7 +32,7 @@ const breadcrumbs: BreadcrumbItem[] = [
   { label: divisionName },
 ];
 
-const SITE_URL = (import.meta.env.SITE ?? 'https://globalresourcescitadel.com').replace(/\/$/, '');
+const SITE_URL = (import.meta.env.SITE ?? COMPANY.siteUrl).replace(/\/$/, '');
 
 const seo = {
   ...generateMetadata({

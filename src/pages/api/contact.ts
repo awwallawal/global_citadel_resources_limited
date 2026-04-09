@@ -7,6 +7,7 @@ import {
   getRoutingContext,
 } from '@/lib/contact';
 import { sendInquiryNotification, sendConfirmationEmail } from '@/lib/email';
+import { COMPANY } from '@/lib/company';
 
 export const prerender = false;
 
@@ -77,7 +78,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   }
 
   const validatedFields = fieldsResult.data as Record<string, string>;
-  const defaultEmail = import.meta.env.CONTACT_EMAIL_DEFAULT || 'info@globalresourcescitadel.com';
+  const defaultEmail = import.meta.env.CONTACT_EMAIL_DEFAULT || COMPANY.defaultEmail;
   const divisions = envelope.inquiryType === 'division-business'
     ? (await getCollection('divisions')).map((division) => ({
         slug: division.data.slug,

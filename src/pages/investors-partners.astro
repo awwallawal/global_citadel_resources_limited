@@ -22,6 +22,7 @@ import {
   generateOrganizationJsonLd,
   type BreadcrumbItem,
 } from '@/lib/seo';
+import { COMPANY } from '@/lib/company';
 
 const page = await getEntry('pages', 'investors-partners');
 if (!page) throw new Error('Missing content: pages/investors-partners.mdx');
@@ -46,7 +47,7 @@ const breadcrumbs: BreadcrumbItem[] = [
   { label: 'Investors & Partners' },
 ];
 
-const SITE_URL = (import.meta.env.SITE ?? 'https://global-resources.org').replace(/\/$/, '');
+const SITE_URL = (import.meta.env.SITE ?? COMPANY.siteUrl).replace(/\/$/, '');
 
 const seo = {
   ...generateMetadata({

@@ -90,7 +90,7 @@ All 4 deferred items were resolved during review:
 
 ## Deferred from: code review of 3-2-division-cluster-pages (2026-04-02)
 
-- Hardcoded SITE_URL fallback `'https://globalresourcescitadel.com'` in both page files — pre-existing pattern across codebase, not introduced by Story 3.2
+- Hardcoded SITE_URL fallback `'https://global-resources.org'` in both page files — pre-existing pattern across codebase, not introduced by Story 3.2
 - Slug collision risk between cluster slugs and division slugs in shared `[slug].astro` route — both enum sets are non-overlapping by design; add build-time assertion when Story 3.3 merges division paths into the same file
 - Gold eyebrow `text-gold-600` contrast on dark gradient hero may be borderline WCAG AA (~3.7:1–4.2:1) — systemic pattern used across multiple pages, review during Epic 8 accessibility audit
 - `article.id` used as URL slug may include subdirectory paths if articles are ever reorganized into subdirectories — pre-existing pattern, currently safe with flat file structure

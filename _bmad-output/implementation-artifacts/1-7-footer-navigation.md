@@ -33,7 +33,7 @@ So that I can find any section and perceive the platform as complete and profess
   - [x] 2.4 Column 4 — INSIGHTS: Latest, News & Updates, Thought Leadership
   - [x] 2.5 Column 5 — GET IN TOUCH: General Enquiries, Contact by Division, Partner / Investor, Locations
   - [x] 2.6 Column 6 — INVESTORS & PARTNERS: Why Partner With Us, Portfolio Strength, Strategic Inquiry
-  - [x] 2.7 Column 7 — CONNECT: LinkedIn (placeholder #), Twitter / X (placeholder #), Email (mailto:info@globalresourcescitadel.com)
+  - [x] 2.7 Column 7 — CONNECT: LinkedIn (placeholder #), Twitter / X (placeholder #), Email (mailto:info@global-resources.org)
 
 - [x] Task 3: Implement copyright bar (AC: #4)
   - [x] 3.1 Top border separator
@@ -133,7 +133,7 @@ This keeps footer JS at zero bytes, which matters for Nigerian mobile audience p
 |------|-------|
 | LinkedIn | `#` (placeholder — real URL from client) |
 | Twitter / X | `#` (placeholder — real URL from client) |
-| Email | `mailto:info@globalresourcescitadel.com` |
+| Email | `mailto:info@global-resources.org` |
 
 **COPYRIGHT BAR**
 | Link | Route |
@@ -266,7 +266,7 @@ Translate the CSS above into Tailwind classes:
         <a href="#" class="mb-2 block text-sm text-neutral-500 transition-colors hover:text-white focus-visible:rounded focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900">
           Twitter / X
         </a>
-        <a href="mailto:info@globalresourcescitadel.com" class="mb-2 block text-sm text-neutral-500 transition-colors hover:text-white focus-visible:rounded focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900">
+        <a href="mailto:info@global-resources.org" class="mb-2 block text-sm text-neutral-500 transition-colors hover:text-white focus-visible:rounded focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900">
           Email
         </a>
       </div>

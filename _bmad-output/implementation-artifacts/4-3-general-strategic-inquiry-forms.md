@@ -79,7 +79,7 @@ PageLayout (SEO)
   │   │   └── [Submit Enquiry]
   │   └── Right: Contact Info Sidebar
   │       ├── Phone: +234 XXX XXX XXXX
-  │       ├── Email: info@globalresourcescitadel.com
+  │       ├── Email: info@global-resources.org
   │       ├── Address: [Head office]
   │       └── Hours: Mon-Fri, 8am-5pm WAT
   └── Reassurance: "We aim to respond within 2 business days."

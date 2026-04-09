@@ -289,7 +289,7 @@ Claude Opus 4.6 (1M context)
 - [x] [Review][Patch] Empty overview renders empty SectionWrapper — FIXED: added `{overviewParagraphs.length > 0 && ...}` guard
 - [x] [Review][Patch] Member divisions list lacks semantic markup — FIXED: wrapped in `<ul role="list">` / `<li>`
 - [x] [Review][Patch] sectionVariants array hardcoded for exactly 3 clusters — FIXED: `sectionVariants[i % sectionVariants.length]`
-- [x] [Review][Defer] Hardcoded SITE_URL fallback `'https://globalresourcescitadel.com'` in both page files — pre-existing pattern across codebase
+- [x] [Review][Defer] Hardcoded SITE_URL fallback `'https://global-resources.org'` in both page files — pre-existing pattern across codebase
 - [x] [Review][Defer] Slug collision risk between cluster slugs and division slugs in shared `[slug].astro` route — address in Story 3.3 with build-time assertion
 - [x] [Review][Defer] Gold eyebrow `text-gold-600` contrast on dark gradient hero may be borderline WCAG AA (~3.7:1–4.2:1) — systemic pattern, not unique to this change
 - [x] [Review][Defer] `article.id` used as URL slug may include subdirectory paths if articles reorganized — pre-existing pattern

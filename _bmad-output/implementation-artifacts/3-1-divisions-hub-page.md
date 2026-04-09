@@ -180,12 +180,12 @@ const { clusterName, clusterDescription, divisions, variant = 'default' } = Astr
   "@type": "CollectionPage",
   "name": "Our Divisions",
   "description": "Global Resources Citadel's seven business divisions",
-  "url": "https://globalresourcescitadel.com/divisions/",
+  "url": "https://global-resources.org/divisions/",
   "mainEntity": {
     "@type": "ItemList",
     "numberOfItems": 7,
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Crop Farming", "url": "https://globalresourcescitadel.com/divisions/crop-farming/" }
+      { "@type": "ListItem", "position": 1, "name": "Crop Farming", "url": "https://global-resources.org/divisions/crop-farming/" }
     ]
   }
 }
