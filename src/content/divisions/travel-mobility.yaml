@@ -1,0 +1,45 @@
+name: Travel & Mobility
+slug: travel-mobility
+clusterSlug: trade-services
+tier: supporting
+tagline: "Moving people across borders for business, pilgrimage, study, and a better life — with the discipline of an institutional operator."
+overview: |
+  Global Resources Citadel's Travel & Mobility division brings the same execution standards that define the Group's commodity and trade operations to a different kind of cargo: people. Operating from offices in Lagos and London, the division delivers full-service travel and mobility solutions for corporate clients, individual travellers, religious pilgrims, students, and families relocating across borders.
+
+  Where most travel businesses focus on a single product line, Travel & Mobility integrates corporate travel management, leisure tour operation, inbound destination services, religious pilgrimage logistics, education and study-abroad pathways, and work-permit and relocation support under one accountable operator. This breadth means GRCL can serve a Group employee booking a business trip, a family planning Hajj, a student preparing to study in the UK, and a professional relocating for work — all from the same organisation, with the same standards of compliance, documentation, and aftercare.
+
+  The division's value comes from operational discipline, not retail price competition. With trade finance, customs, and cross-border logistics expertise already embedded in the Trade & Services cluster, Travel & Mobility extends those capabilities into the movement of people — handling visa processes, embassy liaison, immigration documentation, and on-the-ground support that less experienced operators routinely fumble.
+
+capabilities:
+  - icon: briefcase
+    name: Corporate Travel Management
+    description: "End-to-end business travel programmes for organisations — flight and hotel sourcing, expense control, traveller tracking, and 24/7 in-trip support."
+  - icon: palmtree
+    name: Leisure Tours & Holidays
+    description: "Curated outbound holiday experiences and tour packages across Africa, Europe, the Middle East, and Asia for individuals, families, and groups."
+  - icon: landmark
+    name: Inbound Tourism & DMC
+    description: "Destination management services for international visitors to West Africa — itinerary design, ground handling, and cultural experience curation."
+  - icon: moon
+    name: Hajj & Umrah Pilgrimage
+    description: "Accredited pilgrimage packages with visa processing, accommodation in Makkah and Madinah, ground transport, and experienced group leadership."
+  - icon: graduation-cap
+    name: Education & Study Abroad
+    description: "Student placement and study-abroad support — university admissions guidance, student visa processing, accommodation arrangement, and pre-departure orientation."
+  - icon: plane-takeoff
+    name: Work Permits & Relocation
+    description: "Skilled-worker visa support and family relocation services — work permit applications, document preparation, settlement logistics, and post-arrival assistance."
+
+stats:
+  # TODO: replace placeholder values with verified operating numbers from the division
+  - label: Travellers Served Annually
+    value: 2500
+  - label: Destinations Covered
+    value: 40
+  - label: Years of Operation
+    value: 8
+
+contactEmail: travel-mobility@global-resources.org
+seoTitle: "Travel & Mobility — Global Resources Citadel | Trade & Services"
+seoDescription: "Global Resources Citadel's Travel & Mobility — corporate travel, leisure tours, Hajj & Umrah, study abroad, and relocation services across Africa."
+sortOrder: 3

@@ -37,12 +37,13 @@ describe('getClusterDivisions', () => {
     expect(slugs).toContain('agro-processing');
   });
 
-  it('returns trade-markets divisions', async () => {
-    const result = await getClusterDivisions('trade-markets' as ClusterSlug);
-    expect(result).toHaveLength(2);
+  it('returns trade-services divisions', async () => {
+    const result = await getClusterDivisions('trade-services' as ClusterSlug);
+    expect(result).toHaveLength(3);
     const slugs = result.map((d) => d.data.slug);
     expect(slugs).toContain('commodity-marketing');
     expect(slugs).toContain('import-export');
+    expect(slugs).toContain('travel-mobility');
   });
 
   it('returns built-environment-energy divisions', async () => {
@@ -72,11 +73,11 @@ describe('getDivisionsByCluster', () => {
     expect(agri!.divisions).toHaveLength(3);
   });
 
-  it('groups trade-markets correctly', async () => {
+  it('groups trade-services correctly', async () => {
     const result = await getDivisionsByCluster();
-    const trade = result.find((g) => g.cluster.slug === 'trade-markets');
+    const trade = result.find((g) => g.cluster.slug === 'trade-services');
     expect(trade).toBeDefined();
-    expect(trade!.divisions).toHaveLength(2);
+    expect(trade!.divisions).toHaveLength(3);
   });
 
   it('groups built-environment-energy correctly', async () => {
@@ -86,9 +87,9 @@ describe('getDivisionsByCluster', () => {
     expect(built!.divisions).toHaveLength(2);
   });
 
-  it('includes all 7 divisions across all groups', async () => {
+  it('includes all 8 divisions across all groups', async () => {
     const result = await getDivisionsByCluster();
     const totalDivisions = result.reduce((sum, g) => sum + g.divisions.length, 0);
-    expect(totalDivisions).toBe(7);
+    expect(totalDivisions).toBe(8);
   });
 });

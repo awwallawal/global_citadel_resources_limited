@@ -35,9 +35,9 @@
 # - Dev moves story to 'review', then runs code-review (fresh context, different LLM recommended)
 
 generated: 2026-03-28
-last_updated: 2026-04-07
+last_updated: 2026-04-09
 project: UK_Web_Design
-last_story_created: 9-5-print-collateral-business-cards-letterhead
+last_story_created: 9-7-travel-mobility-eighth-vertical
 project_key: NOKEY
 tracking_system: file-system
 story_location: _bmad-output/implementation-artifacts
@@ -119,4 +119,6 @@ development_status:
   9-3-community-impact-page-srada: review
   9-4-african-context-image-sourcing-integration: review # two-phase: agent sources candidates → human approves → dev integrates
   9-5-print-collateral-business-cards-letterhead: done # non-web, can run in parallel
+  9-6-centralize-company-info-uk-office-rc-domain: ready-for-dev # blocked: owner must purchase global-resources.com first
+  9-7-travel-mobility-eighth-vertical: done # CC 2026-04-08; verification pass 2026-04-09 — see CC Section 9
   epic-9-retrospective: optional

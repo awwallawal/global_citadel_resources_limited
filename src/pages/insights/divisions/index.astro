@@ -29,13 +29,13 @@ const breadcrumbs: BreadcrumbItem[] = [
   { label: 'By Division' },
 ];
 
-const SITE_URL = (import.meta.env.SITE ?? 'https://globalresourcescitadel.com').replace(/\/$/, '');
+const SITE_URL = (import.meta.env.SITE ?? 'https://global-resources.org').replace(/\/$/, '');
 
 const seo = {
   ...generateMetadata({
     title: 'Insights by Division',
     description:
-      'Browse insights from each of Global Resources Citadel\'s seven business divisions.',
+      'Browse insights from each of Global Resources Citadel\'s eight business divisions.',
     path: '/insights/divisions/',
   }),
   jsonLd: [
@@ -44,7 +44,7 @@ const seo = {
       '@context': 'https://schema.org',
       '@type': 'CollectionPage',
       name: 'Insights by Division',
-      description: 'Browse insights from each of Global Resources Citadel\'s seven business divisions.',
+      description: 'Browse insights from each of Global Resources Citadel\'s eight business divisions.',
       url: `${SITE_URL}/insights/divisions/`,
       mainEntity: {
         '@type': 'ItemList',
@@ -74,7 +74,7 @@ const seo = {
         Insights by Division
       </h1>
       <p class="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-neutral-600">
-        Explore news, updates, and thought leadership from each of our seven business divisions.
+        Explore news, updates, and thought leadership from each of our eight business divisions.
       </p>
     </div>
   </SectionWrapper>

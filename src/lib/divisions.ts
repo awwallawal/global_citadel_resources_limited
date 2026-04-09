@@ -8,6 +8,7 @@ export const DIVISION_ICONS: Record<string, string> = {
   'agro-processing': '\u{2699}\u{FE0F}',
   'commodity-marketing': '\u{1F4CA}',
   'import-export': '\u{1F30D}',
+  'travel-mobility': '\u{2708}\u{FE0F}',
   'real-estate': '\u{1F3D7}\u{FE0F}',
   'oil-gas': '\u{26FD}',
 };

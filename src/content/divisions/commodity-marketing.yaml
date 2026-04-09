@@ -1,6 +1,6 @@
 name: Commodity Marketing
 slug: commodity-marketing
-clusterSlug: trade-markets
+clusterSlug: trade-services
 tier: core
 tagline: "Connecting African commodities to continental and global markets"
 overview: |
@@ -30,7 +30,7 @@ stats:
     value: 120
   - label: Markets Served
     value: 8
-contactEmail: commodity-marketing@globalresourcescitadel.com
-seoTitle: "Commodity Marketing — Global Resources Citadel | Trade & Markets"
+contactEmail: commodity-marketing@global-resources.org
+seoTitle: "Commodity Marketing — Global Resources Citadel | Trade & Services"
 seoDescription: "Explore Global Resources Citadel's Commodity Marketing division. Agricultural commodity trading, market intelligence, and logistics across Africa."
 sortOrder: 1

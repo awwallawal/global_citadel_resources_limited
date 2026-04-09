@@ -1,6 +1,6 @@
 name: Import & Export
 slug: import-export
-clusterSlug: trade-markets
+clusterSlug: trade-services
 tier: supporting
 tagline: "Facilitating cross-border trade that strengthens Africa's position in global commerce"
 overview: |
@@ -26,7 +26,7 @@ stats:
     value: 350
   - label: Years in Trade
     value: 12
-contactEmail: import-export@globalresourcescitadel.com
-seoTitle: "Import & Export — Global Resources Citadel | Trade & Markets"
+contactEmail: import-export@global-resources.org
+seoTitle: "Import & Export — Global Resources Citadel | Trade & Services"
 seoDescription: "Discover Global Resources Citadel's Import & Export division. International logistics, customs brokerage, and cross-border trade services across Africa."
 sortOrder: 2

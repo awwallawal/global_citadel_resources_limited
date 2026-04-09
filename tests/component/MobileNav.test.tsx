@@ -6,15 +6,16 @@ const mockDivisions = [
   { name: 'Crop Farming', slug: 'crop-farming', clusterSlug: 'agriculture-processing' },
   { name: 'Animal Husbandry', slug: 'animal-husbandry', clusterSlug: 'agriculture-processing' },
   { name: 'Agro-Processing', slug: 'agro-processing', clusterSlug: 'agriculture-processing' },
-  { name: 'Commodity Marketing', slug: 'commodity-marketing', clusterSlug: 'trade-markets' },
-  { name: 'Import & Export', slug: 'import-export', clusterSlug: 'trade-markets' },
+  { name: 'Commodity Marketing', slug: 'commodity-marketing', clusterSlug: 'trade-services' },
+  { name: 'Import & Export', slug: 'import-export', clusterSlug: 'trade-services' },
+  { name: 'Travel & Mobility', slug: 'travel-mobility', clusterSlug: 'trade-services' },
   { name: 'Real Estate', slug: 'real-estate', clusterSlug: 'built-environment-energy' },
   { name: 'Oil & Gas', slug: 'oil-gas', clusterSlug: 'built-environment-energy' },
 ];
 
 const mockClusters = [
   { name: 'Agriculture & Processing', slug: 'agriculture-processing' },
-  { name: 'Trade & Markets', slug: 'trade-markets' },
+  { name: 'Trade & Services', slug: 'trade-services' },
   { name: 'Built Environment & Energy', slug: 'built-environment-energy' },
 ];
 
@@ -73,7 +74,7 @@ describe('MobileNav', () => {
     await user.click(divisionsTrigger);
 
     expect(screen.getByText('Agriculture & Processing')).toBeInTheDocument();
-    expect(screen.getByText('Trade & Markets')).toBeInTheDocument();
+    expect(screen.getByText('Trade & Services')).toBeInTheDocument();
     expect(screen.getByText('Built Environment & Energy')).toBeInTheDocument();
   });
 

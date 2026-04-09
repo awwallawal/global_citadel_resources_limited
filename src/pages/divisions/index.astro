@@ -35,13 +35,13 @@ const breadcrumbs: BreadcrumbItem[] = [
   { label: 'Divisions' },
 ];
 
-const SITE_URL = (import.meta.env.SITE ?? 'https://globalresourcescitadel.com').replace(/\/$/, '');
+const SITE_URL = (import.meta.env.SITE ?? 'https://global-resources.org').replace(/\/$/, '');
 
 const seo = {
   ...generateMetadata({
     title: 'Our Divisions',
     description:
-      "Explore GRCL's seven divisions — crop farming, animal husbandry, agro-processing, commodity trading, import/export, real estate, and oil & gas across Africa.",
+      "Explore GRCL's eight divisions — crop farming, animal husbandry, agro-processing, commodity trading, import/export, travel & mobility, real estate, and oil & gas across Africa.",
     path: '/divisions/',
   }),
   jsonLd: [
@@ -50,7 +50,7 @@ const seo = {
       '@context': 'https://schema.org',
       '@type': 'CollectionPage',
       name: 'Our Divisions',
-      description: "Global Resources Citadel's seven business divisions",
+      description: "Global Resources Citadel's eight business divisions",
       url: `${SITE_URL}/divisions/`,
       mainEntity: {
         '@type': 'ItemList',
@@ -84,7 +84,7 @@ const sectionVariants = ['default', 'light', 'default'] as const;
         Built Across Sectors. United by Purpose.
       </h1>
       <p class="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-neutral-600">
-        Seven business divisions across agriculture, trade, infrastructure, and energy — each with
+        Eight business divisions across agriculture, trade & services, infrastructure, and energy — each with
         distinct capabilities, unified by shared values and a common vision for Africa's future.
       </p>
     </div>

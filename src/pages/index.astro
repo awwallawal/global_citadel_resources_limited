@@ -42,7 +42,7 @@ const seo = {
   ...generateMetadata({
     title: "Pan-African Conglomerate | Agriculture, Trade, Energy",
     description:
-      "A pan-African conglomerate headquartered in Lagos with seven divisions across agriculture, trade, real estate, and energy serving African markets.",
+      "A pan-African conglomerate headquartered in Lagos with eight divisions across agriculture, trade & services, real estate, and energy serving African markets.",
     path: '/',
   }),
   jsonLd: [generateOrganizationJsonLd(), generateWebSiteJsonLd()],
@@ -54,7 +54,7 @@ const seo = {
  */
 const clusterIcons: Record<string, string> = {
   'agriculture-processing': '<path d="M2 22 16 8"/><path d="M3.47 12.53 5 11l1.53 1.53a3.5 3.5 0 0 1 0 4.94L5 19l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M7.47 8.53 9 7l1.53 1.53a3.5 3.5 0 0 1 0 4.94L9 15l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M11.47 4.53 13 3l1.53 1.53a3.5 3.5 0 0 1 0 4.94L13 11l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M20 2h2v2a4 4 0 0 1-4 4h-2V6a4 4 0 0 1 4-4Z"/><path d="M11.47 17.47 13 19l-1.53 1.53a3.5 3.5 0 0 1-4.94 0L5 19l1.53-1.53a3.5 3.5 0 0 1 4.94 0Z"/><path d="M15.47 13.47 17 15l-1.53 1.53a3.5 3.5 0 0 1-4.94 0L9 15l1.53-1.53a3.5 3.5 0 0 1 4.94 0Z"/><path d="M19.47 9.47 21 11l-1.53 1.53a3.5 3.5 0 0 1-4.94 0L13 11l1.53-1.53a3.5 3.5 0 0 1 4.94 0Z"/>',
-  'trade-markets': '<polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>',
+  'trade-services': '<polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>',
   'built-environment-energy': '<path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/>',
 };
 ---
@@ -143,7 +143,7 @@ const clusterIcons: Record<string, string> = {
       eyebrow="Our Divisions"
       centered
     >
-      Seven Verticals. One Vision.
+      Eight Verticals. One Vision.
     </SectionHeading>
     <DivisionBentoGrid divisions={divisions} />
   </SectionWrapper>
@@ -151,7 +151,7 @@ const clusterIcons: Record<string, string> = {
   {/* ── Credibility Stats ── */}
   <CredibilityBar
     stats={[
-      { value: 7, label: 'Divisions Active' },
+      { value: 8, label: 'Divisions Active' },
       { value: 15, label: 'Years in Business', suffix: '+' },
       { value: 6, suffix: '+', label: 'African Markets' },
       { value: 40, label: 'Partners Across Africa', suffix: '+' },

@@ -1,11 +1,12 @@
 ---
 /**
- * DivisionBentoGrid.astro — Asymmetric CSS Grid for 7 divisions.
+ * DivisionBentoGrid.astro — Asymmetric CSS Grid for 8 divisions.
  *
  * Layout (md+):
  *   Row 1-2: [Crop Farming - large filled] [Commodity Marketing - large accent]
  *   Row 3:   [Animal Husbandry] [Agro-Processing] [Import & Export (wide)]
  *   Row 4:   [Real Estate (wide, dark)]            [Oil & Gas (wide)]
+ *   Row 5:   [Travel & Mobility (full-width, filled)]
  */
 import type { CollectionEntry } from 'astro:content';
 import DivisionCard from '@/components/divisions/DivisionCard.astro';
@@ -83,6 +84,14 @@ const gridMap: Record<string, GridConfig> = {
     icon: '\u{26FD}',
     image: bentoOilGas,
   },
+  'travel-mobility': {
+    // No bento hero image yet — sourcing handled under Story 9.4.
+    // Renders as a filled card with icon + tagline; visually intentional pending image approval.
+    size: 'wide',
+    variant: 'filled',
+    gridClass: 'bento-travel',
+    icon: '\u{2708}\u{FE0F}',
+  },
 };
 
 // DOM order: core tier → supporting → aspirational (matches mobile reading order)
@@ -94,6 +103,7 @@ const order = [
   'import-export',
   'real-estate',
   'oil-gas',
+  'travel-mobility',
 ];
 
 const divisionMap = new Map(divisions.map((d) => [d.data.slug, d]));
@@ -140,7 +150,7 @@ const divisionMap = new Map(divisions.map((d) => [d.data.slug, d]));
   @media (min-width: 768px) {
     .bento-grid {
       grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: auto auto auto auto;
+      grid-template-rows: auto auto auto auto auto;
       gap: 1.5rem;
     }
 
@@ -172,6 +182,10 @@ const divisionMap = new Map(divisions.map((d) => [d.data.slug, d]));
       grid-column: 3 / 5;
       grid-row: 4 / 5;
     }
+    .bento-grid :global(.bento-travel) {
+      grid-column: 1 / 5;
+      grid-row: 5 / 6;
+    }
   }
 
   /* Cards fill their grid cell */
@@ -181,7 +195,8 @@ const divisionMap = new Map(divisions.map((d) => [d.data.slug, d]));
   .bento-grid :global(.bento-agro > a),
   .bento-grid :global(.bento-import > a),
   .bento-grid :global(.bento-restate > a),
-  .bento-grid :global(.bento-oil > a) {
+  .bento-grid :global(.bento-oil > a),
+  .bento-grid :global(.bento-travel > a) {
     height: 100%;
   }
 </style>

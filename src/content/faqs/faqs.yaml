@@ -1,6 +1,6 @@
 - id: homepage-what-does-grcl-do
   question: What does Global Resources Citadel Limited do?
-  answer: GRCL is a diversified pan-African conglomerate headquartered in Lagos, operating across seven business divisions spanning agriculture, commodity trading, real estate, and energy. We create value through integrated operations that connect primary production to end markets.
+  answer: GRCL is a diversified pan-African conglomerate headquartered in Lagos, operating across eight business divisions spanning agriculture, commodity trading, travel & mobility, real estate, and energy. We create value through integrated operations that connect primary production, services, and end markets.
   category: homepage
   sortOrder: 1
 
@@ -12,7 +12,7 @@
 
 - id: homepage-divisions-structure
   question: How are GRCL's divisions structured?
-  answer: Our seven divisions are organized into three strategic clusters — Agriculture & Processing, Trade & Markets, and Built Environment & Energy — allowing us to capture value across entire supply chains.
+  answer: Our eight divisions are organized into three strategic clusters — Agriculture & Processing, Trade & Services, and Built Environment & Energy — allowing us to capture value across entire supply chains.
   category: homepage
   sortOrder: 3
 

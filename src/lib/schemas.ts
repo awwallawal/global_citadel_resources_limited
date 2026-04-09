@@ -8,13 +8,14 @@ export const divisionSlugEnum = z.enum([
   'agro-processing',
   'commodity-marketing',
   'import-export',
+  'travel-mobility',
   'real-estate',
   'oil-gas',
 ]);
 
 export const clusterSlugEnum = z.enum([
   'agriculture-processing',
-  'trade-markets',
+  'trade-services',
   'built-environment-energy',
 ]);
 

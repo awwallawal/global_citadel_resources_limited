@@ -79,7 +79,7 @@ export async function buildSearchIndex(): Promise<SearchItem[]> {
       title: 'Our Divisions',
       type: 'page',
       section: 'Divisions',
-      summary: 'Explore all seven business divisions of Global Resources Citadel.',
+      summary: 'Explore all eight business divisions of Global Resources Citadel.',
       url: '/divisions/',
     },
     {
@@ -124,7 +124,7 @@ export async function buildSearchIndex(): Promise<SearchItem[]> {
       title: 'Insights by Division',
       type: 'page',
       section: 'Insights',
-      summary: 'Browse insights from each of our seven business divisions.',
+      summary: 'Browse insights from each of our eight business divisions.',
       url: '/insights/divisions/',
     },
     {
