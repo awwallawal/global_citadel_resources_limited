@@ -5,17 +5,20 @@
  * Never hardcode company contact details, addresses, or legal identifiers elsewhere.
  */
 
+export interface PhoneNumber {
+  /** Formatted for display (e.g., "+234-704-100-8192") */
+  display: string;
+  /** tel: URI format (e.g., "+2347041008192") */
+  tel: string;
+}
+
 export interface Office {
   /** Display label (e.g., "Nigeria · HQ") */
   label: string;
   /** ISO country code */
   country: 'NG' | 'GB';
-  phone: {
-    /** Formatted for display (e.g., "+234-811-191-2174") */
-    display: string;
-    /** tel: URI format (e.g., "+2348111912174") */
-    tel: string;
-  };
+  /** One or more contact numbers; the first entry is the primary line. */
+  phones: PhoneNumber[];
   address: {
     /** Individual address lines for multi-line rendering */
     lines: string[];
@@ -65,10 +68,16 @@ export const COMPANY: CompanyInfo = {
     nigeria: {
       label: 'Nigeria · HQ',
       country: 'NG',
-      phone: {
-        display: '+234-811-191-2174',
-        tel: '+2348111912174',
-      },
+      phones: [
+        {
+          display: '+234-704-100-8192',
+          tel: '+2347041008192',
+        },
+        {
+          display: '+234-915-410-9225',
+          tel: '+2349154109225',
+        },
+      ],
       address: {
         lines: [
           '1st Floor, Gbemisola House',
@@ -86,10 +95,12 @@ export const COMPANY: CompanyInfo = {
     unitedKingdom: {
       label: 'United Kingdom',
       country: 'GB',
-      phone: {
-        display: '+44 7404 138 158',
-        tel: '+447404138158',
-      },
+      phones: [
+        {
+          display: '+44 7404 138 158',
+          tel: '+447404138158',
+        },
+      ],
       address: {
         lines: [
           'Office 1249, 12 Farwig Lane',

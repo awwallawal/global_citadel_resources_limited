@@ -38,8 +38,18 @@ describe('COMPANY constant', () => {
     });
 
     it('has valid phone formats', () => {
-      expect(office.phone.display).toMatch(/^\+234/);
-      expect(office.phone.tel).toMatch(/^\+234\d+$/);
+      expect(office.phones.length).toBeGreaterThanOrEqual(1);
+      for (const phone of office.phones) {
+        expect(phone.display).toMatch(/^\+234/);
+        expect(phone.tel).toMatch(/^\+234\d+$/);
+      }
+    });
+
+    it('lists both confirmed HQ numbers', () => {
+      const tels = office.phones.map((p) => p.tel);
+      expect(tels).toContain('+2347041008192');
+      expect(tels).toContain('+2349154109225');
+      expect(tels).not.toContain('+2348111912174');
     });
 
     it('has address with lines and full string', () => {
@@ -66,8 +76,9 @@ describe('COMPANY constant', () => {
     });
 
     it('has valid UK phone format', () => {
-      expect(office.phone.display).toMatch(/^\+44/);
-      expect(office.phone.tel).toMatch(/^\+44\d+$/);
+      expect(office.phones.length).toBeGreaterThanOrEqual(1);
+      expect(office.phones[0].display).toMatch(/^\+44/);
+      expect(office.phones[0].tel).toMatch(/^\+44\d+$/);
     });
 
     it('has address with Bromley', () => {
