@@ -2,23 +2,29 @@
 
 ## Status
 
-**State:** Implementation-ready
-**Date:** 2026-03-28
-**Purpose:** Shared implementation context for all agents building this platform
+**State:** LIVE IN PRODUCTION
+**Live URL:** https://global-citadel-resources-limited.vercel.app/ (auto-deploys from `main` via Vercel)
+**Date:** 2026-06-23 (originally implementation-ready 2026-03-28)
+**Purpose:** Shared context for all agents working on this platform
+
+> **Reality check before you work:** The MVP (Epics 1-8) and Epic 9 (brand maturation) are SHIPPED and LIVE. This includes the legacy logo, pan-African copy, the SRADA Community Impact page, African imagery, the 8th vertical (Travel & Mobility), and centralized company info. **Do not assume any of these are "not done" — verify against the live site or current `src/` first.** Only optional formal code-review/retro of a few Epic-9 stories remains. See `_bmad-output/implementation-artifacts/sprint-status.yaml`.
 
 ## Project Summary
 
-This project delivers a multi-division corporate web platform for **Global Resources Citadel Limited (GRCL)**, a Nigerian conglomerate operating across seven business verticals:
+This project delivers a multi-division corporate web platform for **Global Resources Citadel Limited (GRCL)**, a Nigeria-headquartered, **pan-African** conglomerate operating across **eight business verticals** (clusters ordered as shown on the live site):
 
 | Division | Cluster | Strategic Tier |
 |---|---|---|
+| Commodity Marketing | Trade & Services | Supporting |
+| Import & Export | Trade & Services | Supporting |
+| Travel & Mobility | Trade & Services | Supporting |
 | Crop Farming | Agriculture & Processing | Core |
 | Animal Husbandry | Agriculture & Processing | Core |
 | Agro-Processing | Agriculture & Processing | Core |
-| Commodity Marketing | Trade & Markets | Supporting |
-| Import & Export | Trade & Markets | Supporting |
 | Real Estate | Built Environment & Energy | Aspirational |
 | Oil & Gas | Built Environment & Energy | Aspirational |
+
+Plus **SRADA** (Support Rural Agricultural Development Association) — GRCL's charity/social-impact initiative, surfaced as a dedicated **Community Impact** page, *not* as a commercial vertical. Cluster display order is driven site-wide by each cluster's `sortOrder` (Trade & Services → Agriculture & Processing → Built Environment & Energy).
 
 The platform is a **credibility engine** — not a brochure site. Its primary job is to make the business legible to external audiences (investors, customers, general public) and convert that legibility into trust, inquiry, and engagement.
 

@@ -34,8 +34,17 @@
 # - SM typically creates next story after previous one is 'done' to incorporate learnings
 # - Dev moves story to 'review', then runs code-review (fresh context, different LLM recommended)
 
+# ============================================================================
+# PROJECT STATE: LIVE IN PRODUCTION  (verified 2026-06-23)
+#   URL:  https://global-citadel-resources-limited.vercel.app/  (auto-deploys from main)
+#   MVP (Epics 1-8) shipped. Epic 9 (brand maturation) functionally complete & live:
+#   old logo, pan-African copy, SRADA Community Impact page, African imagery,
+#   8th vertical (Travel & Mobility), centralized company info — ALL LIVE.
+#   Only outstanding work is OPTIONAL formal code-review/retro of 9-3, 9-4, 9-6.
+#   => Do NOT treat any Epic-9 item as "not done"; verify the live site first.
+# ============================================================================
 generated: 2026-03-28
-last_updated: 2026-04-09
+last_updated: 2026-06-23
 project: UK_Web_Design
 last_story_created: 9-7-travel-mobility-eighth-vertical
 project_key: NOKEY
@@ -113,12 +122,14 @@ development_status:
   # Ref: _bmad-output/planning-artifacts/platform-evolution-spec-v1.md
   # Sequencing: Epic 8 should close before Epic 9 begins.
   # After Epic 9 completes, re-run E2E + Lighthouse to verify no regressions.
-  epic-9: in-progress
-  9-1-legacy-logo-swap: done
-  9-2-pan-african-copy-rewrite: done
-  9-3-community-impact-page-srada: review
-  9-4-african-context-image-sourcing-integration: review # two-phase: agent sources candidates → human approves → dev integrates
-  9-5-print-collateral-business-cards-letterhead: done # non-web, can run in parallel
-  9-6-centralize-company-info-uk-office-rc-domain: review # Centralized company info, UK office, RC number, domain migration — 2026-04-09
-  9-7-travel-mobility-eighth-vertical: done # CC 2026-04-08; verification pass 2026-04-09 — see CC Section 9
+  # Epic 9 is functionally COMPLETE and LIVE in production (verified 2026-06-23).
+  # 'review' below means "deployed & working, pending only optional formal code-review" — NOT "unbuilt".
+  epic-9: in-progress # all stories shipped & live; stays in-progress only until formal review/retro
+  9-1-legacy-logo-swap: done # LIVE — old shield/crest logo site-wide
+  9-2-pan-african-copy-rewrite: done # LIVE — pan-African outlook copy
+  9-3-community-impact-page-srada: review # LIVE — SRADA Community Impact page in production
+  9-4-african-context-image-sourcing-integration: review # LIVE — hero + division imagery in production
+  9-5-print-collateral-business-cards-letterhead: done # non-web; updated 2026-06-22 (dual NG phones, website line, Trade-first)
+  9-6-centralize-company-info-uk-office-rc-domain: review # LIVE — src/lib/company.ts single source of truth (dual NG phones added 2026-06-22)
+  9-7-travel-mobility-eighth-vertical: done # LIVE — 8th vertical; CC 2026-04-08, verified 2026-04-09
   epic-9-retrospective: optional

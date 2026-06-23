@@ -2,7 +2,7 @@
 
 ## Project
 
-Multi-division corporate web platform for **Global Resources Citadel Limited (GRCL)** — a Nigerian conglomerate across 7 business verticals. This is a credibility engine, not a brochure site.
+Multi-division corporate web platform for **Global Resources Citadel Limited (GRCL)** — a Nigeria-headquartered, pan-African conglomerate across 8 business verticals, plus the SRADA charity (a Community Impact page, not a vertical). This is a credibility engine, not a brochure site. **Status: LIVE in production** (https://global-citadel-resources-limited.vercel.app/, auto-deploys from `main`) — MVP + Epic 9 brand maturation shipped; verify the live site before assuming any feature is unbuilt.
 
 ## Tech Stack
 
